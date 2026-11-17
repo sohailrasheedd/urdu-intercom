@@ -1,0 +1,3674 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="انٹر کام">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<title>انٹر کام</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&family=Montserrat:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ==========================================================================
+     FONTS LOADING - Local Assets (Matched to Dawateislami.net Typography)
+     ========================================================================== */
+  @font-face {
+    font-family: 'nafees_web_naskhshipped';
+    src: url('assets/fonts/nafees_web_naskhshipped.woff2') format('woff2'),
+         url('assets/fonts/nafees_web_naskhshipped.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Al_Mushaf';
+    src: url('assets/fonts/Al_Mushaf.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Noto Nastaliq Urdu';
+    src: url('assets/fonts/Noto_Nastaliq_Urdu_400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Noto Nastaliq Urdu';
+    src: url('assets/fonts/Noto_Nastaliq_Urdu_700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat_400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat_600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat_700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat_800.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Istok Web';
+    src: url('assets/fonts/Istok_Web_400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Istok Web';
+    src: url('assets/fonts/Istok_Web_700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ==========================================================================
+     DESIGN TOKENS - Typography & Layout Variables (Dawateislami Scheme)
+     ========================================================================== */
+  :root{
+    --bg:#0f172a; --card:#1e293b; --text:#f8fafc; --muted:#94a3b8;
+    --ok:#16a34a; --bad:#dc2626;
+
+    /* Theme Typography Tokens */
+    --font-urdu-heading:'Noto Nastaliq Urdu', 'nafees_web_naskhshipped', 'Jameel Noori Nastaleeq', 'Noto Sans Arabic', Tahoma, sans-serif;
+    --font-urdu-body:'nafees_web_naskhshipped', 'Noto Nastaliq Urdu', 'Noto Sans Arabic', Tahoma, -apple-system, sans-serif;
+    --font-urdu-title:'Noto Nastaliq Urdu', 'nafees_web_naskhshipped', 'Noto Sans Arabic', Tahoma, sans-serif;
+    --font-latin-heading:'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-latin-body:'Istok Web', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-quran:'Al_Mushaf', 'Al-Qalam-V1', 'nafees_web_naskhshipped', serif;
+    --font-mono:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* Line Height Tokens (Generous for Urdu & Nastaliq ascenders/descenders) */
+    --lh-urdu-heading:1.65;
+    --lh-urdu-body:1.85;
+    --lh-urdu-btn:1.6;
+    --lh-latin:1.45;
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);
+    font-family:var(--font-urdu-body);
+    line-height:var(--lh-urdu-body);overflow-x:hidden;
+    text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    font-feature-settings:"kern" 1, "liga" 1;
+    letter-spacing:0;
+    direction:rtl;text-align:right}
+  button,input,textarea,select{
+    font-family:var(--font-urdu-body);
+    letter-spacing:0;
+    font-feature-settings:"kern" 1, "liga" 1;
+  }
+  .hidden{display:none!important}
+
+  /* Typography alignment and Headings hierarchy (Balanced Medium Sizes) */
+  .nastaliq, .login-box h1, #mTitle, .super-header h2, .hist-header h2, .sheet h2, .super-form h3, .perms-card h4{
+    font-family:var(--font-urdu-heading);
+    line-height:var(--lh-urdu-heading);
+    letter-spacing:0;
+    vertical-align:middle;
+  }
+  .name-btn span{
+    font-family:var(--font-urdu-heading);
+    font-size:1.55rem;
+    line-height:var(--lh-urdu-heading);
+    vertical-align:middle;
+    letter-spacing:0;
+    padding:2px 0;
+  }
+  .tm, .badge, code, .user-role-tag, .nav-status-tag, .pw-badge{
+    direction:ltr;
+    unicode-bidi:isolate;
+    font-family:var(--font-latin-heading);
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ---------- Login ---------- */
+  #login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;width:100%;box-sizing:border-box}
+  .login-box{background:var(--card);padding:26px 22px;border-radius:22px;width:100%;max-width:420px;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);text-align:center;box-sizing:border-box}
+  .login-box h1{margin:0 0 6px;font-size:1.85rem;font-family:var(--font-urdu-heading);line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .login-box p{margin:0 0 14px;color:var(--muted);font-size:1.02rem;line-height:var(--lh-urdu-body);letter-spacing:0}
+  .login-box input{width:100%;padding:11px 14px;margin:6px 0;border-radius:12px;border:2px solid #334155;
+    background:#0f172a;color:var(--text);font-family:var(--font-urdu-body);font-size:1.15rem;text-align:center;outline:none;line-height:var(--lh-urdu-body);box-sizing:border-box;letter-spacing:0}
+  .login-box input:focus{border-color:#3b82f6}
+  .btn-main{width:100%;margin-top:12px;padding:10px 16px;border:0;border-radius:12px;background:#2563eb;color:#fff;
+    font-family:var(--font-urdu-body);font-size:1.15rem;font-weight:700;line-height:var(--lh-urdu-btn);cursor:pointer;letter-spacing:0}
+  .btn-main:active{transform:scale(.98)}
+  #loginErr{color:#fca5a5;min-height:2em;margin-top:8px;font-size:1rem;line-height:var(--lh-urdu-body);letter-spacing:0}
+
+  .quick-users{margin-top:14px;padding-top:12px;border-top:1px solid #334155}
+  .quick-title{font-size:.95rem;color:var(--muted);display:block;margin-bottom:8px;line-height:var(--lh-urdu-body);letter-spacing:0}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%}
+  .quick-btn{border:0;border-radius:12px;background:#334155;color:#fff;padding:6px 14px;font-family:var(--font-urdu-body);font-size:1rem;cursor:pointer;white-space:nowrap;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .quick-btn:hover{background:#2563eb}
+
+  /* ---------- Main Grid & App ---------- */
+  #app{min-height:100vh;padding:14px;padding-bottom:130px;box-sizing:border-box}
+  
+  .top-nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:8px 16px;
+    background:var(--card);border-radius:18px;margin-bottom:14px;max-width:1300px;margin-left:auto;margin-right:auto;
+    border:1px solid #334155;gap:10px}
+  .user-badge{font-size:1.15rem;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--font-urdu-heading);line-height:var(--lh-urdu-heading)}
+  .user-role-tag{font-size:.85rem;padding:2px 10px;border-radius:12px;background:#334155;color:var(--muted);font-family:var(--font-latin-heading);font-weight:600}
+  .nav-status-tag{font-size:.85rem;padding:3px 10px;border-radius:10px;background:#065f46;color:#a7f3d0;font-family:var(--font-latin-heading);font-weight:600}
+  .nav-status-tag.local{background:#854d0e;color:#fef08a}
+  
+  .nav-actions{display:flex;align-items:center;gap:8px}
+  .btn-super{border:0;background:#7c3aed;color:#fff;border-radius:12px;padding:8px 14px;font-family:var(--font-urdu-body);font-size:.95rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .btn-super:hover{background:#6d28d9}
+  .logout-top{border:0;background:#dc2626;color:#fff;border-radius:12px;padding:8px 14px;font-family:var(--font-urdu-body);font-size:.95rem;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:1300px;margin:0 auto}
+  
+  /* Single person mode for individual upstairs receiver */
+  .grid.single-mode{display:flex;justify-content:center;align-items:flex-start;max-width:850px;margin:0 auto}
+  .grid.single-mode .person{width:100%;min-height:380px}
+  .grid.single-mode .msg.incoming .t{font-size:1.65rem;line-height:1.85}
+
+  .person{background:var(--card);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
+    border:3px solid transparent;transition:border-color .2s}
+  .person.has{animation:glow 1.2s infinite}
+  @keyframes glow{0%,100%{border-color:transparent}50%{border-color:var(--c)}}
+  .name-btn{position:relative;border:0;color:#fff;background:var(--c);cursor:pointer;
+    padding:10px 10px;font-family:var(--font-urdu-heading);font-size:1.55rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+    width:100%;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .name-btn:active{filter:brightness(.9)}
+  .badge{position:absolute;top:6px;left:8px;min-width:30px;height:30px;border-radius:15px;background:#fff;color:var(--bad);
+    font-family:var(--font-latin-heading);font-size:1rem;font-weight:800;line-height:30px;text-align:center;padding:0 6px}
+
+  /* Pinned messages section on card (For Rush Hours) */
+  .card-pins{background:#0f172a;padding:6px 10px;border-bottom:1px solid #334155;display:flex;flex-direction:column;gap:5px}
+  .pins-header{display:flex;justify-content:space-between;align-items:center;font-size:.92rem;color:var(--muted);font-weight:700;line-height:var(--lh-urdu-body)}
+  .pins-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .pin-pill{border:1px solid #334155;border-radius:10px;background:#1e293b;color:#f8fafc;padding:4px 10px;font-family:var(--font-urdu-body);font-size:.92rem;cursor:pointer;white-space:nowrap;transition:all .15s;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .pin-pill:hover{background:#2563eb;border-color:#3b82f6}
+  .pin-pill:active{transform:scale(.95)}
+  .pin-pill.pin-add{background:#334155;color:#93c5fd;font-weight:700}
+
+  .msgs{padding:10px;display:flex;flex-direction:column;gap:10px;min-height:50px}
+  .empty{color:var(--muted);text-align:center;font-family:var(--font-urdu-body);font-size:1.05rem;line-height:var(--lh-urdu-body);padding:18px 0;letter-spacing:0}
+  
+  /* ---------- Two-Way Chat Messages ---------- */
+  .msg{border-radius:16px;padding:10px 12px;animation:pop .3s;display:flex;flex-direction:column;gap:5px}
+  @keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+  
+  /* Incoming Message (White box, prominent Urdu text) */
+  .msg.incoming{background:#ffffff;color:#0f172a;border-right:5px solid var(--c,#2563eb);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .msg.incoming .t{font-family:var(--font-urdu-body);font-size:1.35rem;font-weight:700;line-height:var(--lh-urdu-body);color:#0f172a;word-break:break-word;letter-spacing:0;padding:2px 0}
+  .msg.incoming .tm{color:#64748b;font-size:.82rem;font-family:var(--font-latin-body)}
+
+  /* Outgoing Message (Dark slate, blue accent) */
+  .msg.outgoing{background:#1e293b;border:2px solid #3b82f6;color:#f8fafc}
+  .msg.outgoing .t{font-family:var(--font-urdu-body);font-size:1.25rem;color:#f8fafc;line-height:var(--lh-urdu-body);word-break:break-word;letter-spacing:0;padding:2px 0}
+  .msg.outgoing .tm{color:#94a3b8;font-size:.82rem;font-family:var(--font-latin-body)}
+
+  /* Sender Header Tag */
+  .msg-sender-tag{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:700;padding:2px 10px;border-radius:10px;width:fit-content;font-family:var(--font-urdu-body);line-height:var(--lh-urdu-btn)}
+  .msg.incoming .msg-sender-tag{background:#e2e8f0;color:#1e293b}
+  .msg.outgoing .msg-sender-tag{background:#334155;color:#93c5fd}
+
+  /* Quoted reply box */
+  .msg-quote{background:rgba(0,0,0,.06);border-right:3px solid #3b82f6;padding:4px 10px;border-radius:8px;font-family:var(--font-urdu-body);font-size:.95rem;line-height:1.6;color:#475569;margin-bottom:3px;letter-spacing:0}
+  .msg.outgoing .msg-quote{background:rgba(255,255,255,.07);color:#cbd5e1;border-right-color:#60a5fa}
+
+  /* Quick response pills below message */
+  .quick-reply-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;padding-top:6px;border-top:1px dashed #cbd5e1}
+  .msg.outgoing .quick-reply-row{border-top-color:#334155}
+  .q-reply-pill{border:0;border-radius:8px;background:#f1f5f9;color:#0f172a;padding:3px 10px;font-family:var(--font-urdu-body);font-size:.88rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .q-reply-pill:hover{background:#2563eb;color:#fff}
+  .q-reply-pill:active{transform:scale(.95)}
+
+  /* Action Buttons Row */
+  .msg-actions{display:flex;gap:6px;margin-top:4px}
+  .btn-reply{flex:1;padding:8px 12px;border:0;border-radius:10px;background:#2563eb;color:#fff;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .btn-reply:hover{background:#1d4ed8}
+  .btn-clear{flex:1;padding:8px 12px;border:0;border-radius:10px;background:var(--ok);color:#fff;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .btn-cancel{padding:8px 12px;border:0;border-radius:10px;background:#dc2626;color:#fff;font-family:var(--font-urdu-body);font-size:.95rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+
+  /* Reply quote banner in modal */
+  .reply-banner{background:#0f172a;border-right:4px solid #3b82f6;padding:8px 12px;border-radius:10px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .reply-banner-text{font-family:var(--font-urdu-body);font-size:1rem;color:#93c5fd;line-height:var(--lh-urdu-body);letter-spacing:0}
+  .reply-banner-close{background:transparent;border:0;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:2px 8px}
+
+  /* ---------- Bottom tools controls ---------- */
+  .tools{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;flex-wrap:wrap;justify-content:center;gap:8px;z-index:25;pointer-events:none;background:rgba(15,23,42,.92);backdrop-filter:blur(8px);padding:8px 14px;border-radius:24px;border:1px solid #334155;box-shadow:0 8px 30px rgba(0,0,0,.5);max-width:calc(100% - 24px);width:max-content}
+  .tools > *{pointer-events:auto}
+  .tool{border:0;border-radius:12px;background:#334155;color:#fff;padding:8px 16px;font-family:var(--font-urdu-body);font-size:.95rem;cursor:pointer;display:inline-flex;align-items:center;white-space:nowrap;transition:background .2s;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .tool:hover{background:#475569}
+  .tool:active{transform:scale(.96)}
+  #soundBar{position:fixed;top:0;right:0;left:0;background:#f59e0b;color:#000;text-align:center;padding:6px;
+    font-family:var(--font-urdu-body);font-size:1.05rem;line-height:var(--lh-urdu-btn);font-weight:700;cursor:pointer;z-index:20}
+
+  /* ---------- Modal (پیغام / جواب بھیجیں) ---------- */
+  #modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;
+    padding:16px;z-index:1000}
+  #changePinModal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;
+    padding:16px;z-index:1100}
+  .sheet{background:var(--card);border-radius:22px;width:100%;max-width:520px;padding:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);max-height:90vh;overflow-y:auto}
+  .sheet h2{margin:0 0 10px;font-family:var(--font-urdu-heading);font-size:1.4rem;line-height:var(--lh-urdu-heading);text-align:center;letter-spacing:0}
+  .sheet textarea{width:100%;min-height:105px;border-radius:14px;border:2px solid #334155;background:#0f172a;color:var(--text);
+    font-family:var(--font-urdu-body);font-size:1.25rem;padding:12px 14px;line-height:var(--lh-urdu-body);resize:vertical;outline:none;letter-spacing:0}
+  .sheet textarea:focus{border-color:#3b82f6}
+  
+  .quick-phrases{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;max-height:120px;overflow-y:auto}
+  .q-chip{border:0;border-radius:10px;background:#334155;color:var(--text);padding:5px 12px;font-family:var(--font-urdu-body);font-size:.9rem;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .q-chip:hover{background:#2563eb;color:#fff}
+
+  /* Mode selection tabs in Modal (Text / Speech vs Voice-to-Voice) */
+  .msg-mode-tabs{display:flex;gap:8px;margin-bottom:12px;background:#0f172a;padding:4px;border-radius:14px;border:1px solid #334155}
+  .msg-mode-tab{flex:1;padding:8px 10px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-family:var(--font-urdu-body);font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .msg-mode-tab.active{background:#2563eb;color:#fff}
+
+  /* Voice Note Recorder Section (Voice to Voice) */
+  .voice-record-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px 14px;background:#0f172a;border-radius:16px;border:2px dashed #334155;margin-bottom:12px;text-align:center}
+  .voice-rec-btn{width:76px;height:76px;border-radius:50%;border:0;background:#2563eb;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 8px 24px rgba(37,99,235,.35)}
+  .voice-rec-btn.recording{background:#dc2626;animation:recPulse 1.2s infinite;box-shadow:0 8px 25px rgba(220,38,38,.5)}
+  @keyframes recPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .voice-rec-timer{font-family:var(--font-latin-heading);font-size:1.35rem;font-weight:700;color:#93c5fd;direction:ltr;unicode-bidi:isolate}
+  .voice-rec-status{font-family:var(--font-urdu-body);font-size:1.05rem;color:var(--muted);line-height:1.6}
+  .voice-preview-row{width:100%;display:flex;align-items:center;gap:10px;background:#1e293b;padding:8px 14px;border-radius:12px;margin-top:6px}
+
+  /* Audio Voice Player on Chat Cards */
+  .voice-player{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.06);padding:8px 12px;border-radius:12px;margin:3px 0}
+  .msg.outgoing .voice-player{background:rgba(255,255,255,.07)}
+  .btn-voice-play{width:40px;height:40px;border-radius:50%;border:0;background:#2563eb;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;transition:transform .15s}
+  .btn-voice-play:active{transform:scale(.92)}
+  .btn-voice-play.playing{background:#dc2626}
+  .voice-meta{display:flex;flex-direction:column;gap:3px;flex:1}
+  .voice-label{font-family:var(--font-urdu-body);font-size:1rem;font-weight:700;line-height:1.4}
+  .voice-progress-bar{height:6px;background:rgba(0,0,0,.15);border-radius:3px;overflow:hidden;position:relative}
+  .msg.outgoing .voice-progress-bar{background:rgba(255,255,255,.2)}
+  .voice-progress-fill{height:100%;background:#2563eb;width:0%;transition:width .1s linear}
+  .voice-time{font-size:.78rem;font-family:var(--font-latin-heading);color:var(--muted);direction:ltr;unicode-bidi:isolate}
+
+  .row{display:flex;gap:10px;margin-top:10px}
+  .mic{flex:0 0 auto;width:64px;height:64px;border-radius:50%;border:0;background:#334155;color:#fff;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center}
+  .mic.on{background:var(--bad);animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.6)}50%{box-shadow:0 0 0 16px rgba(220,38,38,0)}}
+  .send{flex:1;border:0;border-radius:16px;background:var(--ok);color:#fff;font-family:var(--font-urdu-body);font-size:1.3rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0;padding:10px 14px}
+  .cancel{width:100%;margin-top:8px;padding:8px;border:0;border-radius:12px;background:#334155;color:#fff;font-family:var(--font-urdu-body);font-size:1.1rem;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  #micHint{text-align:center;color:#93c5fd;font-family:var(--font-urdu-body);font-size:1rem;min-height:2em;margin-top:4px;line-height:var(--lh-urdu-body);letter-spacing:0}
+
+  /* ---------- Super User / Manager Modal ---------- */
+  #superModal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:16px;z-index:1000}
+  .super-sheet{background:var(--card);border-radius:22px;width:100%;max-width:680px;max-height:88vh;display:flex;flex-direction:column;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
+  .super-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155;padding-bottom:8px;margin-bottom:10px;flex-shrink:0}
+  .super-header h2{margin:0;font-family:var(--font-urdu-heading);font-size:1.45rem;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .super-tabs{display:flex;gap:6px;margin-bottom:12px;flex-shrink:0;overflow-x:auto}
+  .super-tab{flex:1;padding:8px 10px;border:0;border-radius:10px;background:#334155;color:var(--text);font-family:var(--font-urdu-body);font-size:1rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0;white-space:nowrap}
+  .super-tab.active{background:#7c3aed;color:#fff}
+  .super-tab.tab-danger.active{background:#dc2626;color:#fff}
+  .super-content{overflow-y:auto;flex:1;padding:0 4px 24px 4px}
+  
+  /* People manage */
+  .people-table{width:100%;border-collapse:collapse;margin-bottom:14px}
+  .people-table th,.people-table td{padding:8px 10px;text-align:right;border-bottom:1px solid #334155;font-family:var(--font-urdu-body);font-size:1rem;line-height:var(--lh-urdu-body)}
+  .people-table th{color:var(--muted);font-size:.9rem;font-family:var(--font-urdu-body)}
+  .btn-del-person{border:0;background:#dc2626;color:#fff;padding:4px 10px;border-radius:8px;font-family:var(--font-urdu-body);font-size:.85rem;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  
+  .super-form{background:#0f172a;padding:14px;border-radius:14px;border:1px solid #334155;margin-bottom:10px}
+  .super-form h3{margin:0 0 8px;font-family:var(--font-urdu-heading);font-size:1.2rem;color:#93c5fd;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:8px}
+  .super-form input,.super-form select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#fff;font-family:var(--font-urdu-body);font-size:1rem;outline:none;line-height:var(--lh-urdu-body);letter-spacing:0}
+  .btn-add-person{width:100%;padding:8px;border:0;border-radius:8px;background:#16a34a;color:#fff;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+
+  /* Pins manage */
+  .pin-person-select{margin-bottom:10px}
+  .pin-list-box{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .pin-manage-item{background:#0f172a;border:1px solid #334155;padding:5px 10px;border-radius:10px;display:flex;align-items:center;gap:6px;font-family:var(--font-urdu-body);font-size:.95rem;line-height:var(--lh-urdu-btn)}
+  .pin-manage-del{background:transparent;border:0;color:#f87171;cursor:pointer;font-weight:700;font-size:.95rem}
+
+  /* ---------- History Modal (سابقہ پیغامات) ---------- */
+  #histModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:16px;z-index:1000}
+  .hist-sheet{background:var(--card);border-radius:22px;width:100%;max-width:620px;max-height:85vh;height:auto;display:flex;flex-direction:column;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden}
+  .hist-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155;padding-bottom:8px;margin-bottom:8px;flex-shrink:0}
+  .hist-header h2{margin:0;font-family:var(--font-urdu-heading);font-size:1.4rem;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .hist-close{background:transparent;border:0;color:var(--muted);font-size:1.3rem;cursor:pointer;padding:4px 10px;border-radius:8px}
+  .hist-close:hover{color:#fff;background:#334155}
+  .hist-filter{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px;scrollbar-width:thin;flex-shrink:0}
+  .h-filter{border:0;border-radius:16px;padding:6px 14px;background:#334155;color:var(--text);cursor:pointer;font-family:var(--font-urdu-body);font-size:.92rem;white-space:nowrap;transition:background .2s;flex-shrink:0;min-height:34px;display:inline-flex;align-items:center;justify-content:center;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .h-filter.active{background:#2563eb;color:#fff;font-weight:700}
+  .hist-list{overflow-y:auto;display:flex;flex-direction:column;gap:8px;flex:1;min-height:120px;padding-left:4px}
+  .hist-item{background:#0f172a;border-radius:14px;padding:10px 12px;border-right:5px solid var(--c,#3b82f6);display:flex;flex-direction:column;gap:4px}
+  .hist-who{display:flex;align-items:center;gap:8px;font-family:var(--font-urdu-heading);font-size:1.15rem;font-weight:700;color:var(--c,#3b82f6);line-height:var(--lh-urdu-heading)}
+  .hist-msg{font-family:var(--font-urdu-body);font-size:1.25rem;font-weight:700;line-height:var(--lh-urdu-body);color:#fff;word-break:break-word;letter-spacing:0;padding:2px 0}
+  .hist-times{font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px;font-family:var(--font-latin-body)}
+  .hist-times span{display:inline-flex;align-items:center;gap:4px}
+  .hist-footer{margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-shrink:0}
+
+  /* ---------- Toast at TOP ---------- */
+  #toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%) translateY(-10px);
+    background:#1e293b;
+    border:2px solid #3b82f6;
+    color:#fff;
+    padding:10px 28px;
+    border-radius:30px;
+    font-family:var(--font-urdu-heading);
+    font-size:1.3rem;
+    font-weight:700;
+    line-height:var(--lh-urdu-heading);
+    letter-spacing:0;
+    box-shadow:0 10px 30px rgba(0,0,0,.7);
+    z-index:9999;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    text-align:center;
+    max-width:90%;
+  }
+  #toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  /* PIN Change Button & Superadmin Controls */
+  .btn-pin-change{border:1px solid #475569;background:#1e293b;color:#93c5fd;border-radius:12px;padding:8px 14px;font-family:var(--font-urdu-body);font-size:.92rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s;white-space:nowrap;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .btn-pin-change:hover{background:#2563eb;color:#fff;border-color:#3b82f6}
+  .btn-pin-change svg{display:inline-block;vertical-align:middle}
+
+  .perms-card{background:#0f172a;border:1px solid #334155;border-radius:16px;padding:16px;margin-bottom:12px}
+  .perms-card h4{margin:0 0 8px;font-family:var(--font-urdu-heading);font-size:1.2rem;color:#93c5fd;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .perms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+  .perm-item{display:flex;align-items:center;gap:8px;background:#1e293b;padding:8px 12px;border-radius:10px;font-family:var(--font-urdu-body);font-size:1.05rem;line-height:var(--lh-urdu-body);cursor:pointer;border:1px solid #334155;user-select:none;transition:border-color .2s;letter-spacing:0}
+  .perm-item:hover{border-color:#3b82f6}
+  .perm-item input[type="checkbox"]{width:18px;height:18px;cursor:pointer;accent-color:#2563eb;margin:0}
+  .pw-badge{display:inline-block;padding:2px 8px;border-radius:8px;font-family:var(--font-latin-heading);font-size:.85rem;font-weight:700}
+  .pw-badge.custom{background:#065f46;color:#a7f3d0}
+  .pw-badge.default{background:#854d0e;color:#fef08a}
+  .btn-reset-pw{border:0;background:#d97706;color:#fff;padding:6px 10px;border-radius:8px;font-family:var(--font-urdu-body);font-size:.85rem;font-weight:700;cursor:pointer;margin-left:4px;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .btn-reset-pw:hover{background:#b45309}
+
+  /* User Screen Sections (Admin Inbox vs Peer Contacts) */
+  .user-section-title{
+    width:100%;
+    max-width:1300px;
+    margin:12px auto 8px;
+    font-family:var(--font-urdu-heading);
+    font-size:1.35rem;
+    font-weight:700;
+    color:#93c5fd;
+    line-height:var(--lh-urdu-heading);
+    border-bottom:1px solid #334155;
+    padding-bottom:4px;
+    letter-spacing:0;
+  }
+  .user-inbox-wrap{
+    width:100%;
+    max-width:1300px;
+    margin:0 auto 16px;
+  }
+  .user-inbox-wrap .person{
+    min-height:220px;
+  }
+  .user-contacts-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:14px;
+    width:100%;
+    max-width:1300px;
+    margin:0 auto;
+  }
+
+  /* ---------- Responsive Media Queries ---------- */
+  @media (max-width: 768px) {
+    #app{padding:10px;padding-bottom:130px}
+    .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .top-nav{padding:10px 14px}
+  }
+
+  @media (max-width: 600px) {
+    #app{padding:8px;padding-bottom:140px}
+    .top-nav{flex-direction:column;align-items:stretch;gap:10px;padding:10px 12px;border-radius:16px}
+    .user-badge{justify-content:space-between;font-size:1.15rem;gap:6px}
+    .nav-actions{display:flex;justify-content:stretch;gap:8px}
+    .btn-super, .logout-top{flex:1;text-align:center;padding:8px 10px}
+    .login-box{padding:24px 14px;border-radius:18px}
+    .login-box h1{font-size:2rem}
+    .tools{bottom:8px;padding:6px 10px;border-radius:18px;gap:6px}
+    .tool{padding:6px 10px;font-size:.9rem}
+    .sheet, .hist-sheet, .super-sheet{padding:16px 12px;border-radius:18px}
+    .form-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ لاگ اِن ============ -->
+<div id="login">
+  <div class="login-box">
+    <h1>انٹر کام</h1>
+    <p>براہِ کرم لاگ اِن کریں (ایڈمن یا اپنا نام درج کریں)</p>
+    <input id="uid"  type="text"     placeholder="آئی ڈی یا نام (مثلاً admin یا sohail)"  autocomplete="username" autocapitalize="off">
+    <input id="pass" type="password" placeholder="پاس ورڈ" autocomplete="current-password">
+    <button class="btn-main" id="loginBtn">داخل ہوں</button>
+    <button type="button" class="btn-pin-change hidden" id="installLoginBtn" style="margin-top:10px;width:100%;justify-content:center">
+      <span>📲 ایپ انسٹال کریں</span>
+    </button>
+    <div id="loginErr"></div>
+
+    <div class="quick-users">
+      <span class="quick-title">فوری چناؤ کے بٹن:</span>
+      <div class="quick-btns" id="quickUsers"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ مین اسکرین ============ -->
+<div id="app" class="hidden">
+  <div id="soundBar" class="hidden">آواز فعال کرنے کے لیے یہاں دبائیں</div>
+  
+  <div class="top-nav">
+    <div class="user-badge" id="userBadge"></div>
+    <div class="nav-actions">
+      <button class="btn-pin-change hidden" id="installTopBtn" title="ایپ کو ہوم اسکرین پر انسٹال کریں">
+        <span>📲 انسٹال کریں</span>
+      </button>
+      <button class="btn-pin-change" id="notifyTopBtn" title="پش نوٹیفکیشن کی ترتیبات">
+        <span>🔔 نوٹیفکیشن</span>
+      </button>
+      <button class="btn-pin-change" id="changePinTopBtn" title="اپنا پن تبدیل کریں">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>پن تبدیل کریں</span>
+      </button>
+      <button class="btn-super hidden" id="superBtn">سپر ایڈمن کنٹرول</button>
+      <button class="logout-top" id="logoutTop">باہر نکلیں</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="tools">
+    <button class="tool" id="wakeBtn">اسکرین آن</button>
+    <button class="tool" id="histBtn">سابقہ پیغامات</button>
+    <button class="tool" id="testSound">آواز چیک کریں</button>
+  </div>
+</div>
+
+<!-- ============ نیا پن کوڈ سیٹ کریں (Mandatory 4-Digit PIN Modal) ============ -->
+<div id="changePinModal" class="hidden">
+  <div class="sheet" style="max-width:440px">
+    <div style="text-align:center;margin-bottom:14px">
+      <div style="width:56px;height:56px;border-radius:28px;background:rgba(37,99,235,.2);color:#60a5fa;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <h2 id="pinModalTitle" style="margin:0 0 6px;font-size:1.45rem">نیا ۴ ہندسوں کا پن کوڈ</h2>
+      <p id="pinModalDesc" style="color:var(--muted);font-size:.92rem;margin:0;line-height:1.6">
+        پہلی بار لاگ ان پر ڈیفالٹ پاس ورڈ (1234) تبدیل کرنا لازمی ہے۔ اپنا نیا ۴ ہندسوں کا ذاتی پن مقرر کریں۔
+      </p>
+    </div>
+    
+    <div style="margin-bottom:10px">
+      <label style="display:block;font-size:.92rem;margin-bottom:4px;color:#93c5fd;font-weight:700">نیا ۴ ہندسوں کا پن:</label>
+      <input type="password" id="newPinInput" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" placeholder="••••" style="width:100%;padding:10px;text-align:center;font-size:1.6rem;letter-spacing:10px;border-radius:14px;border:2px solid #334155;background:#0f172a;color:#fff;outline:none">
+    </div>
+
+    <div style="margin-bottom:12px">
+      <label style="display:block;font-size:.92rem;margin-bottom:4px;color:#93c5fd;font-weight:700">پن کوڈ کی تصدیق کریں:</label>
+      <input type="password" id="confirmPinInput" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" placeholder="••••" style="width:100%;padding:10px;text-align:center;font-size:1.6rem;letter-spacing:10px;border-radius:14px;border:2px solid #334155;background:#0f172a;color:#fff;outline:none">
+    </div>
+
+    <div id="pinModalErr" style="color:#fca5a5;font-size:.9rem;min-height:1.4em;margin-bottom:8px;text-align:center"></div>
+
+    <button type="button" class="btn-main" id="btnSavePin" style="margin-top:0">پن کوڈ محفوظ کریں</button>
+    <button type="button" class="cancel hidden" id="btnClosePinModal" style="margin-top:8px">منسوخ کریں</button>
+  </div>
+</div>
+
+<!-- ============ پیغام / جواب بھیجنے کا باکس ============ -->
+<div id="modal" class="hidden">
+  <div class="sheet">
+    <div id="replyBanner" class="reply-banner hidden">
+      <div id="replyBannerText" class="reply-banner-text"></div>
+      <button type="button" id="replyBannerClose" class="reply-banner-close" title="حوالہ ہٹائیں">&times;</button>
+    </div>
+    
+    <h2 id="mTitle"></h2>
+
+    <!-- Mode switch tabs: Text vs Voice-to-Voice -->
+    <div class="msg-mode-tabs">
+      <button type="button" class="msg-mode-tab active" id="modeTextTab">✍️ تحریر یا بول کر لکھیں</button>
+      <button type="button" class="msg-mode-tab" id="modeVoiceTab">🎙️ صوتی پیغام (Voice to Voice)</button>
+    </div>
+
+    <!-- Mode 1: Text / Speech-to-Text -->
+    <div id="modeTextSection">
+      <textarea id="mText" placeholder="یہاں پیغام یا جواب لکھیں، یا مائیک دبا کر بولیں…"></textarea>
+      
+      <div class="quick-phrases" id="modalPhrases">
+        <button type="button" class="q-chip" data-text="جی، دے دیں">جی، دے دیں</button>
+        <button type="button" class="q-chip" data-text="نہیں، نہ دیں">نہیں، نہ دیں</button>
+        <button type="button" class="q-chip" data-text="کیا میں اس کو دو ہفتے کی دے دوں؟">کیا دو ہفتے کی دے دوں؟</button>
+        <button type="button" class="q-chip" data-text="ایک ہفتے کی دوا دے دیں">ایک ہفتے کی دوا</button>
+        <button type="button" class="q-chip" data-text="دو ہفتے کی دوا دے دیں">دو ہفتے کی دوا</button>
+        <button type="button" class="q-chip" data-text="ڈاکٹر صاحب سے پوچھ کر بتاتا ہوں">ڈاکٹر سے پوچھیں</button>
+        <button type="button" class="q-chip" data-text="ایک منٹ رکیں">ایک منٹ رکیں</button>
+        <button type="button" class="q-chip" data-text="مریض کو اوپر بھیج دیں">مریض کو اوپر بھیجیں</button>
+        <button type="button" class="q-chip" data-text="دوا تیار ہے">دوا تیار ہے</button>
+        <button type="button" class="q-chip" data-text="بھائی ٹوکن نمبر ">ٹوکن نمبر</button>
+      </div>
+
+      <div id="micHint"></div>
+      <div style="display:flex;justify-content:center;margin:4px 0 8px">
+        <button type="button" id="micLangBtn" class="q-reply-pill" style="border:1px solid #334155;background:#1e293b;color:#93c5fd;font-size:0.85rem;padding:3px 12px;cursor:pointer" title="آواز کی زبان تبدیل کریں">🎙️ زبان: اردو (پاکستان)</button>
+      </div>
+      
+      <div class="row">
+        <button class="mic" id="micBtn" title="بول کر لکھیں">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
+        <button class="send" id="sendBtn">بھیجیں</button>
+      </div>
+    </div>
+
+    <!-- Mode 2: Voice-to-Voice (Recorded Voice Note) -->
+    <div id="modeVoiceSection" class="hidden">
+      <div class="voice-record-card">
+        <button type="button" class="voice-rec-btn" id="voiceRecBtn" title="ریکارڈنگ شروع یا بند کریں">
+          <svg id="voiceRecIcon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
+        <div class="voice-rec-timer" id="voiceRecTimer">00:00</div>
+        <div class="voice-rec-status" id="voiceRecStatus">بٹن دبا کر اپنی آواز ریکارڈ کریں (Voice Note)</div>
+
+        <div id="voicePreviewBox" class="voice-preview-row hidden">
+          <button type="button" id="voicePreviewPlayBtn" class="btn-voice-play">▶</button>
+          <div style="flex:1;text-align:right">
+            <div style="font-size:.9rem;font-weight:700">صوتی ریکارڈنگ تیار ہے</div>
+            <div id="voicePreviewDuration" style="font-size:.8rem;color:var(--muted);direction:ltr">00:00</div>
+          </div>
+          <button type="button" id="voiceReRecordBtn" class="btn-reset-pw" style="background:#475569">دوبارہ ریکارڈ</button>
+        </div>
+      </div>
+
+      <button type="button" class="send" id="sendVoiceBtn" style="width:100%;margin-top:6px" disabled>صوتی پیغام بھیجیں</button>
+    </div>
+
+    <button class="cancel" id="cancelBtn">منسوخ کریں</button>
+  </div>
+</div>
+
+<!-- ============ سپر ایڈمن کنٹرول سینٹر ============ -->
+<div id="superModal" class="hidden">
+  <div class="super-sheet">
+    <div class="super-header">
+      <h2>سپر ایڈمن کنٹرول سینٹر</h2>
+      <button class="hist-close" id="superCloseBtn">&times;</button>
+    </div>
+    
+    <div class="super-tabs">
+      <button type="button" class="super-tab active" id="tabAdminPermsBtn">ایڈمن اسکرین کنٹرول</button>
+      <button type="button" class="super-tab" id="tabPeopleBtn">افراد کا انتظام</button>
+      <button type="button" class="super-tab" id="tabPinsBtn">فوری پن پیغامات</button>
+      <button type="button" class="super-tab tab-danger" id="tabDbCleanBtn">ڈیٹا بیس و چیٹ صفائی</button>
+    </div>
+
+    <div class="super-content">
+      <!-- Tab 1: ایڈمن اختیارات و اسکرین کنٹرول -->
+      <div id="tabAdminPermsSection">
+        <div class="perms-card">
+          <h4>ایڈمن کے پاس کون سے افراد کے کارڈز نظر آئیں گے؟</h4>
+          <p style="margin:0 0 10px;font-size:.9rem;color:var(--muted)">جن افراد پر نشان لگا ہوگا صرف وہی ایڈمن کی اسکرین پر شو ہوں گے:</p>
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <button type="button" class="quick-btn" id="btnSelectAllPeople">تمام منتخب کریں</button>
+            <button type="button" class="quick-btn" id="btnDeselectAllPeople">تمام ہٹائیں</button>
+          </div>
+          <div class="perms-grid" id="adminPeopleChecklist"></div>
+        </div>
+
+        <div class="perms-card">
+          <h4>ایڈمن کے لیے ٹولز اور فیچرز کے اختیارات</h4>
+          <div style="display:flex;flex-direction:column;gap:8px" id="adminToolsChecklist">
+            <label class="perm-item">
+              <input type="checkbox" id="permShowPins">
+              <span>کارڈز پر فوری پن میسج بٹنز (Rush Pills) دکھائیں</span>
+            </label>
+            <label class="perm-item">
+              <input type="checkbox" id="permShowHistory">
+              <span>سابقہ پیغامات (ہسٹری) دیکھنے کا بٹن دکھائیں</span>
+            </label>
+            <label class="perm-item">
+              <input type="checkbox" id="permShowVoice">
+              <span>مائیک سے بول کر لکھنے (Speech to Text) کا آپشن دکھائیں</span>
+            </label>
+            <label class="perm-item">
+              <input type="checkbox" id="permShowSound">
+              <span>آواز چیک کرنے کا بٹن دکھائیں</span>
+            </label>
+            <label class="perm-item">
+              <input type="checkbox" id="permAutoPlayVoice">
+              <span>نئے صوتی پیغامات خودکار سنیں (Auto Play)</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="btn-main" id="btnSaveAdminPerms" style="margin-top:4px">ایڈمن کے اختیارات محفوظ کریں</button>
+      </div>
+
+      <!-- Tab 2: افراد کا انتظام -->
+      <div id="tabPeopleSection" class="hidden">
+        <table class="people-table">
+          <thead>
+            <tr>
+              <th>نام</th>
+              <th>لاگ ان آئی ڈی</th>
+              <th>پن کی حیثیت</th>
+              <th>ایکشنز</th>
+            </tr>
+          </thead>
+          <tbody id="peopleTableBody"></tbody>
+        </table>
+
+        <div class="super-form">
+          <h3>نیا فرد شامل کریں</h3>
+          <div class="form-grid">
+            <input type="text" id="newPersonName" placeholder="نام (مثلاً علی)">
+            <input type="text" id="newPersonId" placeholder="آئی ڈی (مثلاً ali)">
+            <input type="text" id="newPersonPass" placeholder="ابتدائی پن (1234)" value="1234" maxlength="4">
+            <select id="newPersonColor">
+              <option value="#1e88e5">نیلا (Blue)</option>
+              <option value="#43a047">سبز (Green)</option>
+              <option value="#fb8c00">نارنجی (Orange)</option>
+              <option value="#8e24aa">جامنی (Purple)</option>
+              <option value="#e53935">سرخ (Red)</option>
+              <option value="#0d9488">فیروزی (Teal)</option>
+            </select>
+          </div>
+          <button type="button" class="btn-add-person" id="btnAddPerson">شامل کریں</button>
+        </div>
+      </div>
+
+      <!-- Tab 3: پن پیغامات -->
+      <div id="tabPinsSection" class="hidden">
+        <div class="pin-person-select">
+          <label style="font-weight:700;display:block;margin-bottom:6px">کس فرد کے لیے پن پیغامات سیٹ کرنے ہیں؟</label>
+          <select id="pinPersonSelect" style="width:100%;padding:10px;border-radius:12px;background:#0f172a;color:#fff;border:1px solid #334155;font-size:1.1rem"></select>
+        </div>
+
+        <div style="font-size:1rem;color:#93c5fd;font-weight:700;margin-bottom:8px">موجودہ پن پیغامات:</div>
+        <div class="pin-list-box" id="pinListBox"></div>
+
+        <div class="super-form">
+          <h3>نیا پن پیغام شامل کریں</h3>
+          <p style="margin:0 0 8px;font-size:.9rem;color:var(--muted)">رش کے وقت کارڈ پر صرف ایک کلک کر کے یہ پیغام فوراً بھیجا جا سکے گا</p>
+          <input type="text" id="newPinText" placeholder="مثلاً: پیناڈول دے دو، شربت تیار کرو، اوپر آ جائیں" style="margin-bottom:10px">
+          <button type="button" class="btn-add-person" id="btnAddPin">پن بٹن شامل کریں</button>
+        </div>
+      </div>
+
+      <!-- Tab 4: ڈیٹا بیس و چیٹ صفائی (Firebase & Storage Purge) -->
+      <div id="tabDbCleanSection" class="hidden">
+        <div class="perms-card" style="border-color:#3b82f6">
+          <h4 style="color:#60a5fa">فائر بیس ڈیٹا بیس صفائی و وزن میں کمی</h4>
+          <p style="margin:0;font-size:.92rem;color:var(--muted);line-height:1.7">
+            اگر پیغامات زیادہ ہو جائیں اور فائر بیس پر بوجھ بڑھنے لگے تو آپ یہاں سے پرانی چیٹ اور ایکٹیو پیغامات ایک کلک میں ڈیلیٹ کر سکتے ہیں تاکہ ڈیٹا بیس تیز اور ہلکا رہے۔
+          </p>
+        </div>
+
+        <div class="perms-card">
+          <h4>۱. تمام ایکٹیو کارڈ پیغامات صاف کریں</h4>
+          <p style="margin:0 0 10px;font-size:.9rem;color:var(--muted)">تمام اسکرینوں اور کارڈز پر اس وقت جو بھی پیغامات نظر آ رہے ہیں وہ فوراً صاف ہو جائیں گے:</p>
+          <button type="button" class="btn-main" id="btnPurgeActiveMsgs" style="background:#d97706">تمام ایکٹیو پیغامات صاف کریں</button>
+        </div>
+
+        <div class="perms-card">
+          <h4>۲. سابقہ پیغامات کی تمام ہسٹری ڈیلیٹ کریں</h4>
+          <p style="margin:0 0 10px;font-size:.9rem;color:var(--muted)">فائر بیس اور تمام ڈیوائسز سے پچھلے تمام پیغامات کا ریکارڈ (History) مکمل ڈیلیٹ کریں تاکہ فائر بیس کا وزن کم سے کم ہو:</p>
+          <button type="button" class="btn-main" id="btnPurgeHistory" style="background:#dc2626">سابقہ ہسٹری مکمل ڈیلیٹ کریں</button>
+        </div>
+
+        <div class="perms-card" style="background:#1e1b4b;border-color:#6366f1">
+          <h4 style="color:#a5b4fc">۳. مکمل ڈیٹا بیس صفائی (Full Database Purge)</h4>
+          <p style="margin:0 0 10px;font-size:.9rem;color:#cbd5e1">ایکٹیو پیغامات اور پچھلی ہسٹری دونوں کو بیک وقت مکمل صاف کر کے فائر بیس کو بالکل ہلکا اور نیا بنا دیں:</p>
+          <button type="button" class="btn-main" id="btnPurgeAllDb" style="background:#4338ca">مکمل ڈیٹا بیس صاف کریں (All-in-One)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ سابقہ پیغامات کا ریکارڈ (ہسٹری) ============ -->
+<div id="histModal" class="hidden">
+  <div class="hist-sheet">
+    <div class="hist-header">
+      <h2>سابقہ پیغامات (آخری 50)</h2>
+      <button class="hist-close" id="histCloseBtn">&times;</button>
+    </div>
+    <div class="hist-filter" id="histFilter"></div>
+    <div class="hist-list" id="histList"></div>
+    <div class="hist-footer">
+      <button class="cancel" id="histBackBtn" style="margin-top:0">واپس جائیں</button>
+      <button type="button" class="tool hidden" id="histPurgeBtn" style="background:#dc2626;color:#fff;font-size:.9rem;padding:6px 14px" title="تمام ہسٹری ڈیلیٹ کریں">🗑️ ہسٹری صاف کریں</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ آئی فون پر انسٹالیشن کا معلوماتی باکس ============ -->
+<div id="iosInstallModal" class="hidden">
+  <div class="sheet" style="max-width:440px">
+    <div style="text-align:center;margin-bottom:12px">
+      <div style="width:52px;height:52px;border-radius:26px;background:rgba(59,130,246,.2);color:#60a5fa;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+        </svg>
+      </div>
+      <h2 style="margin:0 0 4px;font-size:1.35rem">آئی فون (iPhone) پر ایپ انسٹال کریں</h2>
+      <p style="color:var(--muted);font-size:.92rem;margin:0;line-height:1.6">پش نوٹیفکیشن اور فل اسکرین ایپ کے لیے چند آسان مراحل:</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;background:#0f172a;padding:12px;border-radius:14px;border:1px solid #334155;font-size:.95rem;line-height:1.7">
+      <div><strong>۱.</strong> اگر آپ کسی اور براؤزر میں ہیں تو یہ صفحہ پہلے <strong>Safari</strong> میں کھولیں۔</div>
+      <div><strong>۲.</strong> نیچے موجود شیئر بٹن (<strong>Share ⎋</strong>) پر کلک کریں۔</div>
+      <div><strong>۳.</strong> فہرست میں نیچے جا کر <strong>'Add to Home Screen'</strong> (ہوم اسکرین پر شامل کریں) منتخب کریں۔</div>
+      <div><strong>۴.</strong> اوپر دائیں کونے میں <strong>'Add'</strong> دبائیں۔ انٹر کام آپ کی اسکرین پر انسٹال ہو جائے گا!</div>
+    </div>
+    <button type="button" class="btn-main" id="btnCloseIosInstall">سمجھ گیا / واپس</button>
+  </div>
+</div>
+
+<!-- ============ نوٹیفکیشن ان بلاک کرنے کا معلوماتی باکس ============ -->
+<div id="notifyHelpModal" class="hidden">
+  <div class="sheet" style="max-width:440px">
+    <div style="text-align:center;margin-bottom:12px">
+      <div style="width:52px;height:52px;border-radius:26px;background:rgba(220,38,38,.2);color:#f87171;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          <line x1="2" y1="2" x2="22" y2="22"></line>
+        </svg>
+      </div>
+      <h2 style="margin:0 0 4px;font-size:1.35rem">نوٹیفکیشن فعال کرنے کا طریقہ</h2>
+      <p style="color:var(--muted);font-size:.92rem;margin:0;line-height:1.6">براؤزر میں نوٹیفکیشن کی اجازت بلاک ہے۔ درج ذیل طریقہ سے آن کریں:</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;background:#0f172a;padding:12px;border-radius:14px;border:1px solid #334155;font-size:.95rem;line-height:1.7">
+      <div><strong>۱.</strong> براؤزر کے اوپر ایڈریس بار میں موجود <strong>لاک (🔒)</strong> یا <strong>سیٹنگ</strong> آئیکن پر کلک کریں۔</div>
+      <div><strong>۲.</strong> <strong>'Site Settings'</strong> یا <strong>'Permissions'</strong> میں جائیں۔</div>
+      <div><strong>۳.</strong> <strong>Notifications</strong> کو <strong>'Allow' (اجازت دیں)</strong> پر سیٹ کریں۔</div>
+      <div><strong>۴.</strong> اس کے بعد پیج ریفریش کریں۔ نوٹیفکیشن فعال ہو جائے گا۔</div>
+    </div>
+    <button type="button" class="btn-main" id="btnCloseNotifyHelp">ٹھیک ہے</button>
+  </div>
+</div>
+
+<audio id="sharedAudioPlayer" preload="auto" style="display:none"></audio>
+<div id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+<script src="assets/lame.min.js"></script>
+<script src="config.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const SESSION_KEY       = "intercom_logged_in";
+  const USER_KEY          = "intercom_current_user";
+  const WAKE_KEY          = "intercom_wake";
+  const HIST_KEY          = "intercom_history_cache";
+  const PINS_KEY          = "intercom_pinned_messages";
+  const PEOPLE_KEY        = "intercom_custom_people";
+  const PASSWORDS_KEY     = "intercom_user_passwords";
+  const PW_CHANGED_KEY    = "intercom_pw_changed_flags";
+  const ADMIN_PERMS_KEY   = "intercom_admin_perms";
+  const MAX_HISTORY       = 50;
+
+  // Check if Firebase is actually configured with a real key
+  const isFirebaseConfigured = typeof FIREBASE_CONFIG !== "undefined" &&
+    FIREBASE_CONFIG &&
+    FIREBASE_CONFIG.apiKey &&
+    FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY" &&
+    !FIREBASE_CONFIG.apiKey.includes("YOUR_");
+
+  let db = null, auth = null, fcmMessaging = null, started = false, ready = false;
+  let swRegistration = null;
+  let currentFcmToken = null;
+  let deferredInstallPrompt = null;
+
+  if(isFirebaseConfigured && typeof firebase !== "undefined"){
+    try{
+      if(!firebase.apps || !firebase.apps.length){
+        firebase.initializeApp(FIREBASE_CONFIG);
+      }
+      db = firebase.database();
+      if(firebase.auth) auth = firebase.auth();
+    }catch(e){
+      console.warn("Firebase immediate init error:", e);
+    }
+  }
+
+  let currentTarget = null;       // target Person { id, name, ... }
+  let activeReplyContext = null;  // message object being replied to (if any)
+  let currentUser = null;         // { role: "superadmin"|"admin"|"user", id: string, name: string, color?: string }
+  let historyItems = [];
+  let currentHistFilter = "all";
+  let eventSource = null;
+  let pendingPinUser = null;
+  let isMandatoryPinChange = false;
+
+  // Active People List (Merged from config.js and dynamic custom people)
+  let activePeople = (typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE)) ? [...PEOPLE] : [];
+
+  // Passwords mapping (defaults to 1234)
+  let userPasswords = {
+    "superadmin": "1234",
+    "admin": "1234",
+    "sohail": "1234",
+    "abrar": "1234",
+    "ahmedraza": "1234",
+    "ustad": "1234",
+    "bapu": "1234"
+  };
+
+  // Password changed flags
+  let passwordChangedFlags = {};
+
+  // Admin Permissions configured by Superadmin
+  let adminPermissions = {
+    allowedPeople: ["sohail", "abrar", "ahmedraza", "ustad", "bapu"],
+    showPinnedPills: true,
+    showHistoryBtn: true,
+    showVoiceBtn: true,
+    showSoundBtn: true,
+    autoPlayVoice: true
+  };
+
+  // Pinned messages per person (Defaults)
+  let pinnedMessages = {
+    "sohail": ["پیناڈول دے دو", "ایک ہفتے کی دوا دے دیں", "دو ہفتے کی دوا دے دیں", "شربت تیار کرو"],
+    "abrar": ["ٹوکن چار لے آؤ", "فائل لے کر آئیں", "اوپر آ جائیں"],
+    "ahmedraza": ["مریض کو بھیج دیں", "دوا تیار ہے"],
+    "ustad": ["اوپر تشریف لائیں", "ایک منٹ رکیں"],
+    "bapu": ["چائے لے آئیں", "دوائی دے دیں"]
+  };
+
+  // Keep track of alerted messages so chime & toast alert only once
+  const alertedMsgIds = new Set();
+
+  // Voice playback queue for incoming voice notes
+  const voicePlayQueue = [];
+  let isVoiceQueueProcessing = false;
+  const voiceCache = {}; // messageId -> base64 audio
+
+  // Shared audio element for phones
+  const sharedAudio = document.getElementById("sharedAudioPlayer") || new Audio();
+  let currentPlayingBtn = null;
+  let currentPlayingMsgId = null;
+
+  // Detect iOS
+  const isIOS = typeof navigator !== "undefined" && (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+
+  /* ---------- Service Worker & PWA Install ---------- */
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/firebase-messaging-sw.js').then(reg => {
+      swRegistration = reg;
+      if(currentUser && Notification.permission === 'granted'){
+        registerFcmTokenForUser(currentUser.id);
+      }
+      navigator.serviceWorker.addEventListener('message', event => {
+        if(event.data && event.data.type === 'SW_UPDATED'){
+          toast("انٹر کام کا نیا ورژن فعال ہو چکا ہے");
+        }
+      });
+    }).catch(err => {
+      console.warn("ServiceWorker registration error:", err);
+    });
+  }
+
+  window.addEventListener("beforeinstallprompt", e => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    if(!isStandalone){
+      const tBtn = $("installTopBtn");
+      const lBtn = $("installLoginBtn");
+      if(tBtn) tBtn.classList.remove("hidden");
+      if(lBtn) lBtn.classList.remove("hidden");
+    }
+  });
+
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    if($("installTopBtn")) $("installTopBtn").classList.add("hidden");
+    if($("installLoginBtn")) $("installLoginBtn").classList.add("hidden");
+    toast("انٹر کام کامیابی سے انسٹال ہو گیا!");
+  });
+
+  function handleInstallClick(){
+    if(deferredInstallPrompt){
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then(choice => {
+        if(choice.outcome === 'accepted'){
+          if($("installTopBtn")) $("installTopBtn").classList.add("hidden");
+          if($("installLoginBtn")) $("installLoginBtn").classList.add("hidden");
+        }
+        deferredInstallPrompt = null;
+      });
+    }else if(isIOS){
+      const modal = $("iosInstallModal");
+      if(modal) modal.classList.remove("hidden");
+    }else{
+      toast("براؤزر مینو (⋮) میں جا کر 'Install app' یا 'Add to Home screen' منتخب کریں");
+    }
+  }
+
+  if($("installTopBtn")) $("installTopBtn").onclick = handleInstallClick;
+  if($("installLoginBtn")) $("installLoginBtn").onclick = handleInstallClick;
+  if($("btnCloseIosInstall")) $("btnCloseIosInstall").onclick = () => {
+    const modal = $("iosInstallModal");
+    if(modal) modal.classList.add("hidden");
+  };
+  if($("btnCloseNotifyHelp")) $("btnCloseNotifyHelp").onclick = () => {
+    const modal = $("notifyHelpModal");
+    if(modal) modal.classList.add("hidden");
+  };
+
+  /* ---------- Web Push Notifications (FCM) ---------- */
+  function updateNotificationButtonUI(){
+    const btn = $("notifyTopBtn");
+    if(!btn) return;
+    if(!("Notification" in window)){
+      btn.innerHTML = '<span>نوٹیفکیشن دستیاب نہیں</span>';
+      return;
+    }
+    if(Notification.permission === "granted"){
+      btn.innerHTML = '<span>🔔 نوٹیفکیشن فعال ہے</span>';
+      btn.style.borderColor = "#16a34a";
+      btn.style.color = "#4ade80";
+    }else if(Notification.permission === "denied"){
+      btn.innerHTML = '<span>🔕 نوٹیفکیشن بلاک ہے</span>';
+      btn.style.borderColor = "#dc2626";
+      btn.style.color = "#f87171";
+    }else{
+      btn.innerHTML = '<span>🔔 نوٹیفکیشن آن کریں</span>';
+      btn.style.borderColor = "#475569";
+      btn.style.color = "#93c5fd";
+    }
+  }
+
+  function getSanitizedTokenKey(token){
+    if(!token) return "unknown";
+    return token.replace(/[.#$\[\]\/]/g, "_");
+  }
+
+  async function registerFcmTokenForUser(userId){
+    if(!userId || !isFirebaseConfigured || typeof firebase === 'undefined' || !firebase.messaging) return;
+    if(Notification.permission !== 'granted') return;
+
+    try{
+      if(!fcmMessaging){
+        fcmMessaging = firebase.messaging();
+      }
+      const vapidKey = (typeof FCM_VAPID_KEY !== 'undefined' && FCM_VAPID_KEY) ? FCM_VAPID_KEY : undefined;
+      const token = await fcmMessaging.getToken({
+        vapidKey: vapidKey,
+        serviceWorkerRegistration: swRegistration || undefined
+      });
+
+      if(token){
+        currentFcmToken = token;
+        const key = getSanitizedTokenKey(token);
+        if(db){
+          await db.ref(`fcmTokens/${userId}/${key}`).set({
+            token: token,
+            ua: navigator.userAgent,
+            updatedAt: firebase.database.ServerValue.TIMESTAMP
+          });
+        }
+      }
+    }catch(err){
+      console.warn("FCM registration error:", err);
+    }
+  }
+
+  async function unregisterFcmTokenForUser(userId){
+    if(!userId || !currentFcmToken || !db) return;
+    try{
+      const key = getSanitizedTokenKey(currentFcmToken);
+      await db.ref(`fcmTokens/${userId}/${key}`).remove();
+    }catch(e){}
+  }
+
+  if($("notifyTopBtn")){
+    $("notifyTopBtn").onclick = async () => {
+      if(!("Notification" in window)){
+        toast("اس براؤزر میں نوٹیفکیشن کی سہولت نہیں ہے");
+        return;
+      }
+      if(isIOS && !window.navigator.standalone && !window.matchMedia('(display-mode: standalone)').matches){
+        const modal = $("iosInstallModal");
+        if(modal) modal.classList.remove("hidden");
+        return;
+      }
+      if(Notification.permission === "denied"){
+        const modal = $("notifyHelpModal");
+        if(modal) modal.classList.remove("hidden");
+        return;
+      }
+      if(Notification.permission === "granted"){
+        toast("نوٹیفکیشن پہلے سے فعال ہے!");
+        if(currentUser) registerFcmTokenForUser(currentUser.id);
+        updateNotificationButtonUI();
+        return;
+      }
+      try{
+        const perm = await Notification.requestPermission();
+        updateNotificationButtonUI();
+        if(perm === "granted"){
+          toast("نوٹیفکیشن کامیابی سے فعال ہو گیا!");
+          if(currentUser) registerFcmTokenForUser(currentUser.id);
+        }else if(perm === "denied"){
+          const modal = $("notifyHelpModal");
+          if(modal) modal.classList.remove("hidden");
+        }
+      }catch(err){
+        console.warn("Notification request permission error:", err);
+      }
+    };
+  }
+
+  async function triggerPushNotification(messageId){
+    if(!messageId) return;
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      if(auth && auth.currentUser){
+        const idToken = await auth.currentUser.getIdToken().catch(()=>null);
+        if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
+      }
+      fetch('/.netlify/functions/send-push', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ messageId })
+      }).catch(()=>{});
+    }catch(e){}
+  }
+
+  /* ---------- Local Settings & Sync ---------- */
+  function loadLocalSettings(){
+    try{
+      const savedPeople = localStorage.getItem(PEOPLE_KEY);
+      if(savedPeople){
+        const custom = JSON.parse(savedPeople);
+        if(Array.isArray(custom) && custom.length > 0){
+          activePeople = custom;
+        }
+      }
+      const savedPins = localStorage.getItem(PINS_KEY);
+      if(savedPins){
+        const pins = JSON.parse(savedPins);
+        if(pins && typeof pins === 'object'){
+          pinnedMessages = Object.assign(pinnedMessages, pins);
+        }
+      }
+      const savedPw = localStorage.getItem(PASSWORDS_KEY);
+      if(savedPw){
+        const pws = JSON.parse(savedPw);
+        if(pws && typeof pws === 'object'){
+          userPasswords = Object.assign(userPasswords, pws);
+        }
+      }
+      const savedFlags = localStorage.getItem(PW_CHANGED_KEY);
+      if(savedFlags){
+        const flags = JSON.parse(savedFlags);
+        if(flags && typeof flags === 'object'){
+          passwordChangedFlags = Object.assign(passwordChangedFlags, flags);
+        }
+      }
+      const savedPerms = localStorage.getItem(ADMIN_PERMS_KEY);
+      if(savedPerms){
+        const perms = JSON.parse(savedPerms);
+        if(perms && typeof perms === 'object'){
+          adminPermissions = Object.assign(adminPermissions, perms);
+        }
+      }
+    }catch(e){}
+  }
+
+  // Targeted update prevents overwriting newer admin permissions or pins from other devices (Task E)
+  function saveLocalSettings(targetPart = null){
+    try{
+      localStorage.setItem(PEOPLE_KEY, JSON.stringify(activePeople));
+      localStorage.setItem(PINS_KEY, JSON.stringify(pinnedMessages));
+      localStorage.setItem(PASSWORDS_KEY, JSON.stringify(userPasswords));
+      localStorage.setItem(PW_CHANGED_KEY, JSON.stringify(passwordChangedFlags));
+      localStorage.setItem(ADMIN_PERMS_KEY, JSON.stringify(adminPermissions));
+    }catch(e){}
+
+    if(isFirebaseConfigured && db){
+      if(targetPart === 'people'){
+        db.ref("settings/people").set(activePeople).catch(()=>{});
+      }else if(targetPart === 'pinned'){
+        db.ref("settings/pinned").set(pinnedMessages).catch(()=>{});
+      }else if(targetPart === 'adminPermissions'){
+        db.ref("settings/adminPermissions").set(adminPermissions).catch(()=>{});
+      }else if(targetPart === 'passwordChanged'){
+        db.ref("settings/passwordChanged").set(passwordChangedFlags).catch(()=>{});
+      }else{
+        db.ref("settings").update({
+          people: activePeople,
+          pinned: pinnedMessages,
+          adminPermissions: adminPermissions
+        }).catch(()=>{});
+      }
+    } else {
+      fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          people: activePeople,
+          pinned: pinnedMessages,
+          adminPermissions: adminPermissions,
+          passwords: userPasswords,
+          passwordChanged: passwordChangedFlags
+        })
+      }).catch(()=>{});
+    }
+  }
+
+  loadLocalSettings();
+
+  /* ---------- Toast (At TOP) ---------- */
+  let toastTimer = null;
+  function toast(t){
+    const e = $("toast");
+    if(!e) return;
+    e.textContent = t;
+    e.classList.add("show");
+    if(toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => e.classList.remove("show"), 2800);
+  }
+
+  /* ---------- Sound (chime / گھنٹی) ---------- */
+  let actx = null;
+  function initAudio(){
+    try{
+      if(!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+      if(actx && actx.state === "suspended") actx.resume();
+    }catch(e){}
+    checkSoundBar();
+    unlockSharedAudio();
+  }
+
+  function unlockSharedAudio(){
+    if(sharedAudio && !sharedAudio.src){
+      sharedAudio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      sharedAudio.play().then(() => {
+        sharedAudio.pause();
+        sharedAudio.src = "";
+      }).catch(()=>{});
+    }
+  }
+
+  function checkSoundBar(){
+    const sb = $("soundBar");
+    if(sb) sb.classList.toggle("hidden", !actx || actx.state === "running");
+  }
+
+  function chime(isReply = false){
+    try{
+      if(!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+      if(actx && actx.state === "suspended") actx.resume();
+    }catch(e){}
+    if(!actx) return;
+
+    try{
+      const now = actx.currentTime;
+      const notes = isReply
+        ? [[1046.5, 0, 0.65], [1318.5, 0.18, 0.75], [1567.98, 0.36, 0.85]]
+        : [[880, 0, 0.6], [1174.66, 0.2, 0.7], [1760, 0.42, 0.8]];
+
+      notes.forEach(([f, delay, vol]) => {
+        const o = actx.createOscillator();
+        const g = actx.createGain();
+        o.type = "sine";
+        o.frequency.setValueAtTime(f, now + delay);
+
+        const s = now + delay;
+        g.gain.setValueAtTime(0.0001, s);
+        g.gain.exponentialRampToValueAtTime(vol, s + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, s + 0.85);
+
+        o.connect(g);
+        g.connect(actx.destination);
+        o.start(s);
+        o.stop(s + 0.9);
+      });
+    }catch(e){
+      console.warn("Chime sound error:", e);
+    }
+
+    if(navigator.vibrate) navigator.vibrate([250, 100, 250, 100, 300]);
+  }
+
+  if($("soundBar")) $("soundBar").onclick = initAudio;
+  if($("testSound")) $("testSound").onclick = () => { initAudio(); chime(); };
+
+  ["click", "touchstart", "mousedown", "keydown"].forEach(evt => {
+    document.addEventListener(evt, () => { initAudio(); }, { passive: true });
+  });
+
+  /* ---------- Screen always ON (Wake Lock) ---------- */
+  let wantWake = localStorage.getItem(WAKE_KEY) !== "0", wl = null;
+  function wakeLabel(){
+    const b = $("wakeBtn");
+    if(!b) return;
+    if(!("wakeLock" in navigator)){
+      b.textContent = "اسکرین آن: دستیاب نہیں";
+      return;
+    }
+    b.textContent = wantWake ? "اسکرین آن ہے — بند کریں" : "اسکرین آن رکھیں";
+    b.style.background = wantWake ? "#16a34a" : "#334155";
+  }
+  async function applyWake(){
+    if("wakeLock" in navigator){
+      try{
+        if(wantWake && !wl && document.visibilityState === "visible"){
+          wl = await navigator.wakeLock.request("screen");
+          wl.addEventListener("release", () => { wl = null; });
+        }else if(!wantWake && wl){
+          await wl.release();
+          wl = null;
+        }
+      }catch(e){ wl = null; }
+    }
+    wakeLabel();
+  }
+  if($("wakeBtn")){
+    $("wakeBtn").onclick = () => {
+      wantWake = !wantWake;
+      localStorage.setItem(WAKE_KEY, wantWake ? "1" : "0");
+      applyWake();
+      toast(wantWake ? "اسکرین بند نہیں ہوگی" : "اسکرین آن رکھنے کی سیٹنگ بند");
+    };
+  }
+  document.addEventListener("visibilitychange", applyWake);
+  document.addEventListener("click", applyWake);
+
+  /* ---------- Login & Authentication ---------- */
+  function setupQuickLogin(){
+    const wrap = $("quickUsers");
+    if(!wrap) return;
+    wrap.innerHTML = "";
+    
+    // Superadmin button
+    const sBtn = document.createElement("button");
+    sBtn.type = "button";
+    sBtn.className = "quick-btn";
+    sBtn.style.background = "#7c3aed";
+    sBtn.textContent = "سپر ایڈمن";
+    sBtn.onclick = () => { initAudio(); $("uid").value = "superadmin"; $("pass").value = ""; $("pass").focus(); };
+    wrap.appendChild(sBtn);
+
+    // Admin button
+    const aBtn = document.createElement("button");
+    aBtn.type = "button";
+    aBtn.className = "quick-btn";
+    aBtn.textContent = "ایڈمن";
+    aBtn.onclick = () => { initAudio(); $("uid").value = "admin"; $("pass").value = ""; $("pass").focus(); };
+    wrap.appendChild(aBtn);
+
+    // Each person button
+    activePeople.forEach(p => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "quick-btn";
+      btn.textContent = p.name;
+      btn.onclick = () => { initAudio(); $("uid").value = p.loginId || p.id; $("pass").value = ""; $("pass").focus(); };
+      wrap.appendChild(btn);
+    });
+  }
+
+  let settingsSyncStarted = false;
+  function startSettingsSync(){
+    if(settingsSyncStarted || !isFirebaseConfigured || !db) return;
+    settingsSyncStarted = true;
+    db.ref("settings").on("value", snap => {
+      const val = snap.val();
+      if(val){
+        if(Array.isArray(val.people) && val.people.length > 0) activePeople = val.people;
+        if(val.pinned && typeof val.pinned === 'object') pinnedMessages = Object.assign(pinnedMessages, val.pinned);
+        if(val.adminPermissions && typeof val.adminPermissions === 'object') adminPermissions = Object.assign(adminPermissions, val.adminPermissions);
+        if(val.passwords && typeof val.passwords === 'object') userPasswords = Object.assign(userPasswords, val.passwords);
+        if(val.passwordChanged && typeof val.passwordChanged === 'object') passwordChangedFlags = Object.assign(passwordChangedFlags, val.passwordChanged);
+        if(typeof buildGrid === "function") buildGrid();
+        if(typeof renderUserHeader === "function") renderUserHeader();
+        setupQuickLogin();
+        const sm = $("superModal");
+        if(sm && !sm.classList.contains("hidden")){
+          if(typeof renderAdminPerms === "function") renderAdminPerms();
+          if(typeof renderPeopleTable === "function") renderPeopleTable();
+          if(typeof renderPinList === "function") renderPinList();
+        }
+      }
+    });
+  }
+  startSettingsSync();
+
+  function saveUserSession(user){
+    currentUser = user;
+    sessionStorage.setItem(SESSION_KEY, "1");
+    sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  async function doLogin(){
+    const u = $("uid").value.trim().toLowerCase();
+    const p = $("pass").value.trim();
+    $("loginErr").textContent = "";
+
+    if(!u || !p){
+      $("loginErr").textContent = "آئی ڈی اور پاس ورڈ درج کریں";
+      return;
+    }
+
+    // Task F: Server-side authentication via Netlify Function with custom token
+    let serverLoginSucceeded = false;
+    try{
+      const netRes = await fetch('/.netlify/functions/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ loginId: u, pin: p })
+      });
+
+      if(netRes.ok){
+        const netData = await netRes.json();
+        serverLoginSucceeded = true;
+        if(netData.customToken && auth){
+          await auth.signInWithCustomToken(netData.customToken).catch(err => {
+            console.warn("signInWithCustomToken notice:", err);
+          });
+        }
+        if(netData.mustChangePin){
+          openPinModal(netData.user, true);
+          return;
+        }
+        saveUserSession(netData.user);
+        initAudio();
+        showApp();
+        return;
+      }else if(netRes.status === 401){
+        const errJson = await netRes.json().catch(()=>({}));
+        $("loginErr").textContent = errJson.error || "پاس ورڈ یا پن کوڈ غلط ہے";
+        return;
+      }
+    }catch(netErr){
+      console.warn("Netlify function login failed or local server mode, falling back to client auth:", netErr);
+    }
+
+    // Client-side authentication fallback (for offline or local server without netlify functions)
+    let targetUser = null;
+    if(u === "superadmin" || u === "super"){
+      targetUser = { role: "superadmin", id: "superadmin", name: "سپر ایڈمن" };
+    } else if(u === "admin" || (typeof ADMIN_ID !== "undefined" && u === ADMIN_ID.toLowerCase())){
+      targetUser = { role: "admin", id: "admin", name: "ایڈمن" };
+    } else {
+      const person = activePeople.find(item => {
+        const lid = (item.loginId || item.id).toLowerCase();
+        const pid = item.id.toLowerCase();
+        const pName = (item.name || '').toLowerCase();
+        return (u === lid || u === pid || u === pName);
+      });
+      if(person){
+        targetUser = { role: "user", id: person.id, name: person.name, color: person.color || "#1e88e5" };
+      }
+    }
+
+    if(!targetUser){
+      $("loginErr").textContent = "آئی ڈی یا نام درست نہیں ہے";
+      return;
+    }
+
+    const expectedPin = userPasswords[targetUser.id] || "1234";
+    if(p !== expectedPin){
+      $("loginErr").textContent = "پاس ورڈ یا پن کوڈ غلط ہے";
+      return;
+    }
+
+    const isChanged = passwordChangedFlags[targetUser.id] === true && expectedPin !== "1234";
+    if(!isChanged){
+      openPinModal(targetUser, true);
+      return;
+    }
+
+    saveUserSession(targetUser);
+    initAudio();
+    showApp();
+  }
+
+  function openPinModal(user, mandatory = false){
+    pendingPinUser = user;
+    isMandatoryPinChange = mandatory;
+    $("newPinInput").value = "";
+    $("confirmPinInput").value = "";
+    $("pinModalErr").textContent = "";
+    
+    if(mandatory){
+      $("pinModalTitle").textContent = "نیا ۴ ہندسوں کا پن کوڈ سیٹ کریں";
+      $("pinModalDesc").textContent = "سیکیورٹی کے لیے پہلی بار لاگ ان پر ڈیفالٹ پاس ورڈ (1234) تبدیل کرنا لازمی ہے۔ اپنا نیا ۴ ہندسوں کا ذاتی پن درج کریں۔";
+      $("btnClosePinModal").classList.add("hidden");
+    } else {
+      $("pinModalTitle").textContent = "اپنا ۴ ہندسوں کا پن تبدیل کریں";
+      $("pinModalDesc").textContent = "اکاؤنٹ (" + user.name + ") کے لیے نیا ۴ ہندسوں کا پن درج کریں:";
+      $("btnClosePinModal").classList.remove("hidden");
+    }
+    $("changePinModal").classList.remove("hidden");
+    setTimeout(() => $("newPinInput").focus(), 150);
+  }
+
+  $("btnClosePinModal").onclick = () => {
+    if(!isMandatoryPinChange){
+      $("changePinModal").classList.add("hidden");
+      pendingPinUser = null;
+    }
+  };
+
+  $("changePinTopBtn").onclick = () => {
+    if(currentUser){
+      openPinModal(currentUser, false);
+    }
+  };
+
+  $("btnSavePin").onclick = async () => {
+    const p1 = $("newPinInput").value.trim();
+    const p2 = $("confirmPinInput").value.trim();
+    const errBox = $("pinModalErr");
+    errBox.textContent = "";
+
+    if(!/^\d{4}$/.test(p1)){
+      errBox.textContent = "پن کوڈ لازماً صرف ۴ ہندسوں (0-9) پر مشتمل ہونا چاہیے!";
+      return;
+    }
+
+    if(p1 === "1234"){
+      errBox.textContent = "نیا پن کوڈ '1234' نہیں ہو سکتا! کوئی مختلف پن منتخب کریں۔";
+      return;
+    }
+
+    if(p1 !== p2){
+      errBox.textContent = "دونوں پن کوڈ آپس میں میل نہیں کھاتے!";
+      return;
+    }
+
+    if(!pendingPinUser) return;
+
+    // Call Netlify function change-pin (Task F)
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      if(auth && auth.currentUser){
+        const idToken = await auth.currentUser.getIdToken().catch(()=>null);
+        if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
+      }
+      fetch('/.netlify/functions/change-pin', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ userId: pendingPinUser.id, newPin: p1 })
+      }).catch(()=>{});
+    }catch(e){}
+
+    userPasswords[pendingPinUser.id] = p1;
+    passwordChangedFlags[pendingPinUser.id] = true;
+    saveLocalSettings('passwordChanged');
+
+    if(!isFirebaseConfigured || !db){
+      fetch('/api/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: pendingPinUser.id, newPin: p1 })
+      }).catch(()=>{});
+    }
+
+    $("changePinModal").classList.add("hidden");
+    toast("نیا پن کوڈ کامیابی سے محفوظ ہو گیا!");
+
+    if(isMandatoryPinChange){
+      saveUserSession(pendingPinUser);
+      initAudio();
+      showApp();
+    }
+    pendingPinUser = null;
+    isMandatoryPinChange = false;
+  };
+
+  $("loginBtn").onclick = doLogin;
+  $("pass").addEventListener("keydown", e => { if(e.key === "Enter") doLogin(); });
+  $("uid").addEventListener("keydown", e => { if(e.key === "Enter") $("pass").focus(); });
+  
+  async function doLogout(){
+    if(currentUser){
+      await unregisterFcmTokenForUser(currentUser.id);
+    }
+    if(auth){
+      try{ await auth.signOut(); }catch(e){}
+    }
+    sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(USER_KEY);
+    localStorage.removeItem(USER_KEY);
+    location.reload();
+  }
+  $("logoutTop").onclick = doLogout;
+
+  /* ---------- Build UI & Grid ---------- */
+  function applyToolVisibility(){
+    const histBtn = $("histBtn");
+    const testSound = $("testSound");
+    const wakeBtn = $("wakeBtn");
+    if(!currentUser) return;
+
+    if(currentUser.role === "superadmin"){
+      if(histBtn) histBtn.classList.remove("hidden");
+      if(testSound) testSound.classList.remove("hidden");
+      if(wakeBtn) wakeBtn.classList.remove("hidden");
+    } else if(currentUser.role === "admin"){
+      if(histBtn) histBtn.classList.toggle("hidden", adminPermissions.showHistoryBtn === false);
+      if(testSound) testSound.classList.toggle("hidden", adminPermissions.showSoundBtn === false);
+      if(wakeBtn) wakeBtn.classList.remove("hidden");
+    } else {
+      if(histBtn) histBtn.classList.remove("hidden");
+      if(testSound) testSound.classList.remove("hidden");
+      if(wakeBtn) wakeBtn.classList.remove("hidden");
+    }
+  }
+
+  function renderUserHeader(){
+    const badge = $("userBadge");
+    const superBtn = $("superBtn");
+    if(!badge || !currentUser) return;
+
+    if(currentUser.role === "superadmin"){
+      superBtn.classList.remove("hidden");
+      superBtn.textContent = "سپر ایڈمن کنٹرول";
+    } else {
+      superBtn.classList.add("hidden");
+    }
+
+    const connTag = isFirebaseConfigured
+      ? '<span class="nav-status-tag">فائر بیس آن لائن</span>'
+      : '<span class="nav-status-tag local" title="سرور سے لائیو جڑا ہوا ہے">لائیو چیٹ فعال</span>';
+
+    if(currentUser.role === "superadmin"){
+      badge.innerHTML = '<span>سپر ایڈمن</span> <span class="user-role-tag" style="background:#7c3aed;color:#fff;font-weight:700">تمام اختیارات و کنٹرول</span> ' + connTag;
+    }else if(currentUser.role === "admin"){
+      badge.innerHTML = '<span>ایڈمن پینل</span> <span class="user-role-tag">نیچے کی منزل — ماسٹر</span> ' + connTag;
+    }else{
+      badge.innerHTML = '<span>' + currentUser.name + '</span> <span class="user-role-tag">ذاتی اسکرین</span> ' + connTag;
+    }
+
+    applyToolVisibility();
+    updateNotificationButtonUI();
+  }
+
+  // Task A: User Screen Two-Part Layout
+  function buildGrid(){
+    const g = $("grid");
+    if(!g) return;
+    g.innerHTML = "";
+
+    if(currentUser.role === "superadmin"){
+      g.classList.remove("single-mode");
+      activePeople.forEach(p => {
+        const d = createPersonCard(p, false);
+        g.appendChild(d);
+      });
+    } else if(currentUser.role === "admin"){
+      g.classList.remove("single-mode");
+      const allowed = Array.isArray(adminPermissions.allowedPeople) ? adminPermissions.allowedPeople : activePeople.map(x=>x.id);
+      const visibleList = activePeople.filter(p => allowed.includes(p.id));
+      if(visibleList.length === 0){
+        g.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted);font-size:1.2rem">سپر ایڈمن نے ابھی آپ کے لیے کوئی کارڈ تفویض نہیں کیا۔</div>';
+      } else {
+        visibleList.forEach(p => {
+          const d = createPersonCard(p, false);
+          g.appendChild(d);
+        });
+      }
+    } else {
+      // Normal User Screen: Two Parts (Task A)
+      g.classList.remove("single-mode");
+
+      // Part 1: Heading & Own Inbox Card (Messages from Admin)
+      const adminTitle = document.createElement("div");
+      adminTitle.className = "user-section-title";
+      adminTitle.textContent = "ایڈمن کی طرف سے پیغامات";
+      g.appendChild(adminTitle);
+
+      const inboxWrap = document.createElement("div");
+      inboxWrap.className = "user-inbox-wrap";
+      const ownPerson = activePeople.find(p => p.id === currentUser.id) || {
+        id: currentUser.id,
+        name: currentUser.name,
+        color: currentUser.color || "#1e88e5"
+      };
+      const ownCard = createPersonCard(ownPerson, true);
+      inboxWrap.appendChild(ownCard);
+      g.appendChild(inboxWrap);
+
+      // Part 2: Heading & Peer Contact Cards (Other People & Admin)
+      const contacts = [
+        { id: "admin", name: "ایڈمن", color: "#2563eb" },
+        ...activePeople.filter(p => p.id !== currentUser.id && p.id !== 'admin' && p.id !== 'superadmin')
+      ];
+      if(contacts.length > 0){
+        const contactTitle = document.createElement("div");
+        contactTitle.className = "user-section-title";
+        contactTitle.textContent = "دیگر افراد اور ایڈمن کو پیغام بھیجیں";
+        g.appendChild(contactTitle);
+
+        const contactsGrid = document.createElement("div");
+        contactsGrid.className = "user-contacts-grid";
+        contacts.forEach(contact => {
+          const cCard = createPersonCard(contact, false);
+          contactsGrid.appendChild(cCard);
+        });
+        g.appendChild(contactsGrid);
+      }
+    }
+  }
+
+  // Safe DOM construction (Task E)
+  function createPersonCard(p, isInboxCard = false){
+    const d = document.createElement("div");
+    d.className = "person";
+    d.id = "p_" + p.id;
+    d.style.setProperty("--c", p.color || "#1e88e5");
+
+    // Card Header button
+    const nameBtn = document.createElement("button");
+    nameBtn.type = "button";
+    nameBtn.className = "name-btn";
+
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = isInboxCard ? (p.name + " (ایڈمن کے ساتھ رابطہ)") : p.name;
+    nameBtn.appendChild(nameSpan);
+
+    const badge = document.createElement("span");
+    badge.className = "badge hidden";
+    badge.textContent = "0";
+    nameBtn.appendChild(badge);
+    d.appendChild(nameBtn);
+
+    // If Inbox card on user screen, provide a quick button to start a new inquiry to Admin
+    if(isInboxCard && currentUser && currentUser.role === "user"){
+      const newAdminMsgBtn = document.createElement("button");
+      newAdminMsgBtn.type = "button";
+      newAdminMsgBtn.className = "btn-main";
+      newAdminMsgBtn.style.cssText = "margin:8px 12px 2px;width:calc(100% - 24px);padding:8px 14px;font-size:1.05rem;background:#2563eb";
+      newAdminMsgBtn.textContent = "✍️ ایڈمن کو نیا پیغام لکھیں";
+      newAdminMsgBtn.onclick = (e) => {
+        e.stopPropagation();
+        openModal({ id: "admin", name: "ایڈمن" }, null);
+      };
+      d.appendChild(newAdminMsgBtn);
+    }
+
+    // Pinned messages section (Shown only on Admin cards, NOT on peer contact cards)
+    const isSuper = currentUser.role === "superadmin";
+    const isAdmin = currentUser.role === "admin";
+    const showPins = (isSuper || (isAdmin && adminPermissions.showPinnedPills !== false)) && !isInboxCard;
+
+    if(showPins){
+      const pinsBox = document.createElement("div");
+      pinsBox.className = "card-pins";
+      pinsBox.id = "pins_" + p.id;
+
+      const pinsHdr = document.createElement("div");
+      pinsHdr.className = "pins-header";
+      pinsHdr.innerHTML = '<span>فوری پیغامات (ایک کلک):</span>' + (isSuper ? '<button type="button" class="pin-pill pin-add">+ پن</button>' : '<span style="font-size:.75rem">رش میں فوری کلک کریں</span>');
+      pinsBox.appendChild(pinsHdr);
+
+      const pinsRow = document.createElement("div");
+      pinsRow.className = "pins-row";
+      const pins = pinnedMessages[p.id] || ["پیناڈول دے دو", "ایک ہفتے کی دوا", "اوپر آ جائیں"];
+      pins.forEach(txt => {
+        const pillBtn = document.createElement("button");
+        pillBtn.type = "button";
+        pillBtn.className = "pin-pill";
+        pillBtn.setAttribute("data-to", p.id);
+        pillBtn.setAttribute("data-text", txt);
+        pillBtn.textContent = txt;
+        pillBtn.onclick = (e) => {
+          e.stopPropagation();
+          quickSendPin(p, txt);
+        };
+        pinsRow.appendChild(pillBtn);
+      });
+      pinsBox.appendChild(pinsRow);
+
+      const addBtn = pinsHdr.querySelector(".pin-pill.pin-add");
+      if(addBtn){
+        addBtn.onclick = (e) => {
+          e.stopPropagation();
+          openSuperModalWithPerson(p.id);
+        };
+      }
+      d.appendChild(pinsBox);
+    }
+
+    const msgsBox = document.createElement("div");
+    msgsBox.className = "msgs";
+    msgsBox.innerHTML = '<div class="empty">کوئی پیغام نہیں</div>';
+    d.appendChild(msgsBox);
+
+    // Tapping header button
+    nameBtn.onclick = () => {
+      if(currentUser.role === "user" && isInboxCard){
+        openModal({ id: "admin", name: "ایڈمن" }, null);
+      } else {
+        openModal(p, null);
+      }
+    };
+
+    return d;
+  }
+
+  function refreshPerson(id){
+    const box = $("p_" + id);
+    if(!box) return;
+    const list = box.querySelector(".msgs");
+    if(!list) return;
+    const n = list.querySelectorAll(".msg").length;
+    const badge = box.querySelector(".badge");
+    if(badge){
+      badge.textContent = n;
+      badge.classList.toggle("hidden", n === 0);
+    }
+    box.classList.toggle("has", n > 0);
+    let emp = list.querySelector(".empty");
+    if(n === 0 && !emp){ list.innerHTML = '<div class="empty">کوئی پیغام نہیں</div>'; }
+    if(n > 0 && emp) emp.remove();
+  }
+
+  function timeStr(ts){
+    if(!ts) return "";
+    return new Date(ts).toLocaleTimeString("ur-PK", {hour: "2-digit", minute: "2-digit"});
+  }
+
+  function formatDateTime(ts){
+    if(!ts) return "";
+    const d = new Date(ts);
+    const time = d.toLocaleTimeString("ur-PK", {hour: "2-digit", minute: "2-digit"});
+    const today = new Date();
+    const isToday = d.toDateString() === today.toDateString();
+    if(isToday) return time;
+    const date = d.toLocaleDateString("ur-PK", {month: "short", day: "numeric"});
+    return `${date}، ${time}`;
+  }
+
+  /* ---------- Archive / Clear previous messages on card ---------- */
+  function archivePreviousMessagesForPerson(personId){
+    const card = $("p_" + personId);
+    if(!card) return;
+    const list = card.querySelector(".msgs");
+    if(!list) return;
+    const oldEls = list.querySelectorAll(".msg");
+    if(!oldEls || oldEls.length === 0) return;
+
+    oldEls.forEach(el => {
+      const key = el.id.replace("m_", "");
+      const textEl = el.querySelector(".t");
+      const text = textEl ? textEl.textContent : "";
+      const isOut = el.classList.contains("outgoing");
+      const who = isOut ? (currentUser ? currentUser.id : "admin") : personId;
+      const whoName = isOut ? (currentUser ? currentUser.name : "ایڈمن") : (activePeople.find(x => x.id === personId)?.name || personId);
+
+      const histData = {
+        from: who,
+        fromName: whoName,
+        to: personId,
+        text: text,
+        time: Date.now(),
+        replyTo: "",
+        clearedAt: Date.now()
+      };
+      addLocalHistory(histData);
+
+      if(isFirebaseConfigured && db){
+        db.ref("history").push({
+          ...histData,
+          clearedAt: firebase.database.ServerValue.TIMESTAMP
+        }).catch(()=>{});
+        db.ref("messages").child(key).remove().catch(()=>{});
+        db.ref("voice").child(key).remove().catch(()=>{});
+      } else {
+        fetch('/api/messages/' + encodeURIComponent(key), { method: 'DELETE' }).catch(()=>{});
+      }
+      el.remove();
+    });
+    refreshPerson(personId);
+  }
+
+  /* ---------- Voice Audio Player & Auto-Play (Task C) ---------- */
+  async function fetchVoiceAudio(messageId){
+    if(voiceCache[messageId]) return voiceCache[messageId];
+    if(isFirebaseConfigured && db){
+      try{
+        const snap = await db.ref(`voice/${messageId}`).once('value');
+        const val = snap.val();
+        if(val){
+          const src = typeof val === 'string' ? val : (val.audio || '');
+          voiceCache[messageId] = src;
+          return src;
+        }
+      }catch(e){}
+    } else {
+      try{
+        const r = await fetch('/api/voice/' + encodeURIComponent(messageId));
+        const res = await r.json();
+        if(res && res.audio){
+          voiceCache[messageId] = res.audio;
+          return res.audio;
+        }
+      }catch(e){}
+    }
+    return null;
+  }
+
+  function formatDuration(sec){
+    const s = Math.max(0, Math.round(sec || 0));
+    const mm = String(Math.floor(s / 60)).padStart(2, "0");
+    const ss = String(s % 60).padStart(2, "0");
+    return `${mm}:${ss}`;
+  }
+
+  function createVoicePlayer(msgKey, msg){
+    const wrapper = document.createElement("div");
+    wrapper.className = "voice-player";
+    wrapper.id = "vplay_" + msgKey;
+
+    const playBtn = document.createElement("button");
+    playBtn.type = "button";
+    playBtn.className = "btn-voice-play";
+    playBtn.textContent = "▶";
+    playBtn.setAttribute("aria-label", "صوتی پیغام سنیں");
+
+    const metaBox = document.createElement("div");
+    metaBox.className = "voice-meta";
+
+    const label = document.createElement("div");
+    label.className = "voice-label";
+    label.textContent = "🎙️ صوتی پیغام (Voice Note)";
+
+    const pBar = document.createElement("div");
+    pBar.className = "voice-progress-bar";
+    const pFill = document.createElement("div");
+    pFill.className = "voice-progress-fill";
+    pBar.appendChild(pFill);
+
+    const timeLabel = document.createElement("div");
+    timeLabel.className = "voice-time";
+    timeLabel.textContent = formatDuration(msg.audioDuration || 0);
+
+    metaBox.append(label, pBar, timeLabel);
+    wrapper.append(playBtn, metaBox);
+
+    playBtn.onclick = async (e) => {
+      e.stopPropagation();
+      initAudio();
+
+      if(currentPlayingMsgId === msgKey && !sharedAudio.paused){
+        sharedAudio.pause();
+        playBtn.textContent = "▶";
+        playBtn.classList.remove("playing");
+        return;
+      }
+
+      // Stop previous
+      if(currentPlayingBtn && currentPlayingBtn !== playBtn){
+        currentPlayingBtn.textContent = "▶";
+        currentPlayingBtn.classList.remove("playing");
+      }
+
+      playBtn.textContent = "⏳";
+      const audioSrc = msg.audio || await fetchVoiceAudio(msgKey);
+      if(!audioSrc){
+        playBtn.textContent = "▶";
+        toast("صوتی ریکارڈنگ دستیاب نہیں");
+        return;
+      }
+
+      sharedAudio.src = audioSrc;
+      currentPlayingBtn = playBtn;
+      currentPlayingMsgId = msgKey;
+
+      sharedAudio.ontimeupdate = () => {
+        if(sharedAudio.duration){
+          const pct = (sharedAudio.currentTime / sharedAudio.duration) * 100;
+          pFill.style.width = pct + "%";
+          timeLabel.textContent = formatDuration(sharedAudio.currentTime);
+        }
+      };
+
+      sharedAudio.onended = () => {
+        playBtn.textContent = "▶";
+        playBtn.classList.remove("playing");
+        pFill.style.width = "0%";
+        timeLabel.textContent = formatDuration(msg.audioDuration || 0);
+        currentPlayingBtn = null;
+        currentPlayingMsgId = null;
+      };
+
+      try{
+        await sharedAudio.play();
+        playBtn.textContent = "⏸";
+        playBtn.classList.add("playing");
+      }catch(err){
+        console.warn("Shared audio playback error:", err);
+        playBtn.textContent = "▶";
+        playBtn.classList.remove("playing");
+      }
+    };
+
+    return wrapper;
+  }
+
+  async function enqueueAutoPlayVoice(msgKey, msg){
+    if(document.hidden || adminPermissions.autoPlayVoice === false) return;
+    voicePlayQueue.push({ key: msgKey, msg: msg });
+    if(!isVoiceQueueProcessing){
+      processVoicePlayQueue();
+    }
+  }
+
+  async function processVoicePlayQueue(){
+    if(voicePlayQueue.length === 0){
+      isVoiceQueueProcessing = false;
+      return;
+    }
+    isVoiceQueueProcessing = true;
+    const item = voicePlayQueue.shift();
+    try{
+      const audioSrc = item.msg.audio || await fetchVoiceAudio(item.key);
+      if(audioSrc){
+        sharedAudio.src = audioSrc;
+        currentPlayingMsgId = item.key;
+        await new Promise((resolve) => {
+          sharedAudio.onended = () => resolve();
+          sharedAudio.onerror = () => resolve();
+          sharedAudio.play().catch(() => resolve());
+        });
+      }
+    }catch(err){
+      console.warn("Auto-play voice queue error:", err);
+    }
+    setTimeout(processVoicePlayQueue, 300);
+  }
+
+  /* ---------- Fast 1-Click Sending Helper ---------- */
+  async function sendRawMessage(msgPayload){
+    initAudio();
+    const sendBtn = $("sendBtn");
+    const sendVoiceBtn = $("sendVoiceBtn");
+    if(sendBtn) sendBtn.disabled = true;
+    if(sendVoiceBtn) sendVoiceBtn.disabled = true;
+
+    try{
+      // If Admin sends a new inquiry to a person, archive older messages on that person card
+      if(msgPayload.kind === "thread" && currentUser && (currentUser.role === "admin" || currentUser.role === "superadmin")){
+        archivePreviousMessagesForPerson(msgPayload.to);
+      }
+
+      let savedKey = null;
+
+      if(isFirebaseConfigured && db){
+        const newMsgRef = db.ref("messages").push();
+        savedKey = newMsgRef.key;
+
+        // Task C: Store audio separately at voice/{msgId} to prevent database bloat
+        if(msgPayload.audio){
+          await db.ref("voice").child(savedKey).set(msgPayload.audio);
+        }
+
+        const dbRecord = {
+          to: msgPayload.to,
+          from: msgPayload.from,
+          fromName: msgPayload.fromName,
+          text: msgPayload.text,
+          hasAudio: !!msgPayload.hasAudio,
+          audioDuration: msgPayload.audioDuration || 0,
+          audioMime: msgPayload.audioMime || "",
+          kind: msgPayload.kind || "thread",
+          recipient: msgPayload.recipient || msgPayload.to,
+          time: firebase.database.ServerValue.TIMESTAMP,
+          replyTo: msgPayload.replyTo || ""
+        };
+
+        await newMsgRef.set(dbRecord);
+
+        // Task B: Trigger background push notification via Netlify Function
+        triggerPushNotification(savedKey);
+
+      } else {
+        // Local server mode
+        if(msgPayload.audio){
+          const tempVoiceId = 'msg_' + Date.now();
+          await fetch('/api/voice', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: tempVoiceId, audio: msgPayload.audio })
+          }).catch(()=>{});
+          msgPayload.id = tempVoiceId;
+        }
+
+        const r = await fetch('/api/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(msgPayload)
+        });
+        const res = await r.json();
+        if(res && res.msg){
+          displayMessageOnCard(res.msg.id, res.msg);
+        }
+      }
+    }catch(err){
+      console.error("Message send failure:", err);
+      toast("پیغام بھیجنے میں خرابی ہوئی، دوبارہ کوشش کریں");
+    }finally{
+      if(sendBtn) sendBtn.disabled = false;
+      if(sendVoiceBtn) sendVoiceBtn.disabled = false;
+    }
+  }
+
+  function quickSendPin(targetPerson, pinText){
+    const msgPayload = {
+      to: targetPerson.id,
+      from: currentUser.id,
+      fromName: currentUser.name,
+      text: pinText,
+      audio: "",
+      hasAudio: false,
+      kind: "thread",
+      recipient: targetPerson.id,
+      time: Date.now(),
+      replyTo: ""
+    };
+    sendRawMessage(msgPayload);
+    toast(`${targetPerson.name} کو بھیج دیا: "${pinText}"`);
+  }
+
+  function quickSendReply(targetPerson, replyText, originalMsg){
+    const isPeer = originalMsg.kind === "peer";
+    const msgPayload = {
+      to: isPeer ? originalMsg.from : targetPerson.id,
+      from: currentUser.id,
+      fromName: currentUser.name,
+      text: replyText,
+      audio: "",
+      hasAudio: false,
+      kind: isPeer ? "peer" : "thread",
+      recipient: isPeer ? originalMsg.from : "admin",
+      time: Date.now(),
+      replyTo: originalMsg.text
+    };
+    sendRawMessage(msgPayload);
+    toast(`جواب بھیج دیا گیا: "${replyText}"`);
+  }
+
+  /* ---------- Two-Way Message DOM Rendering (Tasks A & C) ---------- */
+  function displayMessageOnCard(key, m){
+    if(!m) return;
+    const kind = m.kind || "thread"; // legacy defaults to thread
+
+    // Task A: Message routing rules
+    let cardId = null;
+
+    if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+      // Admin screens render only thread messages
+      if(kind !== "thread") return;
+      cardId = "p_" + m.to;
+    } else {
+      // User screen rendering:
+      if(kind === "thread"){
+        // Thread messages where to === me belong to own inbox card
+        if(m.to !== currentUser.id) return;
+        cardId = "p_" + currentUser.id;
+      } else if(kind === "peer"){
+        // Peer message:
+        if(m.to === currentUser.id && m.from !== currentUser.id){
+          // Incoming: appears on the card of sender (from)
+          cardId = "p_" + m.from;
+        } else if(m.from === currentUser.id && m.to !== currentUser.id){
+          // Outgoing: appears on the card of recipient (to)
+          cardId = "p_" + m.to;
+        } else {
+          return; // not for this user
+        }
+      }
+    }
+
+    const card = $(cardId);
+    if(!card) return;
+
+    const list = card.querySelector(".msgs");
+    if(!list) return;
+    if($("m_" + key)) return; // already rendered
+
+    // Auto-archiving older messages applies ONLY to admin-sent thread messages
+    const isFromAdmin = (m.from === "admin" || m.from === "superadmin");
+    if(kind === "thread" && isFromAdmin){
+      list.querySelectorAll(".msg").forEach(oldEl => {
+        if(oldEl.id !== "m_" + key){
+          oldEl.remove();
+        }
+      });
+    }
+
+    const isMine = (m.from === currentUser.id);
+    const senderName = m.fromName || (m.from === "admin" ? "ایڈمن" : (activePeople.find(x => x.id === m.from)?.name || m.from));
+    const targetPerson = activePeople.find(x => x.id === (isMine ? m.to : m.from)) || { id: m.to, name: m.to };
+
+    const el = document.createElement("div");
+    el.id = "m_" + key;
+    el.className = "msg " + (isMine ? "outgoing" : "incoming");
+
+    // Sender Tag
+    const tag = document.createElement("div");
+    tag.className = "msg-sender-tag";
+    tag.textContent = isMine ? `آپ کا پیغام (${currentUser.name})` : `${senderName} کا جوابی پیغام`;
+    el.appendChild(tag);
+
+    // Quoted reply
+    if(m.replyTo){
+      const q = document.createElement("div");
+      q.className = "msg-quote";
+      q.textContent = "↳ جواب برائے: \"" + m.replyTo + "\"";
+      el.appendChild(q);
+    }
+
+    // Message Text
+    const t = document.createElement("div");
+    t.className = "t";
+    t.textContent = m.text;
+    el.appendChild(t);
+
+    // Voice Player if message contains audio note
+    if(m.hasAudio || m.audio){
+      el.appendChild(createVoicePlayer(key, m));
+    }
+
+    // Timestamp
+    const tm = document.createElement("div");
+    tm.className = "tm";
+    tm.textContent = timeStr(m.time);
+    el.appendChild(tm);
+
+    // 1-Click Fast Reply Pills
+    if(!isMine){
+      const quickRow = document.createElement("div");
+      quickRow.className = "quick-reply-row";
+      const quickResponses = ["جی، دے دیں", "نہیں، نہ دیں", "ایک منٹ رکیں", "ڈاکٹر سے پوچھیں"];
+      quickResponses.forEach(rText => {
+        const pBtn = document.createElement("button");
+        pBtn.type = "button";
+        pBtn.className = "q-reply-pill";
+        pBtn.textContent = rText;
+        pBtn.onclick = (e) => {
+          e.stopPropagation();
+          quickSendReply(targetPerson, rText, m);
+        };
+        quickRow.appendChild(pBtn);
+      });
+      el.appendChild(quickRow);
+    }
+
+    // Action buttons row
+    const actions = document.createElement("div");
+    actions.className = "msg-actions";
+
+    if(!isMine){
+      // INCOMING message: "جوابی پیغام لکھیں" + "کام ہو گیا / صاف کریں"
+      const replyBtn = document.createElement("button");
+      replyBtn.className = "btn-reply";
+      replyBtn.textContent = "جوابی پیغام لکھیں";
+      replyBtn.onclick = () => {
+        openModal(targetPerson, m);
+      };
+
+      const clearBtn = document.createElement("button");
+      clearBtn.className = "btn-clear";
+      clearBtn.textContent = "کام ہو گیا / صاف کریں";
+      clearBtn.onclick = () => {
+        handleClearMessage(key, m);
+      };
+
+      actions.append(replyBtn, clearBtn);
+    } else {
+      // OUTGOING message: "مزید جواب" + "پیغام واپس لیں"
+      const replyBtn = document.createElement("button");
+      replyBtn.className = "btn-reply";
+      replyBtn.style.background = "#334155";
+      replyBtn.textContent = "مزید جواب";
+      replyBtn.onclick = () => {
+        openModal(targetPerson, m);
+      };
+
+      const cancelBtn = document.createElement("button");
+      cancelBtn.className = "btn-cancel";
+      cancelBtn.textContent = "پیغام واپس لیں";
+      cancelBtn.onclick = () => {
+        handleCancelMessage(key, m);
+      };
+
+      actions.append(replyBtn, cancelBtn);
+    }
+
+    el.appendChild(actions);
+    list.appendChild(el);
+    refreshPerson(cardId.replace("p_", ""));
+
+    // Deduplicated sound chime and toast (Task E)
+    if(ready && !isMine && !alertedMsgIds.has(key)){
+      alertedMsgIds.add(key);
+      const isReply = (currentUser.role === "admin" || currentUser.role === "superadmin") && (m.from !== "admin" && m.from !== "superadmin");
+      chime(isReply);
+      toast("🔔 " + senderName + " کا نیا پیغام آیا ہے!");
+
+      // Auto-play voice note if enabled
+      if(m.hasAudio || m.audio){
+        enqueueAutoPlayVoice(key, m);
+      }
+    }
+  }
+
+  function removeMessageFromCard(key, personId){
+    const el = $("m_" + key);
+    if(el){
+      el.remove();
+      refreshPerson(personId);
+    }
+  }
+
+  /* ---------- History Log (سابقہ پیغامات) ---------- */
+  function loadLocalHistory(){
+    try{
+      const raw = localStorage.getItem(HIST_KEY);
+      if(raw) historyItems = JSON.parse(raw);
+    }catch(e){ historyItems = []; }
+  }
+
+  function addLocalHistory(item){
+    historyItems = [item, ...historyItems.filter(h => !(h.text === item.text && h.time === item.time))].slice(0, MAX_HISTORY);
+    try{ localStorage.setItem(HIST_KEY, JSON.stringify(historyItems)); }catch(e){}
+    renderHistory();
+  }
+
+  // Task A: Update history filter chips for users: "سب" plus one chip per contact
+  function buildHistoryFilters(){
+    const c = $("histFilter");
+    if(!c) return;
+    c.innerHTML = "";
+    
+    if(currentUser.role === "user" && currentHistFilter === "all"){
+      currentHistFilter = "all";
+    }
+
+    const allBtn = document.createElement("button");
+    allBtn.className = "h-filter" + (currentHistFilter === "all" ? " active" : "");
+    allBtn.textContent = "سب (تمام افراد)";
+    allBtn.onclick = () => { currentHistFilter = "all"; buildHistoryFilters(); renderHistory(); };
+    c.appendChild(allBtn);
+
+    const filterList = (currentUser.role === "admin" || currentUser.role === "superadmin")
+      ? activePeople
+      : [
+          { id: "admin", name: "ایڈمن" },
+          ...activePeople.filter(p => p.id !== currentUser.id && p.id !== 'admin' && p.id !== 'superadmin')
+        ];
+
+    filterList.forEach(p => {
+      const btn = document.createElement("button");
+      btn.className = "h-filter" + (currentHistFilter === p.id ? " active" : "");
+      btn.textContent = p.name;
+      btn.onclick = () => { currentHistFilter = p.id; buildHistoryFilters(); renderHistory(); };
+      c.appendChild(btn);
+    });
+  }
+
+  function renderHistory(){
+    const list = $("histList");
+    if(!list) return;
+
+    let filtered = historyItems;
+    if(currentUser.role === "user"){
+      // User sees own thread messages and peer messages sent/received
+      filtered = filtered.filter(h => h.to === currentUser.id || h.from === currentUser.id);
+      if(currentHistFilter === "admin"){
+        filtered = filtered.filter(h => h.from === "admin" || h.to === "admin" || h.kind === "thread" || !h.kind);
+      } else if(currentHistFilter !== "all"){
+        filtered = filtered.filter(h => h.to === currentHistFilter || h.from === currentHistFilter);
+      }
+    } else {
+      if(currentHistFilter !== "all"){
+        filtered = filtered.filter(h => h.to === currentHistFilter || h.from === currentHistFilter);
+      }
+    }
+
+    if(!filtered || filtered.length === 0){
+      list.innerHTML = '<div class="empty">ابھی کوئی سابقہ پیغام موجود نہیں ہے</div>';
+      return;
+    }
+
+    list.innerHTML = "";
+    filtered.forEach(h => {
+      const p = activePeople.find(x => x.id === h.to) || { name: h.to, color: "#64748b" };
+      const el = document.createElement("div");
+      el.className = "hist-item";
+      el.style.setProperty("--c", p.color);
+
+      const who = document.createElement("div");
+      who.className = "hist-who";
+      const senderText = h.fromName || (h.from === "admin" ? "ایڈمن" : (activePeople.find(x => x.id === h.from)?.name || h.from));
+      who.textContent = `${p.name} (بھیجنے والا: ${senderText})`;
+
+      if(h.replyTo){
+        const q = document.createElement("div");
+        q.className = "msg-quote";
+        q.textContent = "↳ جواب برائے: \"" + h.replyTo + "\"";
+        el.appendChild(q);
+      }
+
+      const txt = document.createElement("div");
+      txt.className = "hist-msg";
+      txt.textContent = h.text;
+
+      const meta = document.createElement("div");
+      meta.className = "hist-times";
+      const sentStr = formatDateTime(h.time);
+      const clrStr = formatDateTime(h.clearedAt);
+      meta.innerHTML =
+        '<span>بھیجا گیا: ' + sentStr + '</span>' +
+        (clrStr ? '<span>صاف ہوا: ' + clrStr + '</span>' : '');
+
+      el.append(who, txt, meta);
+      list.appendChild(el);
+    });
+  }
+
+  function openHistoryModal(){
+    buildHistoryFilters();
+    renderHistory();
+    const purgeBtn = $("histPurgeBtn");
+    if(purgeBtn){
+      if(currentUser && (currentUser.role === "superadmin" || currentUser.role === "admin")){
+        purgeBtn.classList.remove("hidden");
+      } else {
+        purgeBtn.classList.add("hidden");
+      }
+    }
+    $("histModal").classList.remove("hidden");
+  }
+  function closeHistoryModal(){
+    $("histModal").classList.add("hidden");
+  }
+  $("histBtn").onclick = openHistoryModal;
+  $("histCloseBtn").onclick = closeHistoryModal;
+  $("histBackBtn").onclick = closeHistoryModal;
+  $("histModal").addEventListener("click", e => {
+    if(e.target.id === "histModal") closeHistoryModal();
+  });
+
+  /* ---------- Unified Messaging Engine & Listeners ---------- */
+  function handleClearMessage(key, m){
+    const histData = {
+      to: m.to,
+      from: m.from,
+      fromName: m.fromName,
+      text: m.text,
+      time: m.time || Date.now(),
+      replyTo: m.replyTo || "",
+      clearedAt: Date.now()
+    };
+    addLocalHistory(histData);
+
+    if(isFirebaseConfigured && db){
+      db.ref("history").push({
+        ...histData,
+        clearedAt: firebase.database.ServerValue.TIMESTAMP
+      }).catch(() => {});
+      db.ref("messages").child(key).remove();
+      db.ref("voice").child(key).remove();
+    } else {
+      fetch('/api/messages/' + encodeURIComponent(key), { method: 'DELETE' })
+        .then(() => removeMessageFromCard(key, m.to))
+        .catch(() => removeMessageFromCard(key, m.to));
+    }
+  }
+
+  function handleCancelMessage(key, m){
+    if(isFirebaseConfigured && db){
+      db.ref("messages").child(key).remove();
+      db.ref("voice").child(key).remove();
+    } else {
+      fetch('/api/messages/' + encodeURIComponent(key), { method: 'DELETE' })
+        .then(() => {
+          removeMessageFromCard(key, m.to);
+          toast("پیغام واپس لے لیا گیا");
+        })
+        .catch(() => removeMessageFromCard(key, m.to));
+    }
+  }
+
+  function initMessaging(){
+    if(isFirebaseConfigured && !db && typeof firebase !== "undefined"){
+      try{
+        if(!firebase.apps || !firebase.apps.length){
+          firebase.initializeApp(FIREBASE_CONFIG);
+        }
+        db = firebase.database();
+      }catch(e){
+        console.warn("Firebase error:", e);
+      }
+    }
+
+    if(isFirebaseConfigured && db){
+      // Task F: Partitioned client queries for regular users (read only own to/from)
+      if(currentUser && currentUser.role === "user"){
+        const toRef = db.ref("messages").orderByChild("to").equalTo(currentUser.id);
+        const fromRef = db.ref("messages").orderByChild("from").equalTo(currentUser.id);
+
+        toRef.on("child_added", snap => {
+          const m = snap.val();
+          if(m) displayMessageOnCard(snap.key, m);
+        });
+        toRef.on("child_removed", snap => {
+          const el = $("m_" + snap.key);
+          if(el){
+            const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
+            removeMessageFromCard(snap.key, pid);
+          }
+        });
+
+        fromRef.on("child_added", snap => {
+          const m = snap.val();
+          if(m) displayMessageOnCard(snap.key, m);
+        });
+        fromRef.on("child_removed", snap => {
+          const el = $("m_" + snap.key);
+          if(el){
+            const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
+            removeMessageFromCard(snap.key, pid);
+          }
+        });
+
+        toRef.once("value", () => { ready = true; });
+      } else {
+        // Admin / Superadmin query messages directly
+        const ref = db.ref("messages");
+        ref.on("child_added", snap => {
+          const m = snap.val();
+          if(m) displayMessageOnCard(snap.key, m);
+        });
+        ref.on("child_removed", snap => {
+          const el = $("m_" + snap.key);
+          if(el){
+            const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : "";
+            removeMessageFromCard(snap.key, pid);
+            if(currentUser.role === "admin"){
+              const p = activePeople.find(x => x.id === pid);
+              toast((p ? p.name : pid) + " نے پیغام صاف کر دیا");
+            }
+          }
+        });
+        ref.once("value", () => { ready = true; });
+      }
+
+      const histRef = db.ref("history").limitToLast(MAX_HISTORY);
+      histRef.on("value", snap => {
+        const remote = [];
+        snap.forEach(child => {
+          const val = child.val();
+          if(val) remote.unshift({ key: child.key, ...val });
+        });
+        if(remote.length > 0){
+          historyItems = remote;
+          try{ localStorage.setItem(HIST_KEY, JSON.stringify(remote.slice(0, MAX_HISTORY))); }catch(e){}
+        }
+        renderHistory();
+      });
+
+      startSettingsSync();
+
+      let hasConnectedOnce = false;
+      db.ref(".info/connected").on("value", s => {
+        if(s.val() === true){
+          hasConnectedOnce = true;
+        } else if(s.val() === false && hasConnectedOnce && started){
+          toast("انٹرنیٹ رابطہ منقطع ہے");
+        }
+      });
+    } else {
+      // Local Server Mode
+      fetch('/api/messages')
+        .then(r => r.json())
+        .then(list => {
+          if(Array.isArray(list)){
+            list.forEach(msg => displayMessageOnCard(msg.id, msg));
+          }
+          ready = true;
+        })
+        .catch(err => {
+          console.warn("Local fetch error:", err);
+          ready = true;
+        });
+
+      fetch('/api/history')
+        .then(r => r.json())
+        .then(hist => {
+          if(Array.isArray(hist) && hist.length > 0){
+            historyItems = hist;
+            renderHistory();
+          }
+        }).catch(()=>{});
+
+      fetch('/api/settings')
+        .then(r => r.json())
+        .then(res => {
+          if(res){
+            if(Array.isArray(res.people) && res.people.length > 0) activePeople = res.people;
+            if(res.pinned && typeof res.pinned === 'object') pinnedMessages = Object.assign(pinnedMessages, res.pinned);
+            if(res.adminPermissions && typeof res.adminPermissions === 'object') adminPermissions = Object.assign(adminPermissions, res.adminPermissions);
+            if(res.passwords && typeof res.passwords === 'object') userPasswords = Object.assign(userPasswords, res.passwords);
+            if(res.passwordChanged && typeof res.passwordChanged === 'object') passwordChangedFlags = Object.assign(passwordChangedFlags, res.passwordChanged);
+            buildGrid();
+            renderUserHeader();
+          }
+        }).catch(()=>{});
+
+      if("EventSource" in window){
+        try{
+          eventSource = new EventSource('/api/events');
+          eventSource.onmessage = e => {
+            if(!e || !e.data) return;
+            try{
+              const payload = JSON.parse(e.data);
+              if(payload.type === "NEW_MESSAGE"){
+                displayMessageOnCard(payload.data.id, payload.data);
+              }else if(payload.type === "REMOVE_MESSAGE"){
+                removeMessageFromCard(payload.data.id, payload.data.to);
+                if(currentUser && (currentUser.role === "admin" || currentUser.role === "superadmin")){
+                  const p = activePeople.find(x => x.id === payload.data.to);
+                  toast((p ? p.name : payload.data.to) + " نے کام مکمل کر کے صاف کر دیا");
+                }
+              }else if(payload.type === "SETTINGS_UPDATED"){
+                if(payload.data.people) activePeople = payload.data.people;
+                if(payload.data.pinned) pinnedMessages = payload.data.pinned;
+                if(payload.data.adminPermissions) adminPermissions = payload.data.adminPermissions;
+                if(payload.data.passwords) userPasswords = Object.assign(userPasswords, payload.data.passwords);
+                if(payload.data.passwordChanged) passwordChangedFlags = Object.assign(passwordChangedFlags, payload.data.passwordChanged);
+                buildGrid();
+                renderUserHeader();
+                setupQuickLogin();
+                if(!$("superModal").classList.contains("hidden")){
+                  renderAdminPerms();
+                  renderPeopleTable();
+                  renderPinList();
+                }
+              }
+            }catch(err){}
+          };
+        }catch(e){}
+      }
+
+      setInterval(() => {
+        fetch('/api/messages')
+          .then(r => r.json())
+          .then(list => {
+            if(!Array.isArray(list)) return;
+            list.forEach(msg => displayMessageOnCard(msg.id, msg));
+            const activeIds = new Set(list.map(m => m.id));
+            document.querySelectorAll(".msg").forEach(el => {
+              const msgId = el.id.replace("m_", "");
+              if(!activeIds.has(msgId)){
+                const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : "";
+                removeMessageFromCard(msgId, pid);
+              }
+            });
+          }).catch(()=>{});
+      }, 2500);
+    }
+  }
+
+  function showApp(){
+    $("login").classList.add("hidden");
+    $("app").classList.remove("hidden");
+    renderUserHeader();
+    buildGrid();
+    loadLocalHistory();
+    if(!started){ started = true; initMessaging(); }
+    checkSoundBar();
+    applyWake();
+    if(currentUser) registerFcmTokenForUser(currentUser.id);
+  }
+
+  /* ---------- Send / Reply Modal & Universal Microphone ---------- */
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let rec = null, baseText = "";
+  let sttState = "IDLE"; // IDLE, STARTING, LISTENING, STOPPING
+
+  const langOptions = [
+    { code: "ur-PK", label: "🎙️ زبان: اردو (پاکستان)" },
+    { code: "ur",    label: "🎙️ زبان: اردو (عمومی)" },
+    { code: "en-US", label: "🎙️ زبان: English (انگریزی)" }
+  ];
+  let langIndex = 0;
+  let currentMicLang = langOptions[0].code;
+
+  function updateMicLangButton(){
+    const b = $("micLangBtn");
+    if(b) b.textContent = langOptions[langIndex].label;
+  }
+
+  function updateMicHint(text, isError = false){
+    const h = $("micHint");
+    if(!h) return;
+    h.textContent = text;
+    h.style.color = isError ? "#fca5a5" : "#93c5fd";
+  }
+
+  document.querySelectorAll(".q-chip").forEach(chip => {
+    chip.onclick = () => {
+      const phrase = chip.getAttribute("data-text");
+      const box = $("mText");
+      if(!box.value) box.value = phrase;
+      else box.value = box.value.trim() + " " + phrase;
+      baseText = box.value;
+      box.focus();
+    };
+  });
+
+  $("replyBannerClose").onclick = () => {
+    activeReplyContext = null;
+    $("replyBanner").classList.add("hidden");
+  };
+
+  function checkMicEnvironment(){
+    if(window.location.protocol === "file:"){
+      updateMicHint("مائیک کے لیے ایپ کو لوکل سرور (http://localhost:3000) یا لائیو HTTPS پر کھولیں", true);
+      return false;
+    }
+    if(!SR){
+      updateMicHint("اس براؤزر میں آواز سے لکھنا سپورٹ نہیں — صوتی پیغام (Voice Note) استعمال کریں یا کی بورڈ مائیک دبائیں", false);
+      return false;
+    }
+    return true;
+  }
+
+  // Task C: Apply showVoiceBtn setting for admin
+  function openModal(p, replyMsg = null){
+    initAudio();
+    currentTarget = p;
+    activeReplyContext = replyMsg;
+    switchMsgMode("text");
+    resetVoiceRecorderUI();
+
+    const banner = $("replyBanner");
+    const bannerText = $("replyBannerText");
+
+    if(replyMsg){
+      banner.classList.remove("hidden");
+      bannerText.textContent = "↳ جواب برائے: \"" + replyMsg.text + "\"";
+      if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+        $("mTitle").textContent = p.name + " کو جواب دیں";
+      } else {
+        $("mTitle").textContent = (p.id === "admin" ? "ایڈمن کو جواب دیں" : p.name + " کو جواب دیں");
+      }
+    } else {
+      banner.classList.add("hidden");
+      bannerText.textContent = "";
+      if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+        $("mTitle").textContent = p.name + " کے لیے پیغام";
+      } else {
+        $("mTitle").textContent = (p.id === "admin" ? "ایڈمن کو پیغام" : p.name + " کو پیغام");
+      }
+    }
+
+    // Apply Super Admin showVoiceBtn setting for Admin
+    const isAdmin = (currentUser.role === "admin");
+    const allowVoice = !isAdmin || (adminPermissions.showVoiceBtn !== false);
+    if($("modeVoiceTab")) $("modeVoiceTab").classList.toggle("hidden", !allowVoice);
+    if($("micBtn")) $("micBtn").classList.toggle("hidden", !allowVoice);
+    if($("micLangBtn")) $("micLangBtn").parentElement.classList.toggle("hidden", !allowVoice);
+
+    $("mText").value = "";
+    baseText = "";
+    updateMicHint("");
+    updateMicLangButton();
+
+    if(window.location.protocol === "file:"){
+      updateMicHint("مائیک کے لیے ایپ کو http://localhost:3000 یا لائیو HTTPS لنک پر کھولیں", true);
+    } else if(!SR){
+      updateMicHint("اس براؤزر میں مائیک سے لکھنا دستیاب نہیں، کی بورڈ مائیک دبائیں یا صوتی پیغام بھیجیں", false);
+    }
+
+    $("modal").classList.remove("hidden");
+    setTimeout(() => $("mText").focus(), 100);
+  }
+
+  function closeModal(){
+    stopMic();
+    resetVoiceRecorderUI();
+    $("modal").classList.add("hidden");
+    currentTarget = null;
+    activeReplyContext = null;
+  }
+
+  // Task C: Speech-to-text cleanup with state machine and no race restarts
+  function stopMic(){
+    sttState = "IDLE";
+    if(rec){
+      try{
+        rec.abort();
+      }catch(e){}
+      rec = null;
+    }
+    const b = $("micBtn");
+    if(b) b.classList.remove("on");
+    updateMicHint("");
+  }
+
+  function startMic(langToUse = currentMicLang){
+    if(isRecordingVoice) return; // Never run STT during voice note recording
+    if(!checkMicEnvironment()) return;
+    stopMic();
+
+    try{
+      sttState = "STARTING";
+      rec = new SR();
+      rec.lang = langToUse;
+      rec.continuous = !isIOS;
+      rec.interimResults = true;
+      rec.maxAlternatives = 1;
+
+      baseText = $("mText").value.trim();
+      if(baseText) baseText += " ";
+
+      rec.onstart = () => {
+        sttState = "LISTENING";
+        const b = $("micBtn");
+        if(b) b.classList.add("on");
+        const langLabel = (langToUse.startsWith("ur") ? "اردو" : "English");
+        updateMicHint(`سن رہا ہوں (${langLabel})… بولیں`);
+      };
+
+      rec.onresult = e => {
+        let interimText = "";
+        let finalChunk = "";
+        for(let i = e.resultIndex; i < e.results.length; ++i){
+          if(e.results[i].isFinal){
+            finalChunk += e.results[i][0].transcript;
+          } else {
+            interimText += e.results[i][0].transcript;
+          }
+        }
+        if(finalChunk){
+          baseText += (baseText && !baseText.endsWith(" ") ? " " : "") + finalChunk;
+        }
+        $("mText").value = baseText + (interimText ? ((baseText && !baseText.endsWith(" ") ? " " : "") + interimText) : "");
+      };
+
+      rec.onerror = e => {
+        console.warn("Speech recognition error:", e.error);
+        sttState = "IDLE";
+        const b = $("micBtn");
+        if(b) b.classList.remove("on");
+
+        if(e.error === "no-speech"){
+          updateMicHint("کوئی آواز نہیں آئی");
+          return;
+        }
+
+        const m = {
+          "not-allowed": "مائیک کی اجازت بلاک ہے — براؤزر میں مائیک Allow کریں",
+          "service-not-allowed": "مائیک کی سروس بلاک ہے — کی بورڈ کا مائیک استعمال کریں",
+          "network": "انٹرنیٹ کنکشن چیک کریں",
+          "audio-capture": "مائیکروفون نہیں ملا"
+        };
+        updateMicHint(m[e.error] || ("مائیک خرابی: " + e.error), true);
+      };
+
+      rec.onend = () => {
+        sttState = "IDLE";
+        const b = $("micBtn");
+        if(b) b.classList.remove("on");
+        updateMicHint("");
+      };
+
+      rec.start();
+    }catch(e){
+      console.error("Mic startup error:", e);
+      updateMicHint("مائیک شروع نہیں ہو سکا — کی بورڈ کا مائیک استعمال کریں", true);
+      stopMic();
+    }
+  }
+
+  $("micLangBtn").onclick = (e) => {
+    e.stopPropagation();
+    langIndex = (langIndex + 1) % langOptions.length;
+    currentMicLang = langOptions[langIndex].code;
+    updateMicLangButton();
+    toast("مائیک کی زبان: " + langOptions[langIndex].label.replace("🎙️ زبان: ", ""));
+    if(sttState === "LISTENING"){
+      stopMic();
+      startMic(currentMicLang);
+    }
+  };
+
+  $("micBtn").onclick = () => { (sttState === "LISTENING") ? stopMic() : startMic(); };
+  $("cancelBtn").onclick = closeModal;
+  $("modal").addEventListener("click", e => { if(e.target.id === "modal") closeModal(); });
+
+  $("sendBtn").onclick = () => {
+    const text = $("mText").value.trim();
+    if(!text){
+      updateMicHint("پہلے پیغام لکھیں یا بولیں", true);
+      return;
+    }
+
+    stopMic();
+    const target = currentTarget;
+    const replyText = activeReplyContext ? activeReplyContext.text : "";
+    const isToAdmin = (target.id === "admin");
+    const isPeer = (!isToAdmin && currentUser.role === "user" && target.id !== "superadmin");
+
+    const msgPayload = {
+      to: isToAdmin ? currentUser.id : target.id,
+      from: currentUser.id,
+      fromName: currentUser.name,
+      text: text,
+      hasAudio: false,
+      audioDuration: 0,
+      kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
+      recipient: isToAdmin ? "admin" : (isPeer ? target.id : (currentUser.role === "user" ? "admin" : target.id)),
+      time: Date.now(),
+      replyTo: replyText
+    };
+
+    sendRawMessage(msgPayload);
+    toast("پیغام بھیج دیا گیا");
+    closeModal();
+  };
+
+  /* ---------- Task C: MP3 Recording with lamejs in Browser ---------- */
+  let activeMsgMode = "text";
+  let isRecordingVoice = false;
+  let voiceTimerInterval = null;
+  let voiceSeconds = 0;
+  let recordedAudioBase64 = null;
+  let recordedAudioDuration = 0;
+  let recordedAudioMime = "audio/mp3";
+  let previewAudioObj = null;
+
+  // Web Audio PCM capture variables
+  let pcmStream = null;
+  let pcmContext = null;
+  let pcmProcessor = null;
+  let pcmSource = null;
+  let pcmChunks = [];
+  let isPcmSupported = false;
+
+  // Fallback MediaRecorder
+  let fallbackRecorder = null;
+  let fallbackChunks = [];
+
+  function switchMsgMode(mode){
+    activeMsgMode = mode;
+    if(mode === "text"){
+      if($("modeTextTab")) $("modeTextTab").classList.add("active");
+      if($("modeVoiceTab")) $("modeVoiceTab").classList.remove("active");
+      if($("modeTextSection")) $("modeTextSection").classList.remove("hidden");
+      if($("modeVoiceSection")) $("modeVoiceSection").classList.add("hidden");
+      stopVoiceRecording();
+    } else {
+      if($("modeVoiceTab")) $("modeVoiceTab").classList.add("active");
+      if($("modeTextTab")) $("modeTextTab").classList.remove("active");
+      if($("modeVoiceSection")) $("modeVoiceSection").classList.remove("hidden");
+      if($("modeTextSection")) $("modeTextSection").classList.add("hidden");
+      stopMic();
+    }
+  }
+
+  if($("modeTextTab")) $("modeTextTab").onclick = () => switchMsgMode("text");
+  if($("modeVoiceTab")) $("modeVoiceTab").onclick = () => switchMsgMode("voice");
+
+  function resetVoiceRecorderUI(){
+    stopVoiceRecording();
+    recordedAudioBase64 = null;
+    recordedAudioDuration = 0;
+    voiceSeconds = 0;
+    if($("voiceRecTimer")) $("voiceRecTimer").textContent = "00:00";
+    if($("voiceRecStatus")) $("voiceRecStatus").textContent = "بٹن دبا کر اپنی آواز ریکارڈ کریں (Voice Note)";
+    if($("voiceRecBtn")) $("voiceRecBtn").classList.remove("recording");
+    if($("voicePreviewBox")) $("voicePreviewBox").classList.add("hidden");
+    if($("sendVoiceBtn")) $("sendVoiceBtn").disabled = true;
+    if(previewAudioObj){
+      try{ previewAudioObj.pause(); }catch(e){}
+      previewAudioObj = null;
+    }
+    if($("voicePreviewPlayBtn")){
+      $("voicePreviewPlayBtn").textContent = "▶";
+      $("voicePreviewPlayBtn").classList.remove("playing");
+    }
+  }
+
+  function float32ToInt16(buffer){
+    let l = buffer.length;
+    const buf = new Int16Array(l);
+    while(l--){
+      let s = Math.max(-1, Math.min(1, buffer[l]));
+      buf[l] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+    }
+    return buf;
+  }
+
+  function downsamplePcm(buffer, fromRate, toRate){
+    if(fromRate === toRate) return buffer;
+    const ratio = fromRate / toRate;
+    const newLen = Math.round(buffer.length / ratio);
+    const result = new Float32Array(newLen);
+    let offsetResult = 0;
+    let offsetBuffer = 0;
+    while(offsetResult < result.length){
+      const nextOffsetBuffer = Math.round((offsetResult + 1) * ratio);
+      let accum = 0, count = 0;
+      for(let i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++){
+        accum += buffer[i];
+        count++;
+      }
+      result[offsetResult] = count ? accum / count : 0;
+      offsetResult++;
+      offsetBuffer = nextOffsetBuffer;
+    }
+    return result;
+  }
+
+  function encodeMp3Blob(samples16, sampleRate = 16000){
+    if(typeof lamejs === "undefined" || !lamejs.Mp3Encoder){
+      throw new Error("lamejs is not loaded");
+    }
+    const encoder = new lamejs.Mp3Encoder(1, sampleRate, 32);
+    const mp3Data = [];
+    const chunkSize = 1152;
+    for(let i = 0; i < samples16.length; i += chunkSize){
+      const chunk = samples16.subarray(i, i + chunkSize);
+      const mp3buf = encoder.encodeBuffer(chunk);
+      if(mp3buf.length > 0) mp3Data.push(mp3buf);
+    }
+    const endChunk = encoder.flush();
+    if(endChunk.length > 0) mp3Data.push(endChunk);
+    return new Blob(mp3Data, { type: "audio/mp3" });
+  }
+
+  async function startVoiceRecording(){
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      alert("اس براؤزر میں آڈیو ریکارڈنگ دستیاب نہیں");
+      return;
+    }
+    stopMic();
+    resetVoiceRecorderUI();
+
+    try{
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true
+        }
+      });
+      pcmStream = stream;
+      isRecordingVoice = true;
+
+      // Try pure PCM + lamejs MP3 encoding (mono, 16 kHz)
+      if(typeof lamejs !== "undefined" && (window.AudioContext || window.webkitAudioContext)){
+        try{
+          pcmContext = new (window.AudioContext || window.webkitAudioContext)();
+          if(pcmContext.state === "suspended") await pcmContext.resume();
+          pcmSource = pcmContext.createMediaStreamSource(stream);
+          pcmProcessor = pcmContext.createScriptProcessor(4096, 1, 1);
+          pcmChunks = [];
+
+          pcmProcessor.onaudioprocess = e => {
+            if(!isRecordingVoice) return;
+            const inputData = e.inputBuffer.getChannelData(0);
+            pcmChunks.push(new Float32Array(inputData));
+          };
+
+          pcmSource.connect(pcmProcessor);
+          pcmProcessor.connect(pcmContext.destination);
+          isPcmSupported = true;
+        }catch(err){
+          console.warn("PCM setup failed, using MediaRecorder fallback:", err);
+          isPcmSupported = false;
+          startFallbackRecorder(stream);
+        }
+      } else {
+        isPcmSupported = false;
+        startFallbackRecorder(stream);
+      }
+
+      voiceSeconds = 0;
+      if($("voiceRecBtn")) $("voiceRecBtn").classList.add("recording");
+      if($("voiceRecStatus")) $("voiceRecStatus").textContent = "🔴 ریکارڈنگ ہو رہی ہے… بولیں (روکنے کے لیے بٹن دبائیں)";
+
+      voiceTimerInterval = setInterval(() => {
+        voiceSeconds++;
+        const mm = String(Math.floor(voiceSeconds / 60)).padStart(2, "0");
+        const ss = String(voiceSeconds % 60).padStart(2, "0");
+        if($("voiceRecTimer")) $("voiceRecTimer").textContent = `${mm}:${ss}`;
+        if(voiceSeconds >= 30){
+          stopVoiceRecording();
+          toast("صوتی پیغام کی زیادہ سے زیادہ حد (30 سیکنڈ) مکمل ہو گئی");
+        }
+      }, 1000);
+
+    }catch(err){
+      console.warn("Microphone access error:", err);
+      isRecordingVoice = false;
+      if(err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError'){
+        alert("مائیک کی اجازت نہیں ملی — براؤزر میں مائیک Allow کریں");
+      }else if(err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError'){
+        alert("کوئی مائیکروفون نہیں ملا");
+      }else{
+        alert("اس براؤزر میں آڈیو ریکارڈنگ دستیاب نہیں");
+      }
+      resetVoiceRecorderUI();
+    }
+  }
+
+  function startFallbackRecorder(stream){
+    fallbackChunks = [];
+    let mime = "";
+    if(typeof MediaRecorder !== 'undefined'){
+      if(MediaRecorder.isTypeSupported('audio/mp4')) mime = 'audio/mp4';
+      else if(MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) mime = 'audio/webm;codecs=opus';
+      else if(MediaRecorder.isTypeSupported('audio/webm')) mime = 'audio/webm';
+    }
+    fallbackRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    fallbackRecorder.ondataavailable = e => {
+      if(e.data && e.data.size > 0) fallbackChunks.push(e.data);
+    };
+    fallbackRecorder.start(250);
+  }
+
+  function stopVoiceRecording(){
+    if(!isRecordingVoice) return;
+    isRecordingVoice = false;
+
+    if(voiceTimerInterval){
+      clearInterval(voiceTimerInterval);
+      voiceTimerInterval = null;
+    }
+    if($("voiceRecBtn")) $("voiceRecBtn").classList.remove("recording");
+
+    recordedAudioDuration = Math.max(1, voiceSeconds);
+
+    if(isPcmSupported && pcmChunks && pcmChunks.length > 0){
+      try{
+        if(pcmProcessor && pcmSource){
+          pcmProcessor.disconnect();
+          pcmSource.disconnect();
+        }
+        if(pcmStream){
+          pcmStream.getTracks().forEach(t => t.stop());
+        }
+
+        // Merge float chunks
+        let totalLen = pcmChunks.reduce((acc, c) => acc + c.length, 0);
+        let merged = new Float32Array(totalLen);
+        let offset = 0;
+        pcmChunks.forEach(c => {
+          merged.set(c, offset);
+          offset += c.length;
+        });
+
+        // Downsample to 16 kHz mono
+        const inRate = (pcmContext && pcmContext.sampleRate) || 44100;
+        const downsampled = downsamplePcm(merged, inRate, 16000);
+        const pcm16 = float32ToInt16(downsampled);
+
+        // Encode to MP3 via lamejs
+        const mp3Blob = encodeMp3Blob(pcm16, 16000);
+
+        // Enforce 400 KB limit
+        if(mp3Blob.size > 400 * 1024){
+          alert("صوتی پیغام کا سائز 400KB سے زیادہ ہے! دوبارہ مختصر ریکارڈنگ کریں۔");
+          resetVoiceRecorderUI();
+          return;
+        }
+
+        recordedAudioMime = "audio/mp3";
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          recordedAudioBase64 = reader.result;
+          setupVoicePreview(recordedAudioBase64, recordedAudioDuration);
+        };
+        reader.readAsDataURL(mp3Blob);
+
+      }catch(err){
+        console.warn("PCM MP3 encoding error:", err);
+      }
+    } else if(fallbackRecorder && fallbackRecorder.state !== "inactive"){
+      fallbackRecorder.onstop = () => {
+        if(pcmStream) pcmStream.getTracks().forEach(t => t.stop());
+        const blob = new Blob(fallbackChunks, { type: fallbackRecorder.mimeType || 'audio/webm' });
+        if(blob.size > 400 * 1024){
+          alert("صوتی پیغام کا سائز 400KB سے زیادہ ہے!");
+          resetVoiceRecorderUI();
+          return;
+        }
+        recordedAudioMime = fallbackRecorder.mimeType || 'audio/webm';
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          recordedAudioBase64 = reader.result;
+          setupVoicePreview(recordedAudioBase64, recordedAudioDuration);
+        };
+        reader.readAsDataURL(blob);
+      };
+      try{ fallbackRecorder.stop(); }catch(e){}
+    } else {
+      if(pcmStream) pcmStream.getTracks().forEach(t => t.stop());
+    }
+  }
+
+  function setupVoicePreview(base64Src, durSec){
+    if($("voicePreviewBox")) $("voicePreviewBox").classList.remove("hidden");
+    if($("sendVoiceBtn")) $("sendVoiceBtn").disabled = false;
+    if($("voiceRecStatus")) $("voiceRecStatus").textContent = "ریکارڈنگ مکمل! سنیں یا بھیجیں";
+    if($("voicePreviewDuration")) $("voicePreviewDuration").textContent = formatDuration(durSec);
+
+    previewAudioObj = new Audio(base64Src);
+    previewAudioObj.onended = () => {
+      if($("voicePreviewPlayBtn")){
+        $("voicePreviewPlayBtn").textContent = "▶";
+        $("voicePreviewPlayBtn").classList.remove("playing");
+      }
+    };
+  }
+
+  if($("voiceRecBtn")){
+    $("voiceRecBtn").onclick = () => {
+      if(isRecordingVoice){
+        stopVoiceRecording();
+      } else {
+        startVoiceRecording();
+      }
+    };
+  }
+
+  if($("voicePreviewPlayBtn")){
+    $("voicePreviewPlayBtn").onclick = () => {
+      if(!previewAudioObj) return;
+      initAudio();
+      if(previewAudioObj.paused){
+        previewAudioObj.play().catch(e=>console.warn(e));
+        $("voicePreviewPlayBtn").textContent = "⏸";
+        $("voicePreviewPlayBtn").classList.add("playing");
+      } else {
+        previewAudioObj.pause();
+        $("voicePreviewPlayBtn").textContent = "▶";
+        $("voicePreviewPlayBtn").classList.remove("playing");
+      }
+    };
+  }
+
+  if($("voiceReRecordBtn")){
+    $("voiceReRecordBtn").onclick = () => {
+      resetVoiceRecorderUI();
+      startVoiceRecording();
+    };
+  }
+
+  if($("sendVoiceBtn")){
+    $("sendVoiceBtn").onclick = () => {
+      if(!recordedAudioBase64){
+        alert("پہلے صوتی پیغام ریکارڈ کریں!");
+        return;
+      }
+
+      const target = currentTarget;
+      const replyText = activeReplyContext ? activeReplyContext.text : "";
+      const isToAdmin = (target.id === "admin");
+      const isPeer = (!isToAdmin && currentUser.role === "user" && target.id !== "superadmin");
+
+      const msgPayload = {
+        to: isToAdmin ? currentUser.id : target.id,
+        from: currentUser.id,
+        fromName: currentUser.name,
+        text: "🎙️ صوتی پیغام (Voice Note)",
+        audio: recordedAudioBase64,
+        hasAudio: true,
+        audioDuration: recordedAudioDuration,
+        audioMime: recordedAudioMime,
+        kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
+        recipient: isToAdmin ? "admin" : (isPeer ? target.id : (currentUser.role === "user" ? "admin" : target.id)),
+        time: Date.now(),
+        replyTo: replyText
+      };
+
+      sendRawMessage(msgPayload);
+      toast("صوتی پیغام بھیج دیا گیا");
+      closeModal();
+    };
+  }
+
+  // Stop recording if tab hidden
+  document.addEventListener("visibilitychange", () => {
+    if(document.hidden && isRecordingVoice){
+      stopVoiceRecording();
+    }
+  });
+
+  /* ---------- Database & Chat Cleanup Logic (Firebase Purge) ---------- */
+  function purgeActiveMessages(){
+    if(!confirm("کیا آپ واقعی تمام کارڈز سے تمام ایکٹیو پیغامات صاف کرنا چاہتے ہیں؟ اس سے تمام اسکرینیں خالی ہو جائیں گی۔")){
+      return;
+    }
+    if(isFirebaseConfigured && db){
+      db.ref("messages").remove().catch(e => console.warn(e));
+      db.ref("voice").remove().catch(e => console.warn(e));
+    } else {
+      fetch('/api/messages', { method: 'DELETE' }).catch(e => console.warn(e));
+    }
+    document.querySelectorAll(".msgs").forEach(mList => {
+      mList.querySelectorAll(".msg").forEach(el => el.remove());
+    });
+    activePeople.forEach(p => refreshPerson(p.id));
+    toast("تمام ایکٹیو پیغامات مکمل صاف کر دیے گئے!");
+  }
+
+  function purgeAllHistory(){
+    if(!confirm("کیا آپ فائر بیس اور تمام ڈیوائسز سے پچھلے تمام پیغامات کی ہسٹری (History) مستقل ڈیلیٹ کرنا چاہتے ہیں تاکہ ڈیٹا بیس پر وزن نہ پڑے؟")){
+      return;
+    }
+    if(isFirebaseConfigured && db){
+      db.ref("history").remove().catch(e => console.warn(e));
+    } else {
+      fetch('/api/history', { method: 'DELETE' }).catch(e => console.warn(e));
+    }
+    historyItems = [];
+    try{ localStorage.removeItem(HIST_KEY); }catch(e){}
+    renderHistory();
+    toast("سابقہ ہسٹری مستقل ڈیلیٹ ہو چکی ہے، فائر بیس بالکل صاف ہو گیا!");
+  }
+
+  function purgeFullDatabase(){
+    if(!confirm("کیا آپ ایکٹیو پیغامات اور تمام ہسٹری دونوں بیک وقت مستقل ڈیلیٹ کرنا چاہتے ہیں؟ فائر بیس مکمل کلین ہو جائے گا۔")){
+      return;
+    }
+    if(isFirebaseConfigured && db){
+      db.ref("messages").remove().catch(e => console.warn(e));
+      db.ref("voice").remove().catch(e => console.warn(e));
+      db.ref("history").remove().catch(e => console.warn(e));
+    } else {
+      fetch('/api/messages', { method: 'DELETE' }).catch(e => console.warn(e));
+      fetch('/api/history', { method: 'DELETE' }).catch(e => console.warn(e));
+    }
+    document.querySelectorAll(".msgs").forEach(mList => {
+      mList.querySelectorAll(".msg").forEach(el => el.remove());
+    });
+    activePeople.forEach(p => refreshPerson(p.id));
+    historyItems = [];
+    try{ localStorage.removeItem(HIST_KEY); }catch(e){}
+    renderHistory();
+    toast("مکمل ڈیٹا بیس (پیغامات اور ہسٹری) صاف کر دی گئی!");
+  }
+
+  if($("btnPurgeActiveMsgs")) $("btnPurgeActiveMsgs").onclick = purgeActiveMessages;
+  if($("btnPurgeHistory")) $("btnPurgeHistory").onclick = purgeAllHistory;
+  if($("btnPurgeAllDb")) $("btnPurgeAllDb").onclick = purgeFullDatabase;
+  if($("histPurgeBtn")) $("histPurgeBtn").onclick = purgeAllHistory;
+
+  /* ---------- Super User / Manager Panel Logic ---------- */
+  function openSuperModalWithPerson(personId = null){
+    renderAdminPerms();
+    renderPeopleTable();
+    setupPinPersonSelect(personId);
+    $("superModal").classList.remove("hidden");
+  }
+
+  $("superBtn").onclick = () => openSuperModalWithPerson();
+  $("superCloseBtn").onclick = () => $("superModal").classList.add("hidden");
+
+  function switchSuperTab(activeTabBtn, activeSection){
+    ["tabAdminPermsBtn", "tabPeopleBtn", "tabPinsBtn", "tabDbCleanBtn"].forEach(id => {
+      const b = $(id);
+      if(b) b.classList.remove("active");
+    });
+    ["tabAdminPermsSection", "tabPeopleSection", "tabPinsSection", "tabDbCleanSection"].forEach(id => {
+      const s = $(id);
+      if(s) s.classList.add("hidden");
+    });
+    activeTabBtn.classList.add("active");
+    activeSection.classList.remove("hidden");
+  }
+
+  $("tabAdminPermsBtn").onclick = () => {
+    switchSuperTab($("tabAdminPermsBtn"), $("tabAdminPermsSection"));
+    renderAdminPerms();
+  };
+
+  $("tabPeopleBtn").onclick = () => {
+    switchSuperTab($("tabPeopleBtn"), $("tabPeopleSection"));
+    renderPeopleTable();
+  };
+
+  $("tabPinsBtn").onclick = () => {
+    switchSuperTab($("tabPinsBtn"), $("tabPinsSection"));
+    renderPinList();
+  };
+
+  $("tabDbCleanBtn").onclick = () => {
+    switchSuperTab($("tabDbCleanBtn"), $("tabDbCleanSection"));
+  };
+
+  /* Tab 1: Admin Permissions Logic */
+  function renderAdminPerms(){
+    const list = $("adminPeopleChecklist");
+    if(!list) return;
+    list.innerHTML = "";
+
+    const allowed = Array.isArray(adminPermissions.allowedPeople) ? adminPermissions.allowedPeople : activePeople.map(x=>x.id);
+
+    activePeople.forEach(p => {
+      const label = document.createElement("label");
+      label.className = "perm-item";
+      const isChecked = allowed.includes(p.id) ? "checked" : "";
+      label.innerHTML = `
+        <input type="checkbox" value="${p.id}" ${isChecked}>
+        <span style="font-weight:700;color:${p.color}">${p.name}</span>
+      `;
+      list.appendChild(label);
+    });
+
+    if($("permShowPins")) $("permShowPins").checked = (adminPermissions.showPinnedPills !== false);
+    if($("permShowHistory")) $("permShowHistory").checked = (adminPermissions.showHistoryBtn !== false);
+    if($("permShowVoice")) $("permShowVoice").checked = (adminPermissions.showVoiceBtn !== false);
+    if($("permShowSound")) $("permShowSound").checked = (adminPermissions.showSoundBtn !== false);
+    if($("permAutoPlayVoice")) $("permAutoPlayVoice").checked = (adminPermissions.autoPlayVoice !== false);
+  }
+
+  $("btnSelectAllPeople").onclick = () => {
+    $("adminPeopleChecklist").querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = true);
+  };
+  $("btnDeselectAllPeople").onclick = () => {
+    $("adminPeopleChecklist").querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
+  };
+
+  $("btnSaveAdminPerms").onclick = () => {
+    const checked = [];
+    $("adminPeopleChecklist").querySelectorAll("input[type='checkbox']:checked").forEach(cb => {
+      checked.push(cb.value);
+    });
+
+    adminPermissions.allowedPeople = checked;
+    adminPermissions.showPinnedPills = $("permShowPins") ? $("permShowPins").checked : true;
+    adminPermissions.showHistoryBtn = $("permShowHistory") ? $("permShowHistory").checked : true;
+    adminPermissions.showVoiceBtn = $("permShowVoice") ? $("permShowVoice").checked : true;
+    adminPermissions.showSoundBtn = $("permShowSound") ? $("permShowSound").checked : true;
+    adminPermissions.autoPlayVoice = $("permAutoPlayVoice") ? $("permAutoPlayVoice").checked : true;
+
+    saveLocalSettings('adminPermissions');
+    buildGrid();
+    applyToolVisibility();
+    toast("ایڈمن کے اختیارات کامیابی سے محفوظ ہو گئے!");
+  };
+
+  /* Tab 2: People Management Logic */
+  function renderPeopleTable(){
+    const tbody = $("peopleTableBody");
+    if(!tbody) return;
+    tbody.innerHTML = "";
+    activePeople.forEach((p, idx) => {
+      const isCustom = passwordChangedFlags[p.id] === true && userPasswords[p.id] !== "1234";
+      const pwBadge = isCustom
+        ? '<span class="pw-badge custom">محفوظ ذاتی پن</span>'
+        : '<span class="pw-badge default">1234 ڈیفالٹ</span>';
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><strong style="color:${p.color}">${p.name}</strong></td>
+        <td><code>${p.loginId || p.id}</code></td>
+        <td>${pwBadge}</td>
+        <td>
+          <button type="button" class="btn-reset-pw" data-id="${p.id}" title="پاس ورڈ 1234 پر واپس کریں">ری سیٹ (1234)</button>
+          <button type="button" class="btn-del-person" data-idx="${idx}">حذف</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    tbody.querySelectorAll(".btn-reset-pw").forEach(btn => {
+      btn.onclick = async () => {
+        const id = btn.getAttribute("data-id");
+        if(confirm(`کیا آپ اس صارف کا پن کوڈ ڈیفالٹ (1234) پر ری سیٹ کرنا چاہتے ہیں؟`)){
+          // Call Netlify function reset-pin (Task F)
+          try{
+            const headers = { 'Content-Type': 'application/json' };
+            if(auth && auth.currentUser){
+              const idToken = await auth.currentUser.getIdToken().catch(()=>null);
+              if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
+            }
+            fetch('/.netlify/functions/reset-pin', {
+              method: 'POST',
+              headers: headers,
+              body: JSON.stringify({ targetUserId: id })
+            }).catch(()=>{});
+          }catch(e){}
+
+          userPasswords[id] = "1234";
+          passwordChangedFlags[id] = false;
+          saveLocalSettings('passwordChanged');
+          renderPeopleTable();
+          toast("پن کوڈ 1234 پر ری سیٹ کر دیا گیا");
+        }
+      };
+    });
+
+    // Task E: Deleting a person removes active messages, voice, and push tokens
+    tbody.querySelectorAll(".btn-del-person").forEach(btn => {
+      btn.onclick = () => {
+        const i = parseInt(btn.getAttribute("data-idx"));
+        if(confirm(`کیا آپ واقعی ${activePeople[i].name} کو ہٹانا چاہتے ہیں؟`)){
+          const removed = activePeople.splice(i, 1)[0];
+          adminPermissions.allowedPeople = adminPermissions.allowedPeople.filter(x => x !== removed.id);
+
+          // Clean up tokens and messages
+          if(isFirebaseConfigured && db){
+            db.ref(`fcmTokens/${removed.id}`).remove().catch(()=>{});
+            db.ref(`private/pins/${removed.id}`).remove().catch(()=>{});
+            db.ref("messages").once("value", snap => {
+              snap.forEach(child => {
+                const val = child.val();
+                if(val && (val.to === removed.id || val.from === removed.id)){
+                  db.ref("messages").child(child.key).remove().catch(()=>{});
+                  db.ref("voice").child(child.key).remove().catch(()=>{});
+                }
+              });
+            });
+          }
+
+          saveLocalSettings('people');
+          renderPeopleTable();
+          renderAdminPerms();
+          buildGrid();
+          setupQuickLogin();
+          setupPinPersonSelect();
+          toast("فرد ہٹا دیا گیا");
+        }
+      };
+    });
+  }
+
+  $("btnAddPerson").onclick = () => {
+    const name = $("newPersonName").value.trim();
+    const id = $("newPersonId").value.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+    const pass = $("newPersonPass").value.trim() || "1234";
+    const color = $("newPersonColor").value;
+
+    if(!name || !id){
+      alert("براہ کرم نام اور لاگ ان آئی ڈی لازمی درج کریں!");
+      return;
+    }
+
+    if(activePeople.some(p => p.id === id)){
+      alert("یہ آئی ڈی پہلے سے موجود ہے! مختلف آئی ڈی منتخب کریں۔");
+      return;
+    }
+
+    const newPerson = { id, name, icon: "", color, loginId: id };
+    activePeople.push(newPerson);
+    userPasswords[id] = pass;
+    passwordChangedFlags[id] = (pass !== "1234");
+
+    if(!adminPermissions.allowedPeople.includes(id)){
+      adminPermissions.allowedPeople.push(id);
+    }
+
+    if(!pinnedMessages[id]){
+      pinnedMessages[id] = ["پیناڈول دے دو", "دوا تیار ہے", "اوپر آ جائیں"];
+    }
+
+    saveLocalSettings('people');
+    $("newPersonName").value = "";
+    $("newPersonId").value = "";
+    renderPeopleTable();
+    renderAdminPerms();
+    buildGrid();
+    setupQuickLogin();
+    setupPinPersonSelect();
+    toast(`نیا فرد "${name}" شامل کر دیا گیا`);
+  };
+
+  /* Tab 3: Pinned Messages Logic */
+  function setupPinPersonSelect(selectedId = null){
+    const sel = $("pinPersonSelect");
+    if(!sel) return;
+    sel.innerHTML = "";
+    activePeople.forEach(p => {
+      const opt = document.createElement("option");
+      opt.value = p.id;
+      opt.textContent = p.name;
+      if(selectedId && p.id === selectedId) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.onchange = renderPinList;
+    renderPinList();
+  }
+
+  function renderPinList(){
+    const sel = $("pinPersonSelect");
+    if(!sel) return;
+    const pid = sel.value || (activePeople[0] && activePeople[0].id);
+    const box = $("pinListBox");
+    box.innerHTML = "";
+    if(!pid) return;
+
+    const list = pinnedMessages[pid] || [];
+    if(list.length === 0){
+      box.innerHTML = '<span style="color:var(--muted)">کوئی پن پیغام نہیں ہے</span>';
+      return;
+    }
+
+    // Safe DOM construction (Task E)
+    list.forEach((txt, idx) => {
+      const item = document.createElement("div");
+      item.className = "pin-manage-item";
+      const span = document.createElement("span");
+      span.textContent = txt;
+      const delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.className = "pin-manage-del";
+      delBtn.setAttribute("data-idx", idx);
+      delBtn.title = "ڈیلیٹ کریں";
+      delBtn.textContent = "×";
+      delBtn.onclick = () => {
+        list.splice(idx, 1);
+        pinnedMessages[pid] = list;
+        saveLocalSettings('pinned');
+        renderPinList();
+        buildGrid();
+        toast("پن پیغام ہٹا دیا گیا");
+      };
+      item.append(span, delBtn);
+      box.appendChild(item);
+    });
+  }
+
+  $("btnAddPin").onclick = () => {
+    const sel = $("pinPersonSelect");
+    const pid = sel.value;
+    const txt = $("newPinText").value.trim();
+    if(!pid || !txt){
+      alert("براہ کرم پن پیغام کی عبارت لکھیں!");
+      return;
+    }
+
+    if(!pinnedMessages[pid]) pinnedMessages[pid] = [];
+    pinnedMessages[pid].push(txt);
+    saveLocalSettings('pinned');
+    $("newPinText").value = "";
+    renderPinList();
+    buildGrid();
+    toast(`پن بٹن "${txt}" شامل کر دیا گیا`);
+  };
+
+  /* ---------- Startup Initialization ---------- */
+  setupQuickLogin();
+  updateNotificationButtonUI();
+  try{
+    const savedUserStr = sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY);
+    if(savedUserStr){
+      currentUser = JSON.parse(savedUserStr);
+      showApp();
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

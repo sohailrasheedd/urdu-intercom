@@ -1,0 +1,216 @@
+{
+  "messages": [
+    {
+      "to": "bapu",
+      "from": "admin",
+      "fromName": "ایڈمن",
+      "text": "چائے لے آئیں",
+      "time": 1794856815186,
+      "replyTo": "",
+      "id": "msg_1794856815189_2028"
+    }
+  ],
+  "history": [
+    {
+      "to": "sohail",
+      "from": "admin",
+      "fromName": "ایڈمن",
+      "text": "فوری اوپر تشریف لے آئیں",
+      "time": 1794859140128,
+      "replyTo": "",
+      "clearedAt": 1794859233643
+    },
+    {
+      "to": "sohail",
+      "from": "admin",
+      "fromName": "ایڈمن",
+      "text": "پیناڈول دے دو",
+      "time": 1794859066280,
+      "replyTo": "",
+      "clearedAt": 1794859159838
+    },
+    {
+      "to": "bapu",
+      "text": "دوا تیار ہے",
+      "time": 1794847262199,
+      "clearedAt": 1794850403148
+    },
+    {
+      "to": "sohail",
+      "text": "konsy",
+      "time": 1794847804624,
+      "clearedAt": 1794850400188
+    },
+    {
+      "to": "sohail",
+      "text": "tawez de du",
+      "time": 1794847795746,
+      "clearedAt": 1794850398820
+    },
+    {
+      "to": "ahmedraza",
+      "text": "اوپر آ جائیں",
+      "time": 1794847250443,
+      "clearedAt": 1794850392787
+    },
+    {
+      "to": "abrar",
+      "text": "لیمو کے اتارے والا بندہ اگیا",
+      "time": 1794847244344,
+      "clearedAt": 1794850389225
+    },
+    {
+      "to": "sohail",
+      "text": "کیا میں اس کو دو ہفتے کی دے دوں؟",
+      "time": 1794847621364,
+      "clearedAt": 1794847778815
+    },
+    {
+      "to": "sohail",
+      "text": "جی، دے دیں",
+      "time": 1794847621368,
+      "clearedAt": 1794847774541
+    },
+    {
+      "to": "sohail",
+      "text": "ایک ہفتے کی دوا دے دو",
+      "time": 1794847621358,
+      "clearedAt": 1794847771650
+    },
+    {
+      "to": "sohail",
+      "text": "ایک بندہ بھیج رہا ہوں اس کو چراغ والے تعویز دے دو چار دن",
+      "time": 1794847322968,
+      "clearedAt": 1794847335814
+    },
+    {
+      "to": "sohail",
+      "text": "اولاد والے چار ہفتوں کے تعویز لے انا",
+      "time": 1794847315705,
+      "clearedAt": 1794847331714
+    },
+    {
+      "to": "sohail",
+      "text": "کب اؤ گے سہیل",
+      "time": 1794847307191,
+      "clearedAt": 1794847329082
+    },
+    {
+      "to": "sohail",
+      "text": "اس کو رحمان والے دو ہفتے کے تعویز دے دو",
+      "time": 1794847232409,
+      "clearedAt": 1794847279425
+    },
+    {
+      "to": "sohail",
+      "text": "اولاد کے لیے تعویز دے دیں دو ہفتے کے ٹھیک",
+      "time": 1794847168737,
+      "clearedAt": 1794847177849
+    },
+    {
+      "to": "sohail",
+      "text": "چراغ والے تعویز دے دیں",
+      "time": 1794847093580,
+      "clearedAt": 1794847104174
+    },
+    {
+      "to": "sohail",
+      "text": "اولاد کی تعویذ دے دو",
+      "time": 1794840065669,
+      "clearedAt": 1794840065696
+    }
+  ],
+  "people": [
+    {
+      "id": "sohail",
+      "name": "سہیل",
+      "icon": "",
+      "color": "#1e88e5",
+      "loginId": "sohail",
+      "password": "1234"
+    },
+    {
+      "id": "abrar",
+      "name": "ابرار",
+      "icon": "",
+      "color": "#43a047",
+      "loginId": "abrar",
+      "password": "1234"
+    },
+    {
+      "id": "ahmedraza",
+      "name": "احمد رضا",
+      "icon": "",
+      "color": "#fb8c00",
+      "loginId": "ahmedraza",
+      "password": "1234"
+    },
+    {
+      "id": "ustad",
+      "name": "استاد صاحب",
+      "icon": "",
+      "color": "#8e24aa",
+      "loginId": "ustad",
+      "password": "1234"
+    },
+    {
+      "id": "bapu",
+      "name": "باپو",
+      "icon": "",
+      "color": "#e53935",
+      "loginId": "bapu",
+      "password": "1234"
+    }
+  ],
+  "pinned": {
+    "sohail": [
+      "پیناڈول دے دو",
+      "ایک ہفتے کی دوا دے دیں",
+      "دو ہفتے کی دوا دے دیں",
+      "شربت تیار کرو"
+    ],
+    "abrar": [
+      "ٹوکن چار لے آؤ",
+      "فائل لے کر آئیں",
+      "اوپر آ جائیں"
+    ],
+    "ahmedraza": [
+      "مریض کو بھیج دیں",
+      "دوا تیار ہے"
+    ],
+    "ustad": [
+      "اوپر تشریف لائیں",
+      "ایک منٹ رکیں"
+    ],
+    "bapu": [
+      "چائے لے آئیں",
+      "دوائی دے دیں"
+    ]
+  },
+  "adminPermissions": {
+    "allowedPeople": [
+      "sohail",
+      "abrar",
+      "ahmedraza",
+      "ustad"
+    ],
+    "showPinnedPills": true,
+    "showHistoryBtn": true,
+    "showVoiceBtn": true,
+    "showSoundBtn": true
+  },
+  "passwords": {
+    "superadmin": "8888",
+    "admin": "7777",
+    "sohail": "1111",
+    "abrar": "1234",
+    "ahmedraza": "1234",
+    "ustad": "1234",
+    "bapu": "1234"
+  },
+  "passwordChanged": {
+    "superadmin": true,
+    "admin": true,
+    "sohail": true
+  }
+}
