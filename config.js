@@ -22,7 +22,7 @@ const FIREBASE_CONFIG = {
 
 // 2.1) ویب پش نوٹیفکیشن کے لیے VAPID Key (FCM Web Push Certificate Key Pair)
 // Firebase Console -> Project Settings -> Cloud Messaging -> Web Push certificates se copy kar ke yahan dalein
-const FCM_VAPID_KEY = "";
+const FCM_VAPID_KEY = "BBYD7-78AbfBfUWBieW67avuozUOi5BoUnMpdY0A4n8LLJvkCIjXC3o2ImHhhqNSFGEToWJ-mYP6YT7b5tazstk";
 
 
 // 3) پانچ افراد کی تفصیلات اور الگ لاگ ان (اوپر والی دوسری منزل کے لیے)
