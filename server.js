@@ -93,6 +93,24 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Proxy Netlify functions to live backend for local development
+  if(reqPath.startsWith('/.netlify/functions/')){
+    const https = require('https');
+    const proxyReq = https.request('https://urdu-intercom-9816.netlify.app' + req.url, {
+      method: req.method,
+      headers: { ...req.headers, host: 'urdu-intercom-9816.netlify.app' }
+    }, (proxyRes) => {
+      res.writeHead(proxyRes.statusCode, proxyRes.headers);
+      proxyRes.pipe(res);
+    });
+    proxyReq.on('error', (e) => {
+      res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: e.message }));
+    });
+    req.pipe(proxyReq);
+    return;
+  }
+
   // Real-time EventSource
   if(reqPath === '/api/events'){
     res.writeHead(200, {

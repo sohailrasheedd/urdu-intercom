@@ -25,12 +25,11 @@ const FIREBASE_CONFIG = {
 const FCM_VAPID_KEY = "BBYD7-78AbfBfUWBieW67avuozUOi5BoUnMpdY0A4n8LLJvkCIjXC3o2ImHhhqNSFGEToWJ-mYP6YT7b5tazstk";
 
 
-// 3) پانچ افراد کی تفصیلات اور الگ لاگ ان (اوپر والی دوسری منزل کے لیے)
+// 3) چار افراد کی تفصیلات اور الگ لاگ ان (سپر ایڈمن کی ترتیبات کے مطابق)
 // ہر فرد اپنی آئی ڈی اور پاس ورڈ سے لاگ ان ہوگا اور صرف اپنے پیغامات دیکھے گا
 const PEOPLE = [
   { id: "sohail",    name: "سہیل",       icon: "", color: "#1e88e5", loginId: "sohail",    password: "1234" },
   { id: "abrar",     name: "ابرار",       icon: "", color: "#43a047", loginId: "abrar",     password: "1234" },
   { id: "ahmedraza", name: "احمد رضا",   icon: "", color: "#fb8c00", loginId: "ahmedraza", password: "1234" },
-  { id: "ustad",     name: "استاد صاحب", icon: "", color: "#8e24aa", loginId: "ustad",     password: "1234" },
   { id: "bapu",      name: "باپو",        icon: "", color: "#e53935", loginId: "bapu",      password: "1234" }
 ];

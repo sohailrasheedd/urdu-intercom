@@ -32,7 +32,6 @@ const DEFAULT_PEOPLE = [
   { id: "sohail",    name: "سہیل",       color: "#1e88e5", loginId: "sohail" },
   { id: "abrar",     name: "ابرار",       color: "#43a047", loginId: "abrar" },
   { id: "ahmedraza", name: "احمد رضا",   color: "#fb8c00", loginId: "ahmedraza" },
-  { id: "ustad",     name: "استاد صاحب", color: "#8e24aa", loginId: "ustad" },
   { id: "bapu",      name: "باپو",        color: "#e53935", loginId: "bapu" }
 ];
 
@@ -105,12 +104,20 @@ exports.handler = async (event) => {
     } else if (loginInput === 'admin') {
       targetUser = { role: 'admin', id: 'admin', name: 'ایڈمن', color: '#2563eb' };
     } else {
-      const match = activePeople.find(p => {
-        const lid = (p.loginId || p.id).toLowerCase();
-        const pid = p.id.toLowerCase();
+      let match = activePeople.find(p => {
+        const lid = (p.loginId || p.id || '').toLowerCase();
+        const pid = (p.id || '').toLowerCase();
         const pName = (p.name || '').toLowerCase();
         return (loginInput === lid || loginInput === pid || loginInput === pName);
       });
+      if (!match) {
+        match = DEFAULT_PEOPLE.find(p => {
+          const lid = (p.loginId || p.id || '').toLowerCase();
+          const pid = (p.id || '').toLowerCase();
+          const pName = (p.name || '').toLowerCase();
+          return (loginInput === lid || loginInput === pid || loginInput === pName);
+        });
+      }
       if (match) {
         targetUser = { role: 'user', id: match.id, name: match.name, color: match.color || '#1e88e5' };
       }

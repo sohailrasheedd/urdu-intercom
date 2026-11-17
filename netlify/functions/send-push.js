@@ -65,12 +65,12 @@ exports.handler = async (event, context) => {
     };
   }
 
-  const { messageId } = body;
-  if (!messageId) {
+  const { messageId, type } = body;
+  if (!messageId && type !== 'token') {
     return {
       statusCode: 400,
       headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Missing messageId' })
+      body: JSON.stringify({ error: 'Missing messageId or valid type' })
     };
   }
 
@@ -78,6 +78,75 @@ exports.handler = async (event, context) => {
     const app = getAdmin();
     const db = app.database();
     const messaging = app.messaging();
+
+    if (type === 'token') {
+      // Token Queue notification broadcast
+      const tokenSnap = await db.ref('tokens/today').once('value');
+      const tokenData = tokenSnap.val();
+      if (!tokenData || tokenData.current == null) {
+        return {
+          statusCode: 200,
+          headers: { 'Access-Control-Allow-Origin': '*' },
+          body: JSON.stringify({ success: true, message: 'No active token to notify' })
+        };
+      }
+
+      const currentNum = tokenData.current;
+      const allTokensSnap = await db.ref('fcmTokens').once('value');
+      const allTokensObj = allTokensSnap.val() || {};
+      const tokensWithMeta = [];
+
+      Object.keys(allTokensObj).forEach(uid => {
+        const userTokens = allTokensObj[uid];
+        if (userTokens && typeof userTokens === 'object') {
+          Object.keys(userTokens).forEach(sanitizedKey => {
+            const entry = userTokens[sanitizedKey];
+            const tokenStr = typeof entry === 'string' ? entry : (entry && entry.token ? entry.token : sanitizedKey);
+            if (tokenStr) {
+              tokensWithMeta.push({ token: tokenStr, sanitizedKey, userId: uid });
+            }
+          });
+        }
+      });
+
+      if (tokensWithMeta.length === 0) {
+        return {
+          statusCode: 200,
+          headers: { 'Access-Control-Allow-Origin': '*' },
+          body: JSON.stringify({ success: true, pushedTokens: 0 })
+        };
+      }
+
+      const dataPayload = {
+        title: 'ٹوکن اپڈیٹ',
+        body: `ٹوکن ${currentNum} کی باری ہے`,
+        tag: `token-${currentNum}`,
+        url: '/'
+      };
+
+      let sentCount = 0;
+      for (const item of tokensWithMeta) {
+        try {
+          await messaging.send({
+            token: item.token,
+            data: dataPayload,
+            webpush: { headers: { Urgency: 'high', TTL: '600' } }
+          });
+          sentCount++;
+        } catch (err) {
+          const code = err.code || (err.errorInfo && err.errorInfo.code) || '';
+          if (code === 'messaging/registration-token-not-registered' || code === 'messaging/invalid-argument') {
+            await db.ref(`fcmTokens/${item.userId}/${item.sanitizedKey}`).remove().catch(()=>{});
+          }
+        }
+      }
+
+      return {
+        statusCode: 200,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ success: true, pushedTokens: sentCount, currentToken: currentNum })
+      };
+    }
 
     // Verify caller ID token if provided (Task F)
     const authHeader = event.headers['authorization'] || event.headers['Authorization'];

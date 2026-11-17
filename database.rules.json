@@ -4,6 +4,10 @@
       ".read": false,
       ".write": false
     },
+    "tokens": {
+      ".read": "auth != null",
+      ".write": "auth != null && (auth.token.role === 'admin' || auth.token.role === 'superadmin')"
+    },
     "settings": {
       ".read": "auth != null",
       ".write": "auth != null && (auth.token.role === 'superadmin' || auth.token.role === 'admin')",
@@ -17,7 +21,7 @@
       ".read": "auth != null",
       ".indexOn": ["to", "from"],
       "$msgId": {
-        ".write": "auth != null && (!data.exists() && newData.child('from').val() === auth.uid || data.exists() && (data.child('from').val() === auth.uid || data.child('to').val() === auth.uid || auth.token.role === 'admin' || auth.token.role === 'superadmin'))"
+        ".write": "auth != null && (!data.exists() && (newData.child('from').val() === auth.uid || auth.token.role === 'admin' || auth.token.role === 'superadmin') || data.exists() && (data.child('from').val() === auth.uid || data.child('to').val() === auth.uid || auth.token.role === 'admin' || auth.token.role === 'superadmin'))"
       }
     },
     "voice": {

@@ -442,6 +442,55 @@
     margin:0 auto;
   }
 
+  /* ---------- Live Token Queue Badge (Top Bar) ---------- */
+  .live-token-badge{display:inline-flex;align-items:center;gap:10px;background:#0f172a;border:2px solid #38bdf8;box-shadow:0 0 12px rgba(56,189,248,.25);padding:6px 14px;border-radius:14px;cursor:pointer;user-select:none;transition:all .2s ease}
+  .live-token-badge:hover{border-color:#60a5fa;box-shadow:0 0 16px rgba(96,165,250,.4);transform:translateY(-1px)}
+  .live-token-badge.pulse{animation:tokenPulse .8s ease}
+  @keyframes tokenPulse{0%{transform:scale(1);box-shadow:0 0 12px rgba(56,189,248,.25)}50%{transform:scale(1.06);box-shadow:0 0 24px rgba(34,197,94,.6);border-color:#22c55e}100%{transform:scale(1);box-shadow:0 0 12px rgba(56,189,248,.25)}}
+  .token-main-txt{font-family:var(--font-urdu-heading);font-size:1.15rem;font-weight:700;color:#f8fafc;line-height:var(--lh-urdu-heading);display:flex;align-items:center;gap:6px}
+  .token-num-highlight{color:#38bdf8;font-family:var(--font-latin-heading);font-size:1.4rem;font-weight:800;padding:0 4px}
+  .token-next-txt{font-family:var(--font-urdu-body);font-size:.88rem;color:#94a3b8;border-right:1px solid #334155;padding-right:10px;line-height:var(--lh-urdu-body)}
+  .token-next-highlight{color:#fbbf24;font-family:var(--font-latin-heading);font-weight:700;font-size:1rem}
+
+  /* ---------- Admin Token Queue Panel ---------- */
+  .admin-token-panel{background:var(--card);border:2px solid #334155;border-radius:20px;padding:18px 20px;margin:0 auto 18px;max-width:1300px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+  .token-panel-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-bottom:1px solid #334155;padding-bottom:12px;margin-bottom:16px}
+  .token-panel-title{font-family:var(--font-urdu-heading);font-size:1.4rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px}
+  .token-panel-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .token-panel-body{display:grid;grid-template-columns:1fr 1.15fr;gap:16px;align-items:start}
+  @media(max-width:850px){.token-panel-body{grid-template-columns:1fr}}
+  .token-big-display{background:#0f172a;border:2px solid #3b82f6;border-radius:18px;padding:18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}
+  .token-big-label{font-family:var(--font-urdu-heading);font-size:1.2rem;color:#93c5fd;margin-bottom:4px}
+  .token-big-number{font-family:var(--font-latin-heading);font-size:4.2rem;font-weight:900;color:#22c55e;line-height:1;margin:6px 0;text-shadow:0 0 20px rgba(34,197,94,.4)}
+  .token-big-number.none{font-size:2rem;color:#64748b;font-family:var(--font-urdu-heading);text-shadow:none}
+  .token-stats-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin-top:10px;padding-top:10px;border-top:1px dashed #334155;font-size:.95rem;color:#cbd5e1;font-family:var(--font-urdu-body)}
+  .token-stat-item span{font-weight:700;color:#f8fafc}
+  .token-controls-wrap{display:flex;flex-direction:column;gap:12px}
+  .token-total-setting-box{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .token-total-input{width:90px;padding:8px 10px;text-align:center;font-size:1.3rem;font-weight:700;border-radius:10px;border:2px solid #334155;background:#1e293b;color:#fff;outline:none}
+  .token-total-input:focus{border-color:#3b82f6}
+  .btn-token-next{width:100%;padding:16px 20px;background:linear-gradient(135deg,#16a34a 0%,#15803d 100%);border:0;border-radius:16px;color:#fff;font-family:var(--font-urdu-heading);font-size:1.55rem;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(22,163,74,.4);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s ease;user-select:none}
+  .btn-token-next:hover{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);box-shadow:0 8px 25px rgba(34,197,94,.5);transform:translateY(-2px)}
+  .btn-token-next:active{transform:translateY(1px) scale(.98)}
+  .token-sub-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .btn-token-prev{padding:12px 14px;background:#334155;border:1px solid #475569;border-radius:12px;color:#f1f5f9;font-family:var(--font-urdu-heading);font-size:1.15rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+  .btn-token-prev:hover{background:#475569}
+  .btn-token-skip{padding:12px 14px;background:#d97706;border:1px solid #b45309;border-radius:12px;color:#fff;font-family:var(--font-urdu-heading);font-size:1.15rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+  .btn-token-skip:hover{background:#f59e0b}
+  .token-skipped-box{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px}
+  .skipped-title{font-family:var(--font-urdu-heading);font-size:1.1rem;font-weight:700;color:#f59e0b;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .skipped-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .skipped-chip{display:inline-flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #f59e0b;padding:4px 10px;border-radius:10px;font-family:var(--font-urdu-body);font-size:.95rem;color:#fff}
+  .btn-put-back{background:#2563eb;border:0;border-radius:8px;color:#fff;padding:4px 10px;font-size:.85rem;font-family:var(--font-urdu-body);font-weight:700;cursor:pointer;transition:background .15s}
+  .btn-put-back:hover{background:#1d4ed8}
+  .token-day-controls{display:flex;gap:10px;margin-top:4px;padding-top:10px;border-top:1px solid #334155}
+  .btn-end-day{flex:1;background:#7f1d1d;border:1px solid #991b1b;color:#fecaca;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-heading);font-size:1.05rem;font-weight:700;cursor:pointer}
+  .btn-end-day:hover{background:#991b1b;color:#fff}
+  .btn-new-day{flex:1;background:#1e3a8a;border:1px solid #1d4ed8;color:#bfdbfe;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-heading);font-size:1.05rem;font-weight:700;cursor:pointer}
+  .btn-new-day:hover{background:#1d4ed8;color:#fff}
+  .offset-chip{border:1px solid #475569;background:#1e293b;color:#cbd5e1;padding:6px 14px;border-radius:10px;font-family:var(--font-latin-heading);font-size:1.1rem;font-weight:700;cursor:pointer;transition:all .15s}
+  .offset-chip.active{background:#2563eb;color:#fff;border-color:#60a5fa}
+
   /* ---------- Responsive Media Queries ---------- */
   @media (max-width: 768px) {
     #app{padding:10px;padding-bottom:130px}
@@ -492,6 +541,16 @@
   
   <div class="top-nav">
     <div class="user-badge" id="userBadge"></div>
+    <div id="liveTokenBadge" class="live-token-badge" title="موجودہ ٹوکن کی تفصیلات">
+      <div class="token-main-txt">
+        <span>چل رہا ٹوکن:</span>
+        <span id="liveCurrentTokenNum" class="token-num-highlight">—</span>
+      </div>
+      <div class="token-next-txt">
+        <span>اگلا:</span>
+        <span id="liveNextTokenNum" class="token-next-highlight">—</span>
+      </div>
+    </div>
     <div class="nav-actions">
       <button class="btn-pin-change hidden" id="installTopBtn" title="ایپ کو ہوم اسکرین پر انسٹال کریں">
         <span>📲 انسٹال کریں</span>
@@ -507,7 +566,83 @@
         <span>پن تبدیل کریں</span>
       </button>
       <button class="btn-super hidden" id="superBtn">سپر ایڈمن کنٹرول</button>
-      <button class="logout-top" id="logoutTop">باہر نکلیں</button>
+      <button class="logout-top" id="logoutTop">🚪 لاگ آؤٹ / باہر نکلیں</button>
+    </div>
+  </div>
+
+  <!-- ============ ایڈمن ٹوکن پینل (صرف ایڈمن / سپر ایڈمن کے لیے) ============ -->
+  <div id="adminTokenPanel" class="admin-token-panel hidden">
+    <div class="token-panel-header">
+      <div class="token-panel-title">
+        <span>🎫 لائیو ٹوکن قطار کا انتظام</span>
+        <span id="tokenStatusTag" class="nav-status-tag" style="background:#0284c7;color:#fff">غیر شروع شدہ</span>
+      </div>
+      <div class="token-panel-actions">
+        <button type="button" class="tool" id="btnOpenTokenHistory" style="padding:6px 14px;font-size:.92rem;background:#1e293b;border:1px solid #475569">📜 ٹوکن ہسٹری</button>
+      </div>
+    </div>
+
+    <div class="token-panel-body">
+      <!-- Big display of current token -->
+      <div class="token-big-display">
+        <div class="token-big-label">اس وقت چل رہا ٹوکن</div>
+        <div class="token-big-number none" id="tokenBigNum">—</div>
+        <div id="tokenNoticeMsg" style="color:#f59e0b;font-family:var(--font-urdu-body);font-size:1rem;margin-bottom:6px">آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے</div>
+        <div class="token-stats-bar">
+          <div class="token-stat-item">اگلا: <span id="statNextToken" class="token-next-highlight">—</span></div>
+          <div class="token-stat-item">کل: <span id="statTotalTokens">0</span></div>
+          <div class="token-stat-item">مکمل: <span id="statDoneTokens">0</span></div>
+          <div class="token-stat-item">چھوڑے گئے: <span id="statSkippedTokens">0</span></div>
+          <div class="token-stat-item">باقی: <span id="statPendingTokens">0</span></div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="token-controls-wrap">
+        <!-- Set Total -->
+        <div class="token-total-setting-box">
+          <div>
+            <label style="display:block;font-weight:700;color:#93c5fd;font-size:.95rem">آج کے کل جاری کردہ ٹوکن:</label>
+            <span style="font-size:.82rem;color:var(--muted)">دستی پرچیاں دینے کے بعد کل تعداد درج کریں</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <input type="number" id="inputTotalTokens" class="token-total-input" min="1" max="500" placeholder="60">
+            <button type="button" class="btn-main" id="btnSetTotalTokens" style="width:auto;margin-top:0;padding:8px 14px;font-size:1rem">مقرر کریں</button>
+          </div>
+        </div>
+
+        <!-- Call Next Token (Large Main Button) -->
+        <button type="button" class="btn-token-next" id="btnCallNextToken" title="موجودہ ٹوکن مکمل کر کے اگلا بلائیں">
+          <span>🔔 ٹوکن فارغ، اگلا بلائیں</span>
+        </button>
+
+        <!-- Previous & Skip -->
+        <div class="token-sub-actions">
+          <button type="button" class="btn-token-prev" id="btnPrevToken" title="غلطی سے اگلا دب گیا ہو تو واپس کریں">
+            <span>⏮️ پچھلا ٹوکن</span>
+          </button>
+          <button type="button" class="btn-token-skip" id="btnSkipToken" title="مریض حاضر نہ ہو تو چھوڑیں">
+            <span>⏭️ ٹوکن چھوڑیں</span>
+          </button>
+        </div>
+
+        <!-- Skipped list -->
+        <div class="token-skipped-box" id="skippedBox">
+          <div class="skipped-title">
+            <span>⚠️ چھوڑے گئے ٹوکن (غیر حاضر):</span>
+            <span id="skippedCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
+          </div>
+          <div class="skipped-chips" id="skippedChips">
+            <span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن چھوڑا نہیں گیا</span>
+          </div>
+        </div>
+
+        <!-- Day management -->
+        <div class="token-day-controls">
+          <button type="button" class="btn-end-day" id="btnEndDay">⏹️ آج کے ٹوکن ختم</button>
+          <button type="button" class="btn-new-day" id="btnNewDay">🌅 نیا دن شروع کریں</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -837,6 +972,46 @@
   </div>
 </div>
 
+<!-- ============ چھوڑا گیا ٹوکن واپس ڈالنے کا موڈل ============ -->
+<div id="putBackModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:16px;z-index:1150">
+  <div class="sheet" style="max-width:440px">
+    <div style="text-align:center;margin-bottom:12px">
+      <div style="width:52px;height:52px;border-radius:26px;background:rgba(37,99,235,.2);color:#60a5fa;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px">
+        <span style="font-size:1.6rem">🔄</span>
+      </div>
+      <h2 id="putBackTitle" style="margin:0 0 4px;font-size:1.35rem">دوبارہ قطار میں ڈالیں</h2>
+      <p id="putBackDesc" style="color:var(--muted);font-size:.95rem;margin:0;line-height:1.6">
+        اس ٹوکن کو کتنے ٹوکن بعد بلایا جائے؟
+      </p>
+    </div>
+
+    <div style="margin:14px 0 16px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center" id="offsetChipsWrap">
+        <!-- 1 to 10 chip buttons -->
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px">
+      <button type="button" class="btn-main" id="btnConfirmPutBack" style="margin-top:0">قطار میں شامل کریں</button>
+      <button type="button" class="cancel" id="btnCancelPutBack" style="margin-top:0">منسوخ کریں</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ٹوکن ہسٹری موڈل ============ -->
+<div id="tokenHistoryModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:16px;z-index:1150">
+  <div class="sheet" style="max-width:680px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;border-bottom:1px solid #334155;padding-bottom:10px">
+      <h2 style="margin:0;font-size:1.45rem">📜 سابقہ دنوں کا ٹوکن ریکارڈ (ہسٹری)</h2>
+      <button type="button" id="btnCloseTokenHistory" style="background:transparent;border:0;color:var(--muted);font-size:1.6rem;cursor:pointer;padding:0 6px">&times;</button>
+    </div>
+
+    <div id="tokenHistoryList" style="display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-left:4px">
+      <div style="text-align:center;color:var(--muted);padding:30px">ہسٹری لوڈ ہو رہی ہے...</div>
+    </div>
+  </div>
+</div>
+
 <audio id="sharedAudioPlayer" preload="auto" style="display:none"></audio>
 <div id="toast"></div>
 
@@ -912,21 +1087,20 @@
 
   // Admin Permissions configured by Superadmin
   let adminPermissions = {
-    allowedPeople: ["sohail", "abrar", "ahmedraza", "ustad", "bapu"],
+    allowedPeople: ["sohail", "abrar", "ahmedraza", "bapu"],
     showPinnedPills: true,
-    showHistoryBtn: true,
+    showHistoryBtn: false,
     showVoiceBtn: true,
     showSoundBtn: true,
     autoPlayVoice: true
   };
 
-  // Pinned messages per person (Defaults)
+  // Pinned messages per person (Superadmin settings)
   let pinnedMessages = {
-    "sohail": ["پیناڈول دے دو", "ایک ہفتے کی دوا دے دیں", "دو ہفتے کی دوا دے دیں", "شربت تیار کرو"],
-    "abrar": ["ٹوکن چار لے آؤ", "فائل لے کر آئیں", "اوپر آ جائیں"],
-    "ahmedraza": ["مریض کو بھیج دیں", "دوا تیار ہے"],
-    "ustad": ["اوپر تشریف لائیں", "ایک منٹ رکیں"],
-    "bapu": ["چائے لے آئیں", "دوائی دے دیں"]
+    "sohail": ["New Tawez de du"],
+    "abrar": ["فائل لے کر آئیں", "اوپر آ جائیں"],
+    "ahmedraza": ["مریض کو بھیج دیں"],
+    "bapu": ["Qabristan tawez"]
   };
 
   // Keep track of alerted messages so chime & toast alert only once
@@ -1394,11 +1568,15 @@
   }
   startSettingsSync();
 
-  function saveUserSession(user){
+  function saveUserSession(user, customToken){
     currentUser = user;
     sessionStorage.setItem(SESSION_KEY, "1");
     sessionStorage.setItem(USER_KEY, JSON.stringify(user));
     localStorage.setItem(USER_KEY, JSON.stringify(user));
+    if(customToken){
+      sessionStorage.setItem("intercom_custom_token", customToken);
+      localStorage.setItem("intercom_custom_token", customToken);
+    }
   }
 
   async function doLogin(){
@@ -1423,16 +1601,21 @@
       if(netRes.ok){
         const netData = await netRes.json();
         serverLoginSucceeded = true;
+        currentUser = netData.user;
         if(netData.customToken && auth){
-          await auth.signInWithCustomToken(netData.customToken).catch(err => {
-            console.warn("signInWithCustomToken notice:", err);
-          });
+          try{
+            await auth.signInWithCustomToken(netData.customToken);
+          }catch(err){
+            console.error("signInWithCustomToken failed:", err);
+            $("loginErr").textContent = "فائر بیس لاگ ان کی تصدیق نہ ہو سکی۔ دوبارہ کوشش کریں۔";
+            return;
+          }
         }
+        saveUserSession(netData.user, netData.customToken);
         if(netData.mustChangePin){
           openPinModal(netData.user, true);
           return;
         }
-        saveUserSession(netData.user);
         initAudio();
         showApp();
         return;
@@ -1572,6 +1755,7 @@
 
     if(isMandatoryPinChange){
       saveUserSession(pendingPinUser);
+      currentUser = pendingPinUser;
       initAudio();
       showApp();
     }
@@ -1584,12 +1768,16 @@
   $("uid").addEventListener("keydown", e => { if(e.key === "Enter") $("pass").focus(); });
   
   async function doLogout(){
+    detachMessaging();
+    if(typeof detachTokenQueue === "function") detachTokenQueue();
     if(currentUser){
       await unregisterFcmTokenForUser(currentUser.id);
     }
     if(auth){
       try{ await auth.signOut(); }catch(e){}
     }
+    sessionStorage.removeItem("intercom_custom_token");
+    localStorage.removeItem("intercom_custom_token");
     sessionStorage.removeItem(SESSION_KEY);
     sessionStorage.removeItem(USER_KEY);
     localStorage.removeItem(USER_KEY);
@@ -1631,8 +1819,11 @@
       superBtn.classList.add("hidden");
     }
 
+    const isOnline = isFirebaseConfigured && (!auth || auth.currentUser);
     const connTag = isFirebaseConfigured
-      ? '<span class="nav-status-tag">فائر بیس آن لائن</span>'
+      ? (auth && auth.currentUser
+          ? '<span class="nav-status-tag" style="background:#16a34a;color:#fff">🟢 فائر بیس آن لائن</span>'
+          : '<span class="nav-status-tag" style="background:#dc2626;color:#fff">🔴 غیر تصدیق شدہ (دوبارہ لاگ ان کریں)</span>')
       : '<span class="nav-status-tag local" title="سرور سے لائیو جڑا ہوا ہے">لائیو چیٹ فعال</span>';
 
     if(currentUser.role === "superadmin"){
@@ -1692,15 +1883,12 @@
       inboxWrap.appendChild(ownCard);
       g.appendChild(inboxWrap);
 
-      // Part 2: Heading & Peer Contact Cards (Other People & Admin)
-      const contacts = [
-        { id: "admin", name: "ایڈمن", color: "#2563eb" },
-        ...activePeople.filter(p => p.id !== currentUser.id && p.id !== 'admin' && p.id !== 'superadmin')
-      ];
+      // Part 2: Heading & Peer Contact Cards (Other People only, excluding Admin & Superadmin)
+      const contacts = activePeople.filter(p => p.id !== currentUser.id && p.id !== 'admin' && p.id !== 'superadmin');
       if(contacts.length > 0){
         const contactTitle = document.createElement("div");
         contactTitle.className = "user-section-title";
-        contactTitle.textContent = "دیگر افراد اور ایڈمن کو پیغام بھیجیں";
+        contactTitle.textContent = "دیگر افراد کو پیغام بھیجیں";
         g.appendChild(contactTitle);
 
         const contactsGrid = document.createElement("div");
@@ -2059,6 +2247,11 @@
       let savedKey = null;
 
       if(isFirebaseConfigured && db){
+        if(auth && !auth.currentUser){
+          toast("سیشن ختم ہو چکا ہے، دوبارہ لاگ ان کریں");
+          doLogout();
+          return;
+        }
         const newMsgRef = db.ref("messages").push();
         savedKey = newMsgRef.key;
 
@@ -2135,9 +2328,10 @@
   }
 
   function quickSendReply(targetPerson, replyText, originalMsg){
-    const isPeer = originalMsg.kind === "peer";
+    const isPeer = originalMsg ? (originalMsg.kind === "peer") : false;
+    const isToAdmin = !isPeer && (targetPerson.id === "admin" || targetPerson.id === "superadmin" || originalMsg?.from === "admin" || originalMsg?.from === "superadmin");
     const msgPayload = {
-      to: isPeer ? originalMsg.from : targetPerson.id,
+      to: isPeer ? originalMsg.from : (isToAdmin ? currentUser.id : targetPerson.id),
       from: currentUser.id,
       fromName: currentUser.name,
       text: replyText,
@@ -2146,7 +2340,7 @@
       kind: isPeer ? "peer" : "thread",
       recipient: isPeer ? originalMsg.from : "admin",
       time: Date.now(),
-      replyTo: originalMsg.text
+      replyTo: originalMsg ? originalMsg.text : ""
     };
     sendRawMessage(msgPayload);
     toast(`جواب بھیج دیا گیا: "${replyText}"`);
@@ -2156,6 +2350,8 @@
   function displayMessageOnCard(key, m){
     if(!m) return;
     const kind = m.kind || "thread"; // legacy defaults to thread
+    const isFromAdmin = (m.from === "admin" || m.from === "superadmin");
+    const isMine = (m.from === currentUser.id);
 
     // Task A: Message routing rules
     let cardId = null;
@@ -2163,12 +2359,13 @@
     if(currentUser.role === "admin" || currentUser.role === "superadmin"){
       // Admin screens render only thread messages
       if(kind !== "thread") return;
-      cardId = "p_" + m.to;
+      const targetPersonId = (m.to === "admin" || m.to === "superadmin") ? m.from : m.to;
+      cardId = "p_" + targetPersonId;
     } else {
       // User screen rendering:
       if(kind === "thread"){
-        // Thread messages where to === me belong to own inbox card
-        if(m.to !== currentUser.id) return;
+        // Thread messages where to === me (or from === me) belong to own inbox card
+        if(m.to !== currentUser.id && m.from !== currentUser.id) return;
         cardId = "p_" + currentUser.id;
       } else if(kind === "peer"){
         // Peer message:
@@ -2192,7 +2389,6 @@
     if($("m_" + key)) return; // already rendered
 
     // Auto-archiving older messages applies ONLY to admin-sent thread messages
-    const isFromAdmin = (m.from === "admin" || m.from === "superadmin");
     if(kind === "thread" && isFromAdmin){
       list.querySelectorAll(".msg").forEach(oldEl => {
         if(oldEl.id !== "m_" + key){
@@ -2201,9 +2397,21 @@
       });
     }
 
-    const isMine = (m.from === currentUser.id);
-    const senderName = m.fromName || (m.from === "admin" ? "ایڈمن" : (activePeople.find(x => x.id === m.from)?.name || m.from));
-    const targetPerson = activePeople.find(x => x.id === (isMine ? m.to : m.from)) || { id: m.to, name: m.to };
+    const senderName = m.fromName || (isFromAdmin ? "ایڈمن" : (activePeople.find(x => x.id === m.from)?.name || m.from));
+    
+    // Determine target person for replies
+    let targetPerson = null;
+    if(kind === "thread"){
+      if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+        const pid = (m.to === "admin" || m.to === "superadmin") ? m.from : m.to;
+        targetPerson = activePeople.find(x => x.id === pid) || { id: pid, name: pid };
+      } else {
+        targetPerson = { id: "admin", name: "ایڈمن", color: "#2563eb" };
+      }
+    } else {
+      const otherId = isMine ? m.to : m.from;
+      targetPerson = activePeople.find(x => x.id === otherId) || { id: otherId, name: otherId };
+    }
 
     const el = document.createElement("div");
     el.id = "m_" + key;
@@ -2212,7 +2420,7 @@
     // Sender Tag
     const tag = document.createElement("div");
     tag.className = "msg-sender-tag";
-    tag.textContent = isMine ? `آپ کا پیغام (${currentUser.name})` : `${senderName} کا جوابی پیغام`;
+    tag.textContent = isMine ? `آپ کا پیغام (${currentUser.name})` : (isFromAdmin ? "ایڈمن کا پیغام" : `${senderName} کا جوابی پیغام`);
     el.appendChild(tag);
 
     // Quoted reply
@@ -2473,8 +2681,9 @@
         ...histData,
         clearedAt: firebase.database.ServerValue.TIMESTAMP
       }).catch(() => {});
-      db.ref("messages").child(key).remove();
-      db.ref("voice").child(key).remove();
+      db.ref("messages").child(key).remove().catch(() => {});
+      db.ref("voice").child(key).remove().catch(() => {});
+      toast("پیغام صاف کر دیا گیا");
     } else {
       fetch('/api/messages/' + encodeURIComponent(key), { method: 'DELETE' })
         .then(() => removeMessageFromCard(key, m.to))
@@ -2484,8 +2693,9 @@
 
   function handleCancelMessage(key, m){
     if(isFirebaseConfigured && db){
-      db.ref("messages").child(key).remove();
-      db.ref("voice").child(key).remove();
+      db.ref("messages").child(key).remove().catch(() => {});
+      db.ref("voice").child(key).remove().catch(() => {});
+      toast("پیغام واپس لے لیا گیا");
     } else {
       fetch('/api/messages/' + encodeURIComponent(key), { method: 'DELETE' })
         .then(() => {
@@ -2496,7 +2706,33 @@
     }
   }
 
+  let activeDbListeners = [];
+
+  function detachMessaging(){
+    activeDbListeners.forEach(l => {
+      try{ l.ref.off(l.event, l.fn); }catch(e){}
+    });
+    activeDbListeners = [];
+    started = false;
+  }
+
+  function trackDbListener(ref, event, fn, onErr){
+    ref.on(event, fn, onErr);
+    activeDbListeners.push({ ref, event, fn });
+  }
+
+  function handleQueryError(err){
+    console.warn("Firebase query notice:", err && err.message ? err.message : err);
+    if(err && err.message && err.message.toLowerCase().includes("permission_denied")){
+      console.warn("RTDB Permission Denied: Client does not have permission. Check Firebase rules & Auth.");
+    }
+  }
+
   function initMessaging(){
+    if(!currentUser) return;
+    if(started) return;
+    started = true;
+
     if(isFirebaseConfigured && !db && typeof firebase !== "undefined"){
       try{
         if(!firebase.apps || !firebase.apps.length){
@@ -2514,39 +2750,42 @@
         const toRef = db.ref("messages").orderByChild("to").equalTo(currentUser.id);
         const fromRef = db.ref("messages").orderByChild("from").equalTo(currentUser.id);
 
-        toRef.on("child_added", snap => {
+        trackDbListener(toRef, "child_added", snap => {
           const m = snap.val();
           if(m) displayMessageOnCard(snap.key, m);
-        });
-        toRef.on("child_removed", snap => {
+        }, handleQueryError);
+
+        trackDbListener(toRef, "child_removed", snap => {
           const el = $("m_" + snap.key);
           if(el){
             const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
             removeMessageFromCard(snap.key, pid);
           }
-        });
+        }, handleQueryError);
 
-        fromRef.on("child_added", snap => {
+        trackDbListener(fromRef, "child_added", snap => {
           const m = snap.val();
           if(m) displayMessageOnCard(snap.key, m);
-        });
-        fromRef.on("child_removed", snap => {
+        }, handleQueryError);
+
+        trackDbListener(fromRef, "child_removed", snap => {
           const el = $("m_" + snap.key);
           if(el){
             const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
             removeMessageFromCard(snap.key, pid);
           }
-        });
+        }, handleQueryError);
 
-        toRef.once("value", () => { ready = true; });
+        toRef.once("value", () => { ready = true; }, handleQueryError);
       } else {
         // Admin / Superadmin query messages directly
         const ref = db.ref("messages");
-        ref.on("child_added", snap => {
+        trackDbListener(ref, "child_added", snap => {
           const m = snap.val();
           if(m) displayMessageOnCard(snap.key, m);
-        });
-        ref.on("child_removed", snap => {
+        }, handleQueryError);
+
+        trackDbListener(ref, "child_removed", snap => {
           const el = $("m_" + snap.key);
           if(el){
             const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : "";
@@ -2556,12 +2795,13 @@
               toast((p ? p.name : pid) + " نے پیغام صاف کر دیا");
             }
           }
-        });
-        ref.once("value", () => { ready = true; });
+        }, handleQueryError);
+
+        ref.once("value", () => { ready = true; }, handleQueryError);
       }
 
       const histRef = db.ref("history").limitToLast(MAX_HISTORY);
-      histRef.on("value", snap => {
+      trackDbListener(histRef, "value", snap => {
         const remote = [];
         snap.forEach(child => {
           const val = child.val();
@@ -2572,12 +2812,12 @@
           try{ localStorage.setItem(HIST_KEY, JSON.stringify(remote.slice(0, MAX_HISTORY))); }catch(e){}
         }
         renderHistory();
-      });
+      }, handleQueryError);
 
       startSettingsSync();
 
       let hasConnectedOnce = false;
-      db.ref(".info/connected").on("value", s => {
+      trackDbListener(db.ref(".info/connected"), "value", s => {
         if(s.val() === true){
           hasConnectedOnce = true;
         } else if(s.val() === false && hasConnectedOnce && started){
@@ -2676,13 +2916,740 @@
     }
   }
 
+  /* =====================================================
+     ٹوکن قطار کا نظام (Token Queue System)
+     ===================================================== */
+  let tokenDataState = null;
+  let tokenQueueAttached = false;
+  let lastKnownTokenNum = undefined;
+  let selectedPutBackToken = null;
+  let selectedPutBackOffset = 3;
+
+  function isAdminUser(){
+    return currentUser && (currentUser.role === "admin" || currentUser.role === "superadmin");
+  }
+
+  function getTodayDateStr(){
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function formatTime(ts){
+    if(!ts) return "—";
+    try{
+      const d = new Date(ts);
+      let h = d.getHours();
+      const m = String(d.getMinutes()).padStart(2, '0');
+      const ampm = h >= 12 ? 'شام / دوپہر' : 'صبح';
+      h = h % 12;
+      h = h ? h : 12;
+      return `${h}:${m} ${ampm}`;
+    }catch(e){
+      return "—";
+    }
+  }
+
+  function triggerTokenPush(currentNum){
+    if(!isFirebaseConfigured || !currentNum) return;
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      const sendReq = (hdrs) => {
+        fetch('/.netlify/functions/send-push', {
+          method: 'POST',
+          headers: hdrs,
+          body: JSON.stringify({ type: 'token', tokenNumber: currentNum })
+        }).catch(()=>{});
+      };
+
+      if(auth && auth.currentUser){
+        auth.currentUser.getIdToken().then(idToken => {
+          headers['Authorization'] = 'Bearer ' + idToken;
+          sendReq(headers);
+        }).catch(() => sendReq(headers));
+      } else {
+        sendReq(headers);
+      }
+    }catch(e){}
+  }
+
+  function handleTokenSnapshot(data){
+    tokenDataState = data;
+    const current = (data && data.current != null) ? data.current : null;
+
+    // Chime & Toast alert: Fire only once per token advance
+    // Only if lastKnownTokenNum is initialized (not first page load)
+    // and current is a new valid token number!
+    if(lastKnownTokenNum !== undefined && lastKnownTokenNum !== current && current != null){
+      toast("ٹوکن " + current + " کی باری ہے");
+      chime();
+      triggerTokenPush(current);
+    }
+    lastKnownTokenNum = current;
+
+    updateLiveTokenBadgeUI(data);
+    updateAdminTokenPanelUI(data);
+  }
+
+  function initTokenQueue(){
+    if(!currentUser) return;
+    updateAdminTokenPanelUI(tokenDataState);
+    updateLiveTokenBadgeUI(tokenDataState);
+
+    if(tokenQueueAttached) {
+      return;
+    }
+
+    if(isFirebaseConfigured && db){
+      tokenQueueAttached = true;
+      trackDbListener(db.ref('tokens/today'), 'value', snap => {
+        handleTokenSnapshot(snap.val());
+      }, err => {
+        console.warn("Token listener notice:", err);
+      });
+    } else {
+      // Local server / offline fallback mode
+      fetch('/api/tokens/today').then(r => r.json()).then(data => {
+        handleTokenSnapshot(data);
+      }).catch(()=>{});
+    }
+  }
+
+  function detachTokenQueue(){
+    if(tokenQueueAttached && db){
+      try{ db.ref('tokens/today').off('value'); }catch(e){}
+    }
+    tokenQueueAttached = false;
+    lastKnownTokenNum = undefined;
+    tokenDataState = null;
+  }
+
+  /* ---------- Live Token Badge UI Update ---------- */
+  function updateLiveTokenBadgeUI(data){
+    const badgeEl = $("liveTokenBadge");
+    const currentEl = $("liveCurrentTokenNum");
+    const nextEl = $("liveNextTokenNum");
+    if(!badgeEl || !currentEl || !nextEl) return;
+
+    if(!data || !data.total){
+      currentEl.textContent = "—";
+      nextEl.textContent = "—";
+      return;
+    }
+
+    if(data.current != null){
+      currentEl.textContent = data.current;
+    } else if(Array.isArray(data.queue) && data.queue.length === 0 && (data.done || []).length > 0){
+      currentEl.textContent = "مکمل";
+    } else {
+      currentEl.textContent = "—";
+    }
+
+    if(Array.isArray(data.queue) && data.queue.length > 0){
+      nextEl.textContent = data.queue[0];
+    } else if(data.current != null){
+      nextEl.textContent = "کوئی نہیں";
+    } else {
+      nextEl.textContent = "—";
+    }
+
+    badgeEl.classList.remove("pulse");
+    void badgeEl.offsetWidth;
+    badgeEl.classList.add("pulse");
+  }
+
+  if($("liveTokenBadge")){
+    $("liveTokenBadge").onclick = () => {
+      if(isAdminUser()){
+        const p = $("adminTokenPanel");
+        if(p) p.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        if(tokenDataState && tokenDataState.total){
+          const doneCount = (tokenDataState.done || []).length;
+          const leftCount = (tokenDataState.queue || []).length;
+          toast(`کل ٹوکن: ${tokenDataState.total} | مکمل: ${doneCount} | باقی: ${leftCount}`);
+        } else {
+          toast("آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے");
+        }
+      }
+    };
+  }
+
+  /* ---------- Admin Token Panel UI Update ---------- */
+  function updateAdminTokenPanelUI(data){
+    const panel = $("adminTokenPanel");
+    if(!panel) return;
+
+    if(!isAdminUser()){
+      panel.classList.add("hidden");
+      return;
+    }
+    panel.classList.remove("hidden");
+
+    const bigNumEl = $("tokenBigNum");
+    const noticeEl = $("tokenNoticeMsg");
+    const nextEl = $("statNextToken");
+    const totalEl = $("statTotalTokens");
+    const doneEl = $("statDoneTokens");
+    const skippedEl = $("statSkippedTokens");
+    const pendingEl = $("statPendingTokens");
+    const inputTotal = $("inputTotalTokens");
+    const statusTag = $("tokenStatusTag");
+    const skippedChips = $("skippedChips");
+    const skippedCount = $("skippedCount");
+
+    if(!data || !data.total){
+      bigNumEl.textContent = "—";
+      bigNumEl.classList.add("none");
+      noticeEl.textContent = "آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے";
+      nextEl.textContent = "—";
+      totalEl.textContent = "0";
+      doneEl.textContent = "0";
+      skippedEl.textContent = "0";
+      pendingEl.textContent = "0";
+      statusTag.textContent = "غیر شروع شدہ";
+      statusTag.style.background = "#475569";
+      if(inputTotal && document.activeElement !== inputTotal) inputTotal.value = "";
+      if(skippedChips) skippedChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن چھوڑا نہیں گیا</span>';
+      if(skippedCount) skippedCount.textContent = "(0)";
+      return;
+    }
+
+    if(data.current != null){
+      bigNumEl.textContent = data.current;
+      bigNumEl.classList.remove("none");
+      noticeEl.textContent = "";
+    } else if(Array.isArray(data.queue) && data.queue.length === 0){
+      bigNumEl.textContent = "تمام مکمل";
+      bigNumEl.classList.add("none");
+      noticeEl.textContent = "تمام ٹوکن مکمل ہو گئے ہیں";
+    } else {
+      bigNumEl.textContent = "—";
+      bigNumEl.classList.add("none");
+      noticeEl.textContent = "قطار تیار ہے، اگلا بلائیں";
+    }
+
+    if(data.status === "ended"){
+      statusTag.textContent = "آج کا دن ختم";
+      statusTag.style.background = "#7f1d1d";
+    } else {
+      statusTag.textContent = "فعال (Active)";
+      statusTag.style.background = "#16a34a";
+    }
+
+    const q = Array.isArray(data.queue) ? data.queue : [];
+    const done = Array.isArray(data.done) ? data.done : [];
+    const skipped = Array.isArray(data.skipped) ? data.skipped : [];
+
+    nextEl.textContent = q.length > 0 ? q[0] : (data.current != null ? "کوئی نہیں" : "—");
+    totalEl.textContent = data.total || 0;
+    doneEl.textContent = done.length;
+    skippedEl.textContent = skipped.length;
+    pendingEl.textContent = q.length;
+
+    if(inputTotal && document.activeElement !== inputTotal){
+      inputTotal.value = data.total || "";
+    }
+
+    if(skippedCount) skippedCount.textContent = `(${skipped.length})`;
+    if(skippedChips){
+      if(skipped.length === 0){
+        skippedChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن چھوڑا نہیں گیا</span>';
+      } else {
+        skippedChips.innerHTML = "";
+        skipped.forEach(num => {
+          const chip = document.createElement("div");
+          chip.className = "skipped-chip";
+          chip.innerHTML = `<span>ٹوکن #<strong>${num}</strong></span>`;
+          const putBtn = document.createElement("button");
+          putBtn.type = "button";
+          putBtn.className = "btn-put-back";
+          putBtn.textContent = "🔄 دوبارہ قطار میں ڈالیں";
+          putBtn.onclick = () => openPutBackModal(num);
+          chip.appendChild(putBtn);
+          skippedChips.appendChild(chip);
+        });
+      }
+    }
+  }
+
+  /* ---------- Admin Actions (Atomic Transactions) ---------- */
+
+  // 1. Set / Update Total Tokens
+  async function adminSetTotal(){
+    const input = $("inputTotalTokens");
+    if(!input) return;
+    const val = parseInt(input.value.trim(), 10);
+    if(isNaN(val) || val <= 0 || val > 500){
+      toast("براہِ کرم درست کل تعداد درج کریں (1 سے 500)");
+      return;
+    }
+
+    if(!isFirebaseConfigured || !db){
+      toast("فائر بیس سے رابطہ نہیں ہے");
+      return;
+    }
+
+    try{
+      await db.ref('tokens/today').transaction(currentData => {
+        const now = Date.now();
+        const dateStr = getTodayDateStr();
+
+        if(!currentData || !currentData.date || currentData.date !== dateStr || currentData.status === 'ended'){
+          const q = [];
+          for(let i = 2; i <= val; i++) q.push(i);
+          return {
+            date: dateStr,
+            total: val,
+            current: val >= 1 ? 1 : null,
+            queue: q,
+            done: [],
+            skipped: [],
+            status: "active",
+            startTime: now,
+            endTime: null,
+            updatedAt: now,
+            updatedBy: currentUser.name || currentUser.id
+          };
+        }
+
+        const oldTotal = currentData.total || 0;
+        let q = Array.isArray(currentData.queue) ? [...currentData.queue] : [];
+        const done = Array.isArray(currentData.done) ? [...currentData.done] : [];
+        const skipped = Array.isArray(currentData.skipped) ? [...currentData.skipped] : [];
+        const cur = currentData.current;
+
+        if(val > oldTotal){
+          for(let i = oldTotal + 1; i <= val; i++){
+            if(!done.includes(i) && !skipped.includes(i) && cur !== i && !q.includes(i)){
+              q.push(i);
+            }
+          }
+        } else if(val < oldTotal){
+          q = q.filter(num => num <= val);
+        }
+
+        currentData.total = val;
+        currentData.queue = q;
+        currentData.done = done;
+        currentData.skipped = skipped;
+        currentData.status = "active";
+        currentData.updatedAt = now;
+        currentData.updatedBy = currentUser.name || currentUser.id;
+
+        if(currentData.current == null && q.length > 0){
+          currentData.current = q.shift();
+          currentData.queue = q;
+        }
+
+        return currentData;
+      });
+
+      toast(`کل ٹوکن کی تعداد (${val}) کامیابی سے مقرر ہو گئی`);
+    }catch(err){
+      console.error("Set total error:", err);
+      toast("خرابی: ٹوکن محفوظ نہ ہو سکے (" + (err.message || err) + ")");
+    }
+  }
+
+  // 2. Call Next Token ("ٹوکن فارغ، اگلا بلائیں")
+  async function adminCallNextToken(){
+    if(!isFirebaseConfigured || !db){
+      toast("فائر بیس سے رابطہ نہیں ہے");
+      return;
+    }
+
+    if(!tokenDataState || !tokenDataState.total){
+      toast("پہلے آج کے کل ٹوکن مقرر کریں");
+      return;
+    }
+
+    const qLen = Array.isArray(tokenDataState.queue) ? tokenDataState.queue.length : 0;
+    if(tokenDataState.current == null && qLen === 0){
+      toast("تمام ٹوکن مکمل ہو گئے ہیں، قطار میں مزید کوئی ٹوکن باقی نہیں ہے");
+      return;
+    }
+
+    try{
+      let nextResultToken = null;
+      await db.ref('tokens/today').transaction(data => {
+        if(!data || !data.total) return data;
+        const now = Date.now();
+        let q = Array.isArray(data.queue) ? [...data.queue] : [];
+        let done = Array.isArray(data.done) ? [...data.done] : [];
+        let current = data.current;
+
+        if(current != null){
+          if(!done.includes(current)){
+            done.push(current);
+          }
+        }
+
+        if(q.length > 0){
+          current = q.shift();
+        } else {
+          current = null;
+        }
+
+        data.current = current;
+        data.queue = q;
+        data.done = done;
+        data.updatedAt = now;
+        data.updatedBy = currentUser.name || currentUser.id;
+        nextResultToken = current;
+        return data;
+      });
+
+      if(nextResultToken != null){
+        toast("ٹوکن " + nextResultToken + " کو بلایا گیا");
+      } else {
+        toast("تمام ٹوکن مکمل ہو گئے");
+      }
+    }catch(err){
+      console.error("Call next error:", err);
+      toast("خرابی: اگلا ٹوکن نہ بلایا جا سکا");
+    }
+  }
+
+  // 3. Previous Token (Undo)
+  async function adminCallPreviousToken(){
+    if(!isFirebaseConfigured || !db) return;
+    if(!tokenDataState || !tokenDataState.total){
+      toast("اس سے پہلے کوئی ٹوکن موجود نہیں ہے");
+      return;
+    }
+
+    const doneLen = Array.isArray(tokenDataState.done) ? tokenDataState.done.length : 0;
+    if(doneLen === 0){
+      toast("اس سے پہلے کوئی ٹوکن موجود نہیں ہے");
+      return;
+    }
+
+    try{
+      let restoredToken = null;
+      await db.ref('tokens/today').transaction(data => {
+        if(!data || !data.total) return data;
+        let q = Array.isArray(data.queue) ? [...data.queue] : [];
+        let done = Array.isArray(data.done) ? [...data.done] : [];
+        let current = data.current;
+
+        if(done.length === 0) return data;
+
+        const prev = done.pop();
+        if(current != null){
+          q.unshift(current);
+        }
+
+        data.current = prev;
+        data.done = done;
+        data.queue = q;
+        data.updatedAt = Date.now();
+        data.updatedBy = currentUser.name || currentUser.id;
+        restoredToken = prev;
+        return data;
+      });
+
+      if(restoredToken != null){
+        toast("واپس پچھلے ٹوکن (" + restoredToken + ") پر چلے گئے");
+      }
+    }catch(err){
+      console.error("Previous token error:", err);
+      toast("خرابی: پچھلا ٹوکن نہ لایا جا سکا");
+    }
+  }
+
+  // 4. Skip Token ("ٹوکن چھوڑیں")
+  async function adminSkipToken(){
+    if(!isFirebaseConfigured || !db) return;
+    if(!tokenDataState || !tokenDataState.total || tokenDataState.current == null){
+      toast("چھوڑنے کے لیے کوئی ٹوکن فعال نہیں ہے");
+      return;
+    }
+
+    const skippedNum = tokenDataState.current;
+
+    try{
+      await db.ref('tokens/today').transaction(data => {
+        if(!data || !data.total || data.current == null) return data;
+        let q = Array.isArray(data.queue) ? [...data.queue] : [];
+        let skipped = Array.isArray(data.skipped) ? [...data.skipped] : [];
+        let current = data.current;
+
+        if(!skipped.includes(current)){
+          skipped.push(current);
+        }
+
+        if(q.length > 0){
+          current = q.shift();
+        } else {
+          current = null;
+        }
+
+        data.current = current;
+        data.queue = q;
+        data.skipped = skipped;
+        data.updatedAt = Date.now();
+        data.updatedBy = currentUser.name || currentUser.id;
+        return data;
+      });
+
+      toast(`ٹوکن ${skippedNum} چھوڑ دیا گیا اور اگلا بلایا گیا`);
+    }catch(err){
+      console.error("Skip token error:", err);
+      toast("خرابی: ٹوکن نہ چھوڑا جا سکا");
+    }
+  }
+
+  // 5. Put Back Skipped Token in Queue ("دوبارہ قطار میں ڈالیں")
+  function openPutBackModal(tokenNum){
+    selectedPutBackToken = tokenNum;
+    selectedPutBackOffset = 3;
+
+    $("putBackTitle").textContent = `ٹوکن #${tokenNum} کو دوبارہ قطار میں ڈالیں`;
+    $("putBackDesc").textContent = `ٹوکن #${tokenNum} کو موجودہ ٹوکن کے کتنے ٹوکن بعد بلایا جائے؟ (1 سے 10 تک منتخب کریں)`;
+
+    const wrap = $("offsetChipsWrap");
+    wrap.innerHTML = "";
+    for(let i = 1; i <= 10; i++){
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "offset-chip" + (i === 3 ? " active" : "");
+      btn.textContent = i + " بعد";
+      btn.onclick = () => {
+        selectedPutBackOffset = i;
+        wrap.querySelectorAll(".offset-chip").forEach(c => c.classList.remove("active"));
+        btn.classList.add("active");
+      };
+      wrap.appendChild(btn);
+    }
+
+    $("putBackModal").classList.remove("hidden");
+  }
+
+  async function confirmPutBackToken(){
+    if(!selectedPutBackToken) return;
+    const tokenNum = selectedPutBackToken;
+    const offset = selectedPutBackOffset;
+    $("putBackModal").classList.add("hidden");
+
+    if(!isFirebaseConfigured || !db) return;
+
+    try{
+      await db.ref('tokens/today').transaction(data => {
+        if(!data || !Array.isArray(data.skipped)) return data;
+        let skipped = [...data.skipped];
+        let q = Array.isArray(data.queue) ? [...data.queue] : [];
+
+        const idx = skipped.indexOf(tokenNum);
+        if(idx === -1) return data;
+        skipped.splice(idx, 1);
+
+        if(data.current == null && q.length === 0){
+          data.current = tokenNum;
+        } else {
+          if(offset >= q.length){
+            q.push(tokenNum);
+          } else {
+            q.splice(offset, 0, tokenNum);
+          }
+        }
+
+        data.skipped = skipped;
+        data.queue = q;
+        data.updatedAt = Date.now();
+        data.updatedBy = currentUser.name || currentUser.id;
+        return data;
+      });
+
+      toast(`ٹوکن ${tokenNum} کو ${offset} ٹوکن بعد قطار میں شامل کر دیا گیا`);
+    }catch(err){
+      console.error("Put back error:", err);
+      toast("خرابی: ٹوکن قطار میں واپس نہ ڈالا جا سکا");
+    }
+  }
+
+  // 6. End Today ("آج کے ٹوکن ختم")
+  async function adminEndDay(){
+    if(!tokenDataState || !tokenDataState.total){
+      toast("آج کوئی ٹوکن فعال نہیں ہے");
+      return;
+    }
+
+    const ok = confirm("کیا آپ واقعی آج کے ٹوکن ختم کرنا چاہتے ہیں؟\nآج کا مکمل یومیہ ریکارڈ ہسٹری میں محفوظ ہو جائے گا۔");
+    if(!ok) return;
+
+    if(!isFirebaseConfigured || !db) return;
+
+    try{
+      const dateKey = tokenDataState.date || getTodayDateStr();
+      const now = Date.now();
+      const doneList = tokenDataState.done || [];
+      const skippedList = tokenDataState.skipped || [];
+      const queueList = tokenDataState.queue || [];
+      const leftCount = queueList.length + (tokenDataState.current != null ? 1 : 0);
+
+      const historyRecord = {
+        date: dateKey,
+        total: tokenDataState.total || 0,
+        served: doneList.length,
+        skipped: skippedList.length,
+        left: leftCount,
+        startTime: tokenDataState.startTime || null,
+        endTime: now,
+        doneTokens: doneList,
+        skippedTokens: skippedList,
+        lastToken: tokenDataState.current || null,
+        endedBy: currentUser.name || currentUser.id,
+        savedAt: now
+      };
+
+      await db.ref(`tokens/history/${dateKey}`).set(historyRecord);
+
+      await db.ref('tokens/today').update({
+        status: "ended",
+        endTime: now,
+        updatedAt: now,
+        updatedBy: currentUser.name || currentUser.id
+      });
+
+      toast("آج کے ٹوکن کامیابی سے ختم کر کے ہسٹری میں محفوظ کر دیے گئے ہیں");
+    }catch(err){
+      console.error("End day error:", err);
+      toast("خرابی: دن ختم نہ کیا جا سکا");
+    }
+  }
+
+  // 7. Start New Day ("نیا دن شروع کریں")
+  async function adminStartNewDay(){
+    const ok = confirm("کیا آپ نیا دن شروع کرنا چاہتے ہیں؟\nاگر پرانا دن محفوظ نہیں تھا تو وہ ہسٹری میں محفوظ ہو جائے گا اور نیا کاؤنٹر شروع ہو گا۔");
+    if(!ok) return;
+
+    if(!isFirebaseConfigured || !db) return;
+
+    try{
+      if(tokenDataState && tokenDataState.total && tokenDataState.status !== "ended"){
+        const dateKey = tokenDataState.date || getTodayDateStr();
+        const now = Date.now();
+        const doneList = tokenDataState.done || [];
+        const skippedList = tokenDataState.skipped || [];
+        const queueList = tokenDataState.queue || [];
+        const leftCount = queueList.length + (tokenDataState.current != null ? 1 : 0);
+
+        const historyRecord = {
+          date: dateKey,
+          total: tokenDataState.total || 0,
+          served: doneList.length,
+          skipped: skippedList.length,
+          left: leftCount,
+          startTime: tokenDataState.startTime || null,
+          endTime: now,
+          doneTokens: doneList,
+          skippedTokens: skippedList,
+          lastToken: tokenDataState.current || null,
+          endedBy: currentUser.name || currentUser.id,
+          savedAt: now
+        };
+        await db.ref(`tokens/history/${dateKey}`).set(historyRecord);
+      }
+
+      const todayStr = getTodayDateStr();
+      const now = Date.now();
+      const freshDay = {
+        date: todayStr,
+        total: 0,
+        current: null,
+        queue: [],
+        done: [],
+        skipped: [],
+        status: "not_started",
+        startTime: null,
+        endTime: null,
+        updatedAt: now,
+        updatedBy: currentUser.name || currentUser.id
+      };
+
+      await db.ref('tokens/today').set(freshDay);
+      toast("نئے دن کے لیے ٹوکن قطار ری سیٹ کر دی گئی ہے");
+    }catch(err){
+      console.error("Start new day error:", err);
+      toast("خرابی: نیا دن شروع نہ کیا جا سکا");
+    }
+  }
+
+  // 8. Token History Modal
+  async function openTokenHistory(){
+    const modal = $("tokenHistoryModal");
+    const list = $("tokenHistoryList");
+    if(!modal || !list) return;
+
+    list.innerHTML = '<div style="text-align:center;color:var(--muted);padding:30px">ہسٹری لوڈ ہو رہی ہے...</div>';
+    modal.classList.remove("hidden");
+
+    if(!isFirebaseConfigured || !db){
+      list.innerHTML = '<div style="text-align:center;color:var(--muted);padding:20px">فائر بیس کنکشن دستیاب نہیں ہے</div>';
+      return;
+    }
+
+    try{
+      const snap = await db.ref('tokens/history').once('value');
+      const val = snap.val();
+      if(!val || typeof val !== 'object' || Object.keys(val).length === 0){
+        list.innerHTML = '<div style="text-align:center;color:var(--muted);padding:30px">سابقہ دنوں کا کوئی ریکارڈ موجود نہیں ہے</div>';
+        return;
+      }
+
+      const records = Object.keys(val).map(k => ({ id: k, ...val[k] }));
+      records.sort((a,b) => (b.savedAt || b.endTime || 0) - (a.savedAt || a.endTime || 0));
+
+      list.innerHTML = "";
+      records.forEach(rec => {
+        const item = document.createElement("div");
+        item.style.cssText = "background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px";
+
+        const startFormatted = formatTime(rec.startTime);
+        const endFormatted = formatTime(rec.endTime);
+
+        item.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed #334155;padding-bottom:6px">
+            <span style="font-family:var(--font-latin-heading);font-size:1.15rem;font-weight:700;color:#38bdf8">📅 ${rec.date || rec.id}</span>
+            <span style="font-size:.85rem;color:var(--muted)">وقت: ${startFormatted} تا ${endFormatted}</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:1rem;color:#cbd5e1;padding-top:4px">
+            <div>کل ٹوکن: <strong style="color:#fff">${rec.total || 0}</strong></div>
+            <div>مکمل ہو چکے: <strong style="color:#22c55e">${rec.served || 0}</strong></div>
+            <div>چھوڑے گئے: <strong style="color:#f59e0b">${rec.skipped || 0}</strong></div>
+            <div>باقی بچے: <strong style="color:#94a3b8">${rec.left || 0}</strong></div>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }catch(err){
+      console.error("Load token history error:", err);
+      list.innerHTML = '<div style="text-align:center;color:#fca5a5;padding:20px">ہسٹری لوڈ کرنے میں خرابی پیش آئی</div>';
+    }
+  }
+
+  if($("btnSetTotalTokens")) $("btnSetTotalTokens").onclick = adminSetTotal;
+  if($("btnCallNextToken")) $("btnCallNextToken").onclick = adminCallNextToken;
+  if($("btnPrevToken")) $("btnPrevToken").onclick = adminCallPreviousToken;
+  if($("btnSkipToken")) $("btnSkipToken").onclick = adminSkipToken;
+  if($("btnEndDay")) $("btnEndDay").onclick = adminEndDay;
+  if($("btnNewDay")) $("btnNewDay").onclick = adminStartNewDay;
+  if($("btnOpenTokenHistory")) $("btnOpenTokenHistory").onclick = openTokenHistory;
+  if($("btnCloseTokenHistory")) $("btnCloseTokenHistory").onclick = () => $("tokenHistoryModal").classList.add("hidden");
+  if($("btnConfirmPutBack")) $("btnConfirmPutBack").onclick = confirmPutBackToken;
+  if($("btnCancelPutBack")) $("btnCancelPutBack").onclick = () => $("putBackModal").classList.add("hidden");
+
   function showApp(){
     $("login").classList.add("hidden");
     $("app").classList.remove("hidden");
     renderUserHeader();
     buildGrid();
     loadLocalHistory();
-    if(!started){ started = true; initMessaging(); }
+    if(!started){ initMessaging(); }
+    initTokenQueue();
     checkSoundBar();
     applyWake();
     if(currentUser) registerFcmTokenForUser(currentUser.id);
@@ -2915,8 +3882,8 @@
     stopMic();
     const target = currentTarget;
     const replyText = activeReplyContext ? activeReplyContext.text : "";
-    const isToAdmin = (target.id === "admin");
-    const isPeer = (!isToAdmin && currentUser.role === "user" && target.id !== "superadmin");
+    const isToAdmin = target && (target.id === "admin" || target.id === "superadmin");
+    const isPeer = (!isToAdmin && currentUser.role === "user");
 
     const msgPayload = {
       to: isToAdmin ? currentUser.id : target.id,
@@ -3273,8 +4240,8 @@
 
       const target = currentTarget;
       const replyText = activeReplyContext ? activeReplyContext.text : "";
-      const isToAdmin = (target.id === "admin");
-      const isPeer = (!isToAdmin && currentUser.role === "user" && target.id !== "superadmin");
+      const isToAdmin = target && (target.id === "admin" || target.id === "superadmin");
+      const isPeer = (!isToAdmin && currentUser.role === "user");
 
       const msgPayload = {
         to: isToAdmin ? currentUser.id : target.id,
@@ -3661,13 +4628,51 @@
   /* ---------- Startup Initialization ---------- */
   setupQuickLogin();
   updateNotificationButtonUI();
-  try{
-    const savedUserStr = sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY);
-    if(savedUserStr){
-      currentUser = JSON.parse(savedUserStr);
-      showApp();
+  if(auth){
+    auth.onAuthStateChanged(fbUser => {
+      if(fbUser){
+        if(currentUser && !started){
+          initMessaging();
+        }
+      }
+      if(currentUser){
+        renderUserHeader();
+      }
+    });
+  }
+
+  (async function initSessionRestore(){
+    try{
+      const savedUserStr = sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY);
+      const savedToken = sessionStorage.getItem("intercom_custom_token") || localStorage.getItem("intercom_custom_token");
+
+      if(savedUserStr){
+        currentUser = JSON.parse(savedUserStr);
+        if(isFirebaseConfigured && auth){
+          if(auth.currentUser){
+            showApp();
+            return;
+          }
+          if(savedToken){
+            try{
+              await auth.signInWithCustomToken(savedToken);
+              showApp();
+              return;
+            }catch(err){
+              console.warn("Stored custom token expired or invalid:", err);
+            }
+          }
+          // If token restore failed, do not leave user in broken UI state
+          doLogout();
+          return;
+        } else {
+          showApp();
+        }
+      }
+    }catch(e){
+      console.warn("Session restore error:", e);
     }
-  }catch(e){}
+  })();
 })();
 </script>
 </body>
