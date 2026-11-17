@@ -13,6 +13,9 @@ function getAdmin() {
   }
 
   const serviceAccount = typeof serviceAccountRaw === 'string' ? JSON.parse(serviceAccountRaw) : serviceAccountRaw;
+  if (serviceAccount && serviceAccount.private_key) {
+    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+  }
 
   if (!admin.apps.length) {
     adminApp = admin.initializeApp({

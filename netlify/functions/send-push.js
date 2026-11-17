@@ -14,6 +14,9 @@ function getAdmin() {
   let serviceAccount;
   try {
     serviceAccount = typeof serviceAccountRaw === 'string' ? JSON.parse(serviceAccountRaw) : serviceAccountRaw;
+    if (serviceAccount && serviceAccount.private_key) {
+      serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+    }
   } catch (e) {
     throw new Error('Invalid JSON in FIREBASE_SERVICE_ACCOUNT_JSON: ' + e.message);
   }
