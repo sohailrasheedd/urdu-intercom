@@ -412,104 +412,212 @@
   .btn-reset-pw:hover{background:#b45309}
 
   /* User Screen Sections (Admin Inbox vs Peer Contacts) */
-  .user-section-title{
-    width:100%;
-    max-width:1300px;
-    margin:12px auto 8px;
-    font-family:var(--font-urdu-heading);
-    font-size:1.35rem;
-    font-weight:700;
-    color:#93c5fd;
-    line-height:var(--lh-urdu-heading);
-    border-bottom:1px solid #334155;
-    padding-bottom:4px;
-    letter-spacing:0;
-  }
-  .user-inbox-wrap{
-    width:100%;
-    max-width:1300px;
-    margin:0 auto 16px;
-  }
-  .user-inbox-wrap .person{
-    min-height:220px;
-  }
-  .user-contacts-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:14px;
+  /* User Screen Sections (Admin Inbox vs Peer Contacts) */
+  .grid.staff-view{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
     width:100%;
     max-width:1300px;
     margin:0 auto;
   }
+  .staff-section{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .user-section-title{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    font-family:var(--font-urdu-body);
+    font-size:1.25rem;
+    font-weight:700;
+    color:#93c5fd;
+    line-height:1.6;
+    border-bottom:2px solid #334155;
+    padding-bottom:6px;
+    letter-spacing:0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .user-inbox-wrap{
+    width:100%;
+    margin:0;
+  }
+  .user-inbox-wrap .person{
+    min-height:190px;
+    width:100%;
+  }
+  .user-contacts-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    width:100%;
+    margin:0;
+  }
+  @media(max-width:960px){
+    .user-contacts-grid{grid-template-columns:repeat(2, 1fr)}
+  }
+  @media(max-width:600px){
+    .user-contacts-grid{grid-template-columns:1fr}
+  }
 
   /* ---------- Live Token Queue Badge (Top Bar) ---------- */
-  .live-token-badge{display:inline-flex;align-items:center;gap:10px;background:#0f172a;border:2px solid #38bdf8;box-shadow:0 0 12px rgba(56,189,248,.25);padding:6px 14px;border-radius:14px;cursor:pointer;user-select:none;transition:all .2s ease}
+  .live-token-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:#0f172a;
+    border:2px solid #38bdf8;
+    box-shadow:0 0 12px rgba(56,189,248,.25);
+    padding:6px 14px;
+    border-radius:14px;
+    cursor:pointer;
+    user-select:none;
+    transition:all .2s ease;
+    min-height:44px;
+  }
   .live-token-badge:hover{border-color:#60a5fa;box-shadow:0 0 16px rgba(96,165,250,.4);transform:translateY(-1px)}
   .live-token-badge.pulse{animation:tokenPulse .8s ease}
   @keyframes tokenPulse{0%{transform:scale(1);box-shadow:0 0 12px rgba(56,189,248,.25)}50%{transform:scale(1.06);box-shadow:0 0 24px rgba(34,197,94,.6);border-color:#22c55e}100%{transform:scale(1);box-shadow:0 0 12px rgba(56,189,248,.25)}}
-  .token-main-txt{font-family:var(--font-urdu-heading);font-size:1.15rem;font-weight:700;color:#f8fafc;line-height:var(--lh-urdu-heading);display:flex;align-items:center;gap:6px}
+  .token-no-set{
+    font-family:var(--font-urdu-body);
+    font-size:1.05rem;
+    font-weight:700;
+    color:#fbbf24;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+  }
+  .token-active-wrap{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .token-main-txt{
+    font-family:var(--font-urdu-body);
+    font-size:1.1rem;
+    font-weight:700;
+    color:#f8fafc;
+    line-height:1.4;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+  }
   .token-num-highlight{color:#38bdf8;font-family:var(--font-latin-heading);font-size:1.4rem;font-weight:800;padding:0 4px}
-  .token-next-txt{font-family:var(--font-urdu-body);font-size:.88rem;color:#94a3b8;border-right:1px solid #334155;padding-right:10px;line-height:var(--lh-urdu-body)}
-  .token-next-highlight{color:#fbbf24;font-family:var(--font-latin-heading);font-weight:700;font-size:1rem}
+  .token-next-txt{font-family:var(--font-urdu-body);font-size:.9rem;color:#94a3b8;border-right:1px solid #334155;padding-right:10px;line-height:1.4;display:flex;align-items:center;gap:4px;white-space:nowrap}
+  .token-next-highlight{color:#fbbf24;font-family:var(--font-latin-heading);font-weight:700;font-size:1.1rem}
 
   /* ---------- Admin Token Queue Panel ---------- */
   .admin-token-panel{background:var(--card);border:2px solid #334155;border-radius:20px;padding:18px 20px;margin:0 auto 18px;max-width:1300px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
   .token-panel-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-bottom:1px solid #334155;padding-bottom:12px;margin-bottom:16px}
-  .token-panel-title{font-family:var(--font-urdu-heading);font-size:1.4rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px}
+  .token-panel-title{font-family:var(--font-urdu-body);font-size:1.35rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px}
   .token-panel-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .token-panel-body{display:grid;grid-template-columns:1fr 1.15fr;gap:16px;align-items:start}
   @media(max-width:850px){.token-panel-body{grid-template-columns:1fr}}
   .token-big-display{background:#0f172a;border:2px solid #3b82f6;border-radius:18px;padding:18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}
-  .token-big-label{font-family:var(--font-urdu-heading);font-size:1.2rem;color:#93c5fd;margin-bottom:4px}
+  .token-big-label{font-family:var(--font-urdu-body);font-size:1.15rem;font-weight:700;color:#93c5fd;margin-bottom:4px}
   .token-big-number{font-family:var(--font-latin-heading);font-size:4.2rem;font-weight:900;color:#22c55e;line-height:1;margin:6px 0;text-shadow:0 0 20px rgba(34,197,94,.4)}
-  .token-big-number.none{font-size:2rem;color:#64748b;font-family:var(--font-urdu-heading);text-shadow:none}
+  .token-big-number.none{font-size:2rem;color:#64748b;font-family:var(--font-urdu-body);text-shadow:none}
   .token-stats-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin-top:10px;padding-top:10px;border-top:1px dashed #334155;font-size:.95rem;color:#cbd5e1;font-family:var(--font-urdu-body)}
   .token-stat-item span{font-weight:700;color:#f8fafc}
   .token-controls-wrap{display:flex;flex-direction:column;gap:12px}
   .token-total-setting-box{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-  .token-total-input{width:90px;padding:8px 10px;text-align:center;font-size:1.3rem;font-weight:700;border-radius:10px;border:2px solid #334155;background:#1e293b;color:#fff;outline:none}
+  .token-total-input{width:90px;min-height:44px;padding:8px 10px;text-align:center;font-size:1.3rem;font-weight:700;border-radius:10px;border:2px solid #334155;background:#1e293b;color:#fff;outline:none}
   .token-total-input:focus{border-color:#3b82f6}
-  .btn-token-next{width:100%;padding:16px 20px;background:linear-gradient(135deg,#16a34a 0%,#15803d 100%);border:0;border-radius:16px;color:#fff;font-family:var(--font-urdu-heading);font-size:1.55rem;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(22,163,74,.4);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s ease;user-select:none}
+  .btn-token-next{width:100%;min-height:56px;padding:14px 20px;background:linear-gradient(135deg,#16a34a 0%,#15803d 100%);border:0;border-radius:16px;color:#fff;font-family:var(--font-urdu-body);font-size:1.45rem;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(22,163,74,.4);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s ease;user-select:none}
   .btn-token-next:hover{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);box-shadow:0 8px 25px rgba(34,197,94,.5);transform:translateY(-2px)}
   .btn-token-next:active{transform:translateY(1px) scale(.98)}
   .token-sub-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .btn-token-prev{padding:12px 14px;background:#334155;border:1px solid #475569;border-radius:12px;color:#f1f5f9;font-family:var(--font-urdu-heading);font-size:1.15rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+  .btn-token-prev{min-height:46px;padding:10px 14px;background:#334155;border:1px solid #475569;border-radius:12px;color:#f1f5f9;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
   .btn-token-prev:hover{background:#475569}
-  .btn-token-skip{padding:12px 14px;background:#d97706;border:1px solid #b45309;border-radius:12px;color:#fff;font-family:var(--font-urdu-heading);font-size:1.15rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+  .btn-token-skip{min-height:46px;padding:10px 14px;background:#d97706;border:1px solid #b45309;border-radius:12px;color:#fff;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
   .btn-token-skip:hover{background:#f59e0b}
   .token-skipped-box{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px}
-  .skipped-title{font-family:var(--font-urdu-heading);font-size:1.1rem;font-weight:700;color:#f59e0b;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .skipped-title{font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;color:#f59e0b;margin-bottom:8px;display:flex;align-items:center;gap:6px}
   .skipped-chips{display:flex;flex-wrap:wrap;gap:8px}
-  .skipped-chip{display:inline-flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #f59e0b;padding:4px 10px;border-radius:10px;font-family:var(--font-urdu-body);font-size:.95rem;color:#fff}
-  .btn-put-back{background:#2563eb;border:0;border-radius:8px;color:#fff;padding:4px 10px;font-size:.85rem;font-family:var(--font-urdu-body);font-weight:700;cursor:pointer;transition:background .15s}
+  .skipped-chip{display:inline-flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #f59e0b;padding:6px 12px;border-radius:10px;font-family:var(--font-urdu-body);font-size:.95rem;color:#fff}
+  .btn-put-back{min-height:36px;background:#2563eb;border:0;border-radius:8px;color:#fff;padding:4px 10px;font-size:.85rem;font-family:var(--font-urdu-body);font-weight:700;cursor:pointer;transition:background .15s}
   .btn-put-back:hover{background:#1d4ed8}
   .token-day-controls{display:flex;gap:10px;margin-top:4px;padding-top:10px;border-top:1px solid #334155}
-  .btn-end-day{flex:1;background:#7f1d1d;border:1px solid #991b1b;color:#fecaca;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-heading);font-size:1.05rem;font-weight:700;cursor:pointer}
+  .btn-end-day{min-height:44px;flex:1;background:#7f1d1d;border:1px solid #991b1b;color:#fecaca;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-body);font-size:1.02rem;font-weight:700;cursor:pointer}
   .btn-end-day:hover{background:#991b1b;color:#fff}
-  .btn-new-day{flex:1;background:#1e3a8a;border:1px solid #1d4ed8;color:#bfdbfe;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-heading);font-size:1.05rem;font-weight:700;cursor:pointer}
+  .btn-new-day{min-height:44px;flex:1;background:#1e3a8a;border:1px solid #1d4ed8;color:#bfdbfe;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-body);font-size:1.02rem;font-weight:700;cursor:pointer}
   .btn-new-day:hover{background:#1d4ed8;color:#fff}
-  .offset-chip{border:1px solid #475569;background:#1e293b;color:#cbd5e1;padding:6px 14px;border-radius:10px;font-family:var(--font-latin-heading);font-size:1.1rem;font-weight:700;cursor:pointer;transition:all .15s}
+  .offset-chip{min-height:40px;border:1px solid #475569;background:#1e293b;color:#cbd5e1;padding:6px 14px;border-radius:10px;font-family:var(--font-latin-heading);font-size:1.1rem;font-weight:700;cursor:pointer;transition:all .15s}
   .offset-chip.active{background:#2563eb;color:#fff;border-color:#60a5fa}
 
   /* ---------- Responsive Media Queries ---------- */
   @media (max-width: 768px) {
-    #app{padding:10px;padding-bottom:130px}
+    #app{padding:10px;padding-bottom:110px}
     .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-    .top-nav{padding:10px 14px}
+    .top-nav{padding:10px 12px;gap:8px}
   }
 
   @media (max-width: 600px) {
-    #app{padding:8px;padding-bottom:140px}
-    .top-nav{flex-direction:column;align-items:stretch;gap:10px;padding:10px 12px;border-radius:16px}
-    .user-badge{justify-content:space-between;font-size:1.15rem;gap:6px}
-    .nav-actions{display:flex;justify-content:stretch;gap:8px}
-    .btn-super, .logout-top{flex:1;text-align:center;padding:8px 10px}
+    #app{padding:8px;padding-bottom:120px}
+    .top-nav{
+      flex-direction:column;
+      align-items:stretch;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:16px;
+    }
+    .user-badge{
+      justify-content:space-between;
+      font-size:1rem;
+      gap:6px;
+      width:100%;
+    }
+    .live-token-badge{
+      width:100%;
+      justify-content:center;
+      padding:8px 10px;
+      box-sizing:border-box;
+    }
+    .nav-actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:6px;
+      width:100%;
+    }
+    .nav-actions > button{
+      flex:1 1 calc(50% - 6px);
+      text-align:center;
+      justify-content:center;
+      padding:8px 6px;
+      font-size:.86rem;
+      min-height:44px;
+      box-sizing:border-box;
+    }
+    .btn-super, .logout-top{
+      flex:1 1 100%;
+    }
     .login-box{padding:24px 14px;border-radius:18px}
-    .login-box h1{font-size:2rem}
-    .tools{bottom:8px;padding:6px 10px;border-radius:18px;gap:6px}
-    .tool{padding:6px 10px;font-size:.9rem}
+    .login-box h1{font-size:1.85rem}
+    .tools{
+      bottom:10px;
+      padding:6px 10px;
+      border-radius:20px;
+      gap:6px;
+      max-width:calc(100% - 16px);
+    }
+    .tool{
+      padding:6px 10px;
+      font-size:.85rem;
+      min-height:38px;
+    }
     .sheet, .hist-sheet, .super-sheet{padding:16px 12px;border-radius:18px}
     .form-grid{grid-template-columns:1fr}
+    .token-sub-actions{grid-template-columns:1fr}
+    .token-day-controls{flex-direction:column}
   }
 </style>
 </head>
@@ -542,18 +650,21 @@
   <div class="top-nav">
     <div class="user-badge" id="userBadge"></div>
     <div id="liveTokenBadge" class="live-token-badge" title="موجودہ ٹوکن کی تفصیلات">
-      <div class="token-main-txt">
-        <span>چل رہا ٹوکن:</span>
-        <span id="liveCurrentTokenNum" class="token-num-highlight">—</span>
-      </div>
-      <div class="token-next-txt">
-        <span>اگلا:</span>
-        <span id="liveNextTokenNum" class="token-next-highlight">—</span>
+      <div id="tokenNoSetTxt" class="token-no-set">آج کے لیے ٹوکن مقرر نہیں</div>
+      <div id="tokenActiveWrap" class="token-active-wrap hidden">
+        <div class="token-main-txt">
+          <span>چل رہا ٹوکن:</span>
+          <span id="liveCurrentTokenNum" class="token-num-highlight">—</span>
+        </div>
+        <div class="token-next-txt">
+          <span>اگلا:</span>
+          <span id="liveNextTokenNum" class="token-next-highlight">—</span>
+        </div>
       </div>
     </div>
     <div class="nav-actions">
       <button class="btn-pin-change hidden" id="installTopBtn" title="ایپ کو ہوم اسکرین پر انسٹال کریں">
-        <span>📲 انسٹال کریں</span>
+        <span>📲 انسٹال</span>
       </button>
       <button class="btn-pin-change" id="notifyTopBtn" title="پش نوٹیفکیشن کی ترتیبات">
         <span>🔔 نوٹیفکیشن</span>
@@ -563,10 +674,10 @@
           <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
           <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
         </svg>
-        <span>پن تبدیل کریں</span>
+        <span>پن تبدیل</span>
       </button>
       <button class="btn-super hidden" id="superBtn">سپر ایڈمن کنٹرول</button>
-      <button class="logout-top" id="logoutTop">🚪 لاگ آؤٹ / باہر نکلیں</button>
+      <button class="logout-top" id="logoutTop" title="اکاؤنٹ سے لاگ آؤٹ کریں">🚪 لاگ آؤٹ</button>
     </div>
   </div>
 
@@ -847,14 +958,8 @@
             <input type="text" id="newPersonName" placeholder="نام (مثلاً علی)">
             <input type="text" id="newPersonId" placeholder="آئی ڈی (مثلاً ali)">
             <input type="text" id="newPersonPass" placeholder="ابتدائی پن (1234)" value="1234" maxlength="4">
-            <select id="newPersonColor">
-              <option value="#1e88e5">نیلا (Blue)</option>
-              <option value="#43a047">سبز (Green)</option>
-              <option value="#fb8c00">نارنجی (Orange)</option>
-              <option value="#8e24aa">جامنی (Purple)</option>
-              <option value="#e53935">سرخ (Red)</option>
-              <option value="#0d9488">فیروزی (Teal)</option>
-            </select>
+            <div style="display:flex;align-items:center;justify-content:center;background:#0f172a;border:1px solid #334155;border-radius:12px;padding:10px 14px;color:#93c5fd;font-size:0.95rem;font-weight:700">🎨 کارڈ کا رنگ: خودکار (Auto Assigned)</div>
+            <input type="hidden" id="newPersonColor" value="auto">
           </div>
           <button type="button" class="btn-add-person" id="btnAddPerson">شامل کریں</button>
         </div>
@@ -1846,12 +1951,14 @@
 
     if(currentUser.role === "superadmin"){
       g.classList.remove("single-mode");
+      g.classList.remove("staff-view");
       activePeople.forEach(p => {
         const d = createPersonCard(p, false);
         g.appendChild(d);
       });
     } else if(currentUser.role === "admin"){
       g.classList.remove("single-mode");
+      g.classList.remove("staff-view");
       const allowed = Array.isArray(adminPermissions.allowedPeople) ? adminPermissions.allowedPeople : activePeople.map(x=>x.id);
       const visibleList = activePeople.filter(p => allowed.includes(p.id));
       if(visibleList.length === 0){
@@ -1863,14 +1970,18 @@
         });
       }
     } else {
-      // Normal User Screen: Two Parts (Task A)
+      // Normal User Screen: Single Vertical Column (Section 1 on top, Section 2 below)
       g.classList.remove("single-mode");
+      g.classList.add("staff-view");
 
-      // Part 1: Heading & Own Inbox Card (Messages from Admin)
+      // Section 1: Heading directly above Admin inbox card
+      const sec1 = document.createElement("div");
+      sec1.className = "staff-section staff-admin-section";
+
       const adminTitle = document.createElement("div");
       adminTitle.className = "user-section-title";
-      adminTitle.textContent = "ایڈمن کی طرف سے پیغامات";
-      g.appendChild(adminTitle);
+      adminTitle.textContent = "📬 ایڈمن کی طرف سے پیغامات";
+      sec1.appendChild(adminTitle);
 
       const inboxWrap = document.createElement("div");
       inboxWrap.className = "user-inbox-wrap";
@@ -1881,15 +1992,19 @@
       };
       const ownCard = createPersonCard(ownPerson, true);
       inboxWrap.appendChild(ownCard);
-      g.appendChild(inboxWrap);
+      sec1.appendChild(inboxWrap);
+      g.appendChild(sec1);
 
-      // Part 2: Heading & Peer Contact Cards (Other People only, excluding Admin & Superadmin)
+      // Section 2: Heading directly above Peer Contact Cards
       const contacts = activePeople.filter(p => p.id !== currentUser.id && p.id !== 'admin' && p.id !== 'superadmin');
       if(contacts.length > 0){
+        const sec2 = document.createElement("div");
+        sec2.className = "staff-section staff-peers-section";
+
         const contactTitle = document.createElement("div");
         contactTitle.className = "user-section-title";
-        contactTitle.textContent = "دیگر افراد کو پیغام بھیجیں";
-        g.appendChild(contactTitle);
+        contactTitle.textContent = "👥 دیگر افراد کو پیغام بھیجیں";
+        sec2.appendChild(contactTitle);
 
         const contactsGrid = document.createElement("div");
         contactsGrid.className = "user-contacts-grid";
@@ -1897,7 +2012,8 @@
           const cCard = createPersonCard(contact, false);
           contactsGrid.appendChild(cCard);
         });
-        g.appendChild(contactsGrid);
+        sec2.appendChild(contactsGrid);
+        g.appendChild(sec2);
       }
     }
   }
@@ -1907,7 +2023,7 @@
     const d = document.createElement("div");
     d.className = "person";
     d.id = "p_" + p.id;
-    d.style.setProperty("--c", p.color || "#1e88e5");
+    d.style.setProperty("--c", isInboxCard ? "#2563eb" : (p.color || "#1e88e5"));
 
     // Card Header button
     const nameBtn = document.createElement("button");
@@ -1915,7 +2031,7 @@
     nameBtn.className = "name-btn";
 
     const nameSpan = document.createElement("span");
-    nameSpan.textContent = isInboxCard ? (p.name + " (ایڈمن کے ساتھ رابطہ)") : p.name;
+    nameSpan.textContent = isInboxCard ? "ایڈمن سے موصول پیغامات" : p.name;
     nameBtn.appendChild(nameSpan);
 
     const badge = document.createElement("span");
@@ -2977,6 +3093,7 @@
 
   function handleTokenSnapshot(data){
     tokenDataState = data;
+    window.tokenDataState = data;
     const current = (data && data.current != null) ? data.current : null;
 
     // Chime & Toast alert: Fire only once per token advance
@@ -3031,12 +3148,28 @@
     const badgeEl = $("liveTokenBadge");
     const currentEl = $("liveCurrentTokenNum");
     const nextEl = $("liveNextTokenNum");
+    const noSetEl = $("tokenNoSetTxt");
+    const activeWrap = $("tokenActiveWrap");
     if(!badgeEl || !currentEl || !nextEl) return;
 
-    if(!data || !data.total){
+    if(!data || !data.total || data.status === "not_started" || data.status === "ended"){
+      if(noSetEl && activeWrap){
+        noSetEl.classList.remove("hidden");
+        activeWrap.classList.add("hidden");
+        if(data && data.status === "ended"){
+          noSetEl.textContent = "آج کا دن ختم ہو چکا ہے";
+        } else {
+          noSetEl.textContent = "آج کے لیے ٹوکن مقرر نہیں";
+        }
+      }
       currentEl.textContent = "—";
       nextEl.textContent = "—";
       return;
+    }
+
+    if(noSetEl && activeWrap){
+      noSetEl.classList.add("hidden");
+      activeWrap.classList.remove("hidden");
     }
 
     if(data.current != null){
@@ -3197,7 +3330,15 @@
         const now = Date.now();
         const dateStr = getTodayDateStr();
 
-        if(!currentData || !currentData.date || currentData.date !== dateStr || currentData.status === 'ended'){
+        const isFreshOrUnset = !currentData || 
+                               !currentData.date || 
+                               currentData.date !== dateStr || 
+                               currentData.status === 'ended' || 
+                               currentData.status === 'not_started' || 
+                               !currentData.total || 
+                               currentData.total === 0;
+
+        if(isFreshOrUnset){
           const q = [];
           for(let i = 2; i <= val; i++) q.push(i);
           return {
@@ -3316,14 +3457,14 @@
   // 3. Previous Token (Undo)
   async function adminCallPreviousToken(){
     if(!isFirebaseConfigured || !db) return;
-    if(!tokenDataState || !tokenDataState.total){
+    if(!tokenDataState || !tokenDataState.total || tokenDataState.status === "ended"){
       toast("اس سے پہلے کوئی ٹوکن موجود نہیں ہے");
       return;
     }
 
     const doneLen = Array.isArray(tokenDataState.done) ? tokenDataState.done.length : 0;
-    if(doneLen === 0){
-      toast("اس سے پہلے کوئی ٹوکن موجود نہیں ہے");
+    if(doneLen === 0 || tokenDataState.current === 1){
+      toast("ٹوکن 1 سے پہلے کوئی ٹوکن موجود نہیں ہے");
       return;
     }
 
@@ -4272,10 +4413,23 @@
   });
 
   /* ---------- Database & Chat Cleanup Logic (Firebase Purge) ---------- */
-  function purgeActiveMessages(){
+  async function purgeActiveMessages(){
     if(!confirm("کیا آپ واقعی تمام کارڈز سے تمام ایکٹیو پیغامات صاف کرنا چاہتے ہیں؟ اس سے تمام اسکرینیں خالی ہو جائیں گی۔")){
       return;
     }
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      if(auth && auth.currentUser){
+        const idToken = await auth.currentUser.getIdToken().catch(()=>null);
+        if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
+      }
+      await fetch('/.netlify/functions/purge', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ target: 'active' })
+      }).catch(()=>{});
+    }catch(e){}
+
     if(isFirebaseConfigured && db){
       db.ref("messages").remove().catch(e => console.warn(e));
       db.ref("voice").remove().catch(e => console.warn(e));
@@ -4289,10 +4443,23 @@
     toast("تمام ایکٹیو پیغامات مکمل صاف کر دیے گئے!");
   }
 
-  function purgeAllHistory(){
+  async function purgeAllHistory(){
     if(!confirm("کیا آپ فائر بیس اور تمام ڈیوائسز سے پچھلے تمام پیغامات کی ہسٹری (History) مستقل ڈیلیٹ کرنا چاہتے ہیں تاکہ ڈیٹا بیس پر وزن نہ پڑے؟")){
       return;
     }
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      if(auth && auth.currentUser){
+        const idToken = await auth.currentUser.getIdToken().catch(()=>null);
+        if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
+      }
+      await fetch('/.netlify/functions/purge', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ target: 'history' })
+      }).catch(()=>{});
+    }catch(e){}
+
     if(isFirebaseConfigured && db){
       db.ref("history").remove().catch(e => console.warn(e));
     } else {
@@ -4304,10 +4471,23 @@
     toast("سابقہ ہسٹری مستقل ڈیلیٹ ہو چکی ہے، فائر بیس بالکل صاف ہو گیا!");
   }
 
-  function purgeFullDatabase(){
+  async function purgeFullDatabase(){
     if(!confirm("کیا آپ ایکٹیو پیغامات اور تمام ہسٹری دونوں بیک وقت مستقل ڈیلیٹ کرنا چاہتے ہیں؟ فائر بیس مکمل کلین ہو جائے گا۔")){
       return;
     }
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      if(auth && auth.currentUser){
+        const idToken = await auth.currentUser.getIdToken().catch(()=>null);
+        if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
+      }
+      await fetch('/.netlify/functions/purge', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ target: 'all' })
+      }).catch(()=>{});
+    }catch(e){}
+
     if(isFirebaseConfigured && db){
       db.ref("messages").remove().catch(e => console.warn(e));
       db.ref("voice").remove().catch(e => console.warn(e));
@@ -4500,7 +4680,7 @@
             });
           }
 
-          saveLocalSettings('people');
+          saveLocalSettings();
           renderPeopleTable();
           renderAdminPerms();
           buildGrid();
@@ -4512,11 +4692,22 @@
     });
   }
 
+  const AUTO_PALETTE = [
+    "#2563eb", // Neela (Blue)
+    "#16a34a", // Sabz (Green)
+    "#d97706", // Naranji (Orange)
+    "#7c3aed", // Jamni (Purple)
+    "#dc2626", // Surkh (Red)
+    "#0891b2", // Firozi (Teal)
+    "#db2777", // Gulabi (Pink)
+    "#4f46e5"  // Indigo
+  ];
+
   $("btnAddPerson").onclick = () => {
     const name = $("newPersonName").value.trim();
     const id = $("newPersonId").value.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
     const pass = $("newPersonPass").value.trim() || "1234";
-    const color = $("newPersonColor").value;
+    const color = AUTO_PALETTE[activePeople.length % AUTO_PALETTE.length];
 
     if(!name || !id){
       alert("براہ کرم نام اور لاگ ان آئی ڈی لازمی درج کریں!");
@@ -4541,7 +4732,7 @@
       pinnedMessages[id] = ["پیناڈول دے دو", "دوا تیار ہے", "اوپر آ جائیں"];
     }
 
-    saveLocalSettings('people');
+    saveLocalSettings();
     $("newPersonName").value = "";
     $("newPersonId").value = "";
     renderPeopleTable();
@@ -4628,6 +4819,23 @@
   /* ---------- Startup Initialization ---------- */
   setupQuickLogin();
   updateNotificationButtonUI();
+
+  // Fetch live people list from Netlify function so any mobile opening the login screen sees all IDs immediately
+  async function syncPeopleForLoginScreen(){
+    try{
+      const res = await fetch('/.netlify/functions/get-people', { cache: 'no-store' });
+      if(res.ok){
+        const data = await res.json();
+        if(data && Array.isArray(data.people) && data.people.length > 0){
+          activePeople = data.people;
+          try{ localStorage.setItem(PEOPLE_KEY, JSON.stringify(activePeople)); }catch(e){}
+          setupQuickLogin();
+          if(typeof buildGrid === "function") buildGrid();
+        }
+      }
+    }catch(e){}
+  }
+  syncPeopleForLoginScreen();
   if(auth){
     auth.onAuthStateChanged(fbUser => {
       if(fbUser){
