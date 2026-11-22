@@ -365,26 +365,6 @@
   .hist-times span{display:inline-flex;align-items:center;gap:4px}
   .hist-footer{margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-shrink:0}
   .hist-item.hist-highlight{border:2px solid #38bdf8;background:#1e293b;box-shadow:0 0 16px rgba(56,189,248,.35)}
-  .btn-speak-msg{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:4px 12px;
-    border-radius:12px;
-    background:#0284c7;
-    color:#fff;
-    border:0;
-    cursor:pointer;
-    font-family:var(--font-urdu-body);
-    font-size:.9rem;
-    font-weight:700;
-    line-height:var(--lh-urdu-btn);
-    margin-top:4px;
-    transition:background .2s, transform .1s;
-    width:fit-content;
-  }
-  .btn-speak-msg:active{ transform:scale(.95); }
-  .btn-speak-msg.speaking{ background:#dc2626; animation:recPulse 1.2s infinite; }
   .hist-play-all-bar{
     display:flex;
     align-items:center;
@@ -1081,13 +1061,14 @@
       <button class="hist-close" id="histCloseBtn">&times;</button>
     </div>
     <div class="hist-date-tabs" id="histDateTabs" style="display:flex;gap:6px;margin-bottom:6px">
+      <button type="button" class="h-filter" id="histTabVoiceOnly">🎙️ صرف صوتی ریکارڈنگز (Voice Only)</button>
       <button type="button" class="h-filter active" id="histTabToday">⭐ آج کے پیغامات (Today)</button>
       <button type="button" class="h-filter" id="histTabAll">📅 تمام ریکارڈ (All)</button>
     </div>
     <div class="hist-filter" id="histFilter"></div>
     <div class="hist-play-all-bar" id="histPlayAllBar">
       <div id="histSummaryLabel" class="hist-date-badge">آج کے پیغامات</div>
-      <button type="button" class="btn-play-all-hist" id="btnPlayAllHist">▶ تمام پیغامات سنیں (Play All)</button>
+      <button type="button" class="btn-play-all-hist" id="btnPlayAllHist">▶ صوتی ریکارڈنگز سنیں (Play Voice Notes)</button>
     </div>
     <div class="hist-list" id="histList"></div>
     <div class="hist-footer">
@@ -2227,71 +2208,6 @@
   }
 
   let activeMessagesMap = {};
-  let currentSpeakingBtn = null;
-
-  function speakTextMessage(text, btn = null){
-    if(!("speechSynthesis" in window)){
-      toast("براؤزر میں بولنے کی سہولت موجود نہیں ہے");
-      return;
-    }
-    if(window.speechSynthesis.speaking && currentSpeakingBtn === btn){
-      window.speechSynthesis.cancel();
-      if(btn){
-        btn.innerHTML = '🔊 سنیں';
-        btn.classList.remove('speaking');
-      }
-      currentSpeakingBtn = null;
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-    if(currentSpeakingBtn && currentSpeakingBtn !== btn){
-      currentSpeakingBtn.innerHTML = '🔊 سنیں';
-      currentSpeakingBtn.classList.remove('speaking');
-    }
-
-    const cleanText = (text || "").replace(/🎙️\s*صوتی پیغام\s*(\(Voice Note\))?/g, '').trim();
-    if(!cleanText) return;
-
-    const utter = new SpeechSynthesisUtterance(cleanText);
-    utter.rate = 0.9;
-    utter.pitch = 1.0;
-
-    const voices = window.speechSynthesis.getVoices();
-    const urduVoice = voices.find(v => v.lang && (v.lang.startsWith('ur') || v.lang.startsWith('UR'))) ||
-                      voices.find(v => v.lang && (v.lang.startsWith('hi') || v.lang.startsWith('HI'))) ||
-                      voices.find(v => v.lang && (v.lang.startsWith('ar') || v.lang.startsWith('AR')));
-    if(urduVoice){
-      utter.voice = urduVoice;
-      utter.lang = urduVoice.lang;
-    } else {
-      utter.lang = 'ur-PK';
-    }
-
-    if(btn){
-      btn.innerHTML = '⏸️ رکیں';
-      btn.classList.add('speaking');
-      currentSpeakingBtn = btn;
-    }
-
-    utter.onend = () => {
-      if(btn){
-        btn.innerHTML = '🔊 سنیں';
-        btn.classList.remove('speaking');
-      }
-      currentSpeakingBtn = null;
-    };
-
-    utter.onerror = () => {
-      if(btn){
-        btn.innerHTML = '🔊 سنیں';
-        btn.classList.remove('speaking');
-      }
-      currentSpeakingBtn = null;
-    };
-
-    window.speechSynthesis.speak(utter);
-  }
 
   /* ---------- Archive / Clear previous messages on card ---------- */
   function archivePreviousMessagesForPerson(personId){
@@ -2710,18 +2626,6 @@
     // Voice Player if message contains audio note
     if(m.hasAudio || m.audio){
       el.appendChild(createVoicePlayer(key, m));
-    } else if(m.text && !m.text.includes("🎙️")){
-      const speakBtn = document.createElement("button");
-      speakBtn.type = "button";
-      speakBtn.className = "btn-speak-msg";
-      speakBtn.innerHTML = '🔊 سنیں';
-      speakBtn.title = "یہ تحریری پیغام بول کر سنیں";
-      speakBtn.onclick = (e) => {
-        e.stopPropagation();
-        initAudio();
-        speakTextMessage(m.text, speakBtn);
-      };
-      el.appendChild(speakBtn);
     }
 
     // Timestamp
@@ -2836,11 +2740,10 @@
 
   function stopPlayAllHist(){
     isPlayingAllHist = false;
-    if(window.speechSynthesis) window.speechSynthesis.cancel();
     if(sharedAudio && !sharedAudio.paused) sharedAudio.pause();
     const btn = $("btnPlayAllHist");
     if(btn){
-      btn.innerHTML = '▶ تمام پیغامات سنیں (Play All)';
+      btn.innerHTML = '▶ صوتی ریکارڈنگز سنیں (Play Voice Notes)';
       btn.classList.remove("playing");
     }
   }
@@ -2850,8 +2753,9 @@
       stopPlayAllHist();
       return;
     }
-    if(!items || items.length === 0){
-      toast("سننے کے لیے کوئی پیغام موجود نہیں");
+    const voiceItems = (items || []).filter(h => h.hasAudio || h.audio || (h.text && h.text.includes("صوتی")));
+    if(!voiceItems || voiceItems.length === 0){
+      toast("سننے کے لیے کوئی صوتی ریکارڈنگ (Voice Note) موجود نہیں ہے");
       return;
     }
 
@@ -2862,54 +2766,27 @@
       btn.classList.add("playing");
     }
 
-    for(let i = 0; i < items.length; i++){
+    for(let i = 0; i < voiceItems.length; i++){
       if(!isPlayingAllHist) break;
-      const h = items[i];
-      const p = activePeople.find(x => x.id === h.to) || { name: h.to };
-      const senderText = h.fromName || (h.from === "admin" ? "ایڈمن" : (activePeople.find(x => x.id === h.from)?.name || h.from));
+      const h = voiceItems[i];
 
       document.querySelectorAll(".hist-item").forEach(el => el.classList.remove("hist-highlight"));
-      const currentEl = document.getElementById("hist_item_" + i);
+      const currentEl = document.getElementById("hist_item_" + (h._idx !== undefined ? h._idx : i));
       if(currentEl){
         currentEl.classList.add("hist-highlight");
         currentEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
-      if(h.hasAudio || h.audio || (h.text && h.text.includes("صوتی"))){
-        const audioSrc = h.audio || await fetchVoiceAudio(h.voiceId || h.id || h.key);
-        if(audioSrc){
-          sharedAudio.src = audioSrc;
-          await new Promise(resolve => {
-            sharedAudio.onended = () => resolve();
-            sharedAudio.onerror = () => resolve();
-            sharedAudio.play().catch(() => resolve());
-          });
-        }
-      } else if(h.text){
+      const audioSrc = h.audio || await fetchVoiceAudio(h.voiceId || h.id || h.key);
+      if(audioSrc){
+        sharedAudio.src = audioSrc;
         await new Promise(resolve => {
-          if(!("speechSynthesis" in window)){
-            resolve();
-            return;
-          }
-          const cleanText = `${senderText} کا پیغام: ${h.text}`;
-          const utter = new SpeechSynthesisUtterance(cleanText);
-          utter.rate = 0.9;
-          const voices = window.speechSynthesis.getVoices();
-          const urduVoice = voices.find(v => v.lang && (v.lang.startsWith('ur') || v.lang.startsWith('UR'))) ||
-                            voices.find(v => v.lang && (v.lang.startsWith('hi') || v.lang.startsWith('HI'))) ||
-                            voices.find(v => v.lang && (v.lang.startsWith('ar') || v.lang.startsWith('AR')));
-          if(urduVoice){
-            utter.voice = urduVoice;
-            utter.lang = urduVoice.lang;
-          } else {
-            utter.lang = 'ur-PK';
-          }
-          utter.onend = () => resolve();
-          utter.onerror = () => resolve();
-          window.speechSynthesis.speak(utter);
+          sharedAudio.onended = () => resolve();
+          sharedAudio.onerror = () => resolve();
+          sharedAudio.play().catch(() => resolve());
         });
       }
-      await new Promise(r => setTimeout(r, 600));
+      await new Promise(r => setTimeout(r, 400));
     }
 
     stopPlayAllHist();
@@ -2917,11 +2794,19 @@
   }
 
   function buildHistoryFilters(){
+    const tabVoiceOnly = $("histTabVoiceOnly");
     const tabToday = $("histTabToday");
     const tabAll = $("histTabAll");
-    if(tabToday && tabAll){
+    if(tabVoiceOnly && tabToday && tabAll){
+      tabVoiceOnly.classList.toggle("active", currentHistDateFilter === "voice");
       tabToday.classList.toggle("active", currentHistDateFilter === "today");
       tabAll.classList.toggle("active", currentHistDateFilter === "all");
+      tabVoiceOnly.onclick = () => {
+        stopPlayAllHist();
+        currentHistDateFilter = "voice";
+        buildHistoryFilters();
+        renderHistory();
+      };
       tabToday.onclick = () => {
         stopPlayAllHist();
         currentHistDateFilter = "today";
@@ -2971,8 +2856,10 @@
 
     let filtered = historyItems.slice();
 
-    // 1. Date Filter: Today vs All
-    if(currentHistDateFilter === "today"){
+    // 1. Date / Type Filter
+    if(currentHistDateFilter === "voice"){
+      filtered = filtered.filter(h => h.hasAudio || h.audio || (h.text && h.text.includes("صوتی")));
+    } else if(currentHistDateFilter === "today"){
       filtered = filtered.filter(h => isToday(h.time) || isToday(h.clearedAt));
     }
 
@@ -2983,9 +2870,9 @@
 
     const summaryLabel = $("histSummaryLabel");
     if(summaryLabel){
-      const dateText = currentHistDateFilter === "today" ? "⭐ آج کے پیغامات" : "📅 تمام تاریخ کا ریکارڈ";
+      const typeText = currentHistDateFilter === "voice" ? "🎙️ صوتی ریکارڈنگز" : (currentHistDateFilter === "today" ? "⭐ آج کے پیغامات" : "📅 تمام تاریخ کا ریکارڈ");
       const personText = currentHistFilter === "all" ? "تمام افراد" : (activePeople.find(x => x.id === currentHistFilter)?.name || currentHistFilter);
-      summaryLabel.textContent = `${dateText} (${personText}) — کل پیغامات: ${filtered.length}`;
+      summaryLabel.textContent = `${typeText} (${personText}) — کل پیغامات: ${filtered.length}`;
     }
 
     const playAllBtn = $("btnPlayAllHist");
@@ -2994,11 +2881,19 @@
     }
 
     if(!filtered || filtered.length === 0){
-      if(currentHistDateFilter === "today"){
+      if(currentHistDateFilter === "voice"){
+        list.innerHTML = `
+          <div class="empty" style="padding:24px 14px;text-align:center;line-height:1.7">
+            <div style="font-size:1.2rem;font-weight:700;color:#94a3b8;margin-bottom:8px">کوئی صوتی ریکارڈنگ (Voice Note) موجود نہیں ہے</div>
+            <div style="font-size:.95rem;color:var(--muted);margin-bottom:12px">تمام پیغامات دیکھنے کے لیے نیچے کلک کریں:</div>
+            <button type="button" class="btn-main" style="width:auto;margin:0 auto;padding:6px 18px;font-size:.95rem" onclick="$('histTabAll').click()">📅 تمام ریکارڈ دیکھیں</button>
+          </div>
+        `;
+      } else if(currentHistDateFilter === "today"){
         list.innerHTML = `
           <div class="empty" style="padding:24px 14px;text-align:center;line-height:1.7">
             <div style="font-size:1.2rem;font-weight:700;color:#94a3b8;margin-bottom:8px">آج کا کوئی پیغام ہسٹری میں موجود نہیں ہے</div>
-            <div style="font-size:.95rem;color:var(--muted);margin-bottom:12px">پچھلے تمام پیغامات اور صوتی ریکارڈنگز دیکھنے و سننے کے لیے نیچے کلک کریں:</div>
+            <div style="font-size:.95rem;color:var(--muted);margin-bottom:12px">پچھلا تمام ریکارڈ دیکھنے کے لیے نیچے کلک کریں:</div>
             <button type="button" class="btn-main" style="width:auto;margin:0 auto;padding:6px 18px;font-size:.95rem" onclick="$('histTabAll').click()">📅 تمام سابقہ ریکارڈ دیکھیں</button>
           </div>
         `;
@@ -3010,6 +2905,7 @@
 
     list.innerHTML = "";
     filtered.forEach((h, idx) => {
+      h._idx = idx;
       const p = activePeople.find(x => x.id === h.to) || { name: h.to, color: "#64748b" };
       const el = document.createElement("div");
       el.className = "hist-item";
@@ -3032,25 +2928,12 @@
       txt.className = "hist-msg";
       txt.textContent = h.text;
 
-      // Audio / Voice Player in History
+      // Audio / Voice Player in History (ONLY for real voice recordings)
       const isVoice = !!(h.hasAudio || h.audio || (h.text && h.text.includes("صوتی")));
       if(isVoice){
         const vKey = h.voiceId || h.id || h.key || ('hist_v_' + idx);
         const vPlayer = createVoicePlayer(vKey, h);
         el.appendChild(vPlayer);
-      } else if(h.text){
-        // Text-to-speech speak button
-        const speakBtn = document.createElement("button");
-        speakBtn.type = "button";
-        speakBtn.className = "btn-speak-msg";
-        speakBtn.innerHTML = '🔊 بول کر سنیں';
-        speakBtn.title = "یہ تحریری پیغام بول کر سنیں";
-        speakBtn.onclick = (e) => {
-          e.stopPropagation();
-          initAudio();
-          speakTextMessage(h.text, speakBtn);
-        };
-        el.appendChild(speakBtn);
       }
 
       const meta = document.createElement("div");
