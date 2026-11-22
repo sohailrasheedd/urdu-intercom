@@ -9,6 +9,7 @@ let state = {
   messages: [],
   history: [],
   people: [],
+  voice: {},
   pinned: {
     "sohail": ["پیناڈول دے دو", "ایک ہفتے کی دوا دے دیں", "دو ہفتے کی دوا دے دیں", "شربت تیار کرو"],
     "abrar": ["ٹوکن چار لے آؤ", "فائل لے کر آئیں", "اوپر آ جائیں"],
@@ -41,6 +42,7 @@ try{
     const loaded = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
     state.messages = loaded.messages || [];
     state.history = loaded.history || [];
+    if(loaded.voice && typeof loaded.voice === 'object') state.voice = loaded.voice;
     if(loaded.people && Array.isArray(loaded.people)) state.people = loaded.people;
     if(loaded.pinned && typeof loaded.pinned === 'object') state.pinned = Object.assign(state.pinned, loaded.pinned);
     if(loaded.adminPermissions && typeof loaded.adminPermissions === 'object') state.adminPermissions = Object.assign(state.adminPermissions, loaded.adminPermissions);
@@ -166,11 +168,13 @@ const server = http.createServer((req, res) => {
   // Delete single message API
   if(reqPath.startsWith('/api/messages/') && req.method === 'DELETE'){
     const id = decodeURIComponent(reqPath.replace('/api/messages/', ''));
-    if(state.voice && state.voice[id]) delete state.voice[id];
+    // Do NOT delete voice: Keep voice persistently for Super User playback
     const idx = state.messages.findIndex(m => m.id === id);
     if(idx !== -1){
       const removed = state.messages.splice(idx, 1)[0];
       const histItem = {
+        id: removed.id,
+        voiceId: removed.id,
         to: removed.to,
         from: removed.from,
         fromName: removed.fromName,
@@ -178,7 +182,7 @@ const server = http.createServer((req, res) => {
         hasAudio: !!removed.hasAudio,
         audioDuration: removed.audioDuration || 0,
         audioMime: removed.audioMime || '',
-        audio: '',
+        audio: (state.voice && state.voice[removed.id]) ? state.voice[removed.id] : (removed.audio || ''),
         time: removed.time,
         replyTo: removed.replyTo || '',
         clearedAt: Date.now()
