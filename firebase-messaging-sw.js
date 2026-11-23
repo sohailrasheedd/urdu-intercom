@@ -2,7 +2,7 @@
    اردو انٹر کام — Service Worker (FCM Push & PWA Offline Cache)
    ===================================================== */
 
-const CACHE_NAME = 'urdu-intercom-shell-v5';
+const CACHE_NAME = 'urdu-intercom-shell-v6';
 const APP_SHELL = [
   '/',
   '/index.html',

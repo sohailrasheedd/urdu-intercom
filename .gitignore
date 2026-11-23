@@ -4,3 +4,8 @@ node_modules/
 .env
 test-artifacts/
 test-queue.js
+verify-all-four-features.js
+verify-token-and-ui.js
+capture-after.js
+capture-before.js
+screenshots/

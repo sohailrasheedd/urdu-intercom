@@ -184,6 +184,10 @@ const server = http.createServer((req, res) => {
         audioMime: removed.audioMime || '',
         audio: (state.voice && state.voice[removed.id]) ? state.voice[removed.id] : (removed.audio || ''),
         time: removed.time,
+        sentAt: removed.sentAt || removed.time,
+        deliveredAt: removed.deliveredAt || null,
+        seenAt: removed.seenAt || null,
+        playedAt: removed.playedAt || null,
         replyTo: removed.replyTo || '',
         clearedAt: Date.now()
       };
@@ -195,6 +199,58 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
     res.end(JSON.stringify({ ok: true }));
     return;
+  }
+
+  // Update message status API (deliveredAt, seenAt, playedAt)
+  if(reqPath.startsWith('/api/messages/') && (req.method === 'PATCH' || req.method === 'PUT')){
+    const id = decodeURIComponent(reqPath.replace('/api/messages/', ''));
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try{
+        const updates = JSON.parse(body);
+        const msg = state.messages.find(m => m.id === id);
+        if(msg){
+          Object.assign(msg, updates);
+          saveState();
+          notifyClients('MESSAGE_UPDATED', { id, updates, msg });
+        }
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true, msg }));
+      }catch(err){
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  // Tokens API (Local & Offline Fallback)
+  if(reqPath === '/api/tokens/today'){
+    if(!state.tokens) state.tokens = null;
+    if(req.method === 'GET'){
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify(state.tokens || {}));
+      return;
+    }
+    if(req.method === 'POST' || req.method === 'PUT'){
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', () => {
+        try{
+          const data = JSON.parse(body);
+          state.tokens = data;
+          saveState();
+          notifyClients('TOKENS_UPDATED', data);
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ ok: true, tokens: state.tokens }));
+        }catch(e){
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ error: e.message }));
+        }
+      });
+      return;
+    }
   }
 
   // Voice storage API

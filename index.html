@@ -655,6 +655,630 @@
     .token-sub-actions{grid-template-columns:1fr}
     .token-day-controls{flex-direction:column}
   }
+
+  /* ---------- Upcoming Tokens, Urgent Badge & Waiting Outside ---------- */
+  .token-upcoming-chips{display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap}
+  .token-next-more{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-latin-heading);color:#fbbf24;font-size:1.05rem;font-weight:700}
+  .token-next-pill{background:#1e293b;border:1px solid #3b82f6;color:#38bdf8;padding:1px 6px;border-radius:6px;font-size:.95rem;font-weight:800;display:inline-block}
+
+  .token-urgent-badge-live{
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    color: #fff;
+    font-size: .82rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(239, 68, 68, .5);
+    animation: urgentPulse 1.2s infinite ease-in-out;
+  }
+  .token-urgent-badge-admin{
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(239, 68, 68, .6);
+    border: 1px solid #fca5a5;
+    animation: urgentPulse 1.2s infinite ease-in-out;
+    display: inline-block;
+  }
+  @keyframes urgentPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: .85; box-shadow: 0 0 18px rgba(239, 68, 68, .8); }
+  }
+
+  .btn-token-outside{
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    border: 1px solid #f59e0b;
+    border-radius: 12px;
+    color: #fff;
+    font-family: var(--font-urdu-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, .3);
+    transition: all .15s ease;
+  }
+  .btn-token-outside:hover{
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    transform: translateY(-1px);
+  }
+
+  .token-upcoming-box, .token-outside-box{
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+  .token-outside-box{ border-color: #f59e0b; }
+  .upcoming-title, .outside-title{
+    font-family: var(--font-urdu-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .upcoming-title{ color: #38bdf8; }
+  .outside-title{ color: #f59e0b; }
+  .upcoming-chips, .outside-chips{ display: flex; flex-wrap: wrap; gap: 8px; }
+  
+  .upcoming-chip-item{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #1e293b;
+    border: 1px solid #3b82f6;
+    border-radius: 10px;
+    padding: 6px 10px;
+    color: #fff;
+    font-family: var(--font-urdu-body);
+    font-size: .95rem;
+  }
+  .btn-call-urgent{
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: .82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .15s;
+    font-family: var(--font-urdu-body);
+  }
+  .btn-call-urgent:hover{ opacity: .9; }
+
+  .outside-chip-item{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1e293b;
+    border: 1px solid #f59e0b;
+    border-radius: 10px;
+    padding: 6px 12px;
+    color: #fff;
+    font-family: var(--font-urdu-body);
+    font-size: .95rem;
+  }
+  .outside-timer{
+    font-family: var(--font-latin-heading);
+    color: #fbbf24;
+    font-weight: 700;
+    direction: ltr;
+    display: inline-block;
+    padding: 0 4px;
+    background: #0f172a;
+    border-radius: 6px;
+  }
+  .btn-outside-callback{
+    background: #2563eb;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: .84rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-urdu-body);
+  }
+  .btn-outside-complete{
+    background: #16a34a;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: .84rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-urdu-body);
+  }
+
+  .staff-outside-box{
+    background: #1e293b;
+    border: 2px solid #f59e0b;
+    border-radius: 16px;
+    padding: 12px 18px;
+    margin: 12px auto;
+    max-width: 1300px;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, .15);
+  }
+  .staff-outside-title{
+    font-family: var(--font-urdu-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #f59e0b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* ---------- WhatsApp Messenger Interface ---------- */
+  .chat-fab-toggle{
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 900;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #fff;
+    border: 0;
+    border-radius: 30px;
+    padding: 12px 22px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    font-family: var(--font-urdu-body);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, .45);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .chat-fab-toggle:hover{
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 35px rgba(37, 211, 102, .55);
+  }
+  .chat-fab-toggle:active{ transform: scale(.97); }
+  .chat-fab-icon{ font-size: 1.35rem; }
+  .chat-fab-unread{
+    background: #ef4444;
+    color: #fff;
+    border-radius: 12px;
+    padding: 2px 7px;
+    font-size: .82rem;
+    font-weight: 800;
+    font-family: var(--font-latin-heading);
+    border: 2px solid #fff;
+  }
+
+  .wa-messenger{
+    position: fixed;
+    bottom: 86px;
+    left: 24px;
+    width: 440px;
+    max-width: calc(100vw - 32px);
+    height: min(650px, calc(100vh - 120px));
+    background: #0b141a;
+    border: 1px solid #222d34;
+    border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(0,0,0,.7);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all .25s ease;
+  }
+  .wa-messenger.hidden{ display: none !important; }
+
+  @media(max-width: 600px){
+    .wa-messenger{
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      border: 0 !important;
+    }
+    .chat-fab-toggle{
+      bottom: 16px;
+      left: 16px;
+      padding: 10px 16px;
+      font-size: 1rem;
+    }
+  }
+
+  .wa-view{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .wa-view.hidden{ display: none !important; }
+
+  .wa-header{
+    background: #202c33;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #2a3942;
+  }
+  .wa-header-title{
+    font-family: var(--font-urdu-body);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #e9edef;
+  }
+  .wa-icon-btn{
+    background: transparent;
+    border: 0;
+    color: #aebac1;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s;
+  }
+  .wa-icon-btn:hover{ background: rgba(255,255,255,.08); color: #fff; }
+
+  .wa-contacts-list{
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 0;
+  }
+  .wa-contact-item{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #1f2c34;
+    transition: background .15s;
+  }
+  .wa-contact-item:hover{ background: #111b21; }
+  .wa-contact-avatar{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: var(--font-urdu-body);
+    flex-shrink: 0;
+  }
+  .wa-contact-body{ flex: 1; min-width: 0; }
+  .wa-contact-row1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
+  .wa-contact-name{
+    font-family: var(--font-urdu-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #e9edef;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .wa-contact-time{
+    font-size: .78rem;
+    color: #8696a0;
+    font-family: var(--font-urdu-body);
+  }
+  .wa-contact-row2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .wa-contact-preview{
+    font-size: .88rem;
+    color: #8696a0;
+    font-family: var(--font-urdu-body);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+  }
+  .wa-unread-badge{
+    background: #25d366;
+    color: #111b21;
+    font-size: .78rem;
+    font-weight: 800;
+    font-family: var(--font-latin-heading);
+    padding: 2px 7px;
+    border-radius: 12px;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  /* Single Chat Screen */
+  .wa-chat-header{
+    background: #202c33;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #2a3942;
+  }
+  .wa-back-btn{
+    background: transparent;
+    border: 0;
+    color: #aebac1;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wa-back-btn:hover{ color: #fff; background: rgba(255,255,255,.08); }
+  .wa-chat-avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: var(--font-urdu-body);
+    flex-shrink: 0;
+  }
+  .wa-chat-info{ flex: 1; min-width: 0; }
+  .wa-chat-name{
+    font-family: var(--font-urdu-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #e9edef;
+  }
+  .wa-chat-status{
+    font-size: .75rem;
+    color: #25d366;
+    font-family: var(--font-urdu-body);
+  }
+
+  .wa-messages-area{
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #0b141a;
+  }
+  .wa-day-divider{
+    align-self: center;
+    background: #182229;
+    color: #8696a0;
+    font-size: .8rem;
+    font-family: var(--font-urdu-body);
+    padding: 4px 12px;
+    border-radius: 8px;
+    margin: 8px 0;
+    box-shadow: 0 1px .5px rgba(11,20,26,.13);
+  }
+
+  .wa-bubble{
+    max-width: 82%;
+    padding: 8px 12px 6px;
+    border-radius: 12px;
+    position: relative;
+    font-family: var(--font-urdu-body);
+    word-break: break-word;
+    box-shadow: 0 1px .5px rgba(11,20,26,.13);
+    animation: waFadeIn .18s ease;
+  }
+  @keyframes waFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .wa-bubble.outgoing{
+    align-self: flex-start;
+    background: #005c4b;
+    color: #e9edef;
+    border-top-right-radius: 2px;
+  }
+  .wa-bubble.incoming{
+    align-self: flex-end;
+    background: #202c33;
+    color: #e9edef;
+    border-top-left-radius: 2px;
+  }
+  .wa-bubble-sender{
+    font-size: .82rem;
+    font-weight: 700;
+    color: #53bdeb;
+    margin-bottom: 4px;
+  }
+  .wa-bubble-text{
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+  .wa-bubble-meta{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    font-size: .74rem;
+    color: #8696a0;
+    direction: ltr;
+    margin-top: 2px;
+  }
+  .wa-bubble.outgoing .wa-bubble-meta{ color: rgba(233,237,239,.6); }
+  
+  /* WhatsApp Ticks */
+  .wa-tick{
+    display: inline-flex;
+    align-items: center;
+    font-size: .88rem;
+    letter-spacing: -2px;
+  }
+  .wa-tick.sent{ color: rgba(233,237,239,.6); }
+  .wa-tick.delivered{ color: rgba(233,237,239,.6); }
+  .wa-tick.seen{ color: #53bdeb; font-weight: 800; }
+
+  /* WhatsApp Voice Player */
+  .wa-voice-bubble{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    direction: ltr;
+  }
+  .wa-voice-play-btn{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #25d366;
+    border: 0;
+    color: #111b21;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform .1s;
+  }
+  .wa-voice-play-btn:active{ transform: scale(.92); }
+  .wa-voice-waveform{
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,.2);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wa-voice-fill{
+    height: 100%;
+    width: 0%;
+    background: #25d366;
+    transition: width .1s linear;
+  }
+  .wa-voice-dur{
+    font-size: .78rem;
+    color: #8696a0;
+    font-family: var(--font-latin-heading);
+    min-width: 38px;
+  }
+  .wa-voice-mic{
+    font-size: 1.15rem;
+    color: #8696a0;
+    transition: color .2s;
+  }
+  .wa-voice-mic.played{ color: #25d366; }
+
+  /* Quick Pinned Chips */
+  .wa-pinned-bar{
+    background: #111b21;
+    padding: 6px 12px;
+    border-top: 1px solid #202c33;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .wa-pinned-chips{
+    display: inline-flex;
+    gap: 6px;
+    padding-bottom: 2px;
+  }
+  .wa-chip{
+    background: #1f2c34;
+    border: 1px solid #2a3942;
+    color: #00a884;
+    font-family: var(--font-urdu-body);
+    font-size: .92rem;
+    font-weight: 700;
+    border-radius: 14px;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .wa-chip:hover{ background: #2a3942; color: #fff; }
+
+  /* Input Bar */
+  .wa-input-bar{
+    background: #202c33;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid #2a3942;
+    position: relative;
+  }
+  .wa-text-input{
+    flex: 1;
+    background: #2a3942;
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    padding: 10px 16px;
+    font-family: var(--font-urdu-body);
+    font-size: 1.05rem;
+    outline: none;
+    resize: none;
+    max-height: 100px;
+  }
+  .wa-input-btn{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #00a884;
+    border: 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    transition: transform .1s;
+  }
+  .wa-input-btn:active{ transform: scale(.92); }
+  .wa-mic-btn{ background: #2a3942; color: #aebac1; }
+  .wa-mic-btn:hover{ color: #25d366; }
+
+  .wa-record-banner{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #182229;
+    border-radius: 20px;
+    padding: 6px 14px;
+  }
+  .wa-record-banner.hidden{ display: none !important; }
+  .wa-record-indicator{ animation: urgentPulse 1s infinite; font-size: .9rem; }
+  .wa-record-timer{ color: #ef4444; font-family: var(--font-latin-heading); font-weight: 700; font-size: 1.1rem; }
+  .wa-rec-action{ background: transparent; border: 0; cursor: pointer; font-size: 1.2rem; padding: 4px 8px; }
+  .wa-rec-send{ color: #25d366; }
+  .wa-rec-cancel{ color: #ef4444; }
+
 </style>
 </head>
 <body>
@@ -662,6 +1286,14 @@
 <!-- ============ لاگ اِن ============ -->
 <div id="login">
   <div class="login-box">
+    <!-- Maintenance Mode Alert Notice -->
+    <div id="maintenanceAlertNotice" style="background:rgba(220,38,38,0.18);border:2px solid #ef4444;border-radius:12px;padding:12px;margin-bottom:16px;text-align:center;">
+      <div style="font-size:28px;">🚧</div>
+      <div style="font-weight:bold;color:#f87171;font-size:1.1rem;margin:4px 0;">سائٹ زیرِ مرمت ہے (Maintenance Mode)</div>
+      <div style="font-size:.88rem;color:#fca5a5;line-height:1.7;">
+        اس وقت سائٹ مینٹیننس کی وجہ سے تمام اکاؤنٹس کے لیے بلاک ہے۔ صرف سپر ایڈمن لاگ ان کر سکتا ہے۔
+      </div>
+    </div>
     <h1>انٹر کام</h1>
     <p>براہِ کرم لاگ اِن کریں (ایڈمن یا اپنا نام درج کریں)</p>
     <input id="uid"  type="text"     placeholder="آئی ڈی یا نام (مثلاً admin یا sohail)"  autocomplete="username" autocapitalize="off">
@@ -691,10 +1323,14 @@
         <div class="token-main-txt">
           <span>چل رہا ٹوکن:</span>
           <span id="liveCurrentTokenNum" class="token-num-highlight">—</span>
+          <span id="liveUrgentBadge" class="token-urgent-badge-live hidden">🚨 ارجنٹ</span>
         </div>
         <div class="token-next-txt">
-          <span>اگلا:</span>
-          <span id="liveNextTokenNum" class="token-next-highlight">—</span>
+          <span>اگلے:</span>
+          <span id="liveNextTokensWrap" class="token-upcoming-chips">
+            <span id="liveNextTokenNum" class="token-next-highlight">—</span>
+            <span id="liveNextMoreTokens" class="token-next-more"></span>
+          </span>
         </div>
       </div>
     </div>
@@ -733,12 +1369,22 @@
       <!-- Big display of current token -->
       <div class="token-big-display">
         <div class="token-big-label">اس وقت چل رہا ٹوکن</div>
-        <div class="token-big-number none" id="tokenBigNum">—</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+          <div class="token-big-number none" id="tokenBigNum">—</div>
+          <span id="adminUrgentBadge" class="token-urgent-badge-admin hidden">🚨 ارجنٹ (URGENT)</span>
+        </div>
         <div id="tokenNoticeMsg" style="color:#f59e0b;font-family:var(--font-urdu-body);font-size:1rem;margin-bottom:6px">آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے</div>
+
+        <!-- Button: Send Outside (Work in Progress) -->
+        <button type="button" class="btn-token-outside" id="btnSendOutside" title="مریض کو باہر انتظار میں بھیجیں اور اگلا ٹوکن خود بخود شروع کریں">
+          <span>⏳ باہر انتظار میں بھیجیں (کام جاری ہے)</span>
+        </button>
+
         <div class="token-stats-bar">
-          <div class="token-stat-item">اگلا: <span id="statNextToken" class="token-next-highlight">—</span></div>
+          <div class="token-stat-item">اگلے: <span id="statNextToken" class="token-next-highlight">—</span></div>
           <div class="token-stat-item">کل: <span id="statTotalTokens">0</span></div>
           <div class="token-stat-item">مکمل: <span id="statDoneTokens">0</span></div>
+          <div class="token-stat-item">باہر انتظار: <span id="statOutsideTokens" style="color:#f59e0b;font-weight:700">0</span></div>
           <div class="token-stat-item">چھوڑے گئے: <span id="statSkippedTokens">0</span></div>
           <div class="token-stat-item">باقی: <span id="statPendingTokens">0</span></div>
         </div>
@@ -773,6 +1419,28 @@
           </button>
         </div>
 
+        <!-- Upcoming Tokens List with "Call Now (Urgent)" -->
+        <div class="token-upcoming-box" id="adminUpcomingBox">
+          <div class="upcoming-title">
+            <span>📋 اگلے آنے والے ۴ ٹوکن (Next 4 in Queue):</span>
+            <span style="font-size:.8rem;color:var(--muted)">ارجنٹ بلانے کے لیے بٹن دبائیں</span>
+          </div>
+          <div class="upcoming-chips" id="adminUpcomingChips">
+            <span style="color:var(--muted);font-size:.9rem">قطار میں کوئی ٹوکن باقی نہیں</span>
+          </div>
+        </div>
+
+        <!-- Waiting Outside list (Admin) -->
+        <div class="token-outside-box" id="adminOutsideBox">
+          <div class="outside-title">
+            <span>⏳ باہر انتظار میں / کام جاری ہے (Waiting Outside):</span>
+            <span id="adminOutsideCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
+          </div>
+          <div class="outside-chips" id="adminOutsideChips">
+            <span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن باہر انتظار میں نہیں</span>
+          </div>
+        </div>
+
         <!-- Skipped list -->
         <div class="token-skipped-box" id="skippedBox">
           <div class="skipped-title">
@@ -793,7 +1461,75 @@
     </div>
   </div>
 
-  <div class="grid" id="grid"></div>
+  <!-- Staff Screen Waiting Outside Section -->
+  <div id="staffWaitingOutsideBox" class="staff-outside-box hidden">
+    <div class="staff-outside-title">
+      <span>⏳ باہر انتظار میں / کام جاری ہے:</span>
+      <span id="staffOutsideCount" style="font-size:.95rem;color:#f59e0b;font-weight:700">(0)</span>
+    </div>
+    <div class="staff-outside-chips" id="staffOutsideChips"></div>
+  </div>
+
+  <div class="grid hidden" id="grid"></div>
+
+  <!-- ============ واٹس ایپ اسٹائل چیٹ بٹن (Chat Toggle Button) ============ -->
+  <button type="button" id="chatToggleBtn" class="chat-fab-toggle" title="پیغامات اور رابطہ کار">
+    <span class="chat-fab-icon">💬</span>
+    <span class="chat-fab-text">پیغامات</span>
+    <span id="chatTotalUnreadBadge" class="chat-fab-unread hidden">0</span>
+  </button>
+
+  <!-- ============ واٹس ایپ میسنجر پینل (WhatsApp-Style Messenger Panel) ============ -->
+  <div id="waMessenger" class="wa-messenger hidden">
+    <!-- View 1: Contacts List View -->
+    <div id="waContactListView" class="wa-view">
+      <div class="wa-header">
+        <div class="wa-header-user">
+          <span class="wa-header-title">💬 رابطہ کار اور پیغامات</span>
+        </div>
+        <button type="button" id="waCloseBtn" class="wa-icon-btn" title="بند کریں">✕</button>
+      </div>
+      <div class="wa-contacts-list" id="waContactsList"></div>
+    </div>
+
+    <!-- View 2: Single Chat Screen -->
+    <div id="waSingleChatView" class="wa-view hidden">
+      <div class="wa-chat-header">
+        <button type="button" id="waBackBtn" class="wa-back-btn" title="رابطہ کار پر واپس جائیں">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+        <div class="wa-chat-avatar" id="waActiveAvatar"></div>
+        <div class="wa-chat-info">
+          <div class="wa-chat-name" id="waActiveName">نام</div>
+          <div class="wa-chat-status" id="waActiveStatus">آن لائن</div>
+        </div>
+        <button type="button" id="waClearChatBtn" class="wa-icon-btn" style="font-size:.85rem;padding:4px 8px;border-radius:8px;background:#334155;color:#f1f5f9;border:0" title="چیٹ صاف کریں">صاف</button>
+      </div>
+
+      <!-- Messages Area -->
+      <div class="wa-messages-area" id="waMessagesArea"></div>
+
+      <!-- Quick Pinned Chips Row -->
+      <div class="wa-pinned-bar" id="waPinnedBar">
+        <div class="wa-pinned-chips" id="waPinnedChips"></div>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="wa-input-bar">
+        <button type="button" id="waMicBtn" class="wa-input-btn wa-mic-btn" title="صوتی پیغام ریکارڈ کریں">🎙️</button>
+        <div id="waRecordBanner" class="wa-record-banner hidden">
+          <span class="wa-record-indicator">🔴</span>
+          <span id="waRecordTimer" class="wa-record-timer">00:00</span>
+          <button type="button" id="waCancelRecBtn" class="wa-rec-action wa-rec-cancel" title="ریکارڈنگ منسوخ کریں">🗑️</button>
+          <button type="button" id="waSendRecBtn" class="wa-rec-action wa-rec-send" title="صوتی پیغام بھیجیں">➤</button>
+        </div>
+        <textarea id="waTextInput" class="wa-text-input" rows="1" placeholder="پیغام لکھیں..."></textarea>
+        <button type="button" id="waSendBtn" class="wa-input-btn wa-send-btn" title="بھیجیں">➤</button>
+      </div>
+    </div>
+  </div>
 
   <div class="tools">
     <button class="tool" id="wakeBtn">اسکرین آن</button>
@@ -1445,19 +2181,10 @@
   }
 
   async function triggerPushNotification(messageId){
-    if(!messageId) return;
-    try{
-      const headers = { 'Content-Type': 'application/json' };
-      if(auth && auth.currentUser){
-        const idToken = await auth.currentUser.getIdToken().catch(()=>null);
-        if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
-      }
-      fetch('/.netlify/functions/send-push', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({ messageId })
-      }).catch(()=>{});
-    }catch(e){}
+    // CRITICAL MAINTENANCE LOCKDOWN:
+    // Strictly suppress all notifications during testing and maintenance.
+    // No staff member will receive any push notifications.
+    return;
   }
 
   /* ---------- Local Settings & Sync ---------- */
@@ -1582,6 +2309,8 @@
   }
 
   function chime(isReply = false){
+    // Mute sounds for non-superadmin users during maintenance
+    if(currentUser && currentUser.role !== "superadmin") return;
     try{
       if(!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
       if(actx && actx.state === "suspended") actx.resume();
@@ -1742,6 +2471,13 @@
       return;
     }
 
+    // CRITICAL: STRICT MAINTENANCE LOCKDOWN
+    // Only superadmin is permitted to log in. All other staff and accounts are strictly blocked.
+    if(u !== "superadmin" && u !== "super"){
+      $("loginErr").textContent = "⚠️ اس وقت سائٹ مینٹیننس (زیرِ مرمت) کی وجہ سے بلاک ہے۔ برائے مہربانی کام مکمل ہونے تک انتظار فرمائیں۔";
+      return;
+    }
+
     // Task F: Server-side authentication via Netlify Function with custom token
     let serverLoginSucceeded = false;
     try{
@@ -1772,9 +2508,9 @@
         initAudio();
         showApp();
         return;
-      }else if(netRes.status === 401){
+      }else if(netRes.status === 403 || netRes.status === 401){
         const errJson = await netRes.json().catch(()=>({}));
-        $("loginErr").textContent = errJson.error || "پاس ورڈ یا پن کوڈ غلط ہے";
+        $("loginErr").textContent = errJson.error || "⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔";
         return;
       }
     }catch(netErr){
@@ -1801,6 +2537,13 @@
 
     if(!targetUser){
       $("loginErr").textContent = "آئی ڈی یا نام درست نہیں ہے";
+      return;
+    }
+
+    // CRITICAL MAINTENANCE LOCKDOWN:
+    // Only superadmin can log in. All other accounts are strictly blocked.
+    if(targetUser.role !== "superadmin"){
+      $("loginErr").textContent = "⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔ صرف سپر ایڈمن لاگ ان کر سکتا ہے۔";
       return;
     }
 
@@ -2431,12 +3174,7 @@
 
       let savedKey = null;
 
-      if(isFirebaseConfigured && db){
-        if(auth && !auth.currentUser){
-          toast("سیشن ختم ہو چکا ہے، دوبارہ لاگ ان کریں");
-          doLogout();
-          return;
-        }
+      if(isFirebaseConfigured && db && (!auth || auth.currentUser)){
         const newMsgRef = db.ref("messages").push();
         savedKey = newMsgRef.key;
 
@@ -2445,6 +3183,7 @@
           await db.ref("voice").child(savedKey).set(msgPayload.audio);
         }
 
+        const nowMs = Date.now();
         const dbRecord = {
           to: msgPayload.to,
           from: msgPayload.from,
@@ -2456,6 +3195,10 @@
           kind: msgPayload.kind || "thread",
           recipient: msgPayload.recipient || msgPayload.to,
           time: firebase.database.ServerValue.TIMESTAMP,
+          sentAt: firebase.database.ServerValue.TIMESTAMP,
+          deliveredAt: null,
+          seenAt: null,
+          playedAt: null,
           replyTo: msgPayload.replyTo || ""
         };
 
@@ -2476,6 +3219,11 @@
           msgPayload.id = tempVoiceId;
         }
 
+        msgPayload.sentAt = Date.now();
+        msgPayload.deliveredAt = null;
+        msgPayload.seenAt = null;
+        msgPayload.playedAt = null;
+
         const r = await fetch('/api/messages', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -2483,7 +3231,10 @@
         });
         const res = await r.json();
         if(res && res.msg){
+          activeMessagesMap[res.msg.id] = res.msg;
           displayMessageOnCard(res.msg.id, res.msg);
+          if(activeChatPerson) renderWaMessages();
+          renderWaContacts();
         }
       }
     }catch(err){
@@ -2492,6 +3243,64 @@
     }finally{
       if(sendBtn) sendBtn.disabled = false;
       if(sendVoiceBtn) sendVoiceBtn.disabled = false;
+    }
+  }
+
+  /* ---------- Message Delivery & Seen Status Helpers ---------- */
+  async function markMessageDelivered(msgKey){
+    if(!msgKey) return;
+    if(isFirebaseConfigured && db){
+      try{
+        await db.ref(`messages/${msgKey}`).update({
+          deliveredAt: firebase.database.ServerValue.TIMESTAMP
+        });
+      }catch(e){}
+    } else {
+      try{
+        await fetch(`/api/messages/${encodeURIComponent(msgKey)}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ deliveredAt: Date.now() })
+        });
+      }catch(e){}
+    }
+  }
+
+  async function markMessageSeen(msgKey){
+    if(!msgKey) return;
+    if(isFirebaseConfigured && db){
+      try{
+        await db.ref(`messages/${msgKey}`).update({
+          seenAt: firebase.database.ServerValue.TIMESTAMP
+        });
+      }catch(e){}
+    } else {
+      try{
+        await fetch(`/api/messages/${encodeURIComponent(msgKey)}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ seenAt: Date.now() })
+        });
+      }catch(e){}
+    }
+  }
+
+  async function markMessagePlayed(msgKey){
+    if(!msgKey) return;
+    if(isFirebaseConfigured && db){
+      try{
+        await db.ref(`messages/${msgKey}`).update({
+          playedAt: firebase.database.ServerValue.TIMESTAMP
+        });
+      }catch(e){}
+    } else {
+      try{
+        await fetch(`/api/messages/${encodeURIComponent(msgKey)}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ playedAt: Date.now() })
+        });
+      }catch(e){}
     }
   }
 
@@ -3063,55 +3872,81 @@
     }
 
     if(isFirebaseConfigured && db){
+      function handleNewMessage(snapKey, m){
+        if(!m) return;
+        activeMessagesMap[snapKey] = m;
+        displayMessageOnCard(snapKey, m);
+
+        // Receiver sets deliveredAt if not already set
+        if(currentUser && m.to === currentUser.id && !m.deliveredAt){
+          markMessageDelivered(snapKey);
+        }
+
+        // Receiver sets seenAt if active chat is currently open for sender
+        if(isMessengerOpen && activeChatPerson){
+          const isFromActive = (m.from === activeChatPerson.id) || (activeChatPerson.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'));
+          if(isFromActive && m.to === currentUser.id && !m.seenAt){
+            markMessageSeen(snapKey);
+            m.seenAt = Date.now();
+          }
+        }
+
+        if(activeChatPerson){
+          renderWaMessages();
+        }
+        renderWaContacts();
+      }
+
+      function handleChangedMessage(snapKey, m){
+        if(!m) return;
+        activeMessagesMap[snapKey] = m;
+        updateWaMessageInUI(snapKey, m);
+        renderWaContacts();
+      }
+
+      function handleRemovedMessage(snapKey, targetId){
+        delete activeMessagesMap[snapKey];
+        removeMessageFromCard(snapKey, targetId);
+        if(activeChatPerson){
+          renderWaMessages();
+        }
+        renderWaContacts();
+      }
+
       // Task F: Partitioned client queries for regular users (read only own to/from)
       if(currentUser && currentUser.role === "user"){
         const toRef = db.ref("messages").orderByChild("to").equalTo(currentUser.id);
         const fromRef = db.ref("messages").orderByChild("from").equalTo(currentUser.id);
 
-        trackDbListener(toRef, "child_added", snap => {
-          const m = snap.val();
-          if(m) displayMessageOnCard(snap.key, m);
-        }, handleQueryError);
-
+        trackDbListener(toRef, "child_added", snap => handleNewMessage(snap.key, snap.val()), handleQueryError);
+        trackDbListener(toRef, "child_changed", snap => handleChangedMessage(snap.key, snap.val()), handleQueryError);
         trackDbListener(toRef, "child_removed", snap => {
           const el = $("m_" + snap.key);
-          if(el){
-            const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
-            removeMessageFromCard(snap.key, pid);
-          }
+          const pid = el && el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
+          handleRemovedMessage(snap.key, pid);
         }, handleQueryError);
 
-        trackDbListener(fromRef, "child_added", snap => {
-          const m = snap.val();
-          if(m) displayMessageOnCard(snap.key, m);
-        }, handleQueryError);
-
+        trackDbListener(fromRef, "child_added", snap => handleNewMessage(snap.key, snap.val()), handleQueryError);
+        trackDbListener(fromRef, "child_changed", snap => handleChangedMessage(snap.key, snap.val()), handleQueryError);
         trackDbListener(fromRef, "child_removed", snap => {
           const el = $("m_" + snap.key);
-          if(el){
-            const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
-            removeMessageFromCard(snap.key, pid);
-          }
+          const pid = el && el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
+          handleRemovedMessage(snap.key, pid);
         }, handleQueryError);
 
         toRef.once("value", () => { ready = true; }, handleQueryError);
       } else {
         // Admin / Superadmin query messages directly
         const ref = db.ref("messages");
-        trackDbListener(ref, "child_added", snap => {
-          const m = snap.val();
-          if(m) displayMessageOnCard(snap.key, m);
-        }, handleQueryError);
-
+        trackDbListener(ref, "child_added", snap => handleNewMessage(snap.key, snap.val()), handleQueryError);
+        trackDbListener(ref, "child_changed", snap => handleChangedMessage(snap.key, snap.val()), handleQueryError);
         trackDbListener(ref, "child_removed", snap => {
           const el = $("m_" + snap.key);
-          if(el){
-            const pid = el.closest(".person") ? el.closest(".person").id.slice(2) : "";
-            removeMessageFromCard(snap.key, pid);
-            if(currentUser.role === "admin"){
-              const p = activePeople.find(x => x.id === pid);
-              toast((p ? p.name : pid) + " نے پیغام صاف کر دیا");
-            }
+          const pid = el && el.closest(".person") ? el.closest(".person").id.slice(2) : "";
+          handleRemovedMessage(snap.key, pid);
+          if(currentUser.role === "admin"){
+            const p = activePeople.find(x => x.id === pid);
+            toast((p ? p.name : pid) + " نے پیغام صاف کر دیا");
           }
         }, handleQueryError);
 
@@ -3188,9 +4023,19 @@
             try{
               const payload = JSON.parse(e.data);
               if(payload.type === "NEW_MESSAGE"){
+                activeMessagesMap[payload.data.id] = payload.data;
                 displayMessageOnCard(payload.data.id, payload.data);
+                if(activeChatPerson) renderWaMessages();
+                renderWaContacts();
+              }else if(payload.type === "MESSAGE_UPDATED"){
+                activeMessagesMap[payload.data.id] = payload.data.msg;
+                updateWaMessageInUI(payload.data.id, payload.data.msg);
+                renderWaContacts();
               }else if(payload.type === "REMOVE_MESSAGE"){
+                delete activeMessagesMap[payload.data.id];
                 removeMessageFromCard(payload.data.id, payload.data.to);
+                if(activeChatPerson) renderWaMessages();
+                renderWaContacts();
                 if(currentUser && (currentUser.role === "admin" || currentUser.role === "superadmin")){
                   const p = activePeople.find(x => x.id === payload.data.to);
                   toast((p ? p.name : payload.data.to) + " نے کام مکمل کر کے صاف کر دیا");
@@ -3271,26 +4116,9 @@
   }
 
   function triggerTokenPush(currentNum){
-    if(!isFirebaseConfigured || !currentNum) return;
-    try{
-      const headers = { 'Content-Type': 'application/json' };
-      const sendReq = (hdrs) => {
-        fetch('/.netlify/functions/send-push', {
-          method: 'POST',
-          headers: hdrs,
-          body: JSON.stringify({ type: 'token', tokenNumber: currentNum })
-        }).catch(()=>{});
-      };
-
-      if(auth && auth.currentUser){
-        auth.currentUser.getIdToken().then(idToken => {
-          headers['Authorization'] = 'Bearer ' + idToken;
-          sendReq(headers);
-        }).catch(() => sendReq(headers));
-      } else {
-        sendReq(headers);
-      }
-    }catch(e){}
+    // CRITICAL MAINTENANCE LOCKDOWN:
+    // Strictly suppress all token queue push notifications to staff during maintenance.
+    return;
   }
 
   function handleTokenSnapshot(data){
@@ -3350,6 +4178,8 @@
     const badgeEl = $("liveTokenBadge");
     const currentEl = $("liveCurrentTokenNum");
     const nextEl = $("liveNextTokenNum");
+    const nextMoreEl = $("liveNextMoreTokens");
+    const urgentBadge = $("liveUrgentBadge");
     const noSetEl = $("tokenNoSetTxt");
     const activeWrap = $("tokenActiveWrap");
     if(!badgeEl || !currentEl || !nextEl) return;
@@ -3366,6 +4196,9 @@
       }
       currentEl.textContent = "—";
       nextEl.textContent = "—";
+      if(nextMoreEl) nextMoreEl.innerHTML = "";
+      if(urgentBadge) urgentBadge.classList.add("hidden");
+      updateStaffWaitingOutsideUI(data);
       return;
     }
 
@@ -3376,24 +4209,92 @@
 
     if(data.current != null){
       currentEl.textContent = data.current;
+      if(urgentBadge){
+        if(data.isUrgent) urgentBadge.classList.remove("hidden");
+        else urgentBadge.classList.add("hidden");
+      }
     } else if(Array.isArray(data.queue) && data.queue.length === 0 && (data.done || []).length > 0){
       currentEl.textContent = "مکمل";
+      if(urgentBadge) urgentBadge.classList.add("hidden");
     } else {
       currentEl.textContent = "—";
+      if(urgentBadge) urgentBadge.classList.add("hidden");
     }
 
-    if(Array.isArray(data.queue) && data.queue.length > 0){
-      nextEl.textContent = data.queue[0];
+    // Next 4 upcoming tokens from normal queue in order
+    const q = Array.isArray(data.queue) ? data.queue : [];
+    if(q.length > 0){
+      const upcoming4 = q.slice(0, 4);
+      nextEl.textContent = upcoming4[0];
+      if(nextMoreEl){
+        if(upcoming4.length > 1){
+          nextMoreEl.innerHTML = '، ' + upcoming4.slice(1).map(num => `<span class="token-next-pill">${num}</span>`).join(' ');
+        } else {
+          nextMoreEl.innerHTML = '';
+        }
+      }
     } else if(data.current != null){
       nextEl.textContent = "کوئی نہیں";
+      if(nextMoreEl) nextMoreEl.innerHTML = "";
     } else {
       nextEl.textContent = "—";
+      if(nextMoreEl) nextMoreEl.innerHTML = "";
     }
+
+    // Update staff waiting outside section
+    updateStaffWaitingOutsideUI(data);
 
     badgeEl.classList.remove("pulse");
     void badgeEl.offsetWidth;
     badgeEl.classList.add("pulse");
   }
+
+  function updateStaffWaitingOutsideUI(data){
+    const box = $("staffWaitingOutsideBox");
+    const countEl = $("staffOutsideCount");
+    const chipsEl = $("staffOutsideChips");
+    if(!box || !chipsEl) return;
+
+    const outside = Array.isArray(data?.waitingOutside) ? data.waitingOutside : [];
+    if(outside.length === 0){
+      box.classList.add("hidden");
+      chipsEl.innerHTML = "";
+      if(countEl) countEl.textContent = "(0)";
+      return;
+    }
+
+    box.classList.remove("hidden");
+    if(countEl) countEl.textContent = `(${outside.length})`;
+    chipsEl.innerHTML = "";
+
+    outside.forEach(item => {
+      const num = typeof item === 'object' ? item.num : item;
+      const startTime = typeof item === 'object' ? item.time : Date.now();
+      const chip = document.createElement("div");
+      chip.className = "outside-chip-item";
+      chip.innerHTML = `
+        <span>⏳ ٹوکن #<strong style="font-size:1.15rem;color:#fff">${num}</strong></span>
+        <span style="font-size:.85rem;color:#94a3b8">زیرِ کار:</span>
+        <span class="outside-timer" data-start="${startTime}">00:00</span>
+      `;
+      chipsEl.appendChild(chip);
+    });
+    updateOutsideTimers();
+  }
+
+  function updateOutsideTimers(){
+    const timerEls = document.querySelectorAll(".outside-timer");
+    const now = Date.now();
+    timerEls.forEach(el => {
+      const start = parseInt(el.getAttribute("data-start"), 10);
+      if(!start || isNaN(start)) return;
+      const diffSec = Math.max(0, Math.floor((now - start) / 1000));
+      const mm = String(Math.floor(diffSec / 60)).padStart(2, "0");
+      const ss = String(diffSec % 60).padStart(2, "0");
+      el.textContent = `${mm}:${ss}`;
+    });
+  }
+  setInterval(updateOutsideTimers, 1000);
 
   if($("liveTokenBadge")){
     $("liveTokenBadge").onclick = () => {
@@ -3404,7 +4305,8 @@
         if(tokenDataState && tokenDataState.total){
           const doneCount = (tokenDataState.done || []).length;
           const leftCount = (tokenDataState.queue || []).length;
-          toast(`کل ٹوکن: ${tokenDataState.total} | مکمل: ${doneCount} | باقی: ${leftCount}`);
+          const outCount = (tokenDataState.waitingOutside || []).length;
+          toast(`کل ٹوکن: ${tokenDataState.total} | مکمل: ${doneCount} | باہر انتظار: ${outCount} | باقی: ${leftCount}`);
         } else {
           toast("آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے");
         }
@@ -3425,23 +4327,30 @@
 
     const bigNumEl = $("tokenBigNum");
     const noticeEl = $("tokenNoticeMsg");
+    const urgentAdminBadge = $("adminUrgentBadge");
     const nextEl = $("statNextToken");
     const totalEl = $("statTotalTokens");
     const doneEl = $("statDoneTokens");
+    const outsideEl = $("statOutsideTokens");
     const skippedEl = $("statSkippedTokens");
     const pendingEl = $("statPendingTokens");
     const inputTotal = $("inputTotalTokens");
     const statusTag = $("tokenStatusTag");
     const skippedChips = $("skippedChips");
     const skippedCount = $("skippedCount");
+    const upcomingChips = $("adminUpcomingChips");
+    const outsideChips = $("adminOutsideChips");
+    const outsideCount = $("adminOutsideCount");
 
     if(!data || !data.total){
       bigNumEl.textContent = "—";
       bigNumEl.classList.add("none");
+      if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
       noticeEl.textContent = "آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے";
       nextEl.textContent = "—";
       totalEl.textContent = "0";
       doneEl.textContent = "0";
+      if(outsideEl) outsideEl.textContent = "0";
       skippedEl.textContent = "0";
       pendingEl.textContent = "0";
       statusTag.textContent = "غیر شروع شدہ";
@@ -3449,6 +4358,9 @@
       if(inputTotal && document.activeElement !== inputTotal) inputTotal.value = "";
       if(skippedChips) skippedChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن چھوڑا نہیں گیا</span>';
       if(skippedCount) skippedCount.textContent = "(0)";
+      if(upcomingChips) upcomingChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">قطار میں کوئی ٹوکن باقی نہیں</span>';
+      if(outsideChips) outsideChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن باہر انتظار میں نہیں</span>';
+      if(outsideCount) outsideCount.textContent = "(0)";
       return;
     }
 
@@ -3456,14 +4368,20 @@
       bigNumEl.textContent = data.current;
       bigNumEl.classList.remove("none");
       noticeEl.textContent = "";
+      if(urgentAdminBadge){
+        if(data.isUrgent) urgentAdminBadge.classList.remove("hidden");
+        else urgentAdminBadge.classList.add("hidden");
+      }
     } else if(Array.isArray(data.queue) && data.queue.length === 0){
       bigNumEl.textContent = "تمام مکمل";
       bigNumEl.classList.add("none");
       noticeEl.textContent = "تمام ٹوکن مکمل ہو گئے ہیں";
+      if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
     } else {
       bigNumEl.textContent = "—";
       bigNumEl.classList.add("none");
       noticeEl.textContent = "قطار تیار ہے، اگلا بلائیں";
+      if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
     }
 
     if(data.status === "ended"){
@@ -3477,10 +4395,18 @@
     const q = Array.isArray(data.queue) ? data.queue : [];
     const done = Array.isArray(data.done) ? data.done : [];
     const skipped = Array.isArray(data.skipped) ? data.skipped : [];
+    const outside = Array.isArray(data.waitingOutside) ? data.waitingOutside : [];
 
-    nextEl.textContent = q.length > 0 ? q[0] : (data.current != null ? "کوئی نہیں" : "—");
+    // Next 4 tokens summary in stats bar
+    if(q.length > 0){
+      nextEl.textContent = q.slice(0, 4).join("، ");
+    } else {
+      nextEl.textContent = data.current != null ? "کوئی نہیں" : "—";
+    }
+
     totalEl.textContent = data.total || 0;
     doneEl.textContent = done.length;
+    if(outsideEl) outsideEl.textContent = outside.length;
     skippedEl.textContent = skipped.length;
     pendingEl.textContent = q.length;
 
@@ -3488,6 +4414,68 @@
       inputTotal.value = data.total || "";
     }
 
+    // 1. Upcoming Tokens Box (Next 4 tokens with "Call Now (Urgent)" button)
+    if(upcomingChips){
+      const upcoming4 = q.slice(0, 4);
+      if(upcoming4.length === 0){
+        upcomingChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">قطار میں کوئی ٹوکن باقی نہیں</span>';
+      } else {
+        upcomingChips.innerHTML = "";
+        upcoming4.forEach(num => {
+          const chip = document.createElement("div");
+          chip.className = "upcoming-chip-item";
+          chip.innerHTML = `<span>ٹوکن #<strong>${num}</strong></span>`;
+          const urgBtn = document.createElement("button");
+          urgBtn.type = "button";
+          urgBtn.className = "btn-call-urgent";
+          urgBtn.innerHTML = "🚨 ابھی بلائیں (ارجنٹ)";
+          urgBtn.onclick = () => adminCallUrgentToken(num);
+          chip.appendChild(urgBtn);
+          upcomingChips.appendChild(chip);
+        });
+      }
+    }
+
+    // 2. Waiting Outside Box (Admin with live timer, Call Back & Mark Complete)
+    if(outsideCount) outsideCount.textContent = `(${outside.length})`;
+    if(outsideChips){
+      if(outside.length === 0){
+        outsideChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن باہر انتظار میں نہیں</span>';
+      } else {
+        outsideChips.innerHTML = "";
+        outside.forEach(item => {
+          const num = typeof item === 'object' ? item.num : item;
+          const startTime = typeof item === 'object' ? item.time : Date.now();
+          const chip = document.createElement("div");
+          chip.className = "outside-chip-item";
+          chip.innerHTML = `
+            <span>ٹوکن #<strong>${num}</strong></span>
+            <span class="outside-timer" data-start="${startTime}">00:00</span>
+          `;
+          const actionsWrap = document.createElement("div");
+          actionsWrap.style.cssText = "display:inline-flex;gap:6px;align-items:center";
+
+          const callBtn = document.createElement("button");
+          callBtn.type = "button";
+          callBtn.className = "btn-outside-callback";
+          callBtn.textContent = "↩️ واپس بلائیں";
+          callBtn.onclick = () => adminCallBackOutside(num);
+
+          const doneBtn = document.createElement("button");
+          doneBtn.type = "button";
+          doneBtn.className = "btn-outside-complete";
+          doneBtn.textContent = "✅ مکمل کریں";
+          doneBtn.onclick = () => adminCompleteOutside(num);
+
+          actionsWrap.append(callBtn, doneBtn);
+          chip.appendChild(actionsWrap);
+          outsideChips.appendChild(chip);
+        });
+        updateOutsideTimers();
+      }
+    }
+
+    // 3. Skipped list
     if(skippedCount) skippedCount.textContent = `(${skipped.length})`;
     if(skippedChips){
       if(skipped.length === 0){
@@ -3639,6 +4627,7 @@
         data.current = current;
         data.queue = q;
         data.done = done;
+        data.isUrgent = false; // Normal call resets urgent badge
         data.updatedAt = now;
         data.updatedBy = currentUser.name || currentUser.id;
         nextResultToken = current;
@@ -3653,6 +4642,219 @@
     }catch(err){
       console.error("Call next error:", err);
       toast("خرابی: اگلا ٹوکن نہ بلایا جا سکا");
+    }
+  }
+
+  // 2.1 Urgent Call (ابھی بلائیں - ارجنٹ)
+  async function adminCallUrgentToken(urgentNum){
+    if(!isFirebaseConfigured || !db){
+      toast("فائر بیس سے رابطہ نہیں ہے");
+      return;
+    }
+    const ok = confirm(`کیا آپ واقعی ٹوکن #${urgentNum} کو ارجنٹ / ہنگامی طور پر ابھی بلانا چاہتے ہیں؟\n\nموجودہ چل رہا ٹوکن محفوظ رہے گا اور قطار کے شروع میں واپس چلا جائے گا۔`);
+    if(!ok) return;
+
+    try{
+      await db.ref('tokens/today').transaction(data => {
+        if(!data || !data.total) return data;
+        const now = Date.now();
+        let q = Array.isArray(data.queue) ? [...data.queue] : [];
+        let logs = Array.isArray(data.logs) ? [...data.logs] : [];
+        let current = data.current;
+
+        // Remove urgentNum from queue
+        const idx = q.indexOf(urgentNum);
+        if(idx !== -1) q.splice(idx, 1);
+
+        // Put current running token back to front of queue if exists
+        if(current != null && current !== urgentNum){
+          q.unshift(current);
+        }
+
+        data.current = urgentNum;
+        data.queue = q;
+        data.isUrgent = true;
+        data.updatedAt = now;
+        data.updatedBy = currentUser.name || currentUser.id;
+
+        // Log urgent action
+        logs.push({
+          type: "urgent",
+          label: "urgent",
+          token: urgentNum,
+          prevToken: current,
+          time: now,
+          by: currentUser.name || currentUser.id
+        });
+        data.logs = logs;
+
+        return data;
+      });
+
+      toast(`ٹوکن #${urgentNum} کو ارجنٹ بلایا گیا`);
+    }catch(err){
+      console.error("Urgent call error:", err);
+      toast("خرابی: ارجنٹ ٹوکن نہ بلایا جا سکا");
+    }
+  }
+
+  // 2.2 Send Outside - Work in Progress (باہر انتظار میں بھیجیں)
+  async function adminSendOutside(){
+    if(!isFirebaseConfigured || !db){
+      toast("فائر بیس سے رابطہ نہیں ہے");
+      return;
+    }
+    if(!tokenDataState || tokenDataState.current == null){
+      toast("باہر بھیجنے کے لیے کوئی ٹوکن فعال نہیں ہے");
+      return;
+    }
+
+    const currentNum = tokenDataState.current;
+    const ok = confirm(`کیا آپ ٹوکن #${currentNum} کو باہر انتظار میں بھیجنا چاہتے ہیں (کام جاری ہے)؟\nاگلا ٹوکن خود بخود شروع ہو جائے گا۔`);
+    if(!ok) return;
+
+    try{
+      await db.ref('tokens/today').transaction(data => {
+        if(!data || data.current == null) return data;
+        const now = Date.now();
+        let q = Array.isArray(data.queue) ? [...data.queue] : [];
+        let outside = Array.isArray(data.waitingOutside) ? [...data.waitingOutside] : [];
+        let logs = Array.isArray(data.logs) ? [...data.logs] : [];
+        const current = data.current;
+
+        outside.push({
+          num: current,
+          time: now,
+          status: "waiting_outside"
+        });
+
+        let nextToken = null;
+        if(q.length > 0){
+          nextToken = q.shift();
+        }
+
+        data.current = nextToken;
+        data.queue = q;
+        data.waitingOutside = outside;
+        data.isUrgent = false;
+        data.updatedAt = now;
+        data.updatedBy = currentUser.name || currentUser.id;
+
+        logs.push({
+          type: "send_outside",
+          label: "waiting_outside",
+          token: current,
+          nextStarted: nextToken,
+          time: now,
+          by: currentUser.name || currentUser.id
+        });
+        data.logs = logs;
+
+        return data;
+      });
+
+      toast(`ٹوکن #${currentNum} باہر انتظار میں منتقل کر دیا گیا`);
+    }catch(err){
+      console.error("Send outside error:", err);
+      toast("خرابی: باہر انتظار میں نہ بھیجا جا سکا");
+    }
+  }
+
+  // 2.3 Call Back Outside Token (واپس بلائیں)
+  async function adminCallBackOutside(tokenNum){
+    if(!isFirebaseConfigured || !db) return;
+    const ok = confirm(`کیا آپ ٹوکن #${tokenNum} کو واپس چلنے والے ٹوکن میں لانا چاہتے ہیں؟\nموجودہ چل رہا ٹوکن قطار میں واپس محفوظ رہے گا۔`);
+    if(!ok) return;
+
+    try{
+      await db.ref('tokens/today').transaction(data => {
+        if(!data) return data;
+        const now = Date.now();
+        let q = Array.isArray(data.queue) ? [...data.queue] : [];
+        let outside = Array.isArray(data.waitingOutside) ? [...data.waitingOutside] : [];
+        let logs = Array.isArray(data.logs) ? [...data.logs] : [];
+        let current = data.current;
+
+        outside = outside.filter(item => {
+          const itemNum = typeof item === 'object' ? item.num : item;
+          return itemNum !== tokenNum;
+        });
+
+        if(current != null && current !== tokenNum){
+          q.unshift(current);
+        }
+
+        data.current = tokenNum;
+        data.queue = q;
+        data.waitingOutside = outside;
+        data.isUrgent = false;
+        data.updatedAt = now;
+        data.updatedBy = currentUser.name || currentUser.id;
+
+        logs.push({
+          type: "callback_outside",
+          label: "call_back",
+          token: tokenNum,
+          replacedToken: current,
+          time: now,
+          by: currentUser.name || currentUser.id
+        });
+        data.logs = logs;
+
+        return data;
+      });
+
+      toast(`ٹوکن #${tokenNum} کو واپس بلایا گیا`);
+    }catch(err){
+      console.error("Callback outside error:", err);
+      toast("خرابی: واپس نہ بلایا جا سکا");
+    }
+  }
+
+  // 2.4 Mark Outside Token Complete (مکمل کریں)
+  async function adminCompleteOutside(tokenNum){
+    if(!isFirebaseConfigured || !db) return;
+    const ok = confirm(`کیا آپ ٹوکن #${tokenNum} کا کام مکمل کر کے فارغ کرنا چاہتے ہیں؟`);
+    if(!ok) return;
+
+    try{
+      await db.ref('tokens/today').transaction(data => {
+        if(!data) return data;
+        const now = Date.now();
+        let outside = Array.isArray(data.waitingOutside) ? [...data.waitingOutside] : [];
+        let done = Array.isArray(data.done) ? [...data.done] : [];
+        let logs = Array.isArray(data.logs) ? [...data.logs] : [];
+
+        outside = outside.filter(item => {
+          const itemNum = typeof item === 'object' ? item.num : item;
+          return itemNum !== tokenNum;
+        });
+
+        if(!done.includes(tokenNum)){
+          done.push(tokenNum);
+        }
+
+        data.waitingOutside = outside;
+        data.done = done;
+        data.updatedAt = now;
+        data.updatedBy = currentUser.name || currentUser.id;
+
+        logs.push({
+          type: "complete_outside",
+          label: "complete",
+          token: tokenNum,
+          time: now,
+          by: currentUser.name || currentUser.id
+        });
+        data.logs = logs;
+
+        return data;
+      });
+
+      toast(`ٹوکن #${tokenNum} مکمل کر دیا گیا`);
+    }catch(err){
+      console.error("Complete outside error:", err);
+      toast("خرابی: مکمل نہ کیا جا سکا");
     }
   }
 
@@ -3984,8 +5186,574 @@
   if($("btnCloseTokenHistory")) $("btnCloseTokenHistory").onclick = () => $("tokenHistoryModal").classList.add("hidden");
   if($("btnConfirmPutBack")) $("btnConfirmPutBack").onclick = confirmPutBackToken;
   if($("btnCancelPutBack")) $("btnCancelPutBack").onclick = () => $("putBackModal").classList.add("hidden");
+  if($("btnSendOutside")) $("btnSendOutside").onclick = adminSendOutside;
+
+  /* =====================================================
+     واٹس ایپ اسٹائل میسنجر (WhatsApp-Style Messenger)
+     ===================================================== */
+  let activeChatPerson = null;
+  let isMessengerOpen = false;
+
+  function toggleMessenger(forceOpen){
+    const messengerEl = $("waMessenger");
+    if(!messengerEl) return;
+    if(typeof forceOpen === 'boolean'){
+      isMessengerOpen = forceOpen;
+    } else {
+      isMessengerOpen = !isMessengerOpen;
+    }
+    messengerEl.classList.toggle("hidden", !isMessengerOpen);
+
+    if(isMessengerOpen){
+      if(activeChatPerson){
+        openWaChat(activeChatPerson);
+      } else {
+        showWaContactList();
+      }
+    }
+  }
+
+  function showWaContactList(){
+    activeChatPerson = null;
+    const contactView = $("waContactListView");
+    const chatView = $("waSingleChatView");
+    if(contactView && chatView){
+      contactView.classList.remove("hidden");
+      chatView.classList.add("hidden");
+    }
+    renderWaContacts();
+  }
+
+  function getWaContactsList(){
+    if(!currentUser) return [];
+    if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+      return activePeople.map(p => ({
+        id: p.id,
+        name: p.name,
+        color: p.color || "#1e88e5"
+      }));
+    } else {
+      // Staff member: Admin is top contact, plus fellow staff
+      const list = [
+        { id: "admin", name: "ایڈمن", color: "#2563eb" }
+      ];
+      activePeople.filter(p => p.id !== currentUser.id && p.id !== "admin" && p.id !== "superadmin").forEach(p => {
+        list.push({
+          id: p.id,
+          name: p.name,
+          color: p.color || "#10b981"
+        });
+      });
+      return list;
+    }
+  }
+
+  function renderWaContacts(){
+    const listEl = $("waContactsList");
+    const totalBadge = $("chatTotalUnreadBadge");
+    if(!listEl) return;
+
+    const contacts = getWaContactsList();
+    listEl.innerHTML = "";
+    let totalUnread = 0;
+
+    contacts.forEach(c => {
+      const msgs = getMessagesForContact(c.id);
+      msgs.sort((a,b) => (b.time || b.sentAt || 0) - (a.time || a.sentAt || 0));
+      const lastMsg = msgs[0];
+
+      let unreadCount = 0;
+      msgs.forEach(m => {
+        const isIncoming = (m.to === currentUser.id && (m.from === c.id || (c.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'))));
+        if(isIncoming && !m.seenAt){
+          unreadCount++;
+        }
+      });
+      totalUnread += unreadCount;
+
+      const item = document.createElement("div");
+      item.className = "wa-contact-item";
+      item.onclick = () => openWaChat(c);
+
+      const avatar = document.createElement("div");
+      avatar.className = "wa-contact-avatar";
+      avatar.style.background = c.color || "#2563eb";
+      avatar.textContent = c.name ? c.name.charAt(0) : "؟";
+
+      const body = document.createElement("div");
+      body.className = "wa-contact-body";
+
+      const row1 = document.createElement("div");
+      row1.className = "wa-contact-row1";
+      const nameEl = document.createElement("div");
+      nameEl.className = "wa-contact-name";
+      nameEl.textContent = c.name;
+      const timeEl = document.createElement("div");
+      timeEl.className = "wa-contact-time";
+      timeEl.textContent = lastMsg ? formatShortTime(lastMsg.time || lastMsg.sentAt) : "";
+      row1.append(nameEl, timeEl);
+
+      const row2 = document.createElement("div");
+      row2.className = "wa-contact-row2";
+      const prevEl = document.createElement("div");
+      prevEl.className = "wa-contact-preview";
+      if(lastMsg){
+        if(lastMsg.hasAudio || lastMsg.audio){
+          prevEl.textContent = "🎙️ صوتی پیغام (Voice Note)";
+        } else {
+          prevEl.textContent = lastMsg.text || "—";
+        }
+      } else {
+        prevEl.textContent = "کوئی پیغام نہیں";
+      }
+
+      row2.appendChild(prevEl);
+
+      if(unreadCount > 0){
+        const badge = document.createElement("span");
+        badge.className = "wa-unread-badge";
+        badge.textContent = unreadCount;
+        row2.appendChild(badge);
+      }
+
+      body.append(row1, row2);
+      item.append(avatar, body);
+      listEl.appendChild(item);
+    });
+
+    if(totalBadge){
+      if(totalUnread > 0){
+        totalBadge.textContent = totalUnread;
+        totalBadge.classList.remove("hidden");
+      } else {
+        totalBadge.classList.add("hidden");
+      }
+    }
+  }
+
+  function formatShortTime(ts){
+    if(!ts) return "";
+    const d = new Date(ts);
+    const now = new Date();
+    if(d.toDateString() === now.toDateString()){
+      return d.toLocaleTimeString("ur-PK", { hour: "2-digit", minute: "2-digit" });
+    }
+    return d.toLocaleDateString("ur-PK", { month: "short", day: "numeric" });
+  }
+
+  function getMessagesForContact(contactId){
+    if(!currentUser) return [];
+    return Object.keys(activeMessagesMap).map(k => ({ key: k, ...activeMessagesMap[k] })).filter(m => {
+      if(!m) return false;
+      if(contactId === "admin"){
+        return (m.to === currentUser.id && (m.from === "admin" || m.from === "superadmin")) ||
+               (m.from === currentUser.id && (m.to === "admin" || m.to === "superadmin")) ||
+               (m.kind === "thread" && (m.to === currentUser.id || m.from === currentUser.id));
+      } else {
+        if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+          return m.to === contactId || m.from === contactId;
+        } else {
+          return (m.to === currentUser.id && m.from === contactId) ||
+                 (m.from === currentUser.id && m.to === contactId);
+        }
+      }
+    });
+  }
+
+  function openWaChat(person){
+    activeChatPerson = person;
+    const contactView = $("waContactListView");
+    const chatView = $("waSingleChatView");
+    if(contactView && chatView){
+      contactView.classList.add("hidden");
+      chatView.classList.remove("hidden");
+    }
+
+    const nameEl = $("waActiveName");
+    const avatarEl = $("waActiveAvatar");
+    if(nameEl) nameEl.textContent = person.name;
+    if(avatarEl){
+      avatarEl.textContent = person.name.charAt(0);
+      avatarEl.style.background = person.color || "#2563eb";
+    }
+
+    // Mark all unread incoming messages from this person as seen
+    const msgs = getMessagesForContact(person.id);
+    msgs.forEach(m => {
+      const isIncoming = (m.to === currentUser.id && (m.from === person.id || (person.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'))));
+      if(isIncoming && !m.seenAt){
+        markMessageSeen(m.key || m.id);
+        m.seenAt = Date.now();
+      }
+    });
+
+    renderWaPinnedChips(person);
+    renderWaMessages();
+    renderWaContacts();
+  }
+
+  function renderWaPinnedChips(person){
+    const wrap = $("waPinnedChips");
+    if(!wrap) return;
+    wrap.innerHTML = "";
+
+    const pins = pinnedMessages[person.id] || ["پیناڈول دے دو", "ایک ہفتے کی دوا", "اوپر آ جائیں"];
+    const quickReplies = ["جی، دے دیں", "نہیں، نہ دیں", "ایک منٹ رکیں", "ڈاکٹر سے پوچھیں"];
+
+    const combined = [...new Set([...pins, ...quickReplies])];
+    combined.forEach(txt => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "wa-chip";
+      chip.textContent = txt;
+      chip.onclick = () => {
+        quickSendPin(person, txt);
+      };
+      wrap.appendChild(chip);
+    });
+  }
+
+  function renderWaMessages(){
+    const area = $("waMessagesArea");
+    if(!area || !activeChatPerson) return;
+
+    const msgs = getMessagesForContact(activeChatPerson.id);
+    msgs.sort((a,b) => (a.time || a.sentAt || 0) - (b.time || b.sentAt || 0));
+
+    area.innerHTML = "";
+    let lastDateStr = null;
+
+    if(msgs.length === 0){
+      area.innerHTML = '<div style="margin:auto;color:#8696a0;font-size:1rem;font-family:var(--font-urdu-body);text-align:center">کوئی پیغام نہیں، گفتگو شروع کریں</div>';
+      return;
+    }
+
+    msgs.forEach(m => {
+      const ts = m.time || m.sentAt || Date.now();
+      const dayText = getDayDividerText(ts);
+      if(dayText !== lastDateStr){
+        lastDateStr = dayText;
+        const div = document.createElement("div");
+        div.className = "wa-day-divider";
+        div.textContent = dayText;
+        area.appendChild(div);
+      }
+
+      const isMine = (m.from === currentUser.id);
+      const bubble = document.createElement("div");
+      bubble.id = "wa_m_" + (m.key || m.id);
+      bubble.className = "wa-bubble " + (isMine ? "outgoing" : "incoming");
+
+      if(!isMine){
+        const sender = document.createElement("div");
+        sender.className = "wa-bubble-sender";
+        sender.textContent = m.fromName || (activeChatPerson.name);
+        bubble.appendChild(sender);
+      }
+
+      if(m.replyTo){
+        const quote = document.createElement("div");
+        quote.className = "msg-quote";
+        quote.style.cssText = "margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.2);border-right:3px solid #53bdeb;border-radius:4px;font-size:.84rem";
+        quote.textContent = `↳ "${m.replyTo}"`;
+        bubble.appendChild(quote);
+      }
+
+      if(m.hasAudio || m.audio){
+        bubble.appendChild(createWaVoicePlayer(m.key || m.id, m));
+      } else {
+        const txt = document.createElement("div");
+        txt.className = "wa-bubble-text";
+        txt.textContent = m.text;
+        bubble.appendChild(txt);
+      }
+
+      const meta = document.createElement("div");
+      meta.className = "wa-bubble-meta";
+
+      const timeSpan = document.createElement("span");
+      timeSpan.textContent = timeStr(ts);
+      meta.appendChild(timeSpan);
+
+      if(isMine){
+        meta.appendChild(getTickSpan(m));
+      }
+
+      bubble.appendChild(meta);
+      area.appendChild(bubble);
+    });
+
+    area.scrollTop = area.scrollHeight;
+  }
+
+  function createWaVoicePlayer(msgKey, m){
+    const wrap = document.createElement("div");
+    wrap.className = "wa-voice-bubble";
+
+    const playBtn = document.createElement("button");
+    playBtn.type = "button";
+    playBtn.className = "wa-voice-play-btn";
+    playBtn.textContent = "▶";
+    playBtn.setAttribute("aria-label", "صوتی پیغام سنیں");
+
+    const waveform = document.createElement("div");
+    waveform.className = "wa-voice-waveform";
+    const fill = document.createElement("div");
+    fill.className = "wa-voice-fill";
+    waveform.appendChild(fill);
+
+    const durLabel = document.createElement("div");
+    durLabel.className = "wa-voice-dur";
+    durLabel.textContent = formatDuration(m.audioDuration || 0);
+
+    const micIcon = document.createElement("span");
+    micIcon.className = "wa-voice-mic" + (m.playedAt ? " played" : "");
+    micIcon.innerHTML = "🎙️";
+    micIcon.title = m.playedAt ? "سن لیا گیا (Listened)" : "ابھی نہیں سنا گیا";
+
+    wrap.append(playBtn, waveform, durLabel, micIcon);
+
+    playBtn.onclick = async (e) => {
+      e.stopPropagation();
+      initAudio();
+
+      if(currentUser && m.to === currentUser.id && !m.playedAt){
+        markMessagePlayed(msgKey);
+        micIcon.classList.add("played");
+      }
+
+      if(currentPlayingMsgId === msgKey && !sharedAudio.paused){
+        sharedAudio.pause();
+        playBtn.textContent = "▶";
+        return;
+      }
+
+      if(currentPlayingBtn && currentPlayingBtn !== playBtn){
+        currentPlayingBtn.textContent = "▶";
+      }
+
+      playBtn.textContent = "⏳";
+      const audioSrc = m.audio || await fetchVoiceAudio(msgKey);
+      if(!audioSrc){
+        playBtn.textContent = "▶";
+        toast("صوتی ریکارڈنگ دستیاب نہیں");
+        return;
+      }
+
+      sharedAudio.src = audioSrc;
+      currentPlayingBtn = playBtn;
+      currentPlayingMsgId = msgKey;
+
+      sharedAudio.ontimeupdate = () => {
+        if(sharedAudio.duration){
+          const pct = (sharedAudio.currentTime / sharedAudio.duration) * 100;
+          fill.style.width = pct + "%";
+          durLabel.textContent = formatDuration(sharedAudio.currentTime);
+        }
+      };
+
+      sharedAudio.onended = () => {
+        playBtn.textContent = "▶";
+        fill.style.width = "0%";
+        durLabel.textContent = formatDuration(m.audioDuration || 0);
+        currentPlayingBtn = null;
+        currentPlayingMsgId = null;
+      };
+
+      try{
+        await sharedAudio.play();
+        playBtn.textContent = "⏸";
+      }catch(err){
+        console.warn("Shared audio playback error:", err);
+        playBtn.textContent = "▶";
+      }
+    };
+
+    return wrap;
+  }
+
+  function getTickSpan(m){
+    const span = document.createElement("span");
+    span.className = "wa-tick";
+    if(m.seenAt){
+      span.classList.add("seen");
+      span.textContent = "✓✓";
+      span.title = "دیکھ لیا گیا (Seen)";
+    } else if(m.deliveredAt){
+      span.classList.add("delivered");
+      span.textContent = "✓✓";
+      span.title = "پہنچ گیا (Delivered)";
+    } else {
+      span.classList.add("sent");
+      span.textContent = "✓";
+      span.title = "بھیج دیا گیا (Sent)";
+    }
+    return span;
+  }
+
+  function updateWaMessageInUI(msgKey, updatedMsg){
+    const el = $("wa_m_" + msgKey);
+    if(el && updatedMsg){
+      const isMine = (updatedMsg.from === currentUser.id);
+      if(isMine){
+        const meta = el.querySelector(".wa-bubble-meta");
+        if(meta){
+          const oldTick = meta.querySelector(".wa-tick");
+          if(oldTick) oldTick.remove();
+          meta.appendChild(getTickSpan(updatedMsg));
+        }
+      }
+      if(updatedMsg.hasAudio || updatedMsg.audio){
+        const mic = el.querySelector(".wa-voice-mic");
+        if(mic && updatedMsg.playedAt){
+          mic.classList.add("played");
+          mic.title = "سن لیا گیا (Listened)";
+        }
+      }
+    }
+  }
+
+  async function sendWaTextMessage(){
+    const input = $("waTextInput");
+    if(!input || !activeChatPerson) return;
+    const txt = input.value.trim();
+    if(!txt) return;
+
+    input.value = "";
+    const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
+    const isPeer = (!isToAdmin && currentUser.role === "user");
+
+    const msgPayload = {
+      to: isToAdmin ? currentUser.id : activeChatPerson.id,
+      from: currentUser.id,
+      fromName: currentUser.name,
+      text: txt,
+      audio: "",
+      hasAudio: false,
+      kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
+      recipient: isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id)),
+      time: Date.now(),
+      replyTo: ""
+    };
+
+    await sendRawMessage(msgPayload);
+    renderWaMessages();
+    renderWaContacts();
+  }
+
+  function startWaVoiceRecording(){
+    $("waRecordBanner").classList.remove("hidden");
+    $("waTextInput").classList.add("hidden");
+    $("waSendBtn").classList.add("hidden");
+    startVoiceRecording();
+  }
+
+  function cancelWaVoiceRecording(){
+    stopVoiceRecording();
+    resetVoiceRecorderUI();
+    $("waRecordBanner").classList.add("hidden");
+    $("waTextInput").classList.remove("hidden");
+    $("waSendBtn").classList.remove("hidden");
+  }
+
+  async function stopAndSendWaVoiceRecording(){
+    stopVoiceRecording();
+    $("waRecordBanner").classList.add("hidden");
+    $("waTextInput").classList.remove("hidden");
+    $("waSendBtn").classList.remove("hidden");
+
+    setTimeout(() => {
+      if(!recordedAudioBase64){
+        toast("ریکارڈنگ محفوظ نہیں ہو سکی");
+        return;
+      }
+      if(!activeChatPerson) return;
+
+      const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
+      const isPeer = (!isToAdmin && currentUser.role === "user");
+
+      const msgPayload = {
+        to: isToAdmin ? currentUser.id : activeChatPerson.id,
+        from: currentUser.id,
+        fromName: currentUser.name,
+        text: "🎙️ صوتی پیغام (Voice Note)",
+        audio: recordedAudioBase64,
+        hasAudio: true,
+        audioDuration: recordedAudioDuration,
+        audioMime: recordedAudioMime,
+        kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
+        recipient: isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id)),
+        time: Date.now(),
+        replyTo: ""
+      };
+
+      sendRawMessage(msgPayload);
+      resetVoiceRecorderUI();
+      renderWaMessages();
+      renderWaContacts();
+    }, 450);
+  }
+
+  // Hook WhatsApp Buttons
+  if($("chatToggleBtn")) $("chatToggleBtn").onclick = () => toggleMessenger();
+  if($("waCloseBtn")) $("waCloseBtn").onclick = () => toggleMessenger(false);
+  if($("waBackBtn")) $("waBackBtn").onclick = showWaContactList;
+  if($("waSendBtn")) $("waSendBtn").onclick = sendWaTextMessage;
+  if($("waTextInput")) $("waTextInput").onkeydown = (e) => {
+    if(e.key === "Enter" && !e.shiftKey){
+      e.preventDefault();
+      sendWaTextMessage();
+    }
+  };
+  if($("waMicBtn")) $("waMicBtn").onclick = startWaVoiceRecording;
+  if($("waCancelRecBtn")) $("waCancelRecBtn").onclick = cancelWaVoiceRecording;
+  if($("waSendRecBtn")) $("waSendRecBtn").onclick = stopAndSendWaVoiceRecording;
+  if($("waClearChatBtn")) $("waClearChatBtn").onclick = () => {
+    if(!activeChatPerson) return;
+    const ok = confirm(`کیا آپ واقعی ${activeChatPerson.name} کے ساتھ تمام سابقہ پیغامات صاف کر کے ہسٹری میں محفوظ کرنا چاہتے ہیں؟`);
+    if(!ok) return;
+    archivePreviousMessagesForPerson(activeChatPerson.id);
+    renderWaMessages();
+    renderWaContacts();
+  };
 
   function showApp(){
+    // CRITICAL MAINTENANCE LOCKDOWN:
+    // If any non-superadmin opens or restores the app, block them with the maintenance screen!
+    if(currentUser && currentUser.role !== "superadmin"){
+      $("login").classList.add("hidden");
+      $("app").classList.add("hidden");
+      let mScreen = $("maintenanceBlockedScreen");
+      if(!mScreen){
+        mScreen = document.createElement("div");
+        mScreen.id = "maintenanceBlockedScreen";
+        mScreen.style.cssText = "position:fixed;inset:0;background:#0f172a;color:#f8fafc;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;direction:rtl;font-family:var(--font-urdu-body),system-ui,sans-serif;";
+        mScreen.innerHTML = `
+          <div style="max-width:480px;background:#1e293b;padding:32px 24px;border-radius:18px;border:2px solid #ef4444;box-shadow:0 12px 40px rgba(0,0,0,0.6);">
+            <div style="font-size:64px;margin-bottom:12px;">🚧</div>
+            <h1 style="font-size:22px;font-weight:bold;color:#f87171;margin-bottom:12px;">سائٹ زیرِ مرمت ہے (Maintenance Mode)</h1>
+            <p style="font-size:17px;line-height:1.8;color:#cbd5e1;margin-bottom:20px;">
+              اس وقت سائٹ مینٹیننس کی وجہ سے عارضی طور پر بلاک ہے۔ برائے مہربانی کام مکمل ہونے کا انتظار فرمائیں۔
+            </p>
+            <div style="background:#0f172a;border-radius:10px;padding:12px;font-size:14px;color:#94a3b8;margin-bottom:24px;">
+              🔒 رسائی صرف مجاز ایڈمنسٹریٹر (سپر ایڈمن) تک محدود ہے۔
+            </div>
+            <button onclick="doLogout()" style="background:#ef4444;color:white;border:none;padding:12px 28px;border-radius:10px;font-size:16px;cursor:pointer;font-family:inherit;font-weight:bold;">
+              لاگ آؤٹ کریں
+            </button>
+          </div>
+        `;
+        document.body.appendChild(mScreen);
+      } else {
+        mScreen.classList.remove("hidden");
+      }
+      return;
+    }
+
+    if($("maintenanceBlockedScreen")){
+      $("maintenanceBlockedScreen").classList.add("hidden");
+    }
+
     $("login").classList.add("hidden");
     $("app").classList.remove("hidden");
     renderUserHeader();
@@ -3995,6 +5763,7 @@
     initTokenQueue();
     checkSoundBar();
     applyWake();
+    renderWaContacts();
     if(currentUser) registerFcmTokenForUser(currentUser.id);
   }
 
@@ -5058,6 +6827,14 @@
 
       if(savedUserStr){
         currentUser = JSON.parse(savedUserStr);
+
+        // CRITICAL MAINTENANCE LOCKDOWN:
+        // Any restored session that is NOT superadmin must immediately be blocked with maintenance screen!
+        if(currentUser && currentUser.role !== "superadmin"){
+          showApp();
+          return;
+        }
+
         if(isFirebaseConfigured && auth){
           if(auth.currentUser){
             showApp();

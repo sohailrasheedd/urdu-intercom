@@ -131,6 +131,19 @@ exports.handler = async (event) => {
       };
     }
 
+    // CRITICAL MAINTENANCE LOCKDOWN:
+    // Only superadmin is allowed to login during maintenance/testing.
+    if (targetUser.role !== 'superadmin') {
+      return {
+        statusCode: 403,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({
+          error: '⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔ برائے مہربانی کام مکمل ہونے کا انتظار فرمائیں۔',
+          maintenance: true
+        })
+      };
+    }
+
     // 2. Check PIN from private/pins/{targetUser.id}
     const pinSnap = await db.ref(`private/pins/${targetUser.id}`).once('value');
     let pinRecord = pinSnap.val();
