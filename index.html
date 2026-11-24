@@ -3246,55 +3246,61 @@
   }
 
   let activeMessagesMap = {};
+  let userClearedChats = {};
+  try {
+    userClearedChats = JSON.parse(localStorage.getItem("intercom_user_cleared") || "{}");
+  } catch(e){}
+
+  function getUserClearedTimestamp(userId, contactId){
+    if(!userId || !contactId) return 0;
+    return userClearedChats[userId + "_" + contactId] || 0;
+  }
 
   /* ---------- Archive / Clear previous messages on card ---------- */
   function archivePreviousMessagesForPerson(personId){
+    // 1. Clear from DOM card if present
     const card = $("p_" + personId);
-    if(!card) return;
-    const list = card.querySelector(".msgs");
-    if(!list) return;
-    const oldEls = list.querySelectorAll(".msg");
-    if(!oldEls || oldEls.length === 0) return;
+    if(card){
+      const list = card.querySelector(".msgs");
+      if(list){
+        const oldEls = list.querySelectorAll(".msg");
+        if(oldEls && oldEls.length > 0){
+          oldEls.forEach(el => el.remove());
+        }
+      }
+      refreshPerson(personId);
+    }
 
-    oldEls.forEach(el => {
-      const key = el.id.replace("m_", "");
-      const cached = activeMessagesMap[key] || {};
-      const textEl = el.querySelector(".t");
-      const text = cached.text || (textEl ? textEl.textContent : "");
-      const isOut = el.classList.contains("outgoing");
-      const who = cached.from || (isOut ? (currentUser ? currentUser.id : "admin") : personId);
-      const whoName = cached.fromName || (isOut ? (currentUser ? currentUser.name : "ایڈمن") : (activePeople.find(x => x.id === personId)?.name || personId));
-
+    // 2. Archive all messages for this contact to history and delete from active messages
+    const msgs = getMessagesForContact(personId);
+    msgs.forEach(m => {
+      const key = m.key || m.id;
       const histData = {
         id: key,
         voiceId: key,
-        from: who,
-        fromName: whoName,
-        to: personId,
-        text: text,
-        hasAudio: !!(cached.hasAudio || cached.audio),
-        audioDuration: cached.audioDuration || 0,
-        audioMime: cached.audioMime || "",
-        audio: cached.audio || "",
-        time: cached.time || Date.now(),
-        replyTo: cached.replyTo || "",
+        from: m.from,
+        fromName: m.fromName,
+        to: m.to,
+        text: m.text,
+        hasAudio: !!(m.hasAudio || m.audio),
+        audioDuration: m.audioDuration || 0,
+        audioMime: m.audioMime || "",
+        audio: m.audio || "",
+        time: m.time || m.sentAt || Date.now(),
+        replyTo: m.replyTo || "",
         clearedAt: Date.now()
       };
       addLocalHistory(histData);
-
       if(isFirebaseConfigured && db){
         db.ref("history").push({
           ...histData,
           clearedAt: firebase.database.ServerValue.TIMESTAMP
         }).catch(()=>{});
         db.ref("messages").child(key).remove().catch(()=>{});
-        // Voice audio in db.ref("voice").child(key) is PRESERVED for Super User playback
       } else {
         fetch('/api/messages/' + encodeURIComponent(key), { method: 'DELETE' }).catch(()=>{});
       }
-      el.remove();
     });
-    refreshPerson(personId);
   }
 
   /* ---------- Voice Audio Player & Auto-Play (Task C) ---------- */
@@ -4298,6 +4304,39 @@
           toast("انٹرنیٹ رابطہ منقطع ہے");
         }
       });
+
+      // Sync cleared chats state so user sees empty screen while Super Admin sees all messages
+      if(currentUser){
+        trackDbListener(db.ref("user_cleared/" + currentUser.id), "value", snap => {
+          const val = snap.val();
+          if(val && typeof val === "object"){
+            Object.keys(val).forEach(cid => {
+              userClearedChats[currentUser.id + "_" + cid] = val[cid];
+            });
+            try{ localStorage.setItem("intercom_user_cleared", JSON.stringify(userClearedChats)); }catch(e){}
+            scheduleWaRender();
+            renderWaContacts();
+          }
+        }, () => {});
+      }
+
+      if(currentUser && currentUser.role === "superadmin"){
+        trackDbListener(db.ref("user_cleared"), "value", snap => {
+          const val = snap.val();
+          if(val && typeof val === "object"){
+            Object.keys(val).forEach(uid => {
+              const uObj = val[uid];
+              if(uObj && typeof uObj === "object"){
+                Object.keys(uObj).forEach(cid => {
+                  userClearedChats[uid + "_" + cid] = uObj[cid];
+                });
+              }
+            });
+            try{ localStorage.setItem("intercom_user_cleared", JSON.stringify(userClearedChats)); }catch(e){}
+            scheduleWaRender();
+          }
+        }, () => {});
+      }
     } else {
       // Local Server Mode
       fetch('/api/messages')
@@ -5695,8 +5734,14 @@
 
   function getMessagesForContact(contactId){
     if(!currentUser) return [];
+    const clearTs = (currentUser.role !== "superadmin") ? getUserClearedTimestamp(currentUser.id, contactId) : 0;
+
     return Object.keys(activeMessagesMap).map(k => ({ key: k, ...activeMessagesMap[k] })).filter(m => {
       if(!m) return false;
+      const mTime = m.time || m.sentAt || 0;
+      if(clearTs && mTime <= clearTs){
+        return false;
+      }
       if(currentUser.role === "admin" || currentUser.role === "superadmin"){
         // Admin chat with one staff member: only that person's thread with the admin
         return (m.from === contactId && isIncomingForMe(m)) ||
@@ -5863,6 +5908,18 @@
 
       const meta = document.createElement("div");
       meta.className = "wa-bubble-meta";
+
+      if(currentUser.role === "superadmin" && activeChatPerson){
+        const contactClearTs = getUserClearedTimestamp(activeChatPerson.id, currentUser.id) ||
+                               getUserClearedTimestamp(activeChatPerson.id, "admin") ||
+                               getUserClearedTimestamp(activeChatPerson.id, "superadmin");
+        if(contactClearTs && ts <= contactClearTs){
+          const tag = document.createElement("span");
+          tag.style.cssText = "display:inline-block;margin-inline-end:6px;font-size:0.7rem;background:rgba(217,119,6,0.25);color:#fbbf24;padding:1px 5px;border-radius:4px;font-family:var(--font-urdu-body);font-weight:600";
+          tag.textContent = "صارف نے صاف کیا";
+          meta.appendChild(tag);
+        }
+      }
 
       const timeSpan = document.createElement("span");
       timeSpan.textContent = timeStr(ts);
@@ -6168,14 +6225,70 @@
   if($("waMicBtn")) $("waMicBtn").onclick = startWaVoiceRecording;
   if($("waCancelRecBtn")) $("waCancelRecBtn").onclick = cancelWaVoiceRecording;
   if($("waSendRecBtn")) $("waSendRecBtn").onclick = stopAndSendWaVoiceRecording;
-  if($("waClearChatBtn")) $("waClearChatBtn").onclick = () => {
-    if(!activeChatPerson) return;
-    const ok = confirm(`کیا آپ واقعی ${activeChatPerson.name} کے ساتھ تمام سابقہ پیغامات صاف کر کے ہسٹری میں محفوظ کرنا چاہتے ہیں؟`);
-    if(!ok) return;
-    archivePreviousMessagesForPerson(activeChatPerson.id);
-    renderWaMessages();
-    renderWaContacts();
-  };
+  function handleWaClearChat(){
+    if(!activeChatPerson || !currentUser) return;
+    const isSuper = (currentUser.role === "superadmin");
+
+    if(isSuper){
+      const ok = confirm(`کیا آپ واقعی ${activeChatPerson.name} کے ساتھ تمام پیغامات ہسٹری میں محفوظ کر کے صاف کرنا چاہتے ہیں؟`);
+      if(!ok) return;
+      archivePreviousMessagesForPerson(activeChatPerson.id);
+      renderWaMessages();
+      renderWaContacts();
+      toast("تمام پیغامات ہسٹری میں محفوظ کر کے صاف کر دیے گئے");
+    } else {
+      const ok = confirm(`کیا آپ واقعی اپنی اسکرین سے یہ تمام پیغامات صاف کرنا چاہتے ہیں؟`);
+      if(!ok) return;
+
+      const now = Date.now();
+      const clearKey = currentUser.id + "_" + activeChatPerson.id;
+      userClearedChats[clearKey] = now;
+      try{ localStorage.setItem("intercom_user_cleared", JSON.stringify(userClearedChats)); }catch(e){}
+
+      // Sync to Firebase user_cleared node
+      if(isFirebaseConfigured && db){
+        db.ref("user_cleared/" + currentUser.id + "/" + activeChatPerson.id).set(now).catch(()=>{});
+
+        // Also permanently preserve existing messages in History for Super Admin
+        const msgs = getMessagesForContact(activeChatPerson.id);
+        msgs.forEach(m => {
+          const histData = {
+            id: m.key || m.id,
+            voiceId: m.key || m.id,
+            from: m.from,
+            fromName: m.fromName,
+            to: m.to,
+            text: m.text,
+            hasAudio: !!(m.hasAudio || m.audio),
+            audioDuration: m.audioDuration || 0,
+            audioMime: m.audioMime || "",
+            audio: m.audio || "",
+            time: m.time || m.sentAt || now,
+            replyTo: m.replyTo || "",
+            clearedBy: currentUser.id,
+            clearedByName: currentUser.name,
+            clearedAt: firebase.database.ServerValue.TIMESTAMP
+          };
+          addLocalHistory(histData);
+          db.ref("history").push(histData).catch(()=>{});
+        });
+      }
+
+      // If user has an inbox card on dashboard, clear its UI list as well
+      const ownCard = $("p_" + currentUser.id);
+      if(ownCard){
+        const list = ownCard.querySelector(".msgs");
+        if(list) list.innerHTML = "";
+        refreshPerson(currentUser.id);
+      }
+
+      renderWaMessages();
+      renderWaContacts();
+      toast("گفتگو آپ کی اسکرین سے صاف کر دی گئی");
+    }
+  }
+
+  if($("waClearChatBtn")) $("waClearChatBtn").onclick = handleWaClearChat;
 
   function showApp(){
     // Dynamic Maintenance Mode Check
