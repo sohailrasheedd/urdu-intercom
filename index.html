@@ -6081,57 +6081,77 @@
     }
   }
 
-  function startWaVoiceRecording(){
-    $("waRecordBanner").classList.remove("hidden");
+  async function startWaVoiceRecording(){
+    initAudio();
+    $("waMicBtn").classList.add("hidden");
     $("waTextInput").classList.add("hidden");
     $("waSendBtn").classList.add("hidden");
-    startVoiceRecording();
+    $("waRecordBanner").classList.remove("hidden");
+    if($("waRecordTimer")) $("waRecordTimer").textContent = "00:00";
+
+    const ok = await startVoiceRecording();
+    if(ok === false){
+      cancelWaVoiceRecording();
+    }
   }
 
   function cancelWaVoiceRecording(){
     stopVoiceRecording();
     resetVoiceRecorderUI();
     $("waRecordBanner").classList.add("hidden");
+    $("waMicBtn").classList.remove("hidden");
     $("waTextInput").classList.remove("hidden");
     $("waSendBtn").classList.remove("hidden");
+    if($("waRecordTimer")) $("waRecordTimer").textContent = "00:00";
   }
 
   async function stopAndSendWaVoiceRecording(){
-    stopVoiceRecording();
+    const sendRecBtn = $("waSendRecBtn");
+    if(sendRecBtn) sendRecBtn.disabled = true;
+
+    const res = await stopVoiceRecording();
+
     $("waRecordBanner").classList.add("hidden");
+    $("waMicBtn").classList.remove("hidden");
     $("waTextInput").classList.remove("hidden");
     $("waSendBtn").classList.remove("hidden");
+    if($("waRecordTimer")) $("waRecordTimer").textContent = "00:00";
+    if(sendRecBtn) sendRecBtn.disabled = false;
 
-    setTimeout(() => {
-      if(!recordedAudioBase64){
-        toast("ریکارڈنگ محفوظ نہیں ہو سکی");
-        return;
-      }
-      if(!activeChatPerson) return;
+    if(!res || !res.base64){
+      toast("کوئی آواز ریکارڈ نہیں ہو سکی");
+      return;
+    }
+    if(!activeChatPerson) return;
 
-      const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
-      const isPeer = (!isToAdmin && currentUser.role === "user");
+    const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
+    const isPeer = (!isToAdmin && currentUser.role === "user");
 
-      const msgPayload = {
-        to: isToAdmin ? currentUser.id : activeChatPerson.id,
-        from: currentUser.id,
-        fromName: currentUser.name,
-        text: "🎙️ صوتی پیغام (Voice Note)",
-        audio: recordedAudioBase64,
-        hasAudio: true,
-        audioDuration: recordedAudioDuration,
-        audioMime: recordedAudioMime,
-        kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
-        recipient: isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id)),
-        time: Date.now(),
-        replyTo: ""
-      };
+    const msgPayload = {
+      to: isToAdmin ? currentUser.id : activeChatPerson.id,
+      from: currentUser.id,
+      fromName: currentUser.name,
+      text: "🎙️ صوتی پیغام (Voice Note)",
+      audio: res.base64,
+      hasAudio: true,
+      audioDuration: res.duration || 1,
+      audioMime: res.mime || "audio/webm",
+      kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
+      recipient: isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id)),
+      time: Date.now(),
+      replyTo: ""
+    };
 
-      sendRawMessage(msgPayload);
+    try{
+      await sendRawMessage(msgPayload);
       resetVoiceRecorderUI();
-      renderWaMessages();
+      renderWaMessages(true);
       renderWaContacts();
-    }, 450);
+      toast("صوتی پیغام بھیج دیا گیا");
+    }catch(err){
+      console.error("Send voice error:", err);
+      toast("پیغام بھیجنے میں خرابی ہوئی");
+    }
   }
 
   // Hook WhatsApp Buttons
@@ -6479,6 +6499,7 @@
     recordedAudioDuration = 0;
     voiceSeconds = 0;
     if($("voiceRecTimer")) $("voiceRecTimer").textContent = "00:00";
+    if($("waRecordTimer")) $("waRecordTimer").textContent = "00:00";
     if($("voiceRecStatus")) $("voiceRecStatus").textContent = "بٹن دبا کر اپنی آواز ریکارڈ کریں (Voice Note)";
     if($("voiceRecBtn")) $("voiceRecBtn").classList.remove("recording");
     if($("voicePreviewBox")) $("voicePreviewBox").classList.add("hidden");
@@ -6541,10 +6562,13 @@
     return new Blob(mp3Data, { type: "audio/mp3" });
   }
 
+  let activeMediaRecorder = null;
+  let activeRecordedChunks = [];
+
   async function startVoiceRecording(){
     if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
       alert("اس براؤزر میں آڈیو ریکارڈنگ دستیاب نہیں");
-      return;
+      return false;
     }
     stopMic();
     resetVoiceRecorderUI();
@@ -6553,86 +6577,100 @@
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
           echoCancellation: true,
-          noiseSuppression: true
+          noiseSuppression: true,
+          autoGainControl: true
         }
       });
       pcmStream = stream;
       isRecordingVoice = true;
+      voiceSeconds = 0;
 
-      // Try pure PCM + lamejs MP3 encoding (mono, 16 kHz)
-      if(typeof lamejs !== "undefined" && (window.AudioContext || window.webkitAudioContext)){
+      // Primary: Modern, robust MediaRecorder (supported natively in all modern browsers)
+      activeRecordedChunks = [];
+      let mime = "";
+      if(typeof MediaRecorder !== 'undefined'){
+        if(MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) mime = 'audio/webm;codecs=opus';
+        else if(MediaRecorder.isTypeSupported('audio/webm')) mime = 'audio/webm';
+        else if(MediaRecorder.isTypeSupported('audio/mp4')) mime = 'audio/mp4';
+        else if(MediaRecorder.isTypeSupported('audio/aac')) mime = 'audio/aac';
+      }
+
+      if(typeof MediaRecorder !== 'undefined'){
+        try{
+          activeMediaRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+          recordedAudioMime = mime || 'audio/webm';
+          activeMediaRecorder.ondataavailable = e => {
+            if(e.data && e.data.size > 0){
+              activeRecordedChunks.push(e.data);
+            }
+          };
+          activeMediaRecorder.start(100);
+        }catch(recErr){
+          console.warn("MediaRecorder init failed, trying Web Audio fallback:", recErr);
+          activeMediaRecorder = null;
+        }
+      }
+
+      // Secondary: Web Audio PCM if MediaRecorder is unavailable
+      if(!activeMediaRecorder && typeof lamejs !== "undefined" && (window.AudioContext || window.webkitAudioContext)){
         try{
           pcmContext = new (window.AudioContext || window.webkitAudioContext)();
           if(pcmContext.state === "suspended") await pcmContext.resume();
           pcmSource = pcmContext.createMediaStreamSource(stream);
           pcmProcessor = pcmContext.createScriptProcessor(4096, 1, 1);
           pcmChunks = [];
-
           pcmProcessor.onaudioprocess = e => {
             if(!isRecordingVoice) return;
-            const inputData = e.inputBuffer.getChannelData(0);
-            pcmChunks.push(new Float32Array(inputData));
+            pcmChunks.push(new Float32Array(e.inputBuffer.getChannelData(0)));
           };
-
           pcmSource.connect(pcmProcessor);
           pcmProcessor.connect(pcmContext.destination);
           isPcmSupported = true;
-        }catch(err){
-          console.warn("PCM setup failed, using MediaRecorder fallback:", err);
-          isPcmSupported = false;
-          startFallbackRecorder(stream);
+        }catch(pErr){
+          console.warn("PCM fallback failed:", pErr);
         }
-      } else {
-        isPcmSupported = false;
-        startFallbackRecorder(stream);
       }
 
-      voiceSeconds = 0;
       if($("voiceRecBtn")) $("voiceRecBtn").classList.add("recording");
       if($("voiceRecStatus")) $("voiceRecStatus").textContent = "🔴 ریکارڈنگ ہو رہی ہے… بولیں (روکنے کے لیے بٹن دبائیں)";
+      if($("waRecordTimer")) $("waRecordTimer").textContent = "00:00";
+      if($("voiceRecTimer")) $("voiceRecTimer").textContent = "00:00";
 
       voiceTimerInterval = setInterval(() => {
         voiceSeconds++;
         const mm = String(Math.floor(voiceSeconds / 60)).padStart(2, "0");
         const ss = String(voiceSeconds % 60).padStart(2, "0");
-        if($("voiceRecTimer")) $("voiceRecTimer").textContent = `${mm}:${ss}`;
+        const timeStr = `${mm}:${ss}`;
+        if($("voiceRecTimer")) $("voiceRecTimer").textContent = timeStr;
+        if($("waRecordTimer")) $("waRecordTimer").textContent = timeStr;
         if(voiceSeconds >= 30){
-          stopVoiceRecording();
-          toast("صوتی پیغام کی زیادہ سے زیادہ حد (30 سیکنڈ) مکمل ہو گئی");
+          if(activeChatPerson && $("waRecordBanner") && !$("waRecordBanner").classList.contains("hidden")){
+            stopAndSendWaVoiceRecording();
+          } else {
+            stopVoiceRecording();
+          }
+          toast("صوتی پیغام کی حد (30 سیکنڈ) مکمل ہو گئی");
         }
       }, 1000);
 
+      return true;
     }catch(err){
       console.warn("Microphone access error:", err);
       isRecordingVoice = false;
       if(err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError'){
-        alert("مائیک کی اجازت نہیں ملی — براؤزر میں مائیک Allow کریں");
+        alert("مائیک کی اجازت نہیں ملی — براؤزر کی سیٹنگز میں مائیک Allow کریں");
       }else if(err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError'){
         alert("کوئی مائیکروفون نہیں ملا");
       }else{
-        alert("اس براؤزر میں آڈیو ریکارڈنگ دستیاب نہیں");
+        alert("آڈیو ریکارڈنگ شروع نہیں ہو سکی: " + (err.message || err.name));
       }
       resetVoiceRecorderUI();
+      return false;
     }
-  }
-
-  function startFallbackRecorder(stream){
-    fallbackChunks = [];
-    let mime = "";
-    if(typeof MediaRecorder !== 'undefined'){
-      if(MediaRecorder.isTypeSupported('audio/mp4')) mime = 'audio/mp4';
-      else if(MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) mime = 'audio/webm;codecs=opus';
-      else if(MediaRecorder.isTypeSupported('audio/webm')) mime = 'audio/webm';
-    }
-    fallbackRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
-    fallbackRecorder.ondataavailable = e => {
-      if(e.data && e.data.size > 0) fallbackChunks.push(e.data);
-    };
-    fallbackRecorder.start(250);
   }
 
   function stopVoiceRecording(){
-    if(!isRecordingVoice) return;
+    if(!isRecordingVoice && !activeMediaRecorder) return Promise.resolve(null);
     isRecordingVoice = false;
 
     if(voiceTimerInterval){
@@ -6643,72 +6681,63 @@
 
     recordedAudioDuration = Math.max(1, voiceSeconds);
 
-    if(isPcmSupported && pcmChunks && pcmChunks.length > 0){
-      try{
-        if(pcmProcessor && pcmSource){
-          pcmProcessor.disconnect();
-          pcmSource.disconnect();
-        }
+    return new Promise((resolve) => {
+      const finishAudioBlob = (blob, mimeType) => {
         if(pcmStream){
-          pcmStream.getTracks().forEach(t => t.stop());
+          try{ pcmStream.getTracks().forEach(t => t.stop()); }catch(e){}
         }
-
-        // Merge float chunks
-        let totalLen = pcmChunks.reduce((acc, c) => acc + c.length, 0);
-        let merged = new Float32Array(totalLen);
-        let offset = 0;
-        pcmChunks.forEach(c => {
-          merged.set(c, offset);
-          offset += c.length;
-        });
-
-        // Downsample to 16 kHz mono
-        const inRate = (pcmContext && pcmContext.sampleRate) || 44100;
-        const downsampled = downsamplePcm(merged, inRate, 16000);
-        const pcm16 = float32ToInt16(downsampled);
-
-        // Encode to MP3 via lamejs
-        const mp3Blob = encodeMp3Blob(pcm16, 16000);
-
-        // Enforce 400 KB limit
-        if(mp3Blob.size > 400 * 1024){
-          alert("صوتی پیغام کا سائز 400KB سے زیادہ ہے! دوبارہ مختصر ریکارڈنگ کریں۔");
-          resetVoiceRecorderUI();
+        if(!blob || blob.size === 0){
+          resolve(null);
           return;
         }
-
-        recordedAudioMime = "audio/mp3";
+        recordedAudioMime = mimeType;
         const reader = new FileReader();
         reader.onloadend = () => {
           recordedAudioBase64 = reader.result;
           setupVoicePreview(recordedAudioBase64, recordedAudioDuration);
+          resolve({
+            base64: recordedAudioBase64,
+            duration: recordedAudioDuration,
+            mime: recordedAudioMime
+          });
         };
-        reader.readAsDataURL(mp3Blob);
-
-      }catch(err){
-        console.warn("PCM MP3 encoding error:", err);
-      }
-    } else if(fallbackRecorder && fallbackRecorder.state !== "inactive"){
-      fallbackRecorder.onstop = () => {
-        if(pcmStream) pcmStream.getTracks().forEach(t => t.stop());
-        const blob = new Blob(fallbackChunks, { type: fallbackRecorder.mimeType || 'audio/webm' });
-        if(blob.size > 400 * 1024){
-          alert("صوتی پیغام کا سائز 400KB سے زیادہ ہے!");
-          resetVoiceRecorderUI();
-          return;
-        }
-        recordedAudioMime = fallbackRecorder.mimeType || 'audio/webm';
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          recordedAudioBase64 = reader.result;
-          setupVoicePreview(recordedAudioBase64, recordedAudioDuration);
-        };
+        reader.onerror = () => resolve(null);
         reader.readAsDataURL(blob);
       };
-      try{ fallbackRecorder.stop(); }catch(e){}
-    } else {
-      if(pcmStream) pcmStream.getTracks().forEach(t => t.stop());
-    }
+
+      if(activeMediaRecorder && activeMediaRecorder.state !== "inactive"){
+        activeMediaRecorder.onstop = () => {
+          const blob = new Blob(activeRecordedChunks, { type: recordedAudioMime || 'audio/webm' });
+          finishAudioBlob(blob, recordedAudioMime || 'audio/webm');
+          activeMediaRecorder = null;
+        };
+        try{ activeMediaRecorder.stop(); }catch(e){ finishAudioBlob(null); }
+      } else if(isPcmSupported && pcmChunks && pcmChunks.length > 0){
+        try{
+          if(pcmProcessor && pcmSource){
+            pcmProcessor.disconnect();
+            pcmSource.disconnect();
+          }
+          let totalLen = pcmChunks.reduce((acc, c) => acc + c.length, 0);
+          let merged = new Float32Array(totalLen);
+          let offset = 0;
+          pcmChunks.forEach(c => {
+            merged.set(c, offset);
+            offset += c.length;
+          });
+          const inRate = (pcmContext && pcmContext.sampleRate) || 44100;
+          const downsampled = downsamplePcm(merged, inRate, 16000);
+          const pcm16 = float32ToInt16(downsampled);
+          const mp3Blob = encodeMp3Blob(pcm16, 16000);
+          finishAudioBlob(mp3Blob, "audio/mp3");
+        }catch(e){
+          console.warn("PCM encode error:", e);
+          finishAudioBlob(null);
+        }
+      } else {
+        finishAudioBlob(null);
+      }
+    });
   }
 
   function setupVoicePreview(base64Src, durSec){
