@@ -114,9 +114,9 @@
   }
 
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);
+  html,body{margin:0;padding:0;height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:var(--text);
     font-family:var(--font-urdu-body);
-    line-height:var(--lh-urdu-body);overflow-x:hidden;
+    line-height:var(--lh-urdu-body);
     text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     font-feature-settings:"kern" 1, "liga" 1;
     letter-spacing:0;
@@ -151,7 +151,7 @@
   }
 
   /* ---------- Login ---------- */
-  #login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;width:100%;box-sizing:border-box}
+  #login{height:100%;height:100dvh;overflow-y:auto;display:flex;align-items:center;justify-content:center;padding:16px;width:100%;box-sizing:border-box}
   .login-box{background:var(--card);padding:26px 22px;border-radius:22px;width:100%;max-width:420px;
     box-shadow:0 20px 50px rgba(0,0,0,.4);text-align:center;box-sizing:border-box}
   .login-box h1{margin:0 0 6px;font-size:1.85rem;font-family:var(--font-urdu-heading);line-height:var(--lh-urdu-heading);letter-spacing:0}
@@ -171,11 +171,11 @@
   .quick-btn:hover{background:#2563eb}
 
   /* ---------- Main Grid & App ---------- */
-  #app{min-height:100vh;padding:14px;padding-bottom:130px;box-sizing:border-box}
+  #app{height:100%;height:100dvh;max-height:100dvh;display:flex;flex-direction:column;padding:6px 14px 68px 14px;box-sizing:border-box;overflow:hidden;position:relative}
   
-  .top-nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:8px 16px;
-    background:var(--card);border-radius:18px;margin-bottom:14px;max-width:1300px;margin-left:auto;margin-right:auto;
-    border:1px solid #334155;gap:10px}
+  .top-nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:6px 14px;
+    background:var(--card);border-radius:16px;margin-bottom:8px;max-width:1300px;margin-left:auto;margin-right:auto;
+    border:1px solid #334155;gap:8px}
   .user-badge{font-size:1.15rem;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--font-urdu-heading);line-height:var(--lh-urdu-heading)}
   .user-role-tag{font-size:.85rem;padding:2px 10px;border-radius:12px;background:#334155;color:var(--muted);font-family:var(--font-latin-heading);font-weight:600}
   .nav-status-tag{font-size:.85rem;padding:3px 10px;border-radius:10px;background:#065f46;color:#a7f3d0;font-family:var(--font-latin-heading);font-weight:600}
@@ -550,71 +550,135 @@
   .token-next-txt{font-family:var(--font-urdu-body);font-size:.9rem;color:#94a3b8;border-right:1px solid #334155;padding-right:10px;line-height:1.4;display:flex;align-items:center;gap:4px;white-space:nowrap}
   .token-next-highlight{color:#fbbf24;font-family:var(--font-latin-heading);font-weight:700;font-size:1.1rem}
 
-  /* ---------- Admin Token Queue Panel ---------- */
-  .admin-token-panel{background:var(--card);border:2px solid #334155;border-radius:20px;padding:18px 20px;margin:0 auto 18px;max-width:1300px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
-  .token-panel-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-bottom:1px solid #334155;padding-bottom:12px;margin-bottom:16px}
-  .token-panel-title{font-family:var(--font-urdu-body);font-size:1.35rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px}
+  /* ---------- Admin Token Queue Panel (Balanced Full-Screen Layout) ---------- */
+  .admin-token-panel{
+    flex:1;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    background:var(--card);
+    border:2px solid #334155;
+    border-radius:18px;
+    padding:10px 14px;
+    margin:0 auto;
+    max-width:1300px;
+    width:100%;
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+    box-sizing:border-box;
+  }
+  .token-panel-header{
+    flex-shrink:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px solid #334155;
+    padding-bottom:8px;
+    margin-bottom:8px;
+  }
+  .token-panel-title{font-family:var(--font-urdu-body);font-size:1.25rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px}
   .token-panel-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .token-panel-body{display:grid;grid-template-columns:1fr 1.15fr;gap:16px;align-items:start}
+  .token-panel-body{
+    flex:1;
+    min-height:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    align-items:stretch;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding-right:2px;
+  }
   @media(max-width:850px){.token-panel-body{grid-template-columns:1fr}}
-  .token-big-display{background:#0f172a;border:2px solid #3b82f6;border-radius:18px;padding:18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}
-  .token-big-label{font-family:var(--font-urdu-body);font-size:1.15rem;font-weight:700;color:#93c5fd;margin-bottom:4px}
-  .token-big-number{font-family:var(--font-latin-heading);font-size:4.2rem;font-weight:900;color:#22c55e;line-height:1;margin:6px 0;text-shadow:0 0 20px rgba(34,197,94,.4)}
-  .token-big-number.none{font-size:2rem;color:#64748b;font-family:var(--font-urdu-body);text-shadow:none}
-  .token-stats-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin-top:10px;padding-top:10px;border-top:1px dashed #334155;font-size:.95rem;color:#cbd5e1;font-family:var(--font-urdu-body)}
+  .token-panel-col{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .token-big-display{background:#0f172a;border:2px solid #3b82f6;border-radius:16px;padding:10px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}
+  .token-big-label{font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;color:#93c5fd;margin-bottom:2px}
+  .token-big-number{font-family:var(--font-latin-heading);font-size:3.2rem;font-weight:900;color:#22c55e;line-height:1;margin:2px 0;text-shadow:0 0 20px rgba(34,197,94,.4)}
+  .token-big-number.none{font-size:1.5rem;color:#64748b;font-family:var(--font-urdu-body);text-shadow:none}
+  .token-stats-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;margin-top:6px;padding-top:6px;border-top:1px dashed #334155;font-size:.88rem;color:#cbd5e1;font-family:var(--font-urdu-body)}
   .token-stat-item span{font-weight:700;color:#f8fafc}
-  .token-controls-wrap{display:flex;flex-direction:column;gap:12px}
-  .token-total-setting-box{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-  .token-total-input{width:90px;min-height:44px;padding:8px 10px;text-align:center;font-size:1.3rem;font-weight:700;border-radius:10px;border:2px solid #334155;background:#1e293b;color:#fff;outline:none}
+  .token-controls-wrap{display:flex;flex-direction:column;gap:8px}
+  .token-total-setting-box{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:6px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .token-total-input{width:80px;min-height:36px;padding:4px 8px;text-align:center;font-size:1.15rem;font-weight:700;border-radius:8px;border:2px solid #334155;background:#1e293b;color:#fff;outline:none}
   .token-total-input:focus{border-color:#3b82f6}
-  .btn-token-next{width:100%;min-height:56px;padding:14px 20px;background:linear-gradient(135deg,#16a34a 0%,#15803d 100%);border:0;border-radius:16px;color:#fff;font-family:var(--font-urdu-body);font-size:1.45rem;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(22,163,74,.4);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s ease;user-select:none}
-  .btn-token-next:hover{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);box-shadow:0 8px 25px rgba(34,197,94,.5);transform:translateY(-2px)}
+  .btn-token-next{width:100%;min-height:46px;padding:10px 16px;background:linear-gradient(135deg,#16a34a 0%,#15803d 100%);border:0;border-radius:14px;color:#fff;font-family:var(--font-urdu-body);font-size:1.25rem;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(22,163,74,.4);display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s ease;user-select:none}
+  .btn-token-next:hover{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);box-shadow:0 8px 22px rgba(34,197,94,.5);transform:translateY(-1px)}
   .btn-token-next:active{transform:translateY(1px) scale(.98)}
-  .token-sub-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .btn-token-prev{min-height:46px;padding:10px 14px;background:#334155;border:1px solid #475569;border-radius:12px;color:#f1f5f9;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+  .token-sub-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .btn-token-prev{min-height:38px;padding:6px 10px;background:#334155;border:1px solid #475569;border-radius:10px;color:#f1f5f9;font-family:var(--font-urdu-body);font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
   .btn-token-prev:hover{background:#475569}
-  .btn-token-skip{min-height:46px;padding:10px 14px;background:#d97706;border:1px solid #b45309;border-radius:12px;color:#fff;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+  .btn-token-skip{min-height:38px;padding:6px 10px;background:#d97706;border:1px solid #b45309;border-radius:10px;color:#fff;font-family:var(--font-urdu-body);font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
   .btn-token-skip:hover{background:#f59e0b}
-  .token-skipped-box{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px}
-  .skipped-title{font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;color:#f59e0b;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-  .skipped-chips{display:flex;flex-wrap:wrap;gap:8px}
-  .skipped-chip{display:inline-flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #f59e0b;padding:6px 12px;border-radius:10px;font-family:var(--font-urdu-body);font-size:.95rem;color:#fff}
-  .btn-put-back{min-height:36px;background:#2563eb;border:0;border-radius:8px;color:#fff;padding:4px 10px;font-size:.85rem;font-family:var(--font-urdu-body);font-weight:700;cursor:pointer;transition:background .15s}
+  .token-skipped-box{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:8px 12px}
+  .skipped-title{font-family:var(--font-urdu-body);font-size:.95rem;font-weight:700;color:#f59e0b;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+  .skipped-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .skipped-chip{display:inline-flex;align-items:center;gap:6px;background:#1e293b;border:1px solid #f59e0b;padding:4px 8px;border-radius:8px;font-family:var(--font-urdu-body);font-size:.88rem;color:#fff}
+  .btn-put-back{min-height:30px;background:#2563eb;border:0;border-radius:6px;color:#fff;padding:2px 8px;font-size:.8rem;font-family:var(--font-urdu-body);font-weight:700;cursor:pointer;transition:background .15s}
   .btn-put-back:hover{background:#1d4ed8}
-  .token-day-controls{display:flex;gap:10px;margin-top:4px;padding-top:10px;border-top:1px solid #334155}
-  .btn-end-day{min-height:44px;flex:1;background:#7f1d1d;border:1px solid #991b1b;color:#fecaca;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-body);font-size:1.02rem;font-weight:700;cursor:pointer}
+  .token-bottom-row{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .token-day-controls{display:flex;gap:8px}
+  .btn-end-day{min-height:36px;flex:1;background:#7f1d1d;border:1px solid #991b1b;color:#fecaca;padding:6px 10px;border-radius:10px;font-family:var(--font-urdu-body);font-size:.92rem;font-weight:700;cursor:pointer}
   .btn-end-day:hover{background:#991b1b;color:#fff}
-  .btn-new-day{min-height:44px;flex:1;background:#1e3a8a;border:1px solid #1d4ed8;color:#bfdbfe;padding:10px 14px;border-radius:12px;font-family:var(--font-urdu-body);font-size:1.02rem;font-weight:700;cursor:pointer}
+  .btn-new-day{min-height:36px;flex:1;background:#1e3a8a;border:1px solid #1d4ed8;color:#bfdbfe;padding:6px 10px;border-radius:10px;font-family:var(--font-urdu-body);font-size:.92rem;font-weight:700;cursor:pointer}
   .btn-new-day:hover{background:#1d4ed8;color:#fff}
-  .offset-chip{min-height:40px;border:1px solid #475569;background:#1e293b;color:#cbd5e1;padding:6px 14px;border-radius:10px;font-family:var(--font-latin-heading);font-size:1.1rem;font-weight:700;cursor:pointer;transition:all .15s}
+  .offset-chip{min-height:40px;border:1px solid #475569;background:#1e293b;color:#cbd5e1;padding:6px 12px;border-radius:10px;font-family:var(--font-latin-heading);font-size:1.05rem;font-weight:700;cursor:pointer;transition:all .15s}
   .offset-chip.active{background:#2563eb;color:#fff;border-color:#60a5fa}
+
+  /* Single person mode for individual upstairs receiver */
+  .grid.single-mode{display:flex;justify-content:center;align-items:flex-start;max-width:850px;width:100%;margin:0 auto;flex:1;min-height:0;overflow-y:auto}
+  .grid.single-mode .person{width:100%;min-height:360px}
+  .grid.single-mode .msg.incoming .t{font-size:1.55rem;line-height:1.75}
 
   /* ---------- Responsive Media Queries ---------- */
   @media (max-width: 768px) {
-    #app{padding:10px;padding-bottom:110px}
-    .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-    .top-nav{padding:10px 12px;gap:8px}
+    #app{padding:6px 8px 60px 8px}
+    .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;flex:1;min-height:0;overflow-y:auto}
+    .top-nav{padding:6px 10px;gap:6px;margin-bottom:6px}
+    .tools{
+      left:auto;
+      right:8px;
+      transform:none;
+      bottom:8px;
+      padding:4px 8px;
+      gap:6px;
+    }
+    .tool{
+      min-height:44px;
+      padding:6px 10px;
+      font-size:.85rem;
+    }
+    .chat-fab-toggle{
+      bottom:8px;
+      left:8px;
+      padding:6px 14px;
+      min-height:44px;
+      font-size:.95rem;
+      gap:6px;
+    }
   }
 
   @media (max-width: 600px) {
-    #app{padding:8px;padding-bottom:120px}
+    #app{padding:6px 6px 62px 6px}
     .top-nav{
       flex-direction:column;
       align-items:stretch;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:16px;
+      gap:6px;
+      padding:6px 8px;
+      border-radius:14px;
+      margin-bottom:6px;
     }
     .user-badge{
       justify-content:space-between;
-      font-size:1rem;
+      font-size:.98rem;
       gap:6px;
       width:100%;
     }
     .live-token-badge{
       width:100%;
       justify-content:center;
-      padding:8px 10px;
+      padding:6px 8px;
       box-sizing:border-box;
     }
     .nav-actions{
@@ -628,32 +692,54 @@
       flex:1 1 calc(50% - 6px);
       text-align:center;
       justify-content:center;
-      padding:8px 6px;
-      font-size:.86rem;
+      padding:6px 6px;
+      font-size:.85rem;
       min-height:44px;
       box-sizing:border-box;
     }
     .btn-super, .logout-top{
       flex:1 1 100%;
     }
-    .login-box{padding:24px 14px;border-radius:18px}
-    .login-box h1{font-size:1.85rem}
-    .tools{
-      bottom:10px;
-      padding:6px 10px;
-      border-radius:20px;
-      gap:6px;
-      max-width:calc(100% - 16px);
-    }
-    .tool{
-      padding:6px 10px;
-      font-size:.85rem;
-      min-height:38px;
-    }
+    .login-box{padding:20px 14px;border-radius:18px}
+    .login-box h1{font-size:1.75rem}
     .sheet, .hist-sheet, .super-sheet{padding:16px 12px;border-radius:18px}
     .form-grid{grid-template-columns:1fr}
     .token-sub-actions{grid-template-columns:1fr}
     .token-day-controls{flex-direction:column}
+  }
+
+  @media (max-height: 500px) {
+    /* Short landscape on phones (e.g. 844x390) */
+    #app{padding:4px 6px 52px 6px}
+    .top-nav{padding:4px 8px;margin-bottom:4px}
+    .user-badge{font-size:.92rem}
+    .token-panel-header{padding-bottom:4px;margin-bottom:6px}
+    .token-panel-title{font-size:1.1rem}
+    .token-big-number{font-size:2.8rem}
+    .tools{bottom:4px;right:6px;left:auto;transform:none;padding:2px 6px}
+    .tool{min-height:44px;padding:4px 8px;font-size:.82rem}
+    .chat-fab-toggle{bottom:4px;left:6px;min-height:44px;padding:4px 10px;font-size:.86rem}
+  }
+
+  /* ---------- Review 5 layout fixes: bottom bar never hides under the chat button ---------- */
+  @media (max-width: 768px) {
+    .tools{max-width:calc(100% - 150px);flex-wrap:nowrap;gap:4px}
+    .tool{padding:6px 8px;font-size:.78rem;white-space:normal;line-height:1.35;text-align:center;justify-content:center}
+  }
+  @media (max-width: 480px) {
+    .chat-fab-icon{display:none}
+    .chat-fab-toggle{padding:6px 12px;gap:6px}
+    .tools{max-width:calc(100% - 118px)}
+  }
+  @media (max-height: 500px) {
+    /* Phone landscape: one compact header row so token controls get the space */
+    .top-nav{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:6px}
+    .user-badge{flex-wrap:nowrap;width:auto;gap:6px;white-space:nowrap}
+    .live-token-badge{width:auto;padding:2px 8px}
+    .nav-actions{flex-wrap:nowrap;width:auto;gap:4px}
+    .nav-actions > button{flex:0 0 auto;min-height:44px;padding:4px 8px;font-size:.78rem}
+    .btn-super, .logout-top{flex:0 0 auto}
+    .tools{max-width:calc(100% - 140px)}
   }
 
   /* ---------- Upcoming Tokens, Urgent Badge & Waiting Outside ---------- */
@@ -712,24 +798,24 @@
   .token-upcoming-box, .token-outside-box{
     background: #0f172a;
     border: 1px solid #334155;
-    border-radius: 14px;
-    padding: 12px 14px;
+    border-radius: 12px;
+    padding: 8px 12px;
   }
   .token-outside-box{ border-color: #f59e0b; }
   .upcoming-title, .outside-title{
     font-family: var(--font-urdu-body);
-    font-size: 1.05rem;
+    font-size: .95rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px;
   }
   .upcoming-title{ color: #38bdf8; }
   .outside-title{ color: #f59e0b; }
-  .upcoming-chips, .outside-chips{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .upcoming-chips, .outside-chips{ display: flex; flex-wrap: wrap; gap: 6px; }
   
   .upcoming-chip-item{
     display: inline-flex;
@@ -826,20 +912,21 @@
   /* ---------- WhatsApp Messenger Interface ---------- */
   .chat-fab-toggle{
     position: fixed;
-    bottom: 24px;
-    left: 24px;
+    bottom: 12px;
+    left: 16px;
     z-index: 900;
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
     color: #fff;
     border: 0;
     border-radius: 30px;
-    padding: 12px 22px;
-    font-size: 1.15rem;
+    padding: 10px 20px;
+    min-height: 44px;
+    font-size: 1.1rem;
     font-weight: 800;
     font-family: var(--font-urdu-body);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
     box-shadow: 0 8px 30px rgba(37, 211, 102, .45);
     transition: transform .15s ease, box-shadow .15s ease;
@@ -863,16 +950,16 @@
 
   .wa-messenger{
     position: fixed;
-    bottom: 86px;
-    left: 24px;
+    bottom: 70px;
+    left: 16px;
     width: 440px;
     max-width: calc(100vw - 32px);
-    height: min(650px, calc(100vh - 120px));
+    height: min(650px, calc(100dvh - 90px));
     background: #0b141a;
     border: 1px solid #222d34;
     border-radius: 20px;
     box-shadow: 0 16px 48px rgba(0,0,0,.7);
-    z-index: 999;
+    z-index: 1200;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -880,23 +967,20 @@
   }
   .wa-messenger.hidden{ display: none !important; }
 
-  @media(max-width: 600px){
+  @media(max-width: 600px), (max-height: 520px){
     .wa-messenger{
       bottom: 0 !important;
       left: 0 !important;
       right: 0 !important;
+      top: 0 !important;
       width: 100vw !important;
       max-width: 100vw !important;
-      height: 100vh !important;
-      max-height: 100vh !important;
+      height: 100% !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
       border-radius: 0 !important;
       border: 0 !important;
-    }
-    .chat-fab-toggle{
-      bottom: 16px;
-      left: 16px;
-      padding: 10px 16px;
-      font-size: 1rem;
+      z-index: 2000 !important;
     }
   }
 
@@ -1201,6 +1285,11 @@
     border-top: 1px solid #202c33;
     overflow-x: auto;
     white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .wa-pinned-bar::-webkit-scrollbar{
+    display: none;
   }
   .wa-pinned-chips{
     display: inline-flex;
@@ -1287,12 +1376,10 @@
 <div id="login">
   <div class="login-box">
     <!-- Maintenance Mode Alert Notice -->
-    <div id="maintenanceAlertNotice" style="background:rgba(220,38,38,0.18);border:2px solid #ef4444;border-radius:12px;padding:12px;margin-bottom:16px;text-align:center;">
+    <div id="maintenanceAlertNotice" class="hidden" style="background:rgba(220,38,38,0.18);border:2px solid #ef4444;border-radius:12px;padding:12px;margin-bottom:16px;text-align:center;">
       <div style="font-size:28px;">🚧</div>
       <div style="font-weight:bold;color:#f87171;font-size:1.1rem;margin:4px 0;">سائٹ زیرِ مرمت ہے (Maintenance Mode)</div>
-      <div style="font-size:.88rem;color:#fca5a5;line-height:1.7;">
-        اس وقت سائٹ مینٹیننس کی وجہ سے تمام اکاؤنٹس کے لیے بلاک ہے۔ صرف سپر ایڈمن لاگ ان کر سکتا ہے۔
-      </div>
+      <div id="maintenanceAlertText" style="font-size:.95rem;color:#fca5a5;line-height:1.7;white-space:pre-wrap;"></div>
     </div>
     <h1>انٹر کام</h1>
     <p>براہِ کرم لاگ اِن کریں (ایڈمن یا اپنا نام درج کریں)</p>
@@ -1366,44 +1453,57 @@
     </div>
 
     <div class="token-panel-body">
-      <!-- Big display of current token -->
-      <div class="token-big-display">
-        <div class="token-big-label">اس وقت چل رہا ٹوکن</div>
-        <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
-          <div class="token-big-number none" id="tokenBigNum">—</div>
-          <span id="adminUrgentBadge" class="token-urgent-badge-admin hidden">🚨 ارجنٹ (URGENT)</span>
+      <!-- Right Column: Current Active Token & Patient Status Queues -->
+      <div class="token-panel-col token-col-right">
+        <!-- Big display of current token -->
+        <div class="token-big-display">
+          <div class="token-big-label">اس وقت چل رہا ٹوکن</div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+            <div class="token-big-number none" id="tokenBigNum">—</div>
+            <span id="adminUrgentBadge" class="token-urgent-badge-admin hidden">🚨 ارجنٹ (URGENT)</span>
+          </div>
+          <div id="tokenNoticeMsg" style="color:#f59e0b;font-family:var(--font-urdu-body);font-size:.95rem;margin-bottom:4px">آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے</div>
+
+          <!-- Button: Send Outside (Work in Progress) - Shown only when a token is running -->
+          <button type="button" class="btn-token-outside hidden" id="btnSendOutside" title="مریض کو باہر انتظار میں بھیجیں اور اگلا ٹوکن خود بخود شروع کریں">
+            <span>⏳ باہر انتظار میں بھیجیں (کام جاری ہے)</span>
+          </button>
+
+          <div class="token-stats-bar">
+            <div class="token-stat-item">اگلے: <span id="statNextToken" class="token-next-highlight">—</span></div>
+            <div class="token-stat-item">کل: <span id="statTotalTokens">0</span></div>
+            <div class="token-stat-item">مکمل: <span id="statDoneTokens">0</span></div>
+            <div class="token-stat-item">باہر انتظار: <span id="statOutsideTokens" style="color:#f59e0b;font-weight:700">0</span></div>
+            <div class="token-stat-item">چھوڑے گئے: <span id="statSkippedTokens">0</span></div>
+            <div class="token-stat-item">باقی: <span id="statPendingTokens">0</span></div>
+          </div>
         </div>
-        <div id="tokenNoticeMsg" style="color:#f59e0b;font-family:var(--font-urdu-body);font-size:1rem;margin-bottom:6px">آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے</div>
 
-        <!-- Button: Send Outside (Work in Progress) -->
-        <button type="button" class="btn-token-outside" id="btnSendOutside" title="مریض کو باہر انتظار میں بھیجیں اور اگلا ٹوکن خود بخود شروع کریں">
-          <span>⏳ باہر انتظار میں بھیجیں (کام جاری ہے)</span>
-        </button>
+        <!-- Waiting Outside list (Admin) -->
+        <div class="token-outside-box" id="adminOutsideBox">
+          <div class="outside-title">
+            <span>⏳ باہر انتظار میں / کام جاری ہے (Waiting Outside):</span>
+            <span id="adminOutsideCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
+          </div>
+          <div class="outside-chips" id="adminOutsideChips">
+            <span style="color:var(--muted);font-size:.88rem">کوئی ٹوکن باہر انتظار میں نہیں</span>
+          </div>
+        </div>
 
-        <div class="token-stats-bar">
-          <div class="token-stat-item">اگلے: <span id="statNextToken" class="token-next-highlight">—</span></div>
-          <div class="token-stat-item">کل: <span id="statTotalTokens">0</span></div>
-          <div class="token-stat-item">مکمل: <span id="statDoneTokens">0</span></div>
-          <div class="token-stat-item">باہر انتظار: <span id="statOutsideTokens" style="color:#f59e0b;font-weight:700">0</span></div>
-          <div class="token-stat-item">چھوڑے گئے: <span id="statSkippedTokens">0</span></div>
-          <div class="token-stat-item">باقی: <span id="statPendingTokens">0</span></div>
+        <!-- Skipped list -->
+        <div class="token-skipped-box" id="skippedBox">
+          <div class="skipped-title">
+            <span>⚠️ چھوڑے گئے ٹوکن (غیر حاضر):</span>
+            <span id="skippedCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
+          </div>
+          <div class="skipped-chips" id="skippedChips">
+            <span style="color:var(--muted);font-size:.88rem">کوئی ٹوکن چھوڑا نہیں گیا</span>
+          </div>
         </div>
       </div>
 
-      <!-- Controls -->
-      <div class="token-controls-wrap">
-        <!-- Set Total -->
-        <div class="token-total-setting-box">
-          <div>
-            <label style="display:block;font-weight:700;color:#93c5fd;font-size:.95rem">آج کے کل جاری کردہ ٹوکن:</label>
-            <span style="font-size:.82rem;color:var(--muted)">دستی پرچیاں دینے کے بعد کل تعداد درج کریں</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px">
-            <input type="number" id="inputTotalTokens" class="token-total-input" min="1" max="500" placeholder="60">
-            <button type="button" class="btn-main" id="btnSetTotalTokens" style="width:auto;margin-top:0;padding:8px 14px;font-size:1rem">مقرر کریں</button>
-          </div>
-        </div>
-
+      <!-- Left Column: Primary Actions, Next in Queue & Controls -->
+      <div class="token-panel-col token-col-left">
         <!-- Call Next Token (Large Main Button) -->
         <button type="button" class="btn-token-next" id="btnCallNextToken" title="موجودہ ٹوکن مکمل کر کے اگلا بلائیں">
           <span>🔔 ٹوکن فارغ، اگلا بلائیں</span>
@@ -1423,39 +1523,32 @@
         <div class="token-upcoming-box" id="adminUpcomingBox">
           <div class="upcoming-title">
             <span>📋 اگلے آنے والے ۴ ٹوکن (Next 4 in Queue):</span>
-            <span style="font-size:.8rem;color:var(--muted)">ارجنٹ بلانے کے لیے بٹن دبائیں</span>
+            <span style="font-size:.78rem;color:var(--muted)">ارجنٹ بلانے کے لیے بٹن دبائیں</span>
           </div>
           <div class="upcoming-chips" id="adminUpcomingChips">
-            <span style="color:var(--muted);font-size:.9rem">قطار میں کوئی ٹوکن باقی نہیں</span>
+            <span style="color:var(--muted);font-size:.88rem">قطار میں کوئی ٹوکن باقی نہیں</span>
           </div>
         </div>
 
-        <!-- Waiting Outside list (Admin) -->
-        <div class="token-outside-box" id="adminOutsideBox">
-          <div class="outside-title">
-            <span>⏳ باہر انتظار میں / کام جاری ہے (Waiting Outside):</span>
-            <span id="adminOutsideCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
+        <!-- Bottom Controls Row: Set Total & Day Management -->
+        <div class="token-bottom-row">
+          <!-- Set Total -->
+          <div class="token-total-setting-box">
+            <div>
+              <label style="display:block;font-weight:700;color:#93c5fd;font-size:.9rem">آج کے کل جاری کردہ ٹوکن:</label>
+              <span style="font-size:.78rem;color:var(--muted)">دستی پرچیاں دینے کے بعد کل تعداد درج کریں</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" id="inputTotalTokens" class="token-total-input" min="1" max="500" placeholder="60">
+              <button type="button" class="btn-main" id="btnSetTotalTokens" style="width:auto;margin-top:0;padding:6px 12px;font-size:.92rem">مقرر کریں</button>
+            </div>
           </div>
-          <div class="outside-chips" id="adminOutsideChips">
-            <span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن باہر انتظار میں نہیں</span>
-          </div>
-        </div>
 
-        <!-- Skipped list -->
-        <div class="token-skipped-box" id="skippedBox">
-          <div class="skipped-title">
-            <span>⚠️ چھوڑے گئے ٹوکن (غیر حاضر):</span>
-            <span id="skippedCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
+          <!-- Day management -->
+          <div class="token-day-controls">
+            <button type="button" class="btn-end-day" id="btnEndDay">⏹️ آج کے ٹوکن ختم</button>
+            <button type="button" class="btn-new-day" id="btnNewDay">🌅 نیا دن شروع کریں</button>
           </div>
-          <div class="skipped-chips" id="skippedChips">
-            <span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن چھوڑا نہیں گیا</span>
-          </div>
-        </div>
-
-        <!-- Day management -->
-        <div class="token-day-controls">
-          <button type="button" class="btn-end-day" id="btnEndDay">⏹️ آج کے ٹوکن ختم</button>
-          <button type="button" class="btn-new-day" id="btnNewDay">🌅 نیا دن شروع کریں</button>
         </div>
       </div>
     </div>
@@ -1665,6 +1758,7 @@
       <button type="button" class="super-tab active" id="tabAdminPermsBtn">ایڈمن اسکرین کنٹرول</button>
       <button type="button" class="super-tab" id="tabPeopleBtn">افراد کا انتظام</button>
       <button type="button" class="super-tab" id="tabPinsBtn">فوری پن پیغامات</button>
+      <button type="button" class="super-tab" id="tabMaintenanceBtn">سائٹ مینٹیننس</button>
       <button type="button" class="super-tab tab-danger" id="tabDbCleanBtn">ڈیٹا بیس و چیٹ صفائی</button>
     </div>
 
@@ -1780,6 +1874,32 @@
           <h4 style="color:#a5b4fc">۳. مکمل ڈیٹا بیس صفائی (Full Database Purge)</h4>
           <p style="margin:0 0 10px;font-size:.9rem;color:#cbd5e1">ایکٹیو پیغامات اور پچھلی ہسٹری دونوں کو بیک وقت مکمل صاف کر کے فائر بیس کو بالکل ہلکا اور نیا بنا دیں:</p>
           <button type="button" class="btn-main" id="btnPurgeAllDb" style="background:#4338ca">مکمل ڈیٹا بیس صاف کریں (All-in-One)</button>
+        </div>
+      </div>
+
+      <!-- Tab 5: سائٹ مینٹیننس موڈ -->
+      <div id="tabMaintenanceSection" class="hidden">
+        <div class="perms-card" style="border: 2px solid #ef4444;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <h4 style="margin:0;color:#f87171;font-size:1.15rem;">سائٹ مینٹیننس موڈ (Maintenance Mode)</h4>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:bold;">
+              <input type="checkbox" id="maintToggleActive" style="width:20px;height:20px;accent-color:#ef4444;">
+              <span id="maintStatusLabel" style="color:#ef4444;">غیر فعال (Off)</span>
+            </label>
+          </div>
+          <p style="font-size:.9rem;color:var(--muted);margin-bottom:12px;">
+            جب یہ موڈ فعال (On) ہوگا تو سپر ایڈمن اور نیچے منتخب کیے گئے ٹیسٹرز کے علاوہ تمام عملے کی اسکرین لاک ہو جائے گی، اور کوئی نوٹیفکیشن یا آواز نہیں جائے گی۔
+          </p>
+          <div style="margin-bottom:14px;">
+            <label style="display:block;margin-bottom:6px;font-weight:bold;">مینٹیننس پر نظر آنے والا اردو پیغام:</label>
+            <textarea id="maintMessageInput" rows="3" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:10px;color:#f8fafc;font-family:var(--font-urdu-body);font-size:1rem;line-height:1.6;"></textarea>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="display:block;margin-bottom:6px;font-weight:bold;">ٹیسٹرز (Bypass Allowed Staff):</label>
+            <p style="margin:0 0 8px;font-size:.85rem;color:var(--muted);">جن افراد کو مینٹیننس کے دوران ٹیسٹنگ کے لیے اندر آنے کی اجازت دینی ہے ان پر نشان لگائیں:</p>
+            <div class="perms-grid" id="maintTestersChecklist"></div>
+          </div>
+          <button type="button" class="btn-main" id="btnSaveMaintenance" style="background:#dc2626;">مینٹیننس ترتیبات لاگو کریں (Save & Apply)</button>
         </div>
       </div>
     </div>
@@ -1910,6 +2030,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
 <script src="assets/lame.min.js"></script>
 <script src="config.js"></script>
+<script>if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname===""){document.write('<script src="firebase-config.test.js"><\/script>');}</script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -1924,12 +2045,52 @@
   const ADMIN_PERMS_KEY   = "intercom_admin_perms";
   const MAX_HISTORY       = 50;
 
+  // Environment Detection & Config Selection
+  const isLocalhost = window.location.hostname === "localhost" || 
+                      window.location.hostname === "127.0.0.1" || 
+                      window.location.hostname === "";
+
+  let activeFirebaseConfig = typeof FIREBASE_CONFIG !== "undefined" ? FIREBASE_CONFIG : null;
+  let activeVapidKey = typeof FCM_VAPID_KEY !== "undefined" ? FCM_VAPID_KEY : "";
+
+  if(isLocalhost && typeof FIREBASE_CONFIG_TEST !== "undefined" && FIREBASE_CONFIG_TEST){
+    activeFirebaseConfig = FIREBASE_CONFIG_TEST;
+    if(typeof FCM_VAPID_KEY_TEST !== "undefined") activeVapidKey = FCM_VAPID_KEY_TEST;
+  }
+
+  // Safety Guard: if running on localhost and config has production projectId, STOP!
+  if(isLocalhost && activeFirebaseConfig && activeFirebaseConfig.projectId === "intercom-8a920"){
+    document.body.innerHTML = `
+      <div style="position:fixed;inset:0;background:#991b1b;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;font-family:sans-serif;z-index:99999999;direction:ltr;">
+        <h1 style="font-size:26px;margin-bottom:12px;">CRITICAL SAFETY ERROR: PRODUCTION FIREBASE BLOCKED ON LOCALHOST</h1>
+        <p style="font-size:16px;max-width:650px;line-height:1.6;">The application is running on localhost with the PRODUCTION Firebase project ID (intercom-8a920). All connections and operations have been halted immediately to protect production data and prevent sending notifications to live staff.</p>
+      </div>
+    `;
+    throw new Error("Execution halted: Production Firebase detected on localhost.");
+  }
+
+  // Show Red Banner on localhost
+  if(isLocalhost){
+    const renderBanner = () => {
+      if(!document.getElementById("testEnvBanner") && document.body){
+        const b = document.createElement("div");
+        b.id = "testEnvBanner";
+        b.style.cssText = "position:fixed;top:0;left:0;right:0;height:28px;background:#dc2626;color:#fff;font-weight:bold;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:9999999;letter-spacing:1px;direction:ltr;box-shadow:0 2px 6px rgba(0,0,0,0.5);";
+        b.textContent = "TEST ENVIRONMENT - not live data";
+        document.body.prepend(b);
+        document.body.style.paddingTop = "28px";
+      }
+    };
+    if(document.body) renderBanner();
+    else window.addEventListener("DOMContentLoaded", renderBanner);
+  }
+
   // Check if Firebase is actually configured with a real key
-  const isFirebaseConfigured = typeof FIREBASE_CONFIG !== "undefined" &&
-    FIREBASE_CONFIG &&
-    FIREBASE_CONFIG.apiKey &&
-    FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY" &&
-    !FIREBASE_CONFIG.apiKey.includes("YOUR_");
+  const isFirebaseConfigured = typeof activeFirebaseConfig !== "undefined" &&
+    activeFirebaseConfig &&
+    activeFirebaseConfig.apiKey &&
+    activeFirebaseConfig.apiKey !== "YOUR_API_KEY" &&
+    !activeFirebaseConfig.apiKey.includes("YOUR_");
 
   let db = null, auth = null, fcmMessaging = null, started = false, ready = false;
   let swRegistration = null;
@@ -1939,10 +2100,16 @@
   if(isFirebaseConfigured && typeof firebase !== "undefined"){
     try{
       if(!firebase.apps || !firebase.apps.length){
-        firebase.initializeApp(FIREBASE_CONFIG);
+        firebase.initializeApp(activeFirebaseConfig);
       }
       db = firebase.database();
-      if(firebase.auth) auth = firebase.auth();
+      if(firebase.auth){
+        auth = firebase.auth();
+        // Auto authenticate anonymously in test environment on localhost
+        if(isLocalhost){
+          auth.signInAnonymously().catch(e => console.warn("Localhost anonymous auth:", e));
+        }
+      }
     }catch(e){
       console.warn("Firebase immediate init error:", e);
     }
@@ -2112,7 +2279,7 @@
       if(!fcmMessaging){
         fcmMessaging = firebase.messaging();
       }
-      const vapidKey = (typeof FCM_VAPID_KEY !== 'undefined' && FCM_VAPID_KEY) ? FCM_VAPID_KEY : undefined;
+      const vapidKey = (typeof activeVapidKey !== 'undefined' && activeVapidKey) ? activeVapidKey : undefined;
       const token = await fcmMessaging.getToken({
         vapidKey: vapidKey,
         serviceWorkerRegistration: swRegistration || undefined
@@ -2309,8 +2476,8 @@
   }
 
   function chime(isReply = false){
-    // Mute sounds for non-superadmin users during maintenance
-    if(currentUser && currentUser.role !== "superadmin") return;
+    // Mute sounds only if maintenance mode is active and user is blocked
+    if(maintenanceConfig && maintenanceConfig.enabled && isUserBlockedByMaintenance(currentUser)) return;
     try{
       if(!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
       if(actx && actx.state === "suspended") actx.resume();
@@ -2424,6 +2591,98 @@
     });
   }
 
+  /* ---------- Maintenance Mode State & Enforcer ---------- */
+  let maintenanceConfig = {
+    enabled: false,
+    message: "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔",
+    testers: []
+  };
+
+  function isUserBlockedByMaintenance(user){
+    if(!user) return false;
+    // Superadmin is NEVER blocked
+    if(user.role === "superadmin" || user.id === "superadmin") return false;
+    if(maintenanceConfig && maintenanceConfig.enabled){
+      const testers = Array.isArray(maintenanceConfig.testers) ? maintenanceConfig.testers : [];
+      if(testers.includes(user.id) || (user.loginId && testers.includes(user.loginId))){
+        return false; // Authorized tester
+      }
+      return true; // Blocked for regular staff/admin
+    }
+    return false;
+  }
+
+  function applyMaintenanceState(){
+    let mScreen = $("maintenanceBlockedScreen");
+    const isBlocked = currentUser && isUserBlockedByMaintenance(currentUser);
+
+    if(isBlocked){
+      if(!mScreen){
+        mScreen = document.createElement("div");
+        mScreen.id = "maintenanceBlockedScreen";
+        mScreen.style.cssText = "position:fixed;inset:0;background:#0f172a;color:#f8fafc;z-index:9999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;direction:rtl;font-family:var(--font-urdu-body),system-ui,sans-serif;";
+        document.body.appendChild(mScreen);
+      }
+      mScreen.textContent = "";
+
+      const card = document.createElement("div");
+      card.style.cssText = "max-width:480px;background:#1e293b;padding:32px 24px;border-radius:18px;border:2px solid #ef4444;box-shadow:0 12px 40px rgba(0,0,0,0.6);";
+
+      const icon = document.createElement("div");
+      icon.style.cssText = "font-size:64px;margin-bottom:12px;";
+      icon.textContent = "🚧";
+      card.appendChild(icon);
+
+      const h1 = document.createElement("h1");
+      h1.style.cssText = "font-size:22px;font-weight:bold;color:#f87171;margin-bottom:12px;";
+      h1.textContent = "سائٹ زیرِ مرمت ہے (Maintenance Mode)";
+      card.appendChild(h1);
+
+      const pMsg = document.createElement("p");
+      pMsg.style.cssText = "font-size:17px;line-height:1.8;color:#cbd5e1;margin-bottom:20px;white-space:pre-wrap;";
+      pMsg.textContent = (maintenanceConfig && maintenanceConfig.message) ? maintenanceConfig.message : "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔";
+      card.appendChild(pMsg);
+
+      const lockNote = document.createElement("div");
+      lockNote.style.cssText = "background:#0f172a;border-radius:10px;padding:12px;font-size:14px;color:#94a3b8;margin-bottom:24px;";
+      lockNote.textContent = "🔒 رسائی صرف مجاز ایڈمنسٹریٹر (سپر ایڈمن) تک محدود ہے۔";
+      card.appendChild(lockNote);
+
+      const logoutBtn = document.createElement("button");
+      logoutBtn.id = "btnMaintLogout";
+      logoutBtn.style.cssText = "background:#ef4444;color:white;border:none;padding:10px 24px;border-radius:10px;font-size:15px;cursor:pointer;font-family:inherit;font-weight:bold;";
+      logoutBtn.textContent = "🚪 لاگ آؤٹ";
+      logoutBtn.onclick = () => doLogout();
+      card.appendChild(logoutBtn);
+
+      mScreen.appendChild(card);
+      mScreen.classList.remove("hidden");
+
+      // Mute audio Context and stop running listeners
+      try {
+        if(actx && actx.state === "running") actx.suspend();
+      } catch(e){}
+    } else {
+      if(mScreen) mScreen.classList.add("hidden");
+      // Resume audio if needed
+      try {
+        if(actx && actx.state === "suspended") actx.resume();
+      } catch(e){}
+    }
+
+    // Update login notice
+    const alertNotice = $("maintenanceAlertNotice");
+    if(alertNotice){
+      if(maintenanceConfig && maintenanceConfig.enabled){
+        alertNotice.classList.remove("hidden");
+        const msgEl = $("maintenanceAlertText");
+        if(msgEl) msgEl.textContent = maintenanceConfig.message || "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔";
+      } else {
+        alertNotice.classList.add("hidden");
+      }
+    }
+  }
+
   let settingsSyncStarted = false;
   function startSettingsSync(){
     if(settingsSyncStarted || !isFirebaseConfigured || !db) return;
@@ -2436,6 +2695,23 @@
         if(val.adminPermissions && typeof val.adminPermissions === 'object') adminPermissions = Object.assign(adminPermissions, val.adminPermissions);
         if(val.passwords && typeof val.passwords === 'object') userPasswords = Object.assign(userPasswords, val.passwords);
         if(val.passwordChanged && typeof val.passwordChanged === 'object') passwordChangedFlags = Object.assign(passwordChangedFlags, val.passwordChanged);
+        
+        // Sync maintenance settings
+        if(val.maintenance && typeof val.maintenance === 'object'){
+          maintenanceConfig = {
+            enabled: !!val.maintenance.enabled,
+            message: val.maintenance.message || "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔",
+            testers: Array.isArray(val.maintenance.testers) ? val.maintenance.testers : []
+          };
+        } else {
+          maintenanceConfig = {
+            enabled: false,
+            message: "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔",
+            testers: []
+          };
+        }
+        applyMaintenanceState();
+
         if(typeof buildGrid === "function") buildGrid();
         if(typeof renderUserHeader === "function") renderUserHeader();
         setupQuickLogin();
@@ -2444,6 +2720,7 @@
           if(typeof renderAdminPerms === "function") renderAdminPerms();
           if(typeof renderPeopleTable === "function") renderPeopleTable();
           if(typeof renderPinList === "function") renderPinList();
+          if(typeof renderMaintenanceAdminControls === "function") renderMaintenanceAdminControls();
         }
       }
     });
@@ -2471,17 +2748,21 @@
       return;
     }
 
-    // CRITICAL: STRICT MAINTENANCE LOCKDOWN
-    // Only superadmin is permitted to log in. All other staff and accounts are strictly blocked.
-    if(u !== "superadmin" && u !== "super"){
-      $("loginErr").textContent = "⚠️ اس وقت سائٹ مینٹیننس (زیرِ مرمت) کی وجہ سے بلاک ہے۔ برائے مہربانی کام مکمل ہونے تک انتظار فرمائیں۔";
-      return;
+    // Dynamic Maintenance Mode Check
+    if(maintenanceConfig && maintenanceConfig.enabled){
+      const isSuper = (u === "superadmin" || u === "super");
+      const testers = Array.isArray(maintenanceConfig.testers) ? maintenanceConfig.testers : [];
+      const isTester = testers.includes(u);
+      if(!isSuper && !isTester){
+        $("loginErr").textContent = maintenanceConfig.message || "⚠️ ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔";
+        return;
+      }
     }
 
-    // Task F: Server-side authentication via Netlify Function with custom token
+    // Server-side authentication via Vercel Function with custom token
     let serverLoginSucceeded = false;
     try{
-      const netRes = await fetch('/.netlify/functions/login', {
+      const netRes = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ loginId: u, pin: p })
@@ -2512,9 +2793,24 @@
         const errJson = await netRes.json().catch(()=>({}));
         $("loginErr").textContent = errJson.error || "⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔";
         return;
+      }else{
+        if(!isLocalhost){
+          $("loginErr").textContent = "سرور سے رابطہ نہیں ہو سکا، دوبارہ کوشش کریں";
+          return;
+        }
       }
     }catch(netErr){
       console.warn("Netlify function login failed or local server mode, falling back to client auth:", netErr);
+      if(!isLocalhost){
+        $("loginErr").textContent = "سرور سے رابطہ نہیں ہو سکا، دوبارہ کوشش کریں";
+        return;
+      }
+    }
+
+    // Client-side authentication fallback (Strictly for localhost test environment)
+    if(!isLocalhost){
+      $("loginErr").textContent = "سرور سے رابطہ نہیں ہو سکا، دوبارہ کوشش کریں";
+      return;
     }
 
     // Client-side authentication fallback (for offline or local server without netlify functions)
@@ -2540,10 +2836,9 @@
       return;
     }
 
-    // CRITICAL MAINTENANCE LOCKDOWN:
-    // Only superadmin can log in. All other accounts are strictly blocked.
-    if(targetUser.role !== "superadmin"){
-      $("loginErr").textContent = "⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔ صرف سپر ایڈمن لاگ ان کر سکتا ہے۔";
+    // Dynamic Maintenance Mode Check for targetUser
+    if(isUserBlockedByMaintenance(targetUser)){
+      $("loginErr").textContent = maintenanceConfig.message || "⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔ صرف مجاز افراد لاگ ان کر سکتے ہیں۔";
       return;
     }
 
@@ -2620,14 +2915,14 @@
 
     if(!pendingPinUser) return;
 
-    // Call Netlify function change-pin (Task F)
+    // Call Vercel function change-pin
     try{
       const headers = { 'Content-Type': 'application/json' };
       if(auth && auth.currentUser){
         const idToken = await auth.currentUser.getIdToken().catch(()=>null);
         if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
       }
-      fetch('/.netlify/functions/change-pin', {
+      fetch('/api/change-pin', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({ userId: pendingPinUser.id, newPin: p1 })
@@ -2740,7 +3035,7 @@
   // Task A: User Screen Two-Part Layout
   function buildGrid(){
     const g = $("grid");
-    if(!g) return;
+    if(!g || !currentUser) return;
     g.innerHTML = "";
 
     if(currentUser.role === "superadmin"){
@@ -3237,9 +3532,11 @@
           renderWaContacts();
         }
       }
+      return true;
     }catch(err){
       console.error("Message send failure:", err);
       toast("پیغام بھیجنے میں خرابی ہوئی، دوبارہ کوشش کریں");
+      return false;
     }finally{
       if(sendBtn) sendBtn.disabled = false;
       if(sendVoiceBtn) sendVoiceBtn.disabled = false;
@@ -3878,23 +4175,50 @@
         displayMessageOnCard(snapKey, m);
 
         // Receiver sets deliveredAt if not already set
-        if(currentUser && m.to === currentUser.id && !m.deliveredAt){
+        if(isIncomingForMe(m) && !m.deliveredAt){
           markMessageDelivered(snapKey);
+          m.deliveredAt = Date.now();
         }
 
+        // Check if message is from the contact currently open in chat
+        const isFromActive = activeChatPerson && (
+          (m.from === activeChatPerson.id) ||
+          (activeChatPerson.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'))
+        );
+
         // Receiver sets seenAt if active chat is currently open for sender
-        if(isMessengerOpen && activeChatPerson){
-          const isFromActive = (m.from === activeChatPerson.id) || (activeChatPerson.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'));
-          if(isFromActive && m.to === currentUser.id && !m.seenAt){
-            markMessageSeen(snapKey);
-            m.seenAt = Date.now();
+        if(isMessengerOpen && isFromActive && isIncomingForMe(m) && !m.seenAt){
+          markMessageSeen(snapKey);
+          m.seenAt = Date.now();
+        }
+
+        // Deduplicated sound chime and toast for incoming messages
+        const isMine = currentUser && (m.from === currentUser.id);
+        if(!isMine && ready && !alertedMsgIds.has(snapKey)){
+          alertedMsgIds.add(snapKey);
+          const isReply = (currentUser.role === "admin" || currentUser.role === "superadmin") && (m.from !== "admin" && m.from !== "superadmin");
+          chime(isReply);
+          const senderName = m.fromName || (activePeople.find(x => x.id === m.from)?.name || m.from);
+          toast("🔔 " + senderName + " کا نیا پیغام آیا ہے!");
+          if(m.hasAudio || m.audio){
+            enqueueAutoPlayVoice(snapKey, m);
           }
         }
 
-        if(activeChatPerson){
-          renderWaMessages();
+        // WhatsApp-style instant chat update: if chat is open with sender/recipient, render immediately and scroll to bottom
+        const isCurrentChat = isMessengerOpen && activeChatPerson && (
+          m.from === activeChatPerson.id ||
+          m.to === activeChatPerson.id ||
+          (activeChatPerson.id === 'admin' && (isAdminId(m.from) || isAdminId(m.to)))
+        );
+
+        if(isCurrentChat){
+          renderWaMessages(true);
+          renderWaContacts();
+        } else {
+          scheduleWaRender(false);
+          renderWaContacts();
         }
-        renderWaContacts();
       }
 
       function handleChangedMessage(snapKey, m){
@@ -3907,10 +4231,7 @@
       function handleRemovedMessage(snapKey, targetId){
         delete activeMessagesMap[snapKey];
         removeMessageFromCard(snapKey, targetId);
-        if(activeChatPerson){
-          renderWaMessages();
-        }
-        renderWaContacts();
+        scheduleWaRender(false);
       }
 
       // Task F: Partitioned client queries for regular users (read only own to/from)
@@ -4342,7 +4663,9 @@
     const outsideChips = $("adminOutsideChips");
     const outsideCount = $("adminOutsideCount");
 
+    const sendOutsideBtn = $("btnSendOutside");
     if(!data || !data.total){
+      if(sendOutsideBtn) sendOutsideBtn.classList.add("hidden");
       bigNumEl.textContent = "—";
       bigNumEl.classList.add("none");
       if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
@@ -4365,6 +4688,7 @@
     }
 
     if(data.current != null){
+      if(sendOutsideBtn) sendOutsideBtn.classList.remove("hidden");
       bigNumEl.textContent = data.current;
       bigNumEl.classList.remove("none");
       noticeEl.textContent = "";
@@ -4373,11 +4697,13 @@
         else urgentAdminBadge.classList.add("hidden");
       }
     } else if(Array.isArray(data.queue) && data.queue.length === 0){
+      if(sendOutsideBtn) sendOutsideBtn.classList.add("hidden");
       bigNumEl.textContent = "تمام مکمل";
       bigNumEl.classList.add("none");
       noticeEl.textContent = "تمام ٹوکن مکمل ہو گئے ہیں";
       if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
     } else {
+      if(sendOutsideBtn) sendOutsideBtn.classList.add("hidden");
       bigNumEl.textContent = "—";
       bigNumEl.classList.add("none");
       noticeEl.textContent = "قطار تیار ہے، اگلا بلائیں";
@@ -5022,6 +5348,12 @@
       return;
     }
 
+    const outsideList = Array.isArray(tokenDataState.waitingOutside) ? tokenDataState.waitingOutside : [];
+    if(outsideList.length > 0){
+      const warn = confirm(`⚠️ تنبیہ: ابھی بھی ${outsideList.length} ٹوکن باہر انتظار میں (زیرِ کار) موجود ہیں جن کا کام مکمل نہیں ہوا!\n\nاگر آپ دن ختم کریں گے تو ان کا کام نامکمل رہ جائے گا۔ کیا آپ واقعی پھر بھی دن ختم کرنا چاہتے ہیں؟`);
+      if(!warn) return;
+    }
+
     const ok = confirm("کیا آپ واقعی آج کے ٹوکن ختم کرنا چاہتے ہیں؟\nآج کا مکمل یومیہ ریکارڈ ہسٹری میں محفوظ ہو جائے گا۔");
     if(!ok) return;
 
@@ -5264,8 +5596,7 @@
 
       let unreadCount = 0;
       msgs.forEach(m => {
-        const isIncoming = (m.to === currentUser.id && (m.from === c.id || (c.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'))));
-        if(isIncoming && !m.seenAt){
+        if(isIncomingFromContact(m, c.id) && !m.seenAt){
           unreadCount++;
         }
       });
@@ -5341,27 +5672,66 @@
     return d.toLocaleDateString("ur-PK", { month: "short", day: "numeric" });
   }
 
+  // Thread model: user -> admin messages store to = user's own id (the thread owner),
+  // so "to === me" alone cannot tell who the real receiver is. These helpers decide it.
+  function isAdminId(id){ return id === "admin" || id === "superadmin"; }
+
+  function isIncomingForMe(m){
+    if(!m || !currentUser || m.from === currentUser.id) return false;
+    if(currentUser.role === "user") return m.to === currentUser.id;
+    // admin / superadmin: only messages a staff member sent TO the admin
+    if(isAdminId(m.from)) return false;
+    if(m.kind === "peer") return false;
+    return m.recipient === "admin" || m.to === m.from;
+  }
+
+  function isIncomingFromContact(m, contactId){
+    if(!isIncomingForMe(m)) return false;
+    if(currentUser.role === "user"){
+      return m.from === contactId || (contactId === "admin" && isAdminId(m.from));
+    }
+    return m.from === contactId;
+  }
+
   function getMessagesForContact(contactId){
     if(!currentUser) return [];
     return Object.keys(activeMessagesMap).map(k => ({ key: k, ...activeMessagesMap[k] })).filter(m => {
       if(!m) return false;
-      if(contactId === "admin"){
-        return (m.to === currentUser.id && (m.from === "admin" || m.from === "superadmin")) ||
-               (m.from === currentUser.id && (m.to === "admin" || m.to === "superadmin")) ||
-               (m.kind === "thread" && (m.to === currentUser.id || m.from === currentUser.id));
-      } else {
-        if(currentUser.role === "admin" || currentUser.role === "superadmin"){
-          return m.to === contactId || m.from === contactId;
-        } else {
-          return (m.to === currentUser.id && m.from === contactId) ||
-                 (m.from === currentUser.id && m.to === contactId);
-        }
+      if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+        // Admin chat with one staff member: only that person's thread with the admin
+        return (m.from === contactId && isIncomingForMe(m)) ||
+               (isAdminId(m.from) && m.to === contactId);
       }
+      if(contactId === "admin"){
+        return (m.from === currentUser.id && m.to === currentUser.id) ||
+               (m.from === currentUser.id && (m.recipient === "admin" || isAdminId(m.to))) ||
+               (m.to === currentUser.id && isAdminId(m.from));
+      }
+      return (m.to === currentUser.id && m.from === contactId) ||
+             (m.from === currentUser.id && m.to === contactId && m.recipient !== "admin");
+    });
+  }
+
+  let waRenderQueued = false, waRenderForce = false;
+  function scheduleWaRender(forceBottom){
+    if(forceBottom) waRenderForce = true;
+    if(waRenderQueued) return;
+    waRenderQueued = true;
+    requestAnimationFrame(() => {
+      waRenderQueued = false;
+      const force = waRenderForce;
+      waRenderForce = false;
+      if(activeChatPerson) renderWaMessages(force);
+      renderWaContacts();
     });
   }
 
   function openWaChat(person){
     activeChatPerson = person;
+    isMessengerOpen = true;
+    const messengerEl = $("waMessenger");
+    if(messengerEl) messengerEl.classList.remove("hidden");
+
     const contactView = $("waContactListView");
     const chatView = $("waSingleChatView");
     if(contactView && chatView){
@@ -5380,15 +5750,14 @@
     // Mark all unread incoming messages from this person as seen
     const msgs = getMessagesForContact(person.id);
     msgs.forEach(m => {
-      const isIncoming = (m.to === currentUser.id && (m.from === person.id || (person.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'))));
-      if(isIncoming && !m.seenAt){
+      if(isIncomingFromContact(m, person.id) && !m.seenAt){
         markMessageSeen(m.key || m.id);
         m.seenAt = Date.now();
       }
     });
 
     renderWaPinnedChips(person);
-    renderWaMessages();
+    renderWaMessages(true);
     renderWaContacts();
   }
 
@@ -5413,9 +5782,33 @@
     });
   }
 
-  function renderWaMessages(){
+  function getDayDividerText(ts){
+    if(!ts) return "آج";
+    try{
+      const msgDate = new Date(ts);
+      const today = new Date();
+      if(msgDate.toDateString() === today.toDateString()){
+        return "آج";
+      }
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      if(msgDate.toDateString() === yesterday.toDateString()){
+        return "کل";
+      }
+      const y = msgDate.getFullYear();
+      const m = String(msgDate.getMonth() + 1).padStart(2, '0');
+      const d = String(msgDate.getDate()).padStart(2, '0');
+      return `${d}/${m}/${y}`;
+    }catch(e){
+      return "آج";
+    }
+  }
+
+  function renderWaMessages(forceBottom){
     const area = $("waMessagesArea");
     if(!area || !activeChatPerson) return;
+    const prevTop = area.scrollTop;
+    const wasNearBottom = (area.scrollHeight - area.scrollTop - area.clientHeight) < 90;
 
     const msgs = getMessagesForContact(activeChatPerson.id);
     msgs.sort((a,b) => (a.time || a.sentAt || 0) - (b.time || b.sentAt || 0));
@@ -5483,7 +5876,21 @@
       area.appendChild(bubble);
     });
 
-    area.scrollTop = area.scrollHeight;
+    if(forceBottom !== false || wasNearBottom){
+      area.scrollTop = area.scrollHeight;
+      requestAnimationFrame(() => {
+        if(area) area.scrollTop = area.scrollHeight;
+      });
+    } else {
+      area.scrollTop = prevTop;
+    }
+
+    // Re-attach the play button of a voice note that is playing right now
+    if(currentPlayingMsgId && !sharedAudio.paused){
+      const bub = $("wa_m_" + currentPlayingMsgId);
+      const btn = bub && bub.querySelector(".wa-voice-play-btn");
+      if(btn){ btn.textContent = "⏸"; currentPlayingBtn = btn; }
+    }
   }
 
   function createWaVoicePlayer(msgKey, m){
@@ -5517,7 +5924,7 @@
       e.stopPropagation();
       initAudio();
 
-      if(currentUser && m.to === currentUser.id && !m.playedAt){
+      if(isIncomingForMe(m) && !m.playedAt){
         markMessagePlayed(msgKey);
         micIcon.classList.add("played");
       }
@@ -5544,18 +5951,29 @@
       currentPlayingBtn = playBtn;
       currentPlayingMsgId = msgKey;
 
+      const liveParts = () => {
+        const bub = $("wa_m_" + msgKey);
+        return {
+          btn: (bub && bub.querySelector(".wa-voice-play-btn")) || playBtn,
+          fill: (bub && bub.querySelector(".wa-voice-fill")) || fill,
+          dur: (bub && bub.querySelector(".wa-voice-dur")) || durLabel
+        };
+      };
+
       sharedAudio.ontimeupdate = () => {
         if(sharedAudio.duration){
           const pct = (sharedAudio.currentTime / sharedAudio.duration) * 100;
-          fill.style.width = pct + "%";
-          durLabel.textContent = formatDuration(sharedAudio.currentTime);
+          const lp = liveParts();
+          lp.fill.style.width = pct + "%";
+          lp.dur.textContent = formatDuration(sharedAudio.currentTime);
         }
       };
 
       sharedAudio.onended = () => {
-        playBtn.textContent = "▶";
-        fill.style.width = "0%";
-        durLabel.textContent = formatDuration(m.audioDuration || 0);
+        const lp = liveParts();
+        lp.btn.textContent = "▶";
+        lp.fill.style.width = "0%";
+        lp.dur.textContent = formatDuration(m.audioDuration || 0);
         currentPlayingBtn = null;
         currentPlayingMsgId = null;
       };
@@ -5613,11 +6031,17 @@
     }
   }
 
+  let isSendingWaMessage = false;
   async function sendWaTextMessage(){
+    if(isSendingWaMessage) return;
     const input = $("waTextInput");
+    const sendBtn = $("waSendBtn");
     if(!input || !activeChatPerson) return;
     const txt = input.value.trim();
     if(!txt) return;
+
+    isSendingWaMessage = true;
+    if(sendBtn) sendBtn.disabled = true;
 
     input.value = "";
     const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
@@ -5636,9 +6060,25 @@
       replyTo: ""
     };
 
-    await sendRawMessage(msgPayload);
-    renderWaMessages();
-    renderWaContacts();
+    try {
+      const ok = await sendRawMessage(msgPayload);
+      if(ok !== false){
+        renderWaMessages();
+        renderWaContacts();
+        const area = $("waMessagesArea");
+        if(area) area.scrollTop = area.scrollHeight;
+      } else {
+        input.value = txt;
+        toast("پیغام بھیجنے میں خرابی ہوئی، دوبارہ کوشش کریں");
+      }
+    } catch(err) {
+      console.error("Chat send error:", err);
+      input.value = txt;
+      toast("پیغام بھیجنے میں خرابی ہوئی، دوبارہ کوشش کریں");
+    } finally {
+      isSendingWaMessage = false;
+      if(sendBtn) sendBtn.disabled = false;
+    }
   }
 
   function startWaVoiceRecording(){
@@ -5718,35 +6158,11 @@
   };
 
   function showApp(){
-    // CRITICAL MAINTENANCE LOCKDOWN:
-    // If any non-superadmin opens or restores the app, block them with the maintenance screen!
-    if(currentUser && currentUser.role !== "superadmin"){
+    // Dynamic Maintenance Mode Check
+    if(currentUser && isUserBlockedByMaintenance(currentUser)){
       $("login").classList.add("hidden");
       $("app").classList.add("hidden");
-      let mScreen = $("maintenanceBlockedScreen");
-      if(!mScreen){
-        mScreen = document.createElement("div");
-        mScreen.id = "maintenanceBlockedScreen";
-        mScreen.style.cssText = "position:fixed;inset:0;background:#0f172a;color:#f8fafc;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;direction:rtl;font-family:var(--font-urdu-body),system-ui,sans-serif;";
-        mScreen.innerHTML = `
-          <div style="max-width:480px;background:#1e293b;padding:32px 24px;border-radius:18px;border:2px solid #ef4444;box-shadow:0 12px 40px rgba(0,0,0,0.6);">
-            <div style="font-size:64px;margin-bottom:12px;">🚧</div>
-            <h1 style="font-size:22px;font-weight:bold;color:#f87171;margin-bottom:12px;">سائٹ زیرِ مرمت ہے (Maintenance Mode)</h1>
-            <p style="font-size:17px;line-height:1.8;color:#cbd5e1;margin-bottom:20px;">
-              اس وقت سائٹ مینٹیننس کی وجہ سے عارضی طور پر بلاک ہے۔ برائے مہربانی کام مکمل ہونے کا انتظار فرمائیں۔
-            </p>
-            <div style="background:#0f172a;border-radius:10px;padding:12px;font-size:14px;color:#94a3b8;margin-bottom:24px;">
-              🔒 رسائی صرف مجاز ایڈمنسٹریٹر (سپر ایڈمن) تک محدود ہے۔
-            </div>
-            <button onclick="doLogout()" style="background:#ef4444;color:white;border:none;padding:12px 28px;border-radius:10px;font-size:16px;cursor:pointer;font-family:inherit;font-weight:bold;">
-              لاگ آؤٹ کریں
-            </button>
-          </div>
-        `;
-        document.body.appendChild(mScreen);
-      } else {
-        mScreen.classList.remove("hidden");
-      }
+      applyMaintenanceState();
       return;
     }
 
@@ -6394,7 +6810,7 @@
         const idToken = await auth.currentUser.getIdToken().catch(()=>null);
         if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
       }
-      await fetch('/.netlify/functions/purge', {
+      await fetch('/api/purge', {
         method: 'POST',
         headers,
         body: JSON.stringify({ target: 'active' })
@@ -6424,7 +6840,7 @@
         const idToken = await auth.currentUser.getIdToken().catch(()=>null);
         if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
       }
-      await fetch('/.netlify/functions/purge', {
+      await fetch('/api/purge', {
         method: 'POST',
         headers,
         body: JSON.stringify({ target: 'history' })
@@ -6452,7 +6868,7 @@
         const idToken = await auth.currentUser.getIdToken().catch(()=>null);
         if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
       }
-      await fetch('/.netlify/functions/purge', {
+      await fetch('/api/purge', {
         method: 'POST',
         headers,
         body: JSON.stringify({ target: 'all' })
@@ -6494,11 +6910,11 @@
   $("superCloseBtn").onclick = () => $("superModal").classList.add("hidden");
 
   function switchSuperTab(activeTabBtn, activeSection){
-    ["tabAdminPermsBtn", "tabPeopleBtn", "tabPinsBtn", "tabDbCleanBtn"].forEach(id => {
+    ["tabAdminPermsBtn", "tabPeopleBtn", "tabPinsBtn", "tabMaintenanceBtn", "tabDbCleanBtn"].forEach(id => {
       const b = $(id);
       if(b) b.classList.remove("active");
     });
-    ["tabAdminPermsSection", "tabPeopleSection", "tabPinsSection", "tabDbCleanSection"].forEach(id => {
+    ["tabAdminPermsSection", "tabPeopleSection", "tabPinsSection", "tabMaintenanceSection", "tabDbCleanSection"].forEach(id => {
       const s = $(id);
       if(s) s.classList.add("hidden");
     });
@@ -6521,9 +6937,88 @@
     renderPinList();
   };
 
+  if($("tabMaintenanceBtn")){
+    $("tabMaintenanceBtn").onclick = () => {
+      switchSuperTab($("tabMaintenanceBtn"), $("tabMaintenanceSection"));
+      renderMaintenanceAdminControls();
+    };
+  }
+
   $("tabDbCleanBtn").onclick = () => {
     switchSuperTab($("tabDbCleanBtn"), $("tabDbCleanSection"));
   };
+
+  /* Tab 5: Maintenance Admin Controls Logic */
+  function renderMaintenanceAdminControls(){
+    const toggle = $("maintToggleActive");
+    const statusLabel = $("maintStatusLabel");
+    const msgInput = $("maintMessageInput");
+    const checklist = $("maintTestersChecklist");
+    if(!toggle || !msgInput || !checklist) return;
+
+    toggle.checked = !!(maintenanceConfig && maintenanceConfig.enabled);
+    if(statusLabel){
+      statusLabel.textContent = toggle.checked ? "فعال (Active / Blocked)" : "غیر فعال (Off)";
+      statusLabel.style.color = toggle.checked ? "#22c55e" : "#ef4444";
+    }
+    toggle.onchange = () => {
+      if(statusLabel){
+        statusLabel.textContent = toggle.checked ? "فعال (Active / Blocked)" : "غیر فعال (Off)";
+        statusLabel.style.color = toggle.checked ? "#22c55e" : "#ef4444";
+      }
+    };
+
+    msgInput.value = (maintenanceConfig && maintenanceConfig.message) ? maintenanceConfig.message : "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔";
+
+    checklist.textContent = "";
+    const testers = Array.isArray(maintenanceConfig?.testers) ? maintenanceConfig.testers : [];
+
+    activePeople.forEach(p => {
+      const label = document.createElement("label");
+      label.className = "perm-item";
+      const isChecked = testers.includes(p.id) || (p.loginId && testers.includes(p.loginId));
+
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.value = p.id;
+      cb.checked = isChecked;
+
+      const span = document.createElement("span");
+      span.textContent = p.name + " (" + (p.loginId || p.id) + ")";
+
+      label.appendChild(cb);
+      label.appendChild(span);
+      checklist.appendChild(label);
+    });
+  }
+
+  if($("btnSaveMaintenance")){
+    $("btnSaveMaintenance").onclick = async () => {
+      const enabled = $("maintToggleActive") ? $("maintToggleActive").checked : false;
+      const message = $("maintMessageInput") ? $("maintMessageInput").value.trim() : "";
+      const testerInputs = document.querySelectorAll("#maintTestersChecklist input[type='checkbox']:checked");
+      const testers = Array.from(testerInputs).map(cb => cb.value);
+
+      if(!isFirebaseConfigured || !db){
+        toast("فائر بیس سے رابطہ نہیں ہے");
+        return;
+      }
+
+      try{
+        await db.ref("settings/maintenance").set({
+          enabled: enabled,
+          message: message || "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔",
+          testers: testers,
+          updatedAt: Date.now(),
+          updatedBy: currentUser ? (currentUser.name || currentUser.id) : "superadmin"
+        });
+        toast(enabled ? "سائٹ مینٹیننس موڈ آن کر دیا گیا ہے" : "سائٹ مینٹیننس موڈ بند کر دیا گیا ہے");
+      }catch(err){
+        console.error("Save maintenance error:", err);
+        toast("خرابی: مینٹیننس ترتیبات محفوظ نہ ہو سکیں");
+      }
+    };
+  }
 
   /* Tab 1: Admin Permissions Logic */
   function renderAdminPerms(){
@@ -6605,14 +7100,14 @@
       btn.onclick = async () => {
         const id = btn.getAttribute("data-id");
         if(confirm(`کیا آپ اس صارف کا پن کوڈ ڈیفالٹ (1234) پر ری سیٹ کرنا چاہتے ہیں؟`)){
-          // Call Netlify function reset-pin (Task F)
+          // Call Vercel function reset-pin
           try{
             const headers = { 'Content-Type': 'application/json' };
             if(auth && auth.currentUser){
               const idToken = await auth.currentUser.getIdToken().catch(()=>null);
               if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
             }
-            fetch('/.netlify/functions/reset-pin', {
+            fetch('/api/reset-pin', {
               method: 'POST',
               headers: headers,
               body: JSON.stringify({ targetUserId: id })
@@ -6791,10 +7286,10 @@
   setupQuickLogin();
   updateNotificationButtonUI();
 
-  // Fetch live people list from Netlify function so any mobile opening the login screen sees all IDs immediately
+  // Fetch live people list from Vercel function so any mobile opening the login screen sees all IDs immediately
   async function syncPeopleForLoginScreen(){
     try{
-      const res = await fetch('/.netlify/functions/get-people', { cache: 'no-store' });
+      const res = await fetch('/api/get-people', { cache: 'no-store' });
       if(res.ok){
         const data = await res.json();
         if(data && Array.isArray(data.people) && data.people.length > 0){
@@ -6828,15 +7323,14 @@
       if(savedUserStr){
         currentUser = JSON.parse(savedUserStr);
 
-        // CRITICAL MAINTENANCE LOCKDOWN:
-        // Any restored session that is NOT superadmin must immediately be blocked with maintenance screen!
-        if(currentUser && currentUser.role !== "superadmin"){
+        // Dynamic Maintenance Mode Check for restored session
+        if(currentUser && isUserBlockedByMaintenance(currentUser)){
           showApp();
           return;
         }
 
         if(isFirebaseConfigured && auth){
-          if(auth.currentUser){
+          if(auth.currentUser || isLocalhost){
             showApp();
             return;
           }

@@ -1,0 +1,65 @@
+================================================================================
+                    URDU INTERCOM - VERCEL ENVIRONMENT VARIABLES
+================================================================================
+
+Yeh tamam variables Vercel Dashboard mein add karne hain:
+Vercel Project -> Settings -> Environment Variables
+
+--------------------------------------------------------------------------------
+1. FIREBASE_SERVICE_ACCOUNT_JSON (REQUIRED - SENSITIVE SECRET)
+--------------------------------------------------------------------------------
+Description:
+  Firebase Admin SDK ke credentials ka poora JSON content. Yeh backend serverless
+  functions (login, change-pin, reset-pin, get-people, purge, send-push) ko
+  Firebase Authentication custom tokens generate karne, FCM notifications bhejne,
+  aur private PINs verify/update karne ke liye darkaar hota hai.
+
+Production Value (intercom-8a920):
+  Firebase Console (https://console.firebase.google.com/) ->
+  Project Settings (gear icon) ->
+  Service accounts tab ->
+  "Generate new private key" button dabayein.
+  Jo JSON file download ho, uska mukammal text copy kar ke is variable mein paste karein.
+
+Important Note:
+  Is variable ki value ko kabhi bhi git repository, code files ya public jagah
+  par mat likhein. Sirf Vercel Dashboard ke Environment Variables section mein save karein.
+
+--------------------------------------------------------------------------------
+2. FIREBASE_DATABASE_URL (REQUIRED)
+--------------------------------------------------------------------------------
+Description:
+  Firebase Realtime Database ka primary URL.
+
+Production Value (intercom-8a920):
+  https://intercom-8a920-default-rtdb.firebaseio.com
+
+Note:
+  Agar yeh variable set na bhi ho to code mein production URL default ke tor par
+  mojood hai, lekin production deployment ke liye isay Vercel dashboard mein
+  explicitly set karna best practice hai.
+
+--------------------------------------------------------------------------------
+3. ALLOWED_ORIGIN (RECOMMENDED)
+--------------------------------------------------------------------------------
+Description:
+  CORS domain restriction ke liye aapki Vercel app ka domain. Is se doosri
+  unauthorized websites aapke serverless API endpoints ko direct call nahi kar sakeingi.
+
+Production Value:
+  https://<your-vercel-domain>.vercel.app
+  (Maslan: https://urdu-intercom.vercel.app ya aap ka custom domain)
+
+Note:
+  Agar yeh set na kiya jaye to API endpoints fallback ke tor par safe mode mein
+  CORS allow karte hain. Vercel domain assign hone ke baad isay dashboard mein
+  zaroor set karein.
+
+================================================================================
+LOCAL TEST ENVIRONMENT (LOCALHOST)
+================================================================================
+Local testing ke liye Vercel dashboard ke variables ki zaroorat nahi hoti:
+- server.js khud serviceAccountKey.test.json ko read karta hai.
+- server.js strict safety guard check karta hai ke project_id lazmi "urdu-intercom-test" ho.
+- Production database (intercom-8a920) local test server par kabhi connect nahi hota.
+================================================================================

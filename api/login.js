@@ -46,47 +46,51 @@ function verifyPin(pin, hash, salt) {
   return computed === hash;
 }
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-      },
-      body: ''
-    };
+function setCors(req, res) {
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  const origin = req.headers.origin;
+  let allow = '*';
+  if (allowedOrigin) {
+    const list = allowedOrigin.split(',').map(s => s.trim());
+    if (origin && list.includes(origin)) {
+      allow = origin;
+    } else if (list.length > 0) {
+      allow = list[0];
+    }
+  }
+  res.setHeader('Access-Control-Allow-Origin', allow);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+module.exports = async (req, res) => {
+  setCors(req, res);
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
   }
 
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  let body;
-  try {
-    body = JSON.parse(event.body || '{}');
-  } catch (e) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Invalid JSON request body' })
-    };
+  let body = req.body;
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body || '{}');
+    } catch (e) {
+      return res.status(400).json({ error: 'Invalid JSON request body' });
+    }
+  }
+  if (!body || typeof body !== 'object') {
+    body = {};
   }
 
   const loginInput = (body.loginId || '').trim().toLowerCase();
   const pinInput = (body.pin || '').trim();
 
   if (!loginInput || !pinInput) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'آئی ڈی اور پن کوڈ دونوں درج کریں' })
-    };
+    return res.status(400).json({ error: 'آئی ڈی اور پن کوڈ دونوں درج کریں' });
   }
 
   try {
@@ -124,24 +128,28 @@ exports.handler = async (event) => {
     }
 
     if (!targetUser) {
-      return {
-        statusCode: 401,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ error: 'آئی ڈی یا نام درست نہیں ہے' })
-      };
+      return res.status(401).json({ error: 'آئی ڈی یا نام درست نہیں ہے' });
     }
 
-    // CRITICAL MAINTENANCE LOCKDOWN:
-    // Only superadmin is allowed to login during maintenance/testing.
-    if (targetUser.role !== 'superadmin') {
-      return {
-        statusCode: 403,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({
-          error: '⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔ برائے مہربانی کام مکمل ہونے کا انتظار فرمائیں۔',
+    // Check dynamic maintenance mode from settings/maintenance
+    let maint = null;
+    try {
+      const maintSnap = await db.ref('settings/maintenance').once('value');
+      maint = maintSnap.val();
+    } catch (maintErr) {
+      console.error('Failed to read maintenance settings:', maintErr);
+      return res.status(500).json({ error: 'مینٹیننس سٹیٹس چیک کرنے میں خرابی ہوئی۔ برائے مہربانی دوبارہ کوشش کریں۔' });
+    }
+
+    if (maint && maint.enabled) {
+      const testers = Array.isArray(maint.testers) ? maint.testers : [];
+      const isTester = testers.includes(targetUser.id) || (targetUser.loginId && testers.includes(targetUser.loginId));
+      if (targetUser.role !== 'superadmin' && !isTester) {
+        return res.status(403).json({
+          error: maint.message || '⚠️ اس وقت سائٹ مینٹیننس کی وجہ سے بلاک ہے۔ برائے مہربانی کام مکمل ہونے کا انتظار فرمائیں۔',
           maintenance: true
-        })
-      };
+        });
+      }
     }
 
     // 2. Check PIN from private/pins/{targetUser.id}
@@ -154,11 +162,7 @@ exports.handler = async (event) => {
       const legacyPin = legacySnap.val() || '1234';
 
       if (pinInput !== legacyPin) {
-        return {
-          statusCode: 401,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ error: 'پاس ورڈ یا پن کوڈ غلط ہے' })
-        };
+        return res.status(401).json({ error: 'پاس ورڈ یا پن کوڈ غلط ہے' });
       }
 
       // Check legacy changed flag
@@ -176,11 +180,7 @@ exports.handler = async (event) => {
       // Verify salted hash
       const isValid = verifyPin(pinInput, pinRecord.hash, pinRecord.salt);
       if (!isValid) {
-        return {
-          statusCode: 401,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ error: 'پاس ورڈ یا پن کوڈ غلط ہے' })
-        };
+        return res.status(401).json({ error: 'پاس ورڈ یا پن کوڈ غلط ہے' });
       }
     }
 
@@ -192,22 +192,14 @@ exports.handler = async (event) => {
       name: targetUser.name
     });
 
-    return {
-      statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({
-        customToken,
-        user: targetUser,
-        mustChangePin
-      })
-    };
+    return res.status(200).json({
+      customToken,
+      user: targetUser,
+      mustChangePin
+    });
 
   } catch (error) {
     console.error('Login error:', error);
-    return {
-      statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: error.message })
-    };
+    return res.status(500).json({ error: error.message });
   }
 };

@@ -33,10 +33,23 @@ try {
   importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
   importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
   importScripts('/config.js');
+  try { importScripts('/firebase-config.test.js'); } catch(e) {}
 
-  if (typeof FIREBASE_CONFIG !== 'undefined' && FIREBASE_CONFIG && FIREBASE_CONFIG.apiKey) {
+  const isSwLocalhost = self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
+  let swConfig = typeof FIREBASE_CONFIG !== 'undefined' ? FIREBASE_CONFIG : null;
+
+  if (isSwLocalhost && typeof FIREBASE_CONFIG_TEST !== 'undefined' && FIREBASE_CONFIG_TEST) {
+    swConfig = FIREBASE_CONFIG_TEST;
+  }
+
+  // Safety Guard: never run against production on localhost
+  if (isSwLocalhost && swConfig && swConfig.projectId === 'intercom-8a920') {
+    throw new Error('Service Worker safety guard: Production Firebase blocked on localhost');
+  }
+
+  if (swConfig && swConfig.apiKey) {
     if (!firebase.apps.length) {
-      firebase.initializeApp(FIREBASE_CONFIG);
+      firebase.initializeApp(swConfig);
     }
     const messaging = firebase.messaging();
     messaging.onBackgroundMessage((payload) => {
@@ -122,13 +135,12 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // Never cache Firebase database / auth traffic or Netlify backend functions
+  // Never cache Firebase database / auth traffic or backend API functions
   if (
     url.hostname.includes('firebaseio.com') ||
     url.hostname.includes('googleapis.com') ||
     url.hostname.includes('firebaseinstallations.googleapis.com') ||
     url.hostname.includes('fcmregistrations.googleapis.com') ||
-    url.pathname.startsWith('/.netlify/functions/') ||
     url.pathname.startsWith('/api/') ||
     req.method !== 'GET'
   ) {

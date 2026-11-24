@@ -5,6 +5,35 @@ const path = require('path');
 const PORT = 3000;
 const DATA_FILE = path.join(__dirname, 'messages_data.json');
 
+// Test project safety guard & environment setup for Netlify functions
+const TEST_SERVICE_ACCOUNT_PATH = path.join(__dirname, 'serviceAccountKey.test.json');
+if (!fs.existsSync(TEST_SERVICE_ACCOUNT_PATH)) {
+  console.error("FATAL SAFETY ERROR: serviceAccountKey.test.json not found!");
+  process.exit(1);
+}
+let testServiceAccount = null;
+try {
+  testServiceAccount = JSON.parse(fs.readFileSync(TEST_SERVICE_ACCOUNT_PATH, 'utf8'));
+} catch (e) {
+  console.error("FATAL: Failed to parse serviceAccountKey.test.json:", e.message);
+  process.exit(1);
+}
+
+const TEST_DATABASE_URL = 'https://urdu-intercom-test-default-rtdb.firebaseio.com';
+
+// Safety guard: agar service account ka project_id "urdu-intercom-test" nahi, ya database URL mein "urdu-intercom-test" nahi, to server start hi na ho
+if (!testServiceAccount || testServiceAccount.project_id !== 'urdu-intercom-test') {
+  console.error(`FATAL SAFETY GUARD: Service account project_id ('${testServiceAccount?.project_id}') is NOT 'urdu-intercom-test'. Server startup blocked!`);
+  process.exit(1);
+}
+if (!TEST_DATABASE_URL.includes('urdu-intercom-test')) {
+  console.error(`FATAL SAFETY GUARD: Database URL ('${TEST_DATABASE_URL}') does not contain 'urdu-intercom-test'. Server startup blocked!`);
+  process.exit(1);
+}
+
+process.env.FIREBASE_SERVICE_ACCOUNT_JSON = JSON.stringify(testServiceAccount);
+process.env.FIREBASE_DATABASE_URL = TEST_DATABASE_URL;
+
 let state = {
   messages: [],
   history: [],
@@ -78,16 +107,24 @@ const MIME = {
   '.ttf':  'font/ttf',
   '.otf':  'font/otf',
   '.webmanifest': 'application/manifest+json; charset=utf-8',
-  '.svg': 'image/svg+xml'
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.mp3': 'audio/mpeg'
 };
+
+// Files that must NEVER be served over HTTP (keys, data, server code, function code)
+const BLOCKED_NAME = /^(serviceAccountKey.*|messages_data\.json|server\.js|seed-test\.js|setup-test\.html|package(-lock)?\.json|.*\.pem|.*\.key|\.env.*|\.git.*|.*\.patch|REPORT\.txt)$/i;
+const BLOCKED_DIRS = new Set(['node_modules', 'netlify', 'api', 'screenshots', 'test-artifacts']);
 
 const server = http.createServer((req, res) => {
   const urlParts = req.url.split('?');
   const reqPath = urlParts[0];
 
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Same-origin only: no wildcard CORS (this server holds test data and PINs)
+  res.setHeader('X-Content-Type-Options', 'nosniff');
 
   if(req.method === 'OPTIONS'){
     res.writeHead(204);
@@ -95,21 +132,67 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Proxy Netlify functions to live backend for local development
-  if(reqPath.startsWith('/.netlify/functions/')){
-    const https = require('https');
-    const proxyReq = https.request('https://urdu-intercom-9816.netlify.app' + req.url, {
-      method: req.method,
-      headers: { ...req.headers, host: 'urdu-intercom-9816.netlify.app' }
-    }, (proxyRes) => {
-      res.writeHead(proxyRes.statusCode, proxyRes.headers);
-      proxyRes.pipe(res);
+  // Handle serverless functions locally with real handlers (/api/<fnName>)
+  const serverlessFns = {
+    'login': './api/login',
+    'change-pin': './api/change-pin',
+    'reset-pin': './api/reset-pin',
+    'get-people': './api/get-people',
+    'purge': './api/purge',
+    'send-push': './api/send-push'
+  };
+
+  let fnName = null;
+  if(reqPath.startsWith('/api/')){
+    const cand = reqPath.replace('/api/', '').split('?')[0];
+    if(serverlessFns[cand]) fnName = cand;
+  } else if(reqPath.startsWith('/.netlify/functions/')){
+    const cand = reqPath.replace('/.netlify/functions/', '').split('?')[0];
+    if(serverlessFns[cand]) fnName = cand;
+  }
+
+  if(fnName){
+    // send-push: user requirement: "send-push par asli push mat bhejo, sirf mock jawab do."
+    if(fnName === 'send-push'){
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ success: true, mocked: true, note: "Push notifications mocked in local test mode" }));
+      return;
+    }
+
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', async () => {
+      try {
+        const fnModule = require(serverlessFns[fnName]);
+        const parsedUrl = require('url').parse(req.url, true);
+        req.query = parsedUrl.query;
+        try {
+          req.body = body ? JSON.parse(body) : {};
+        } catch (e) {
+          req.body = body;
+        }
+        if(!res.status){
+          res.status = function(code){
+            this.statusCode = code;
+            return this;
+          };
+        }
+        if(!res.json){
+          res.json = function(data){
+            this.setHeader('Content-Type', 'application/json; charset=utf-8');
+            this.end(JSON.stringify(data));
+            return this;
+          };
+        }
+        await fnModule(req, res);
+      } catch (err) {
+        console.error(`Error in function ${fnName}:`, err);
+        if(!res.headersSent){
+          res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ error: err.message }));
+        }
+      }
     });
-    proxyReq.on('error', (e) => {
-      res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ error: e.message }));
-    });
-    req.pipe(proxyReq);
     return;
   }
 
@@ -381,7 +464,22 @@ const server = http.createServer((req, res) => {
   // Static files
   let safePath = reqPath;
   if(safePath === '/' || safePath === '') safePath = '/index.html';
-  const filePath = path.join(__dirname, decodeURIComponent(safePath));
+  let decoded;
+  try{ decoded = decodeURIComponent(safePath); }catch(e){ decoded = ''; }
+  const filePath = path.resolve(__dirname, '.' + decoded);
+  const rel = path.relative(__dirname, filePath);
+  const segments = rel.split(path.sep);
+  const ext0 = path.extname(filePath).toLowerCase();
+  const forbidden = !decoded || decoded.includes('\0') ||
+    rel.startsWith('..') || path.isAbsolute(rel) ||
+    segments.some(sg => BLOCKED_DIRS.has(sg.toLowerCase()) || (sg.startsWith('.') && sg !== '.well-known')) ||
+    BLOCKED_NAME.test(path.basename(filePath)) ||
+    !MIME[ext0];
+  if(forbidden){
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('فائل نہیں ملی (404 Not Found)');
+    return;
+  }
 
   fs.readFile(filePath, (err, data) => {
     if(err){
@@ -395,6 +493,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, '0.0.0.0', () => {
+// Bind to this computer only: other devices on the WiFi cannot reach it
+server.listen(PORT, '127.0.0.1', () => {
   console.log(`انٹر کام سرور چل رہا ہے: http://localhost:${PORT}`);
 });

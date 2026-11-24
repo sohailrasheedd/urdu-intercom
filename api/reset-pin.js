@@ -34,45 +34,49 @@ function hashPin(pin) {
   return { hash, salt };
 }
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-      },
-      body: ''
-    };
+function setCors(req, res) {
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  const origin = req.headers.origin;
+  let allow = '*';
+  if (allowedOrigin) {
+    const list = allowedOrigin.split(',').map(s => s.trim());
+    if (origin && list.includes(origin)) {
+      allow = origin;
+    } else if (list.length > 0) {
+      allow = list[0];
+    }
+  }
+  res.setHeader('Access-Control-Allow-Origin', allow);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+module.exports = async (req, res) => {
+  setCors(req, res);
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
   }
 
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  let body;
-  try {
-    body = JSON.parse(event.body || '{}');
-  } catch (e) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Invalid JSON request body' })
-    };
+  let body = req.body;
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body || '{}');
+    } catch (e) {
+      return res.status(400).json({ error: 'Invalid JSON request body' });
+    }
+  }
+  if (!body || typeof body !== 'object') {
+    body = {};
   }
 
   const { targetUserId } = body;
   if (!targetUserId) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'صارف کی آئی ڈی درکار ہے' })
-    };
+    return res.status(400).json({ error: 'صارف کی آئی ڈی درکار ہے' });
   }
 
   try {
@@ -80,16 +84,12 @@ exports.handler = async (event) => {
     const db = app.database();
 
     // Verify caller has superadmin role
-    const authHeader = event.headers['authorization'] || event.headers['Authorization'];
+    const authHeader = req.headers['authorization'] || req.headers['Authorization'];
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const idToken = authHeader.split('Bearer ')[1].trim();
       const decoded = await app.auth().verifyIdToken(idToken);
       if (decoded.role !== 'superadmin') {
-        return {
-          statusCode: 403,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ error: 'صرف سپر ایڈمن پن ری سیٹ کر سکتا ہے' })
-        };
+        return res.status(403).json({ error: 'صرف سپر ایڈمن پن ری سیٹ کر سکتا ہے' });
       }
     }
 
@@ -105,18 +105,10 @@ exports.handler = async (event) => {
     await db.ref(`settings/passwordChanged/${targetUserId}`).set(false);
     await db.ref(`settings/passwords/${targetUserId}`).remove();
 
-    return {
-      statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ success: true, message: 'پن کوڈ کامیابی سے 1234 پر ری سیٹ کر دیا گیا' })
-    };
+    return res.status(200).json({ success: true, message: 'پن کوڈ کامیابی سے 1234 پر ری سیٹ کر دیا گیا' });
 
   } catch (error) {
     console.error('Reset PIN error:', error);
-    return {
-      statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: error.message })
-    };
+    return res.status(500).json({ error: error.message });
   }
 };

@@ -34,17 +34,28 @@ const DEFAULT_PEOPLE = [
   { id: "bapu",      name: "باپو",        color: "#e53935", loginId: "bapu" }
 ];
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type'
-      },
-      body: ''
-    };
+function setCors(req, res) {
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  const origin = req.headers.origin;
+  let allow = '*';
+  if (allowedOrigin) {
+    const list = allowedOrigin.split(',').map(s => s.trim());
+    if (origin && list.includes(origin)) {
+      allow = origin;
+    } else if (list.length > 0) {
+      allow = list[0];
+    }
+  }
+  res.setHeader('Access-Control-Allow-Origin', allow);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
+module.exports = async (req, res) => {
+  setCors(req, res);
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
   }
 
   try {
@@ -54,24 +65,10 @@ exports.handler = async (event) => {
     const dynamicPeople = snap.val();
     const people = (Array.isArray(dynamicPeople) && dynamicPeople.length > 0) ? dynamicPeople : DEFAULT_PEOPLE;
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache, no-store, must-revalidate'
-      },
-      body: JSON.stringify({ people })
-    };
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    return res.status(200).json({ people });
   } catch (error) {
     console.warn('get-people error, returning default:', error.message);
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ people: DEFAULT_PEOPLE })
-    };
+    return res.status(200).json({ people: DEFAULT_PEOPLE });
   }
 };

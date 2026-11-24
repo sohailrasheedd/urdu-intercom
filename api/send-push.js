@@ -32,46 +32,50 @@ function getAdmin() {
   return adminApp;
 }
 
-exports.handler = async (event, context) => {
+function setCors(req, res) {
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  const origin = req.headers.origin;
+  let allow = '*';
+  if (allowedOrigin) {
+    const list = allowedOrigin.split(',').map(s => s.trim());
+    if (origin && list.includes(origin)) {
+      allow = origin;
+    } else if (list.length > 0) {
+      allow = list[0];
+    }
+  }
+  res.setHeader('Access-Control-Allow-Origin', allow);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+module.exports = async (req, res) => {
+  setCors(req, res);
+
   // CORS Preflight
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-      },
-      body: ''
-    };
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
   }
 
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  let body;
-  try {
-    body = JSON.parse(event.body || '{}');
-  } catch (e) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Invalid JSON request body' })
-    };
+  let body = req.body;
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body || '{}');
+    } catch (e) {
+      return res.status(400).json({ error: 'Invalid JSON request body' });
+    }
+  }
+  if (!body || typeof body !== 'object') {
+    body = {};
   }
 
   const { messageId, type } = body;
   if (!messageId && type !== 'token') {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Missing messageId or valid type' })
-    };
+    return res.status(400).json({ error: 'Missing messageId or valid type' });
   }
 
   try {
@@ -84,11 +88,7 @@ exports.handler = async (event, context) => {
       const tokenSnap = await db.ref('tokens/today').once('value');
       const tokenData = tokenSnap.val();
       if (!tokenData || tokenData.current == null) {
-        return {
-          statusCode: 200,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ success: true, message: 'No active token to notify' })
-        };
+        return res.status(200).json({ success: true, message: 'No active token to notify' });
       }
 
       const currentNum = tokenData.current;
@@ -112,11 +112,7 @@ exports.handler = async (event, context) => {
       });
 
       if (tokensWithMeta.length === 0) {
-        return {
-          statusCode: 200,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ success: true, pushedTokens: 0 })
-        };
+        return res.status(200).json({ success: true, pushedTokens: 0 });
       }
 
       const dataPayload = {
@@ -138,20 +134,16 @@ exports.handler = async (event, context) => {
         } catch (err) {
           const code = err.code || (err.errorInfo && err.errorInfo.code) || '';
           if (code === 'messaging/registration-token-not-registered' || code === 'messaging/invalid-argument') {
-            await db.ref(`fcmTokens/${item.userId}/${item.sanitizedKey}`).remove().catch(()=>{});
+            await db.ref(`fcmTokens/${item.userId}/${item.sanitizedKey}`).remove().catch(() => {});
           }
         }
       }
 
-      return {
-        statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ success: true, pushedTokens: sentCount, currentToken: currentNum })
-      };
+      return res.status(200).json({ success: true, pushedTokens: sentCount, currentToken: currentNum });
     }
 
-    // Verify caller ID token if provided (Task F)
-    const authHeader = event.headers['authorization'] || event.headers['Authorization'];
+    // Verify caller ID token if provided
+    const authHeader = req.headers['authorization'] || req.headers['Authorization'];
     let callerUid = null;
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const idToken = authHeader.split('Bearer ')[1].trim();
@@ -167,20 +159,12 @@ exports.handler = async (event, context) => {
     const msgSnap = await db.ref('messages').child(messageId).once('value');
     const msg = msgSnap.val();
     if (!msg) {
-      return {
-        statusCode: 404,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ error: 'Message not found' })
-      };
+      return res.status(404).json({ error: 'Message not found' });
     }
 
     // Check if push already processed for this message
     if (msg.pushed) {
-      return {
-        statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ success: true, alreadyPushed: true })
-      };
+      return res.status(200).json({ success: true, alreadyPushed: true });
     }
 
     // Determine target recipient IDs
@@ -207,11 +191,7 @@ exports.handler = async (event, context) => {
     targetRecipients = targetRecipients.filter(uid => uid === 'superadmin');
     if (targetRecipients.length === 0) {
       await db.ref(`messages/${messageId}`).update({ pushed: true });
-      return {
-        statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ success: true, pushedTokens: 0, suppressed: 'maintenance_lockdown' })
-      };
+      return res.status(200).json({ success: true, pushedTokens: 0, suppressed: 'maintenance_lockdown' });
     }
 
     // Fetch FCM tokens for each target recipient
@@ -237,11 +217,7 @@ exports.handler = async (event, context) => {
     if (tokensWithMeta.length === 0) {
       // Mark as pushed even if no tokens registered currently
       await db.ref(`messages/${messageId}`).update({ pushed: true });
-      return {
-        statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ success: true, pushedTokens: 0 })
-      };
+      return res.status(200).json({ success: true, pushedTokens: 0 });
     }
 
     // Prepare push payload: data-only for reliable background service worker handling
@@ -303,22 +279,14 @@ exports.handler = async (event, context) => {
     // Mark message as pushed
     await db.ref(`messages/${messageId}`).update({ pushed: true });
 
-    return {
-      statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({
-        success: true,
-        sentCount: sentCount,
-        prunedTokens: staleTokens.length
-      })
-    };
+    return res.status(200).json({
+      success: true,
+      sentCount: sentCount,
+      prunedTokens: staleTokens.length
+    });
 
   } catch (error) {
     console.error('Error in send-push function:', error);
-    return {
-      statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: error.message })
-    };
+    return res.status(500).json({ error: error.message });
   }
 };

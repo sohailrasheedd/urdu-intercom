@@ -1,11 +1,27 @@
-# Local Netlify folder
-.netlify
-node_modules/
-.env
+# Secrets & Environment variables
+serviceAccountKey*.json
+.env*
+
+# Test & Local server files
+firebase-config.test.js
+setup-test.html
+seed-test.js
+server.js
+messages_data.json
 test-artifacts/
+screenshots/
+*.patch
+REPORT.txt
+node_modules/
 test-queue.js
 verify-all-four-features.js
 verify-token-and-ui.js
 capture-after.js
 capture-before.js
-screenshots/
+
+# Local platform caches
+.netlify
+.vercel
+
+.vercel
+.env*

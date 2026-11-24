@@ -34,54 +34,54 @@ function hashPin(pin) {
   return { hash, salt };
 }
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-      },
-      body: ''
-    };
+function setCors(req, res) {
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  const origin = req.headers.origin;
+  let allow = '*';
+  if (allowedOrigin) {
+    const list = allowedOrigin.split(',').map(s => s.trim());
+    if (origin && list.includes(origin)) {
+      allow = origin;
+    } else if (list.length > 0) {
+      allow = list[0];
+    }
+  }
+  res.setHeader('Access-Control-Allow-Origin', allow);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+module.exports = async (req, res) => {
+  setCors(req, res);
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
   }
 
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  let body;
-  try {
-    body = JSON.parse(event.body || '{}');
-  } catch (e) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Invalid JSON request body' })
-    };
+  let body = req.body;
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body || '{}');
+    } catch (e) {
+      return res.status(400).json({ error: 'Invalid JSON request body' });
+    }
+  }
+  if (!body || typeof body !== 'object') {
+    body = {};
   }
 
   const { newPin, userId: requestedUserId } = body;
 
   if (!newPin || !/^\d{4}$/.test(newPin)) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'پن کوڈ لازماً ۴ ہندسوں پر مشتمل ہونا چاہیے' })
-    };
+    return res.status(400).json({ error: 'پن کوڈ لازماً ۴ ہندسوں پر مشتمل ہونا چاہیے' });
   }
 
   if (newPin === '1234') {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'نیا پن کوڈ 1234 نہیں ہو سکتا' })
-    };
+    return res.status(400).json({ error: 'نیا پن کوڈ 1234 نہیں ہو سکتا' });
   }
 
   try {
@@ -91,27 +91,19 @@ exports.handler = async (event) => {
     let targetUserId = requestedUserId;
 
     // Verify caller ID token if provided
-    const authHeader = event.headers['authorization'] || event.headers['Authorization'];
+    const authHeader = req.headers['authorization'] || req.headers['Authorization'];
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const idToken = authHeader.split('Bearer ')[1].trim();
       const decoded = await app.auth().verifyIdToken(idToken);
       // User can change their own PIN, or superadmin can change anyone's
       if (decoded.role !== 'superadmin' && requestedUserId && requestedUserId !== decoded.uid) {
-        return {
-          statusCode: 403,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ error: 'اختیار نہیں ہے' })
-        };
+        return res.status(403).json({ error: 'اختیار نہیں ہے' });
       }
       targetUserId = requestedUserId || decoded.uid;
     }
 
     if (!targetUserId) {
-      return {
-        statusCode: 400,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ error: 'صارف کی آئی ڈی درکار ہے' })
-      };
+      return res.status(400).json({ error: 'صارف کی آئی ڈی درکار ہے' });
     }
 
     const { hash, salt } = hashPin(newPin);
@@ -128,18 +120,10 @@ exports.handler = async (event) => {
     // Delete plain-text password from settings if still present
     await db.ref(`settings/passwords/${targetUserId}`).remove();
 
-    return {
-      statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ success: true, message: 'پن کوڈ کامیابی سے تبدیل ہو گیا' })
-    };
+    return res.status(200).json({ success: true, message: 'پن کوڈ کامیابی سے تبدیل ہو گیا' });
 
   } catch (error) {
     console.error('Change PIN error:', error);
-    return {
-      statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: error.message })
-    };
+    return res.status(500).json({ error: error.message });
   }
 };

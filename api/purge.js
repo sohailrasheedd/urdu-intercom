@@ -27,31 +27,45 @@ function getAdmin() {
   return adminApp;
 }
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-      },
-      body: ''
-    };
+function setCors(req, res) {
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  const origin = req.headers.origin;
+  let allow = '*';
+  if (allowedOrigin) {
+    const list = allowedOrigin.split(',').map(s => s.trim());
+    if (origin && list.includes(origin)) {
+      allow = origin;
+    } else if (list.length > 0) {
+      allow = list[0];
+    }
+  }
+  res.setHeader('Access-Control-Allow-Origin', allow);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+module.exports = async (req, res) => {
+  setCors(req, res);
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
   }
 
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  let body = {};
-  try {
-    body = JSON.parse(event.body || '{}');
-  } catch(e) {}
+  let body = req.body;
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body || '{}');
+    } catch (e) {
+      body = {};
+    }
+  }
+  if (!body || typeof body !== 'object') {
+    body = {};
+  }
 
   const target = body.target || 'all'; // 'messages', 'history', 'all'
 
@@ -60,16 +74,12 @@ exports.handler = async (event) => {
     const db = app.database();
 
     // Verify caller role if token provided
-    const authHeader = event.headers['authorization'] || event.headers['Authorization'];
+    const authHeader = req.headers['authorization'] || req.headers['Authorization'];
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const idToken = authHeader.split('Bearer ')[1].trim();
-      const decoded = await app.auth().verifyIdToken(idToken).catch(()=>null);
+      const decoded = await app.auth().verifyIdToken(idToken).catch(() => null);
       if (decoded && decoded.role !== 'superadmin' && decoded.role !== 'admin') {
-        return {
-          statusCode: 403,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ error: 'صرف سپر ایڈمن کو ڈیٹا صاف کرنے کی اجازت ہے' })
-        };
+        return res.status(403).json({ error: 'صرف سپر ایڈمن کو ڈیٹا صاف کرنے کی اجازت ہے' });
       }
     }
 
@@ -85,20 +95,13 @@ exports.handler = async (event) => {
       await db.ref('history').remove();
     }
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ success: true, target, message: 'ڈیٹا بیس کامیابی سے صاف ہو گیا' })
-    };
+    return res.status(200).json({
+      success: true,
+      target,
+      message: 'ڈیٹا بیس کامیابی سے صاف ہو گیا'
+    });
   } catch (error) {
     console.error('Purge error:', error);
-    return {
-      statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: error.message })
-    };
+    return res.status(500).json({ error: error.message });
   }
 };

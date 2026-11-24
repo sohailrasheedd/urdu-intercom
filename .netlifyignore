@@ -1,0 +1,12 @@
+node_modules/
+.git/
+test-artifacts/
+screenshots/
+*.log
+*.zip
+*.jsonl
+check-deploys.js
+verify-all-four-features.js
+verify-token-and-ui.js
+capture-after.js
+capture-before.js
