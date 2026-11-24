@@ -71,6 +71,7 @@ try{
     const loaded = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
     state.messages = loaded.messages || [];
     state.history = loaded.history || [];
+    if(loaded.tokens && typeof loaded.tokens === 'object') state.tokens = loaded.tokens;
     if(loaded.voice && typeof loaded.voice === 'object') state.voice = loaded.voice;
     if(loaded.people && Array.isArray(loaded.people)) state.people = loaded.people;
     if(loaded.pinned && typeof loaded.pinned === 'object') state.pinned = Object.assign(state.pinned, loaded.pinned);
@@ -325,6 +326,30 @@ const server = http.createServer((req, res) => {
           state.tokens = data;
           saveState();
           notifyClients('TOKENS_UPDATED', data);
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ ok: true, tokens: state.tokens }));
+        }catch(e){
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ error: e.message }));
+        }
+      });
+      return;
+    }
+    if(req.method === 'PATCH'){
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', () => {
+        try{
+          const patch = JSON.parse(body);
+          if(!state.tokens) state.tokens = {};
+          if(patch.tags && typeof patch.tags === 'object'){
+            state.tokens.tags = Object.assign(state.tokens.tags || {}, patch.tags);
+          }
+          if(patch.removeTag){
+            if(state.tokens.tags) delete state.tokens.tags[patch.removeTag];
+          }
+          saveState();
+          notifyClients('TOKENS_UPDATED', state.tokens);
           res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
           res.end(JSON.stringify({ ok: true, tokens: state.tokens }));
         }catch(e){

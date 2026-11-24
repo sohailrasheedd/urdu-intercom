@@ -128,6 +128,533 @@
   }
   .hidden{display:none!important}
 
+  /* ---------- Light Theme Support (High-Contrast Daylight UI) ---------- */
+  body.theme-light {
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    color-scheme: light;
+  }
+  body.theme-light .top-nav {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+  }
+  body.theme-light .user-badge {
+    color: #0f172a;
+  }
+  body.theme-light .user-role-tag {
+    background: #e2e8f0;
+    color: #1e293b;
+  }
+  body.theme-light .live-token-badge {
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    color: #0f172a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  body.theme-light .token-main-txt {
+    color: #0f172a;
+  }
+  body.theme-light .token-num-highlight {
+    color: #0284c7;
+  }
+  body.theme-light .token-next-txt {
+    color: #475569;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .token-next-highlight {
+    color: #b45309;
+  }
+  body.theme-light .token-next-pill {
+    background: #e0f2fe;
+    border-color: #0284c7;
+    color: #0369a1;
+  }
+  body.theme-light .person {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  }
+  body.theme-light .admin-token-panel {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #0f172a;
+    box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+  }
+  body.theme-light .token-panel-header {
+    border-bottom-color: #e2e8f0;
+  }
+  body.theme-light .token-panel-title {
+    color: #0f172a;
+  }
+  body.theme-light #btnOpenTokenHistory {
+    background: #e2e8f0 !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+  body.theme-light #btnOpenAllTokensFromAdmin {
+    background: #0284c7 !important;
+    color: #ffffff !important;
+    border-color: #0369a1 !important;
+  }
+  body.theme-light .token-big-display {
+    background: #f8fafc;
+    border: 2px solid #3b82f6;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.08);
+  }
+  body.theme-light .token-big-label {
+    color: #1e40af;
+  }
+  body.theme-light .token-big-number.none {
+    color: #64748b;
+  }
+  body.theme-light .token-stats-bar {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 8px 12px;
+    color: #334155;
+    width: 100%;
+  }
+  body.theme-light .token-stat-item {
+    color: #334155;
+  }
+  body.theme-light .token-stat-item span {
+    color: #0f172a;
+  }
+  body.theme-light .token-upcoming-box,
+  body.theme-light .token-outside-box,
+  body.theme-light .token-skipped-box,
+  body.theme-light .token-total-setting-box {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+  }
+  body.theme-light .upcoming-title,
+  body.theme-light .outside-title,
+  body.theme-light .skipped-title {
+    color: #0f172a;
+  }
+  body.theme-light .token-total-setting-box label {
+    color: #1e40af !important;
+  }
+  body.theme-light .token-custom-urgent-bar {
+    background: #fef2f2;
+    border-color: #fca5a5;
+  }
+  body.theme-light .token-custom-urgent-bar div {
+    color: #b91c1c !important;
+  }
+  body.theme-light .btn-token-prev {
+    background: #e2e8f0;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .btn-token-prev:hover {
+    background: #cbd5e1;
+  }
+  body.theme-light .btn-end-day {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fca5a5;
+  }
+  body.theme-light .btn-new-day {
+    background: #dbeafe;
+    color: #1e40af;
+    border-color: #93c5fd;
+  }
+  body.theme-light .tokens-modal-box,
+  body.theme-light .tokens-modal-content,
+  body.theme-light .tag-editor-box,
+  body.theme-light .sheet,
+  body.theme-light .hist-sheet {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .tokens-modal-header {
+    border-bottom-color: #e2e8f0;
+  }
+  body.theme-light .tokens-modal-title {
+    color: #0f172a;
+  }
+  body.theme-light .tokens-modal-close-btn {
+    color: #475569;
+  }
+  body.theme-light .tokens-dist-banner {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+  }
+  body.theme-light .stat-pill {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .stat-pill strong {
+    color: #0f172a;
+  }
+  body.theme-light #tagEditorTitle {
+    color: #0f172a !important;
+  }
+  body.theme-light #customTagLabel {
+    color: #1e40af !important;
+  }
+  body.theme-light .token-item-card {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+  }
+  body.theme-light .token-item-card.is-active {
+    background: #eff6ff;
+    border-color: #3b82f6;
+  }
+  body.theme-light .token-item-card.is-outside {
+    background: #fffbeb;
+    border-color: #f59e0b;
+  }
+  body.theme-light .token-item-card.is-done {
+    background: #f0fdf4;
+    border-color: #22c55e;
+  }
+  body.theme-light .token-item-card.is-skipped {
+    background: #fef2f2;
+    border-color: #ef4444;
+  }
+  body.theme-light .token-card-num {
+    color: #0f172a;
+  }
+  body.theme-light .btn-tag-edit {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #7dd3fc;
+  }
+  body.theme-light .wa-messenger {
+    background: #ffffff;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .wa-header,
+  body.theme-light .wa-chat-header {
+    background: #f1f5f9;
+    color: #0f172a;
+    border-bottom-color: #cbd5e1;
+  }
+  body.theme-light .wa-contact-item {
+    border-bottom-color: #f1f5f9;
+    color: #0f172a;
+  }
+  body.theme-light .wa-contact-name {
+    color: #0f172a;
+  }
+  body.theme-light .wa-contact-item:hover {
+    background: #f8fafc;
+  }
+  body.theme-light .wa-messages-area {
+    background: #f8fafc;
+  }
+  body.theme-light .wa-bubble.incoming {
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+  }
+  body.theme-light .wa-bubble.outgoing {
+    background: #dcf8c6;
+    color: #0f172a;
+  }
+  body.theme-light .login-box {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+  body.theme-light input,
+  body.theme-light select,
+  body.theme-light textarea {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .btn-pin-change,
+  body.theme-light .btn-all-tokens-header,
+  body.theme-light .tool {
+    background: #e2e8f0;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1;
+  }
+  body.theme-light .btn-pin-change:hover,
+  body.theme-light .btn-all-tokens-header:hover,
+  body.theme-light .tool:hover {
+    background: #cbd5e1;
+  }
+  body.theme-light .tools {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 6px 24px rgba(15, 23, 42, 0.14);
+  }
+  body.theme-light .tag-preset-chip {
+    background: #f1f5f9;
+    color: #1e293b;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .tag-preset-chip:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  body.theme-light .tokens-filter-chip {
+    background: #f1f5f9;
+    color: #334155;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .tokens-filter-chip.active {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+  }
+  body.theme-light .upcoming-chip-item,
+  body.theme-light .outside-chip-item,
+  body.theme-light .skipped-chip {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+
+  /* ---------- English / LTR Mode Support ---------- */
+  html[dir="ltr"], body.lang-en {
+    font-family: var(--font-latin-body);
+    line-height: var(--lh-latin);
+    direction: ltr;
+    text-align: left;
+  }
+  body.lang-en h1, body.lang-en h2, body.lang-en h3, body.lang-en h4,
+  body.lang-en .token-panel-title, body.lang-en .user-badge,
+  body.lang-en .nastaliq {
+    font-family: var(--font-latin-heading);
+    line-height: 1.35;
+  }
+  body.lang-en button, body.lang-en input, body.lang-en textarea, body.lang-en select {
+    font-family: var(--font-latin-body);
+  }
+  html[dir="ltr"] .login-box, html[dir="ltr"] .sheet, html[dir="ltr"] .tokens-modal-content {
+    text-align: left;
+  }
+  html[dir="ltr"] .token-card-action-row {
+    justify-content: flex-start;
+  }
+  html[dir="ltr"] .tag-editor-box div[style*="justify-content:flex-end"] {
+    justify-content: flex-start !important;
+  }
+
+  /* Custom Urgent Call Button & Preset Active State */
+  .btn-card-urgent {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: .8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .15s, transform .1s;
+    font-family: var(--font-urdu-body);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+  .btn-card-urgent:hover {
+    opacity: .92;
+    transform: scale(1.02);
+  }
+  .token-custom-urgent-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(239, 68, 68, 0.35);
+    background: rgba(239, 68, 68, 0.05);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .tag-preset-chip.active-preset {
+    background: #0284c7 !important;
+    border-color: #38bdf8 !important;
+    color: #fff !important;
+    font-weight: 700;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+  }
+
+  /* ---------- Settings Dropdown Menu (Header) ---------- */
+  .settings-menu-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .btn-settings-menu {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #334155;
+    color: #f8fafc;
+    border: 1px solid #475569;
+    border-radius: 10px;
+    padding: 6px 14px;
+    min-height: 38px;
+    font-size: .92rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-urdu-body);
+    transition: background .15s;
+  }
+  .btn-settings-menu:hover { background: #475569; }
+  .settings-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 240px;
+    background: #1e293b;
+    border: 1.5px solid #475569;
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.55);
+    z-index: 950;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  html[dir="ltr"] .settings-dropdown {
+    left: auto;
+    right: 0;
+  }
+  .settings-dropdown button {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    text-align: right;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    font-size: .9rem !important;
+    min-height: 38px !important;
+    margin: 0 !important;
+  }
+  html[dir="ltr"] .settings-dropdown button {
+    text-align: left;
+  }
+  .settings-divider {
+    height: 1px;
+    background: #334155;
+    margin: 2px 4px;
+  }
+  body.theme-light .btn-settings-menu {
+    background: #e2e8f0;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .btn-settings-menu:hover { background: #cbd5e1; }
+  body.theme-light .settings-dropdown {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 12px 35px rgba(15,23,42,0.16);
+  }
+  body.theme-light .settings-divider { background: #e2e8f0; }
+
+  /* ---------- Collapsible Day Settings Drawer ---------- */
+  .day-settings-drawer {
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid #334155;
+    border-radius: 14px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  body.theme-light .day-settings-drawer {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  .day-settings-drawer .token-total-setting-box {
+    flex: 1 1 320px;
+    margin: 0;
+  }
+  .day-settings-drawer .token-day-controls {
+    flex: 1 1 280px;
+  }
+
+  /* ---------- Compact 3-Action Row ---------- */
+  .token-sub-actions-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  @media (max-width: 520px) {
+    .token-sub-actions-3 { grid-template-columns: 1fr; }
+  }
+  .token-sub-actions-3 .btn-token-outside {
+    margin: 0;
+    min-height: 40px;
+    padding: 6px 10px;
+    font-size: .88rem;
+  }
+
+  /* ---------- Tabbed Waiting Outside / Skipped Box ---------- */
+  .token-queues-tabbed-box {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  body.theme-light .token-queues-tabbed-box {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  .queues-tabs-header {
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 8px;
+  }
+  body.theme-light .queues-tabs-header { border-bottom-color: #e2e8f0; }
+  .queue-tab-btn {
+    flex: 1;
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: .88rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-urdu-body);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all .15s;
+  }
+  .queue-tab-btn.active {
+    background: #0284c7;
+    color: #fff;
+    border-color: #38bdf8;
+  }
+  body.theme-light .queue-tab-btn {
+    background: #ffffff;
+    color: #475569;
+    border-color: #cbd5e1;
+  }
+  body.theme-light .queue-tab-btn.active {
+    background: #0284c7;
+    color: #fff;
+    border-color: #0284c7;
+  }
+
   /* Typography alignment and Headings hierarchy (Balanced Medium Sizes) */
   .nastaliq, .login-box h1, #mTitle, .super-header h2, .hist-header h2, .sheet h2, .super-form h3, .perms-card h4{
     font-family:var(--font-urdu-heading);
@@ -171,20 +698,20 @@
   .quick-btn:hover{background:#2563eb}
 
   /* ---------- Main Grid & App ---------- */
-  #app{height:100%;height:100dvh;max-height:100dvh;display:flex;flex-direction:column;padding:6px 14px 68px 14px;box-sizing:border-box;overflow:hidden;position:relative}
+  #app{min-height:100dvh;height:100dvh;display:flex;flex-direction:column;padding:10px 16px 68px 16px;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;position:relative}
   
-  .top-nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:6px 14px;
-    background:var(--card);border-radius:16px;margin-bottom:8px;max-width:1300px;margin-left:auto;margin-right:auto;
-    border:1px solid #334155;gap:8px}
-  .user-badge{font-size:1.15rem;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--font-urdu-heading);line-height:var(--lh-urdu-heading)}
-  .user-role-tag{font-size:.85rem;padding:2px 10px;border-radius:12px;background:#334155;color:var(--muted);font-family:var(--font-latin-heading);font-weight:600}
-  .nav-status-tag{font-size:.85rem;padding:3px 10px;border-radius:10px;background:#065f46;color:#a7f3d0;font-family:var(--font-latin-heading);font-weight:600}
+  .top-nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:10px 16px;
+    background:var(--card);border-radius:16px;margin-bottom:12px;max-width:1300px;margin-left:auto;margin-right:auto;width:100%;
+    border:1px solid #334155;gap:10px;flex-shrink:0}
+  .user-badge{font-size:1.1rem;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--font-urdu-heading);line-height:var(--lh-urdu-heading)}
+  .user-role-tag{font-size:.82rem;padding:3px 10px;border-radius:12px;background:#334155;color:var(--muted);font-family:var(--font-latin-heading);font-weight:600}
+  .nav-status-tag{font-size:.82rem;padding:3px 10px;border-radius:10px;background:#065f46;color:#a7f3d0;font-family:var(--font-latin-heading);font-weight:600}
   .nav-status-tag.local{background:#854d0e;color:#fef08a}
   
-  .nav-actions{display:flex;align-items:center;gap:8px}
-  .btn-super{border:0;background:#7c3aed;color:#fff;border-radius:12px;padding:8px 14px;font-family:var(--font-urdu-body);font-size:.95rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .nav-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .btn-super{border:0;background:#7c3aed;color:#fff;border-radius:10px;padding:6px 12px;font-family:var(--font-urdu-body);font-size:.88rem;font-weight:700;cursor:pointer;line-height:1.4;letter-spacing:0;min-height:38px}
   .btn-super:hover{background:#6d28d9}
-  .logout-top{border:0;background:#dc2626;color:#fff;border-radius:12px;padding:8px 14px;font-family:var(--font-urdu-body);font-size:.95rem;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .logout-top{border:0;background:#dc2626;color:#fff;border-radius:10px;padding:6px 12px;font-family:var(--font-urdu-body);font-size:.88rem;font-weight:700;cursor:pointer;line-height:1.4;letter-spacing:0;min-height:38px}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:1300px;margin:0 auto}
   
@@ -550,18 +1077,16 @@
   .token-next-txt{font-family:var(--font-urdu-body);font-size:.9rem;color:#94a3b8;border-right:1px solid #334155;padding-right:10px;line-height:1.4;display:flex;align-items:center;gap:4px;white-space:nowrap}
   .token-next-highlight{color:#fbbf24;font-family:var(--font-latin-heading);font-weight:700;font-size:1.1rem}
 
-  /* ---------- Admin Token Queue Panel (Balanced Full-Screen Layout) ---------- */
+  /* ---------- Admin Token Queue Panel (Responsive Full Layout) ---------- */
   .admin-token-panel{
-    flex:1;
-    min-height:0;
+    flex:0 0 auto;
     display:flex;
     flex-direction:column;
-    overflow:hidden;
     background:var(--card);
     border:2px solid #334155;
     border-radius:18px;
-    padding:10px 14px;
-    margin:0 auto;
+    padding:14px 16px;
+    margin:0 auto 14px auto;
     max-width:1300px;
     width:100%;
     box-shadow:0 8px 30px rgba(0,0,0,.35);
@@ -575,23 +1100,19 @@
     flex-wrap:wrap;
     gap:8px;
     border-bottom:1px solid #334155;
-    padding-bottom:8px;
-    margin-bottom:8px;
+    padding-bottom:10px;
+    margin-bottom:12px;
   }
-  .token-panel-title{font-family:var(--font-urdu-body);font-size:1.25rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px}
+  .token-panel-title{font-family:var(--font-urdu-body);font-size:1.2rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .token-panel-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .token-panel-body{
-    flex:1;
-    min-height:0;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
-    align-items:stretch;
-    overflow-y:auto;
-    overflow-x:hidden;
-    padding-right:2px;
+    gap:14px;
+    align-items:start;
   }
-  @media(max-width:850px){.token-panel-body{grid-template-columns:1fr}}
+  @media(max-width:900px){.token-panel-body{grid-template-columns:1fr}}
+  html[dir="ltr"] .token-next-txt{border-right:0;padding-right:0;border-left:1px solid #334155;padding-left:10px}
   .token-panel-col{display:flex;flex-direction:column;gap:8px;min-width:0}
   .token-big-display{background:#0f172a;border:2px solid #3b82f6;border-radius:16px;padding:10px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}
   .token-big-label{font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;color:#93c5fd;margin-bottom:2px}
@@ -1368,12 +1889,443 @@
   .wa-rec-send{ color: #25d366; }
   .wa-rec-cancel{ color: #ef4444; }
 
+  /* ---------- ہیڈر تمام ٹوکن بٹن اور تقسیم شدہ تعداد (Header All Tokens & Distributed Count) ---------- */
+  .btn-all-tokens-header{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 1.5px solid #38bdf8;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-family: var(--font-urdu-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    transition: all 0.2s ease;
+    user-select: none;
+    min-height: 40px;
+  }
+  .btn-all-tokens-header:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(56, 189, 248, 0.5);
+    border-color: #7dd3fc;
+  }
+  .btn-all-tokens-header:active{ transform: scale(0.96); }
+  .tokens-badge-count{
+    background: #0f172a;
+    color: #38bdf8;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: var(--font-latin-heading);
+    font-weight: 800;
+    font-size: 0.92rem;
+    border: 1px solid #0284c7;
+  }
+  .token-dist-highlight{
+    color: #38bdf8 !important;
+    font-family: var(--font-latin-heading);
+    font-weight: 800;
+    font-size: 1.15rem;
+  }
+
+  /* ---------- تمام ٹوکنز پاپ اپ (All-Tokens Modal) ---------- */
+  .tokens-modal-backdrop{
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 20, 26, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    z-index: 1250;
+    transition: opacity 0.2s ease;
+  }
+  .tokens-modal-backdrop.hidden{ display: none !important; }
+  .tokens-modal-box{
+    background: #0b141a;
+    border: 1px solid #222d34;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.85);
+    width: 950px;
+    max-width: 96vw;
+    height: min(850px, calc(100dvh - 30px));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .tokens-modal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #111b21;
+    border-bottom: 1px solid #222d34;
+    gap: 12px;
+  }
+  .tokens-modal-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-urdu-heading);
+    font-size: 1.35rem;
+    color: #f1f5f9;
+  }
+  .tokens-modal-close-btn{
+    background: transparent;
+    border: 0;
+    color: #aebac1;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 8px;
+    line-height: 1;
+    transition: background 0.15s, color 0.15s;
+  }
+  .tokens-modal-close-btn:hover{
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+  .tokens-dist-banner{
+    background: linear-gradient(90deg, rgba(2,132,199,0.18) 0%, rgba(15,23,42,0.6) 100%);
+    border-bottom: 1px solid #1e293b;
+    padding: 10px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-family: var(--font-urdu-body);
+  }
+  .tokens-dist-title{
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tokens-dist-count-badge{
+    background: #0284c7;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-family: var(--font-latin-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+  .tokens-summary-stats{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    font-size: 0.88rem;
+  }
+  .stat-pill{
+    padding: 3px 8px;
+    border-radius: 8px;
+    background: #182229;
+    border: 1px solid #2a3942;
+    color: #cbd5e1;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .stat-pill strong{
+    font-family: var(--font-latin-heading);
+    color: #fff;
+  }
+  .tokens-controls-row{
+    padding: 10px 18px;
+    background: #0b141a;
+    border-bottom: 1px solid #222d34;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .tokens-search-input{
+    flex: 1;
+    min-width: 220px;
+    background: #111b21;
+    border: 1px solid #2a3942;
+    border-radius: 12px;
+    padding: 8px 14px;
+    color: #fff;
+    font-family: var(--font-urdu-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .tokens-search-input:focus{ border-color: #00a884; }
+  .tokens-filter-tabs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .tokens-filter-chip{
+    background: #182229;
+    border: 1px solid #2a3942;
+    color: #8696a0;
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-family: var(--font-urdu-body);
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .tokens-filter-chip:hover{ color: #e9edef; background: #202c33; }
+  .tokens-filter-chip.active{
+    background: #00a884;
+    border-color: #00a884;
+    color: #fff;
+    font-weight: 700;
+  }
+  .tokens-grid-container{
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+    align-content: start;
+    background: #0c1317;
+  }
+  .token-item-card{
+    background: #111b21;
+    border: 1px solid #222d34;
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .token-item-card:hover{
+    transform: translateY(-2px);
+    border-color: #374151;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .token-item-card.is-active{
+    background: linear-gradient(135deg, rgba(34,197,94,0.12) 0%, #111b21 100%);
+    border: 2px solid #22c55e;
+    box-shadow: 0 0 16px rgba(34,197,94,0.3);
+  }
+  .token-item-card.is-outside{
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, #111b21 100%);
+  }
+  .token-item-card.is-done{
+    opacity: 0.75;
+    border-color: #1e293b;
+    background: #0d161c;
+  }
+  .token-item-card.is-skipped{
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239,68,68,0.1) 0%, #111b21 100%);
+  }
+  .token-card-top-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #222d34;
+    padding-bottom: 8px;
+  }
+  .token-card-num-wrap{
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .token-card-hash{ color: #8696a0; font-size: 1rem; }
+  .token-card-num{
+    font-family: var(--font-latin-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #38bdf8;
+    line-height: 1;
+  }
+  .token-item-card.is-active .token-card-num{ color: #22c55e; }
+  .token-item-card.is-outside .token-card-num{ color: #f59e0b; }
+  .token-item-card.is-skipped .token-card-num{ color: #ef4444; }
+  .token-item-card.is-done .token-card-num{ color: #94a3b8; }
+
+  .token-card-status-badge{
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-family: var(--font-urdu-body);
+    white-space: nowrap;
+  }
+  .status-active{ background: #166534; color: #86efac; border: 1px solid #22c55e; }
+  .status-queue{ background: #1e293b; color: #93c5fd; border: 1px solid #3b82f6; }
+  .status-outside{ background: #78350f; color: #fde68a; border: 1px solid #f59e0b; }
+  .status-skipped{ background: #7f1d1d; color: #fca5a5; border: 1px solid #ef4444; }
+  .status-done{ background: #064e3b; color: #a7f3d0; border: 1px solid #10b981; }
+
+  .token-card-tag-section{
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+  }
+  .token-card-tag-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(245, 158, 11, 0.16);
+    border: 1px solid #f59e0b;
+    color: #fef08a;
+    padding: 3px 9px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-family: var(--font-urdu-body);
+    font-weight: 700;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .token-card-tag-none{
+    color: #4b5563;
+    font-size: 0.82rem;
+    font-family: var(--font-urdu-body);
+    font-style: italic;
+  }
+  .token-card-action-row{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+  .btn-tag-edit{
+    background: #182229;
+    border: 1px solid #2a3942;
+    color: #00a884;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.82rem;
+    font-family: var(--font-urdu-body);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-tag-edit:hover{
+    background: #202c33;
+    border-color: #00a884;
+    color: #25d366;
+  }
+
+  /* Tag Editor Modal */
+  .tag-editor-box{
+    background: #111b21;
+    border: 1px solid #222d34;
+    border-radius: 18px;
+    width: 440px;
+    max-width: 95vw;
+    padding: 18px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tag-presets-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 6px 0;
+  }
+  .tag-preset-chip{
+    background: #182229;
+    border: 1px solid #2a3942;
+    color: #cbd5e1;
+    border-radius: 12px;
+    padding: 5px 12px;
+    font-size: 0.88rem;
+    font-family: var(--font-urdu-body);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tag-preset-chip:hover{
+    background: #0284c7;
+    border-color: #38bdf8;
+    color: #fff;
+  }
+
+  /* ---------- عام اعلان (Broadcast Messaging) ---------- */
+  .wa-broadcast-toggle-bar{
+    padding: 6px 14px;
+    background: #182229;
+    border-top: 1px solid #222d34;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wa-broadcast-toggle-bar.hidden{ display: none !important; }
+  .wa-broadcast-toggle-label{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: var(--font-urdu-body);
+    font-size: 0.92rem;
+    color: #f59e0b;
+    font-weight: 700;
+    user-select: none;
+  }
+  .wa-broadcast-toggle-label input{
+    cursor: pointer;
+    accent-color: #f59e0b;
+    width: 18px;
+    height: 18px;
+  }
+  .wa-bubble.broadcast-bubble{
+    background: #1e1b13 !important;
+    border-right: 4px solid #f59e0b !important;
+    border-top: 1px solid rgba(245,158,11,0.3) !important;
+    box-shadow: 0 2px 10px rgba(245,158,11,0.15);
+  }
+  .wa-bubble.broadcast-bubble.outgoing{
+    background: #16241b !important;
+    border-right: 4px solid #22c55e !important;
+  }
+  .wa-broadcast-pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #f59e0b;
+    color: #000;
+    font-weight: 800;
+    font-size: 0.72rem;
+    padding: 2px 7px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    font-family: var(--font-urdu-heading);
+    letter-spacing: 0;
+  }
+
 </style>
 </head>
 <body>
 
 <!-- ============ لاگ اِن ============ -->
 <div id="login">
+  <div style="position:fixed;top:16px;left:16px;display:flex;gap:8px;z-index:100">
+    <button type="button" class="btn-pin-change" id="loginThemeToggleBtn" title="ڈارک / لائٹ موڈ تبدیل کریں (Dark/Light)">
+      <span class="theme-icon">☀️</span> <span class="theme-label">لائٹ موڈ</span>
+    </button>
+    <button type="button" class="btn-pin-change" id="loginLangToggleBtn" title="زبان تبدیل کریں / Switch Language">
+      <span>🌐</span> <span class="lang-label">English</span>
+    </button>
+  </div>
   <div class="login-box">
     <!-- Maintenance Mode Alert Notice -->
     <div id="maintenanceAlertNotice" class="hidden" style="background:rgba(220,38,38,0.18);border:2px solid #ef4444;border-radius:12px;padding:12px;margin-bottom:16px;text-align:center;">
@@ -1381,11 +2333,11 @@
       <div style="font-weight:bold;color:#f87171;font-size:1.1rem;margin:4px 0;">سائٹ زیرِ مرمت ہے (Maintenance Mode)</div>
       <div id="maintenanceAlertText" style="font-size:.95rem;color:#fca5a5;line-height:1.7;white-space:pre-wrap;"></div>
     </div>
-    <h1>انٹر کام</h1>
-    <p>براہِ کرم لاگ اِن کریں (ایڈمن یا اپنا نام درج کریں)</p>
-    <input id="uid"  type="text"     placeholder="آئی ڈی یا نام (مثلاً admin یا sohail)"  autocomplete="username" autocapitalize="off">
-    <input id="pass" type="password" placeholder="پاس ورڈ" autocomplete="current-password">
-    <button class="btn-main" id="loginBtn">داخل ہوں</button>
+    <h1 data-i18n="loginHeading">انٹر کام</h1>
+    <p data-i18n="loginSub">براہِ کرم لاگ اِن کریں (ایڈمن یا اپنا نام درج کریں)</p>
+    <input id="uid"  type="text"     placeholder="آئی ڈی یا نام (مثلاً admin یا sohail)" data-i18n-ph="loginIdPh" autocomplete="username" autocapitalize="off">
+    <input id="pass" type="password" placeholder="پاس ورڈ" data-i18n-ph="loginPassPh" autocomplete="current-password">
+    <button class="btn-main" id="loginBtn" data-i18n="loginBtn">داخل ہوں</button>
     <button type="button" class="btn-pin-change hidden" id="installLoginBtn" style="margin-top:10px;width:100%;justify-content:center">
       <span>📲 ایپ انسٹال کریں</span>
     </button>
@@ -1404,39 +2356,70 @@
   
   <div class="top-nav">
     <div class="user-badge" id="userBadge"></div>
-    <div id="liveTokenBadge" class="live-token-badge" title="موجودہ ٹوکن کی تفصیلات">
-      <div id="tokenNoSetTxt" class="token-no-set">آج کے لیے ٹوکن مقرر نہیں</div>
+    <div id="liveTokenBadge" class="live-token-badge" title="Token Details">
+      <div id="tokenNoSetTxt" class="token-no-set" data-i18n="noTokenSet">آج کے لیے ٹوکن مقرر نہیں</div>
       <div id="tokenActiveWrap" class="token-active-wrap hidden">
         <div class="token-main-txt">
-          <span>چل رہا ٹوکن:</span>
+          <span data-i18n="servingToken">چل رہا ٹوکن:</span>
           <span id="liveCurrentTokenNum" class="token-num-highlight">—</span>
-          <span id="liveUrgentBadge" class="token-urgent-badge-live hidden">🚨 ارجنٹ</span>
+          <span id="liveUrgentBadge" class="token-urgent-badge-live hidden" data-i18n="urgentBadge">🚨 ارجنٹ</span>
         </div>
         <div class="token-next-txt">
-          <span>اگلے:</span>
+          <span data-i18n="nextLabel">اگلے:</span>
           <span id="liveNextTokensWrap" class="token-upcoming-chips">
             <span id="liveNextTokenNum" class="token-next-highlight">—</span>
             <span id="liveNextMoreTokens" class="token-next-more"></span>
           </span>
         </div>
+        <div class="token-next-txt" id="liveDistTokensWrap">
+          <span data-i18n="distributedLabel">تقسیم شدہ:</span>
+          <span id="liveDistributedTokensNum" class="token-next-highlight token-dist-highlight">0</span>
+        </div>
       </div>
     </div>
     <div class="nav-actions">
-      <button class="btn-pin-change hidden" id="installTopBtn" title="ایپ کو ہوم اسکرین پر انسٹال کریں">
-        <span>📲 انسٹال</span>
+      <button type="button" class="btn-all-tokens-header" id="allTokensTopBtn" title="All Tokens">
+        <span data-i18n="allTokensBtn">🎫 تمام ٹوکن:</span>
+        <span id="headerTotalTokensBadge" class="tokens-badge-count">0</span>
       </button>
-      <button class="btn-pin-change" id="notifyTopBtn" title="پش نوٹیفکیشن کی ترتیبات">
-        <span>🔔 نوٹیفکیشن</span>
-      </button>
-      <button class="btn-pin-change" id="changePinTopBtn" title="اپنا پن تبدیل کریں">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-        </svg>
-        <span>پن تبدیل</span>
-      </button>
-      <button class="btn-super hidden" id="superBtn">سپر ایڈمن کنٹرول</button>
-      <button class="logout-top" id="logoutTop" title="اکاؤنٹ سے لاگ آؤٹ کریں">🚪 لاگ آؤٹ</button>
+      <button class="btn-super hidden" id="superBtn" data-i18n="superBtn">سپر ایڈمن کنٹرول</button>
+
+      <!-- Settings Dropdown Toggle -->
+      <div class="settings-menu-wrap" id="settingsMenuWrap">
+        <button type="button" class="btn-settings-menu" id="settingsMenuBtn" title="Settings & Tools">
+          <span>⚙️</span>
+          <span data-i18n="settingsMenuBtn">سیٹنگز</span>
+        </button>
+        <div class="settings-dropdown hidden" id="settingsDropdown">
+          <button type="button" class="btn-pin-change" id="themeToggleBtn">
+            <span id="themeToggleIcon">☀️</span>
+            <span id="themeToggleText">لائٹ موڈ</span>
+          </button>
+          <button type="button" class="btn-pin-change" id="langToggleBtn">
+            <span>🌐</span>
+            <span id="langToggleText">English</span>
+          </button>
+          <button class="btn-pin-change" id="notifyTopBtn">
+            <span data-i18n="notifyBtn">🔔 نوٹیفکیشن</span>
+          </button>
+          <button class="btn-pin-change" id="changePinTopBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span data-i18n="changePinBtn">پن تبدیل</span>
+          </button>
+          <button class="btn-pin-change hidden" id="installTopBtn">
+            <span data-i18n="installBtn">📲 انسٹال</span>
+          </button>
+          <div class="settings-divider"></div>
+          <button type="button" class="tool" id="wakeBtn" data-i18n="screenOn">اسکرین آن</button>
+          <button type="button" class="tool" id="testSound" data-i18n="audioCheck">آواز چیک کریں</button>
+          <button type="button" class="tool" id="histBtn" data-i18n="historyBtn">سابقہ پیغامات</button>
+          <div class="settings-divider"></div>
+          <button class="logout-top" id="logoutTop" data-i18n="logoutBtn">🚪 لاگ آؤٹ</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1444,110 +2427,124 @@
   <div id="adminTokenPanel" class="admin-token-panel hidden">
     <div class="token-panel-header">
       <div class="token-panel-title">
-        <span>🎫 لائیو ٹوکن قطار کا انتظام</span>
-        <span id="tokenStatusTag" class="nav-status-tag" style="background:#0284c7;color:#fff">غیر شروع شدہ</span>
+        <span data-i18n="adminTokenTitle">🎫 لائیو ٹوکن قطار کا انتظام</span>
+        <span id="tokenStatusTag" class="nav-status-tag" style="background:#0284c7;color:#fff" data-i18n="statusNotStarted">غیر شروع شدہ</span>
       </div>
       <div class="token-panel-actions">
-        <button type="button" class="tool" id="btnOpenTokenHistory" style="padding:6px 14px;font-size:.92rem;background:#1e293b;border:1px solid #475569">📜 ٹوکن ہسٹری</button>
+        <button type="button" class="tool" id="btnToggleDaySettings" style="padding:6px 14px;font-size:.9rem;background:#334155;border:1px solid #475569;color:#f8fafc;font-weight:700" data-i18n="btnDaySettings">⚙️ یومیہ سیٹنگز</button>
+        <button type="button" class="tool" id="btnOpenAllTokensFromAdmin" style="padding:6px 14px;font-size:.9rem;background:#0369a1;border:1px solid #38bdf8;color:#fff;font-weight:700" data-i18n="btnOpenAllTokensAdmin">🎫 تمام ٹوکنز لسٹ و ٹیگز</button>
+        <button type="button" class="tool" id="btnOpenTokenHistory" style="padding:6px 14px;font-size:.9rem;background:#1e293b;border:1px solid #475569" data-i18n="btnOpenTokenHistAdmin">📜 ٹوکن ہسٹری</button>
+      </div>
+    </div>
+
+    <!-- Collapsible Day Settings Drawer (Set Total, End Day, New Day) -->
+    <div id="daySettingsDrawer" class="day-settings-drawer hidden">
+      <div class="token-total-setting-box">
+        <div>
+          <label style="display:block;font-weight:700;color:#93c5fd;font-size:.9rem" data-i18n="setTotalLabel">آج کے کل جاری کردہ ٹوکن:</label>
+          <span style="font-size:.78rem;color:var(--muted)" data-i18n="setTotalSub">دستی پرچیاں دینے کے بعد کل تعداد درج کریں</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="number" id="inputTotalTokens" class="token-total-input" min="1" max="500" placeholder="60">
+          <button type="button" class="btn-main" id="btnSetTotalTokens" style="width:auto;margin-top:0;padding:6px 12px;font-size:.92rem" data-i18n="btnSetTotal">مقرر کریں</button>
+        </div>
+      </div>
+      <div class="token-day-controls">
+        <button type="button" class="btn-end-day" id="btnEndDay" data-i18n="btnEndDay">⏹️ آج کے ٹوکن ختم</button>
+        <button type="button" class="btn-new-day" id="btnNewDay" data-i18n="btnNewDay">🌅 نیا دن شروع کریں</button>
       </div>
     </div>
 
     <div class="token-panel-body">
-      <!-- Right Column: Current Active Token & Patient Status Queues -->
+      <!-- Column 1 (Right in RTL): Current Active Token & Primary Actions -->
       <div class="token-panel-col token-col-right">
         <!-- Big display of current token -->
         <div class="token-big-display">
-          <div class="token-big-label">اس وقت چل رہا ٹوکن</div>
+          <div class="token-big-label" data-i18n="bigServingLabel">اس وقت چل رہا ٹوکن</div>
           <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
             <div class="token-big-number none" id="tokenBigNum">—</div>
-            <span id="adminUrgentBadge" class="token-urgent-badge-admin hidden">🚨 ارجنٹ (URGENT)</span>
+            <span id="adminUrgentBadge" class="token-urgent-badge-admin hidden" data-i18n="adminUrgentBadge">🚨 ارجنٹ (URGENT)</span>
           </div>
-          <div id="tokenNoticeMsg" style="color:#f59e0b;font-family:var(--font-urdu-body);font-size:.95rem;margin-bottom:4px">آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے</div>
-
-          <!-- Button: Send Outside (Work in Progress) - Shown only when a token is running -->
-          <button type="button" class="btn-token-outside hidden" id="btnSendOutside" title="مریض کو باہر انتظار میں بھیجیں اور اگلا ٹوکن خود بخود شروع کریں">
-            <span>⏳ باہر انتظار میں بھیجیں (کام جاری ہے)</span>
-          </button>
+          <div id="tokenNoticeMsg" style="color:#f59e0b;font-family:var(--font-urdu-body);font-size:.95rem;margin-bottom:4px" data-i18n="tokenNotSetNotice">آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے</div>
 
           <div class="token-stats-bar">
-            <div class="token-stat-item">اگلے: <span id="statNextToken" class="token-next-highlight">—</span></div>
-            <div class="token-stat-item">کل: <span id="statTotalTokens">0</span></div>
-            <div class="token-stat-item">مکمل: <span id="statDoneTokens">0</span></div>
-            <div class="token-stat-item">باہر انتظار: <span id="statOutsideTokens" style="color:#f59e0b;font-weight:700">0</span></div>
-            <div class="token-stat-item">چھوڑے گئے: <span id="statSkippedTokens">0</span></div>
-            <div class="token-stat-item">باقی: <span id="statPendingTokens">0</span></div>
+            <div class="token-stat-item"><span data-i18n="statNext">اگلے:</span> <span id="statNextToken" class="token-next-highlight">—</span></div>
+            <div class="token-stat-item"><span data-i18n="statTotal">کل:</span> <span id="statTotalTokens">0</span></div>
+            <div class="token-stat-item"><span data-i18n="statDone">مکمل:</span> <span id="statDoneTokens">0</span></div>
+            <div class="token-stat-item"><span data-i18n="statOutside">باہر انتظار:</span> <span id="statOutsideTokens" style="color:#f59e0b;font-weight:700">0</span></div>
+            <div class="token-stat-item"><span data-i18n="statSkipped">چھوڑے گئے:</span> <span id="statSkippedTokens">0</span></div>
+            <div class="token-stat-item"><span data-i18n="statPending">باقی:</span> <span id="statPendingTokens">0</span></div>
           </div>
         </div>
 
-        <!-- Waiting Outside list (Admin) -->
-        <div class="token-outside-box" id="adminOutsideBox">
-          <div class="outside-title">
-            <span>⏳ باہر انتظار میں / کام جاری ہے (Waiting Outside):</span>
-            <span id="adminOutsideCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
-          </div>
-          <div class="outside-chips" id="adminOutsideChips">
-            <span style="color:var(--muted);font-size:.88rem">کوئی ٹوکن باہر انتظار میں نہیں</span>
-          </div>
-        </div>
+        <!-- Call Next Token (Large Main Button) -->
+        <button type="button" class="btn-token-next" id="btnCallNextToken" title="Call Next">
+          <span data-i18n="btnCallNext">🔔 ٹوکن فارغ، اگلا بلائیں</span>
+        </button>
 
-        <!-- Skipped list -->
-        <div class="token-skipped-box" id="skippedBox">
-          <div class="skipped-title">
-            <span>⚠️ چھوڑے گئے ٹوکن (غیر حاضر):</span>
-            <span id="skippedCount" style="font-size:.88rem;color:var(--muted)">(0)</span>
-          </div>
-          <div class="skipped-chips" id="skippedChips">
-            <span style="color:var(--muted);font-size:.88rem">کوئی ٹوکن چھوڑا نہیں گیا</span>
-          </div>
+        <!-- Compact 3-button Action Row -->
+        <div class="token-sub-actions-3">
+          <button type="button" class="btn-token-outside hidden" id="btnSendOutside" title="Send Outside">
+            <span data-i18n="btnSendOutsideShort">⏳ باہر بھیجیں</span>
+          </button>
+          <button type="button" class="btn-token-prev" id="btnPrevToken" title="Previous Token">
+            <span data-i18n="btnPrevToken">⏮️ پچھلا ٹوکن</span>
+          </button>
+          <button type="button" class="btn-token-skip" id="btnSkipToken" title="Skip Token">
+            <span data-i18n="btnSkipToken">⏭️ ٹوکن چھوڑیں</span>
+          </button>
         </div>
       </div>
 
-      <!-- Left Column: Primary Actions, Next in Queue & Controls -->
+      <!-- Column 2 (Left in RTL): Urgent Queue & Tabbed Outside/Skipped -->
       <div class="token-panel-col token-col-left">
-        <!-- Call Next Token (Large Main Button) -->
-        <button type="button" class="btn-token-next" id="btnCallNextToken" title="موجودہ ٹوکن مکمل کر کے اگلا بلائیں">
-          <span>🔔 ٹوکن فارغ، اگلا بلائیں</span>
-        </button>
-
-        <!-- Previous & Skip -->
-        <div class="token-sub-actions">
-          <button type="button" class="btn-token-prev" id="btnPrevToken" title="غلطی سے اگلا دب گیا ہو تو واپس کریں">
-            <span>⏮️ پچھلا ٹوکن</span>
-          </button>
-          <button type="button" class="btn-token-skip" id="btnSkipToken" title="مریض حاضر نہ ہو تو چھوڑیں">
-            <span>⏭️ ٹوکن چھوڑیں</span>
-          </button>
-        </div>
-
         <!-- Upcoming Tokens List with "Call Now (Urgent)" -->
         <div class="token-upcoming-box" id="adminUpcomingBox">
           <div class="upcoming-title">
-            <span>📋 اگلے آنے والے ۴ ٹوکن (Next 4 in Queue):</span>
-            <span style="font-size:.78rem;color:var(--muted)">ارجنٹ بلانے کے لیے بٹن دبائیں</span>
+            <span data-i18n="upcomingTitle">📋 اگلے آنے والے ۴ ٹوکن (Next 4 in Queue):</span>
+            <span style="font-size:.78rem;color:var(--muted)" data-i18n="upcomingSub">ارجنٹ بلانے کے لیے بٹن دبائیں</span>
           </div>
           <div class="upcoming-chips" id="adminUpcomingChips">
-            <span style="color:var(--muted);font-size:.88rem">قطار میں کوئی ٹوکن باقی نہیں</span>
+            <span style="color:var(--muted);font-size:.88rem" data-i18n="noUpcoming">قطار میں کوئی ٹوکن باقی نہیں</span>
+          </div>
+
+          <!-- Call ANY Token Urgently -->
+          <div class="token-custom-urgent-bar">
+            <div style="font-size:.86rem;font-weight:700;color:#fca5a5;display:flex;align-items:center;gap:6px">
+              <span data-i18n="customUrgentTitle">🚨 کسی بھی دوسرے نمبر کو ارجنٹ بلائیں:</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <input type="number" id="inputCustomUrgentNum" class="token-total-input" min="1" max="500" placeholder="ٹوکن نمبر مثلاً 59" data-i18n-ph="customUrgentPh" style="width:140px;height:36px;padding:4px 8px;font-size:0.92rem">
+              <button type="button" class="btn-call-urgent" id="btnCallCustomUrgent" style="padding:6px 12px;font-size:.88rem;min-height:36px" data-i18n="btnCallCustomUrgent">
+                🚨 فوری ارجنٹ بلائیں
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Bottom Controls Row: Set Total & Day Management -->
-        <div class="token-bottom-row">
-          <!-- Set Total -->
-          <div class="token-total-setting-box">
-            <div>
-              <label style="display:block;font-weight:700;color:#93c5fd;font-size:.9rem">آج کے کل جاری کردہ ٹوکن:</label>
-              <span style="font-size:.78rem;color:var(--muted)">دستی پرچیاں دینے کے بعد کل تعداد درج کریں</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px">
-              <input type="number" id="inputTotalTokens" class="token-total-input" min="1" max="500" placeholder="60">
-              <button type="button" class="btn-main" id="btnSetTotalTokens" style="width:auto;margin-top:0;padding:6px 12px;font-size:.92rem">مقرر کریں</button>
+        <!-- Tabbed Waiting Outside & Skipped Box -->
+        <div class="token-queues-tabbed-box">
+          <div class="queues-tabs-header">
+            <button type="button" class="queue-tab-btn active" id="tabBtnOutside">
+              <span data-i18n="tabOutsideTitle">⏳ باہر انتظار</span>
+              <span id="adminOutsideCount">(0)</span>
+            </button>
+            <button type="button" class="queue-tab-btn" id="tabBtnSkipped">
+              <span data-i18n="tabSkippedTitle">⚠️ چھوڑے گئے</span>
+              <span id="skippedCount">(0)</span>
+            </button>
+          </div>
+
+          <div id="adminOutsideBox">
+            <div class="outside-chips" id="adminOutsideChips">
+              <span style="color:var(--muted);font-size:.88rem" data-i18n="noOutside">کوئی ٹوکن باہر انتظار میں نہیں</span>
             </div>
           </div>
 
-          <!-- Day management -->
-          <div class="token-day-controls">
-            <button type="button" class="btn-end-day" id="btnEndDay">⏹️ آج کے ٹوکن ختم</button>
-            <button type="button" class="btn-new-day" id="btnNewDay">🌅 نیا دن شروع کریں</button>
+          <div id="skippedBox" class="hidden">
+            <div class="skipped-chips" id="skippedChips">
+              <span style="color:var(--muted);font-size:.88rem" data-i18n="noSkipped">کوئی ٹوکن چھوڑا نہیں گیا</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1557,7 +2554,7 @@
   <!-- Staff Screen Waiting Outside Section -->
   <div id="staffWaitingOutsideBox" class="staff-outside-box hidden">
     <div class="staff-outside-title">
-      <span>⏳ باہر انتظار میں / کام جاری ہے:</span>
+      <span data-i18n="staffOutsideTitle">⏳ باہر انتظار میں / کام جاری ہے:</span>
       <span id="staffOutsideCount" style="font-size:.95rem;color:#f59e0b;font-weight:700">(0)</span>
     </div>
     <div class="staff-outside-chips" id="staffOutsideChips"></div>
@@ -1566,9 +2563,9 @@
   <div class="grid hidden" id="grid"></div>
 
   <!-- ============ واٹس ایپ اسٹائل چیٹ بٹن (Chat Toggle Button) ============ -->
-  <button type="button" id="chatToggleBtn" class="chat-fab-toggle" title="پیغامات اور رابطہ کار">
+  <button type="button" id="chatToggleBtn" class="chat-fab-toggle" title="Messages">
     <span class="chat-fab-icon">💬</span>
-    <span class="chat-fab-text">پیغامات</span>
+    <span class="chat-fab-text" data-i18n="chatBtn">پیغامات</span>
     <span id="chatTotalUnreadBadge" class="chat-fab-unread hidden">0</span>
   </button>
 
@@ -1578,9 +2575,9 @@
     <div id="waContactListView" class="wa-view">
       <div class="wa-header">
         <div class="wa-header-user">
-          <span class="wa-header-title">💬 رابطہ کار اور پیغامات</span>
+          <span class="wa-header-title" data-i18n="waHeaderTitle">💬 رابطہ کار اور پیغامات</span>
         </div>
-        <button type="button" id="waCloseBtn" class="wa-icon-btn" title="بند کریں">✕</button>
+        <button type="button" id="waCloseBtn" class="wa-icon-btn" title="Close">✕</button>
       </div>
       <div class="wa-contacts-list" id="waContactsList"></div>
     </div>
@@ -1588,7 +2585,7 @@
     <!-- View 2: Single Chat Screen -->
     <div id="waSingleChatView" class="wa-view hidden">
       <div class="wa-chat-header">
-        <button type="button" id="waBackBtn" class="wa-back-btn" title="رابطہ کار پر واپس جائیں">
+        <button type="button" id="waBackBtn" class="wa-back-btn" title="Back">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
@@ -1596,9 +2593,9 @@
         <div class="wa-chat-avatar" id="waActiveAvatar"></div>
         <div class="wa-chat-info">
           <div class="wa-chat-name" id="waActiveName">نام</div>
-          <div class="wa-chat-status" id="waActiveStatus">آن لائن</div>
+          <div class="wa-chat-status" id="waActiveStatus" data-i18n="waStatusOnline">آن لائن</div>
         </div>
-        <button type="button" id="waClearChatBtn" class="wa-icon-btn" style="font-size:.85rem;padding:4px 8px;border-radius:8px;background:#334155;color:#f1f5f9;border:0" title="چیٹ صاف کریں">صاف</button>
+        <button type="button" id="waClearChatBtn" class="wa-icon-btn" style="font-size:.85rem;padding:4px 8px;border-radius:8px;background:#334155;color:#f1f5f9;border:0" data-i18n="clearChat">صاف</button>
       </div>
 
       <!-- Messages Area -->
@@ -1609,25 +2606,27 @@
         <div class="wa-pinned-chips" id="waPinnedChips"></div>
       </div>
 
+      <!-- Admin Broadcast Toggle Bar -->
+      <div id="waBroadcastToggleBar" class="wa-broadcast-toggle-bar hidden">
+        <label class="wa-broadcast-toggle-label">
+          <input type="checkbox" id="waBroadcastCheckbox">
+          <span data-i18n="waBroadcastToggle">📢 تمام صارفین کو بھیجیں (عام اعلان / Broadcast)</span>
+        </label>
+      </div>
+
       <!-- Input Bar -->
       <div class="wa-input-bar">
-        <button type="button" id="waMicBtn" class="wa-input-btn wa-mic-btn" title="صوتی پیغام ریکارڈ کریں">🎙️</button>
+        <button type="button" id="waMicBtn" class="wa-input-btn wa-mic-btn" title="Voice Note">🎙️</button>
         <div id="waRecordBanner" class="wa-record-banner hidden">
           <span class="wa-record-indicator">🔴</span>
           <span id="waRecordTimer" class="wa-record-timer">00:00</span>
-          <button type="button" id="waCancelRecBtn" class="wa-rec-action wa-rec-cancel" title="ریکارڈنگ منسوخ کریں">🗑️</button>
-          <button type="button" id="waSendRecBtn" class="wa-rec-action wa-rec-send" title="صوتی پیغام بھیجیں">➤</button>
+          <button type="button" id="waCancelRecBtn" class="wa-rec-action wa-rec-cancel" title="Cancel">🗑️</button>
+          <button type="button" id="waSendRecBtn" class="wa-rec-action wa-rec-send" title="Send">➤</button>
         </div>
-        <textarea id="waTextInput" class="wa-text-input" rows="1" placeholder="پیغام لکھیں..."></textarea>
-        <button type="button" id="waSendBtn" class="wa-input-btn wa-send-btn" title="بھیجیں">➤</button>
+        <textarea id="waTextInput" class="wa-text-input" rows="1" placeholder="پیغام لکھیں..." data-i18n-ph="chatPh"></textarea>
+        <button type="button" id="waSendBtn" class="wa-input-btn wa-send-btn" title="Send">➤</button>
       </div>
     </div>
-  </div>
-
-  <div class="tools">
-    <button class="tool" id="wakeBtn">اسکرین آن</button>
-    <button class="tool" id="histBtn">سابقہ پیغامات</button>
-    <button class="tool" id="testSound">آواز چیک کریں</button>
   </div>
 </div>
 
@@ -2007,6 +3006,88 @@
   </div>
 </div>
 
+<!-- ============ تمام ٹوکنز پاپ اپ موڈل (All-Tokens Pop-up Modal) ============ -->
+<div id="allTokensModal" class="tokens-modal-backdrop hidden">
+  <div class="tokens-modal-box">
+    <!-- Header -->
+    <div class="tokens-modal-header">
+      <div class="tokens-modal-title">
+        <span data-i18n="allTokensModalTitleFull">🎫 آج کے تمام ٹوکنز کی مکمل فہرست</span>
+      </div>
+      <button type="button" id="btnCloseAllTokensModal" class="tokens-modal-close-btn" title="Close">&times;</button>
+    </div>
+
+    <!-- Distributed Tokens Summary Banner -->
+    <div class="tokens-dist-banner">
+      <div class="tokens-dist-title">
+        <span data-i18n="issuedCountLabel">📅 آج کے کل تقسیم شدہ ٹوکن:</span>
+        <span id="modalDistributedCount" class="tokens-dist-count-badge">0</span>
+      </div>
+      <div class="tokens-summary-stats" id="modalTokenStats">
+        <span class="stat-pill"><span data-i18n="statTotal">کل:</span> <strong id="mStatTotal">0</strong></span>
+        <span class="stat-pill" style="border-color:#22c55e"><span data-i18n="modalStatActive">چل رہا ہے:</span> <strong id="mStatActive" style="color:#22c55e">—</strong></span>
+        <span class="stat-pill" style="border-color:#3b82f6"><span data-i18n="modalStatQueue">قطار میں:</span> <strong id="mStatQueue" style="color:#60a5fa">0</strong></span>
+        <span class="stat-pill" style="border-color:#f59e0b"><span data-i18n="statOutside">باہر انتظار:</span> <strong id="mStatOutside" style="color:#f59e0b">0</strong></span>
+        <span class="stat-pill" style="border-color:#10b981"><span data-i18n="statDone">مکمل:</span> <strong id="mStatDone" style="color:#10b981">0</strong></span>
+        <span class="stat-pill" style="border-color:#ef4444"><span data-i18n="statSkipped">چھوڑے گئے:</span> <strong id="mStatSkipped" style="color:#ef4444">0</strong></span>
+        <span class="stat-pill" style="border-color:#eab308"><span data-i18n="modalStatTagged">ٹیگ شدہ:</span> <strong id="mStatTagged" style="color:#fde047">0</strong></span>
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="tokens-controls-row">
+      <input type="text" id="tokenSearchInput" class="tokens-search-input" placeholder="🔍 ٹوکن نمبر یا نوٹ تلاش کریں (مثلاً 50، پانی، اتارے والا)..." data-i18n-ph="searchPh">
+      <div class="tokens-filter-tabs" id="tokenFilterTabs">
+        <button type="button" class="tokens-filter-chip active" data-filter="all" data-i18n="tabAll">تمام</button>
+        <button type="button" class="tokens-filter-chip" data-filter="active_queue" data-i18n="tabQueue">چل رہا / قطار</button>
+        <button type="button" class="tokens-filter-chip" data-filter="tagged" data-i18n="tabTagged">🏷️ مخصوص ٹیگ شدہ</button>
+        <button type="button" class="tokens-filter-chip" data-filter="outside" data-i18n="tabOutside">⏳ باہر انتظار</button>
+        <button type="button" class="tokens-filter-chip" data-filter="done" data-i18n="tabDone">✅ مکمل ہو چکے</button>
+        <button type="button" class="tokens-filter-chip" data-filter="skipped" data-i18n="tabSkipped">⚠️ چھوڑے گئے</button>
+      </div>
+    </div>
+
+    <!-- Scrollable Tokens Grid -->
+    <div class="tokens-grid-container" id="allTokensGrid">
+      <div style="grid-column:1/-1;text-align:center;color:#8696a0;padding:40px;font-family:var(--font-urdu-body);font-size:1.1rem">
+        ٹوکن لوڈ ہو رہے ہیں...
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ٹوکن ٹیگ ایڈیٹر موڈل (Token Tag / Note Editor Modal) ============ -->
+<div id="tokenTagEditModal" class="tokens-modal-backdrop hidden" style="z-index:1300">
+  <div class="tag-editor-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222d34;padding-bottom:10px">
+      <h3 id="tagEditorTitle" style="margin:0;font-family:var(--font-urdu-heading);font-size:1.25rem;color:#f1f5f9" data-i18n="tagEditorTitle">🏷️ ٹوکن ٹیگ مقرر کریں</h3>
+      <button type="button" id="btnCloseTagEditor" class="tokens-modal-close-btn">&times;</button>
+    </div>
+    
+    <div id="tagPresetsLabel" style="font-size:.88rem;color:#94a3b8;font-family:var(--font-urdu-body)" data-i18n="quickPresetsTitle">فوری انتخاب کے بٹن (ایک کلک):</div>
+    <div class="tag-presets-grid" id="tagPresetsGrid">
+      <button type="button" class="tag-preset-chip" data-preset="پانی اور تعویز">🏷️ پانی اور تعویز</button>
+      <button type="button" class="tag-preset-chip" data-preset="اتارے والا">🏷️ اتارے والا</button>
+      <button type="button" class="tag-preset-chip" data-preset="فائل چیک">🏷️ فائل چیک</button>
+      <button type="button" class="tag-preset-chip" data-preset="دوبارہ معائنہ">🏷️ دوبارہ معائنہ</button>
+      <button type="button" class="tag-preset-chip" data-preset="صرف مشورہ">🏷️ صرف مشورہ</button>
+      <button type="button" class="tag-preset-chip" data-preset="خاص مریض">🏷️ خاص مریض</button>
+      <button type="button" class="tag-preset-chip" data-preset="دوا دی گئی">🏷️ دوا دی گئی</button>
+    </div>
+
+    <div style="margin-top:6px">
+      <label id="customTagLabel" style="display:block;font-size:.9rem;color:#93c5fd;font-weight:700;margin-bottom:6px;font-family:var(--font-urdu-body)" data-i18n="customTagLabel">یا اپنی مرضی کا کسٹم ٹیگ لکھیں:</label>
+      <input type="text" id="tokenTagCustomInput" class="tokens-search-input" style="width:100%" placeholder="مثلاً پیناڈول، رپورٹ چیک، وغیرہ..." data-i18n-ph="customTagPh">
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:10px;border-top:1px solid #222d34;padding-top:10px">
+      <button type="button" id="btnRemoveTag" class="btn-main" style="background:#dc2626;width:auto;margin:0;padding:6px 14px;font-size:.9rem" data-i18n="btnRemoveTag">🗑️ ٹیگ ختم کریں</button>
+      <button type="button" id="btnCancelTagEdit" class="cancel" style="width:auto;margin:0;padding:6px 14px;font-size:.9rem" data-i18n="btnCancel">منسوخ</button>
+      <button type="button" id="btnSaveTagEdit" class="btn-main" style="background:#0284c7;width:auto;margin:0;padding:6px 16px;font-size:.92rem" data-i18n="btnSaveTag">✅ محفوظ کریں</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============ ٹوکن ہسٹری موڈل ============ -->
 <div id="tokenHistoryModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:16px;z-index:1150">
   <div class="sheet" style="max-width:680px">
@@ -2044,6 +3125,368 @@
   const PW_CHANGED_KEY    = "intercom_pw_changed_flags";
   const ADMIN_PERMS_KEY   = "intercom_admin_perms";
   const MAX_HISTORY       = 50;
+  const THEME_KEY         = "intercom_theme";
+  const LANG_KEY          = "intercom_lang";
+
+  let currentTheme = "dark";
+  try { currentTheme = localStorage.getItem(THEME_KEY) || "dark"; } catch(e){}
+
+  let currentLang = "ur";
+  try { currentLang = localStorage.getItem(LANG_KEY) || "ur"; } catch(e){}
+
+  const APP_I18N = {
+    ur: {
+      loginHeading: "انٹر کام",
+      loginSub: "براہِ کرم لاگ اِن کریں (ایڈمن یا اپنا نام درج کریں)",
+      loginIdPh: "آئی ڈی یا نام (مثلاً admin یا sohail)",
+      loginPassPh: "پاس ورڈ",
+      loginBtn: "داخل ہوں",
+      installBtn: "📲 انسٹال",
+      notifyBtn: "🔔 نوٹیفکیشن",
+      changePinBtn: "پن تبدیل",
+      superBtn: "سپر ایڈمن کنٹرول",
+      logoutBtn: "🚪 لاگ آؤٹ",
+      allTokensBtn: "🎫 تمام ٹوکن:",
+      lightMode: "لائٹ موڈ",
+      darkMode: "ڈارک موڈ",
+      langLabel: "English",
+      servingToken: "چل رہا ٹوکن:",
+      nextLabel: "اگلے:",
+      distributedLabel: "تقسیم شدہ:",
+      urgentBadge: "🚨 ارجنٹ",
+      noTokenSet: "آج کے لیے ٹوکن مقرر نہیں",
+      dayEnded: "آج کا دن ختم ہو چکا ہے",
+      adminTokenTitle: "🎫 لائیو ٹوکن قطار کا انتظام",
+      statusNotStarted: "غیر شروع شدہ",
+      statusActive: "فعال (Active)",
+      statusEnded: "آج کا دن ختم",
+      btnCallNext: "🔔 ٹوکن فارغ، اگلا بلائیں",
+      btnSendOutside: "⏳ باہر انتظار میں بھیجیں (کام جاری ہے)",
+      btnSkipToken: "⏭️ ٹوکن چھوڑیں",
+      btnPrevToken: "⏮️ پچھلا ٹوکن",
+      upcomingTitle: "📋 اگلے آنے والے ۴ ٹوکن (Next 4 in Queue):",
+      upcomingSub: "ارجنٹ بلانے کے لیے بٹن دبائیں",
+      noUpcoming: "قطار میں کوئی ٹوکن باقی نہیں",
+      btnCallUrgentNow: "🚨 ابھی بلائیں (ارجنٹ)",
+      customUrgentTitle: "🚨 کسی بھی دوسرے نمبر کو ارجنٹ بلائیں:",
+      customUrgentPh: "ٹوکن نمبر مثلاً 59",
+      btnCallCustomUrgent: "🚨 فوری ارجنٹ بلائیں",
+      outsideTitle: "⏳ باہر انتظار میں / کام جاری ہے (Waiting Outside):",
+      noOutside: "کوئی ٹوکن باہر انتظار میں نہیں",
+      btnCallInside: "🔔 اندر بلائیں",
+      btnCompleteOutside: "✅ مکمل",
+      skippedTitle: "⚠️ چھوڑے گئے ٹوکن (غیر حاضر):",
+      noSkipped: "کوئی ٹوکن چھوڑا نہیں گیا",
+      btnRecallSkipped: "بلائیں",
+      screenOn: "اسکرین آن ہے — بند کریں",
+      screenOff: "اسکرین بند ہے — آن کریں",
+      historyBtn: "سابقہ پیغامات",
+      tokenHistBtn: "ٹوکن ہسٹری",
+      audioCheck: "آواز چیک کریں",
+      chatBtn: "پیغامات",
+      allTokensModalTitle: "🎫 تمام ٹوکنز کا جائزہ و اسٹیٹس",
+      issuedCountLabel: "آج جاری کردہ کل ٹوکن:",
+      searchPh: "🔍 ٹوکن نمبر یا نوٹ تلاش کریں (مثلاً 50، پانی، اتارے والا)...",
+      tabAll: "تمام",
+      tabQueue: "چل رہا / قطار",
+      tabOutside: "⏳ باہر انتظار",
+      tabDone: "✅ مکمل ہو چکے",
+      tabSkipped: "⚠️ چھوڑے گئے",
+      tabTagged: "🏷️ مخصوص ٹیگ شدہ",
+      btnTagEdit: "✏️ ٹیگ تبدیل",
+      btnAddTag: "+ ٹیگ لگائیں",
+      btnCardUrgent: "ارجنٹ بلائیں",
+      noTag: "کوئی ٹیگ نہیں",
+      noTokensFound: "مطلوبہ تلاش کا کوئی ٹوکن نہیں ملا",
+      tagEditorTitle: "🏷️ ٹوکن ٹیگ مقرر کریں",
+      quickPresetsTitle: "فوری انتخاب کے بٹن (ایک کلک):",
+      customTagLabel: "یا اپنی مرضی کا کسٹم ٹیگ لکھیں:",
+      customTagPh: "مثلاً پیناڈول، رپورٹ چیک، وغیرہ...",
+      btnRemoveTag: "🗑️ ٹیگ ختم کریں",
+      btnCancel: "منسوخ",
+      btnSaveTag: "✅ محفوظ کریں",
+      messengerTitle: "پیغامات اور رابطہ کار",
+      broadcastContactName: "📢 تمام صارفین (عام اعلان)",
+      broadcastStaffName: "📢 عام اعلان (All Users)",
+      noBroadcastMsg: "کوئی عام اعلان نہیں",
+      noMsgYet: "کوئی پیغام نہیں",
+      chatPh: "پیغام لکھیں...",
+      btnSend: "بھیجیں",
+      announcementBadge: "📢 عام اعلان (Announcement)",
+      backBtn: "رابطہ کار پر واپس جائیں",
+      clearChat: "صاف",
+      invalidTokenNum: "براہِ کرم درست ٹوکن نمبر درج کریں",
+      adminPanelRole: "ایڈمن پینل",
+      adminFloorTag: "نیچے کی منزل — ماسٹر",
+      superAdminTitle: "سپر ایڈمن",
+      superAdminRoleTag: "تمام اختیارات و کنٹرول",
+      personalScreenTag: "ذاتی اسکرین",
+      fbOnline: "🟢 فائر بیس آن لائن",
+      fbUnauth: "🔴 غیر تصدیق شدہ",
+      localConnected: "لائیو چیٹ فعال",
+      notifyGranted: "🔔 نوٹیفکیشن فعال ہے",
+      notifyDenied: "🔕 نوٹیفکیشن بلاک ہے",
+      notifyPrompt: "🔔 نوٹیفکیشن آن کریں",
+      notifyUnavailable: "نوٹیفکیشن دستیاب نہیں",
+      btnOpenAllTokensAdmin: "🎫 تمام ٹوکنز لسٹ و ٹیگز",
+      btnOpenTokenHistAdmin: "📜 ٹوکن ہسٹری",
+      bigServingLabel: "اس وقت چل رہا ٹوکن",
+      adminUrgentBadge: "🚨 ارجنٹ (URGENT)",
+      statNext: "اگلے:",
+      statTotal: "کل:",
+      statDone: "مکمل:",
+      statOutside: "باہر انتظار:",
+      statSkipped: "چھوڑے گئے:",
+      statPending: "باقی:",
+      setTotalLabel: "آج کے کل جاری کردہ ٹوکن:",
+      setTotalSub: "دستی پرچیاں دینے کے بعد کل تعداد درج کریں",
+      btnSetTotal: "مقرر کریں",
+      btnEndDay: "⏹️ آج کے ٹوکن ختم",
+      btnNewDay: "🌅 نیا دن شروع کریں",
+      staffOutsideTitle: "⏳ باہر انتظار میں / کام جاری ہے:",
+      waHeaderTitle: "💬 رابطہ کار اور پیغامات",
+      waBroadcastToggle: "📢 تمام صارفین کو بھیجیں (عام اعلان / Broadcast)",
+      waStatusOnline: "آن لائن",
+      allTokensModalTitleFull: "🎫 آج کے تمام ٹوکنز کی مکمل فہرست",
+      modalStatActive: "چل رہا ہے:",
+      modalStatQueue: "قطار میں:",
+      modalStatTagged: "ٹیگ شدہ:",
+      quickUsersTitle: "فوری چناؤ کے بٹن:",
+      soundBarTxt: "آواز فعال کرنے کے لیے یہاں دبائیں",
+      tokenHistModalTitle: "📜 سابقہ دنوں کا ٹوکن ریکارڈ (ہسٹری)",
+      wakeUnavailable: "اسکرین آن: دستیاب نہیں",
+      tokenNotSetNotice: "آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے",
+      tokenAllDoneNotice: "تمام ٹوکن مکمل ہو گئے ہیں",
+      tokenReadyNotice: "قطار تیار ہے، اگلا بلائیں",
+      tokenBigAllDone: "تمام مکمل",
+      noneWord: "کوئی نہیں",
+      settingsMenuBtn: "سیٹنگز",
+      btnDaySettings: "⚙️ یومیہ سیٹنگز",
+      btnSendOutsideShort: "⏳ باہر بھیجیں",
+      tabOutsideTitle: "⏳ باہر انتظار",
+      tabSkippedTitle: "⚠️ چھوڑے گئے"
+    },
+    en: {
+      loginHeading: "Intercom",
+      loginSub: "Please sign in with your ID or name (Admin or Staff)",
+      loginIdPh: "ID or Name (e.g. admin or sohail)",
+      loginPassPh: "Password / PIN",
+      loginBtn: "Sign In",
+      installBtn: "📲 Install",
+      notifyBtn: "🔔 Notifications",
+      changePinBtn: "Change PIN",
+      superBtn: "Super Admin",
+      logoutBtn: "🚪 Logout",
+      allTokensBtn: "🎫 All Tokens:",
+      lightMode: "Light Mode",
+      darkMode: "Dark Mode",
+      langLabel: "اردو",
+      servingToken: "Now Serving:",
+      nextLabel: "Next:",
+      distributedLabel: "Issued:",
+      urgentBadge: "🚨 URGENT",
+      noTokenSet: "No tokens set for today",
+      dayEnded: "Today's queue has ended",
+      adminTokenTitle: "🎫 Live Token Queue Management",
+      statusNotStarted: "Not Started",
+      statusActive: "Active",
+      statusEnded: "Day Ended",
+      btnCallNext: "🔔 Finish & Call Next",
+      btnSendOutside: "⏳ Send Outside (In Progress)",
+      btnSkipToken: "⏭️ Skip Token",
+      btnPrevToken: "⏮️ Previous Token",
+      upcomingTitle: "📋 Next 4 in Queue:",
+      upcomingSub: "Click button to call urgently",
+      noUpcoming: "No upcoming tokens in queue",
+      btnCallUrgentNow: "🚨 Call Now (Urgent)",
+      customUrgentTitle: "🚨 Call ANY token number urgently:",
+      customUrgentPh: "Token # e.g. 59",
+      btnCallCustomUrgent: "🚨 Call Urgent",
+      outsideTitle: "⏳ Waiting Outside (In Progress):",
+      noOutside: "No tokens waiting outside",
+      btnCallInside: "🔔 Call Inside",
+      btnCompleteOutside: "✅ Complete",
+      skippedTitle: "⚠️ Skipped Tokens (Absent):",
+      noSkipped: "No tokens skipped",
+      btnRecallSkipped: "Call",
+      screenOn: "Screen Awake: ON",
+      screenOff: "Screen Awake: OFF",
+      historyBtn: "Message History",
+      tokenHistBtn: "Token History",
+      audioCheck: "Test Audio",
+      chatBtn: "Messages",
+      allTokensModalTitle: "🎫 All Tokens Overview & Status",
+      issuedCountLabel: "Total Daily Tokens Issued:",
+      searchPh: "🔍 Search by token # or tag (e.g. 50, Panadol)...",
+      tabAll: "All",
+      tabQueue: "Serving / Queue",
+      tabOutside: "⏳ Outside",
+      tabDone: "✅ Completed",
+      tabSkipped: "⚠️ Skipped",
+      tabTagged: "🏷️ Tagged",
+      btnTagEdit: "✏️ Edit Tag",
+      btnAddTag: "+ Add Tag",
+      btnCardUrgent: "Call Urgent",
+      noTag: "No Tag",
+      noTokensFound: "No matching tokens found",
+      tagEditorTitle: "🏷️ Set Token Tag / Note",
+      quickPresetsTitle: "Quick Selection Chips (One-Click):",
+      customTagLabel: "Or write custom tag / note:",
+      customTagPh: "e.g. Panadol, Report check, etc...",
+      btnRemoveTag: "🗑️ Remove Tag",
+      btnCancel: "Cancel",
+      btnSaveTag: "✅ Save Tag",
+      messengerTitle: "Messages & Contacts",
+      broadcastContactName: "📢 All Users (Announcement)",
+      broadcastStaffName: "📢 All Users (Announcement)",
+      noBroadcastMsg: "No announcements yet",
+      noMsgYet: "No messages yet",
+      chatPh: "Type a message...",
+      btnSend: "Send",
+      announcementBadge: "📢 Announcement",
+      backBtn: "Back to Contacts",
+      clearChat: "Clear",
+      invalidTokenNum: "Please enter a valid token number",
+      adminPanelRole: "Admin Panel",
+      adminFloorTag: "Ground Floor — Master",
+      superAdminTitle: "Super Admin",
+      superAdminRoleTag: "Full Access & Control",
+      personalScreenTag: "Personal Screen",
+      fbOnline: "🟢 Firebase Online",
+      fbUnauth: "🔴 Unauthenticated",
+      localConnected: "Live Chat Active",
+      notifyGranted: "🔔 Notifications On",
+      notifyDenied: "🔕 Notifications Blocked",
+      notifyPrompt: "🔔 Enable Notifications",
+      notifyUnavailable: "Notifications Unavailable",
+      btnOpenAllTokensAdmin: "🎫 All Tokens & Tags",
+      btnOpenTokenHistAdmin: "📜 Token History",
+      bigServingLabel: "Now Serving Token",
+      adminUrgentBadge: "🚨 URGENT",
+      statNext: "Next:",
+      statTotal: "Total:",
+      statDone: "Done:",
+      statOutside: "Outside:",
+      statSkipped: "Skipped:",
+      statPending: "Remaining:",
+      setTotalLabel: "Total Tokens Issued Today:",
+      setTotalSub: "Enter total after issuing paper slips",
+      btnSetTotal: "Set Total",
+      btnEndDay: "⏹️ End Day Tokens",
+      btnNewDay: "🌅 Start New Day",
+      staffOutsideTitle: "⏳ Waiting Outside (In Progress):",
+      waHeaderTitle: "💬 Contacts & Messages",
+      waBroadcastToggle: "📢 Send to All Users (Broadcast)",
+      waStatusOnline: "Online",
+      allTokensModalTitleFull: "🎫 Complete Daily Tokens List",
+      modalStatActive: "Serving:",
+      modalStatQueue: "Queue:",
+      modalStatTagged: "Tagged:",
+      quickUsersTitle: "Quick Login Buttons:",
+      soundBarTxt: "Tap here to enable audio alerts",
+      tokenHistModalTitle: "📜 Previous Days Token History",
+      wakeUnavailable: "Screen Awake: N/A",
+      tokenNotSetNotice: "No tokens set for today yet",
+      tokenAllDoneNotice: "All tokens have been completed",
+      tokenReadyNotice: "Queue is ready, call next",
+      tokenBigAllDone: "All Done",
+      noneWord: "None",
+      settingsMenuBtn: "Settings",
+      btnDaySettings: "⚙️ Day Settings",
+      btnSendOutsideShort: "⏳ Send Outside",
+      tabOutsideTitle: "⏳ Outside",
+      tabSkippedTitle: "⚠️ Skipped"
+    }
+  };
+
+  function t(key){
+    const dict = APP_I18N[currentLang] || APP_I18N.ur;
+    return dict[key] || (APP_I18N.ur[key] || key);
+  }
+
+  function updateThemeButtonUI(){
+    const isLight = (currentTheme === "light");
+    const txt = isLight ? (currentLang === "en" ? "Dark Mode" : "ڈارک موڈ") : (currentLang === "en" ? "Light Mode" : "لائٹ موڈ");
+    const icon = isLight ? "🌙" : "☀️";
+
+    if($("themeToggleIcon")) $("themeToggleIcon").textContent = icon;
+    if($("themeToggleText")) $("themeToggleText").textContent = txt;
+
+    if($("loginThemeToggleBtn")){
+      const iconEl = $("loginThemeToggleBtn").querySelector(".theme-icon");
+      const lbl = $("loginThemeToggleBtn").querySelector(".theme-label");
+      if(iconEl) iconEl.textContent = icon;
+      if(lbl) lbl.textContent = txt;
+    }
+  }
+
+  function applyTheme(theme){
+    currentTheme = (theme === "light") ? "light" : "dark";
+    try { localStorage.setItem(THEME_KEY, currentTheme); } catch(e){}
+    if(currentTheme === "light"){
+      document.body.classList.add("theme-light");
+    } else {
+      document.body.classList.remove("theme-light");
+    }
+    updateThemeButtonUI();
+  }
+
+  function toggleTheme(){
+    applyTheme(currentTheme === "light" ? "dark" : "light");
+  }
+
+  function applyLanguage(lang){
+    currentLang = (lang === "en") ? "en" : "ur";
+    try { localStorage.setItem(LANG_KEY, currentLang); } catch(e){}
+
+    const isEn = (currentLang === "en");
+    document.documentElement.setAttribute("dir", isEn ? "ltr" : "rtl");
+    document.documentElement.setAttribute("lang", isEn ? "en" : "ur");
+    if(isEn){
+      document.body.classList.add("lang-en");
+    } else {
+      document.body.classList.remove("lang-en");
+    }
+
+    if($("langToggleText")) $("langToggleText").textContent = isEn ? "اردو" : "English";
+    if($("loginLangToggleBtn")){
+      const lbl = $("loginLangToggleBtn").querySelector(".lang-label");
+      if(lbl) lbl.textContent = isEn ? "اردو" : "English";
+    }
+
+    updateThemeButtonUI();
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      const trans = t(k);
+      if(trans) el.textContent = trans;
+    });
+
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const k = el.getAttribute("data-i18n-ph");
+      const trans = t(k);
+      if(trans) el.placeholder = trans;
+    });
+
+    document.title = isEn ? "Intercom" : "انٹر کام";
+
+    if(currentUser){
+      renderUserHeader();
+      buildGrid();
+    } else {
+      if(typeof updateNotificationButtonUI === "function") updateNotificationButtonUI();
+    }
+    if(typeof wakeLabel === "function") wakeLabel();
+    if(typeof updateLiveTokenBadgeUI === "function") updateLiveTokenBadgeUI(tokenDataState);
+    if(typeof updateAdminTokenPanelUI === "function") updateAdminTokenPanelUI(tokenDataState);
+    if(typeof renderWaContacts === "function") renderWaContacts();
+    if(typeof renderWaMessages === "function" && activeChatPerson) renderWaMessages();
+    if(typeof renderAllTokensModalList === "function" && isAllTokensModalOpen) renderAllTokensModalList();
+  }
+
+  function toggleLanguage(){
+    applyLanguage(currentLang === "en" ? "ur" : "en");
+  }
 
   // Environment Detection & Config Selection
   const isLocalhost = window.location.hostname === "localhost" || 
@@ -2247,22 +3690,23 @@
   function updateNotificationButtonUI(){
     const btn = $("notifyTopBtn");
     if(!btn) return;
+    const isLight = (currentTheme === "light");
     if(!("Notification" in window)){
-      btn.innerHTML = '<span>نوٹیفکیشن دستیاب نہیں</span>';
+      btn.innerHTML = '<span>' + t("notifyUnavailable") + '</span>';
       return;
     }
     if(Notification.permission === "granted"){
-      btn.innerHTML = '<span>🔔 نوٹیفکیشن فعال ہے</span>';
+      btn.innerHTML = '<span>' + t("notifyGranted") + '</span>';
       btn.style.borderColor = "#16a34a";
-      btn.style.color = "#4ade80";
+      btn.style.color = isLight ? "#15803d" : "#4ade80";
     }else if(Notification.permission === "denied"){
-      btn.innerHTML = '<span>🔕 نوٹیفکیشن بلاک ہے</span>';
+      btn.innerHTML = '<span>' + t("notifyDenied") + '</span>';
       btn.style.borderColor = "#dc2626";
-      btn.style.color = "#f87171";
+      btn.style.color = isLight ? "#b91c1c" : "#f87171";
     }else{
-      btn.innerHTML = '<span>🔔 نوٹیفکیشن آن کریں</span>';
-      btn.style.borderColor = "#475569";
-      btn.style.color = "#93c5fd";
+      btn.innerHTML = '<span>' + t("notifyPrompt") + '</span>';
+      btn.style.borderColor = isLight ? "#cbd5e1" : "#475569";
+      btn.style.color = isLight ? "#0f172a" : "#93c5fd";
     }
   }
 
@@ -2526,11 +3970,12 @@
     const b = $("wakeBtn");
     if(!b) return;
     if(!("wakeLock" in navigator)){
-      b.textContent = "اسکرین آن: دستیاب نہیں";
+      b.textContent = t("wakeUnavailable");
       return;
     }
-    b.textContent = wantWake ? "اسکرین آن ہے — بند کریں" : "اسکرین آن رکھیں";
-    b.style.background = wantWake ? "#16a34a" : "#334155";
+    b.textContent = wantWake ? t("screenOn") : t("screenOff");
+    b.style.background = wantWake ? "#16a34a" : (currentTheme === "light" ? "#e2e8f0" : "#334155");
+    b.style.color = wantWake ? "#fff" : (currentTheme === "light" ? "#0f172a" : "#fff");
   }
   async function applyWake(){
     if("wakeLock" in navigator){
@@ -3008,7 +4453,7 @@
 
     if(currentUser.role === "superadmin"){
       superBtn.classList.remove("hidden");
-      superBtn.textContent = "سپر ایڈمن کنٹرول";
+      superBtn.textContent = t("superBtn");
     } else {
       superBtn.classList.add("hidden");
     }
@@ -3016,16 +4461,16 @@
     const isOnline = isFirebaseConfigured && (!auth || auth.currentUser);
     const connTag = isFirebaseConfigured
       ? (auth && auth.currentUser
-          ? '<span class="nav-status-tag" style="background:#16a34a;color:#fff">🟢 فائر بیس آن لائن</span>'
-          : '<span class="nav-status-tag" style="background:#dc2626;color:#fff">🔴 غیر تصدیق شدہ (دوبارہ لاگ ان کریں)</span>')
-      : '<span class="nav-status-tag local" title="سرور سے لائیو جڑا ہوا ہے">لائیو چیٹ فعال</span>';
+          ? '<span class="nav-status-tag" style="background:#16a34a;color:#fff">' + t("fbOnline") + '</span>'
+          : '<span class="nav-status-tag" style="background:#dc2626;color:#fff">' + t("fbUnauth") + '</span>')
+      : '<span class="nav-status-tag local">' + t("localConnected") + '</span>';
 
     if(currentUser.role === "superadmin"){
-      badge.innerHTML = '<span>سپر ایڈمن</span> <span class="user-role-tag" style="background:#7c3aed;color:#fff;font-weight:700">تمام اختیارات و کنٹرول</span> ' + connTag;
+      badge.innerHTML = '<span>' + t("superAdminTitle") + '</span> <span class="user-role-tag" style="background:#7c3aed;color:#fff;font-weight:700">' + t("superAdminRoleTag") + '</span> ' + connTag;
     }else if(currentUser.role === "admin"){
-      badge.innerHTML = '<span>ایڈمن پینل</span> <span class="user-role-tag">نیچے کی منزل — ماسٹر</span> ' + connTag;
+      badge.innerHTML = '<span>' + t("adminPanelRole") + '</span> <span class="user-role-tag">' + t("adminFloorTag") + '</span> ' + connTag;
     }else{
-      badge.innerHTML = '<span>' + currentUser.name + '</span> <span class="user-role-tag">ذاتی اسکرین</span> ' + connTag;
+      badge.innerHTML = '<span>' + escapeHtml(currentUser.name) + '</span> <span class="user-role-tag">' + t("personalScreenTag") + '</span> ' + connTag;
     }
 
     applyToolVisibility();
@@ -3495,6 +4940,7 @@
           audioMime: msgPayload.audioMime || "",
           kind: msgPayload.kind || "thread",
           recipient: msgPayload.recipient || msgPayload.to,
+          isBroadcast: !!msgPayload.isBroadcast,
           time: firebase.database.ServerValue.TIMESTAMP,
           sentAt: firebase.database.ServerValue.TIMESTAMP,
           deliveredAt: null,
@@ -3608,20 +5054,22 @@
   }
 
   function quickSendPin(targetPerson, pinText){
+    const isBroad = (targetPerson.id === "broadcast");
     const msgPayload = {
-      to: targetPerson.id,
+      to: isBroad ? "all" : targetPerson.id,
       from: currentUser.id,
       fromName: currentUser.name,
       text: pinText,
       audio: "",
       hasAudio: false,
-      kind: "thread",
-      recipient: targetPerson.id,
+      kind: isBroad ? "broadcast" : "thread",
+      recipient: isBroad ? "all" : targetPerson.id,
+      isBroadcast: isBroad,
       time: Date.now(),
       replyTo: ""
     };
     sendRawMessage(msgPayload);
-    toast(`${targetPerson.name} کو بھیج دیا: "${pinText}"`);
+    toast(isBroad ? `تمام صارفین کو عام اعلان بھیج دیا: "${pinText}"` : `${targetPerson.name} کو بھیج دیا: "${pinText}"`);
   }
 
   function quickSendReply(targetPerson, replyText, originalMsg){
@@ -3653,8 +5101,13 @@
 
     // Task A: Message routing rules
     let cardId = null;
+    const isBroadcast = !!(m.isBroadcast || m.to === "all" || m.recipient === "all");
 
-    if(currentUser.role === "admin" || currentUser.role === "superadmin"){
+    if(isBroadcast){
+      if(currentUser.role === "user"){
+        cardId = "p_" + currentUser.id;
+      }
+    } else if(currentUser.role === "admin" || currentUser.role === "superadmin"){
       // Admin screens render only thread messages
       if(kind !== "thread") return;
       const targetPersonId = (m.to === "admin" || m.to === "superadmin") ? m.from : m.to;
@@ -3687,7 +5140,7 @@
     if($("m_" + key)) return; // already rendered
 
     // Auto-archiving older messages applies ONLY to admin-sent thread messages
-    if(kind === "thread" && isFromAdmin){
+    if(kind === "thread" && isFromAdmin && !isBroadcast){
       list.querySelectorAll(".msg").forEach(oldEl => {
         if(oldEl.id !== "m_" + key){
           oldEl.remove();
@@ -3699,7 +5152,7 @@
     
     // Determine target person for replies
     let targetPerson = null;
-    if(kind === "thread"){
+    if(kind === "thread" || isBroadcast){
       if(currentUser.role === "admin" || currentUser.role === "superadmin"){
         const pid = (m.to === "admin" || m.to === "superadmin") ? m.from : m.to;
         targetPerson = activePeople.find(x => x.id === pid) || { id: pid, name: pid };
@@ -3713,12 +5166,18 @@
 
     const el = document.createElement("div");
     el.id = "m_" + key;
-    el.className = "msg " + (isMine ? "outgoing" : "incoming");
+    el.className = "msg " + (isMine ? "outgoing" : "incoming") + (isBroadcast ? " broadcast-msg" : "");
 
     // Sender Tag
     const tag = document.createElement("div");
     tag.className = "msg-sender-tag";
-    tag.textContent = isMine ? `آپ کا پیغام (${currentUser.name})` : (isFromAdmin ? "ایڈمن کا پیغام" : `${senderName} کا جوابی پیغام`);
+    if(isBroadcast){
+      tag.textContent = "📢 عام اعلان (ایڈمن کی طرف سے سب کے لیے)";
+      tag.style.color = "#f59e0b";
+      tag.style.fontWeight = "bold";
+    } else {
+      tag.textContent = isMine ? `آپ کا پیغام (${currentUser.name})` : (isFromAdmin ? "ایڈمن کا پیغام" : `${senderName} کا جوابی پیغام`);
+    }
     el.appendChild(tag);
 
     // Quoted reply
@@ -4189,7 +5648,8 @@
         // Check if message is from the contact currently open in chat
         const isFromActive = activeChatPerson && (
           (m.from === activeChatPerson.id) ||
-          (activeChatPerson.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin'))
+          (activeChatPerson.id === 'admin' && (m.from === 'admin' || m.from === 'superadmin')) ||
+          (activeChatPerson.id === 'broadcast' && (m.isBroadcast || m.to === 'all' || m.recipient === 'all'))
         );
 
         // Receiver sets seenAt if active chat is currently open for sender
@@ -4259,6 +5719,14 @@
           const el = $("m_" + snap.key);
           const pid = el && el.closest(".person") ? el.closest(".person").id.slice(2) : currentUser.id;
           handleRemovedMessage(snap.key, pid);
+        }, handleQueryError);
+
+        // Partitioned query for broadcasts sent to all staff
+        const broadRef = db.ref("messages").orderByChild("to").equalTo("all");
+        trackDbListener(broadRef, "child_added", snap => handleNewMessage(snap.key, snap.val()), handleQueryError);
+        trackDbListener(broadRef, "child_changed", snap => handleChangedMessage(snap.key, snap.val()), handleQueryError);
+        trackDbListener(broadRef, "child_removed", snap => {
+          handleRemovedMessage(snap.key, "broadcast");
         }, handleQueryError);
 
         toRef.once("value", () => { ready = true; }, handleQueryError);
@@ -4400,6 +5868,8 @@
                   const p = activePeople.find(x => x.id === payload.data.to);
                   toast((p ? p.name : payload.data.to) + " نے کام مکمل کر کے صاف کر دیا");
                 }
+              }else if(payload.type === "TOKENS_UPDATED"){
+                handleTokenSnapshot(payload.data);
               }else if(payload.type === "SETTINGS_UPDATED"){
                 if(payload.data.people) activePeople = payload.data.people;
                 if(payload.data.pinned) pinnedMessages = payload.data.pinned;
@@ -4498,6 +5968,9 @@
 
     updateLiveTokenBadgeUI(data);
     updateAdminTokenPanelUI(data);
+    if(isAllTokensModalOpen){
+      renderAllTokensModalList();
+    }
   }
 
   function initTokenQueue(){
@@ -4533,6 +6006,311 @@
     tokenDataState = null;
   }
 
+  function escapeHtml(str){
+    if(!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  /* =====================================================
+     تمام ٹوکنز پاپ اپ و ٹیگنگ (All-Tokens Modal & Tagging)
+     ===================================================== */
+  let isAllTokensModalOpen = false;
+  let activeTokenFilter = "all";
+  let tokenSearchQuery = "";
+  let editingTokenNum = null;
+
+  function openAllTokensModal(){
+    const modal = $("allTokensModal");
+    if(!modal) return;
+    isAllTokensModalOpen = true;
+    modal.classList.remove("hidden");
+    renderAllTokensModalList();
+  }
+
+  function closeAllTokensModal(){
+    const modal = $("allTokensModal");
+    if(!modal) return;
+    isAllTokensModalOpen = false;
+    modal.classList.add("hidden");
+  }
+
+  function getTokenStatusInfo(tokenNum, data){
+    const isEn = (currentLang === "en");
+    if(!data) return { key: "waiting", label: isEn ? "Waiting" : "انتظار میں", badgeClass: "status-queue" };
+    const num = Number(tokenNum);
+    const outsideList = Array.isArray(data.waitingOutside) ? data.waitingOutside : [];
+    const isOutside = outsideList.some(item => (typeof item === 'object' ? item.num : item) === num);
+    const isDone = (data.done || []).includes(num);
+    const isSkipped = (data.skipped || []).includes(num);
+    const isCurrent = (data.current === num);
+    const inQueue = (data.queue || []).includes(num);
+
+    if(isCurrent){
+      return {
+        key: "active",
+        label: data.isUrgent ? (isEn ? "🚨 URGENT (Serving)" : "🚨 ارجنٹ (چل رہا ہے)") : (isEn ? "🔔 Serving Now" : "🔔 چل رہا ہے"),
+        badgeClass: "status-active"
+      };
+    }
+    if(isOutside){
+      return { key: "outside", label: isEn ? "⏳ Outside" : "⏳ باہر انتظار", badgeClass: "status-outside" };
+    }
+    if(isDone){
+      return { key: "done", label: isEn ? "✅ Completed" : "✅ فارغ ہو چکا", badgeClass: "status-done" };
+    }
+    if(isSkipped){
+      return { key: "skipped", label: isEn ? "⚠️ Skipped" : "⚠️ چھوڑا گیا", badgeClass: "status-skipped" };
+    }
+    if(inQueue){
+      return { key: "queue", label: isEn ? "🕒 In Queue" : "🕒 قطار میں", badgeClass: "status-queue" };
+    }
+    return { key: "waiting", label: isEn ? "Waiting" : "انتظار میں", badgeClass: "status-queue" };
+  }
+
+  function renderAllTokensModalList(){
+    const grid = $("allTokensGrid");
+    const mDistCount = $("modalDistributedCount");
+    const mTotal = $("mStatTotal");
+    const mActive = $("mStatActive");
+    const mQueue = $("mStatQueue");
+    const mOutside = $("mStatOutside");
+    const mDone = $("mStatDone");
+    const mSkipped = $("mStatSkipped");
+    const mTagged = $("mStatTagged");
+
+    if(!grid) return;
+
+    const data = tokenDataState;
+    const total = (data && data.total) ? data.total : 0;
+    const tags = (data && data.tags) ? data.tags : {};
+    const outside = Array.isArray(data?.waitingOutside) ? data.waitingOutside : [];
+    const done = Array.isArray(data?.done) ? data.done : [];
+    const skipped = Array.isArray(data?.skipped) ? data.skipped : [];
+    const queue = Array.isArray(data?.queue) ? data.queue : [];
+    const current = (data && data.current != null) ? data.current : null;
+
+    // Count tagged
+    let taggedCount = 0;
+    for(let i = 1; i <= total; i++){
+      if(tags[i] || tags[String(i)]) taggedCount++;
+    }
+
+    if(mDistCount) mDistCount.textContent = total;
+    if(mTotal) mTotal.textContent = total;
+    if(mActive) mActive.textContent = current != null ? current : "—";
+    if(mQueue) mQueue.textContent = queue.length;
+    if(mOutside) mOutside.textContent = outside.length;
+    if(mDone) mDone.textContent = done.length;
+    if(mSkipped) mSkipped.textContent = skipped.length;
+    if(mTagged) mTagged.textContent = taggedCount;
+
+    if(!total || total === 0){
+      grid.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted);font-family:var(--font-urdu-body)">
+          <div style="font-size:3rem;margin-bottom:10px">🎫</div>
+          <div style="font-size:1.25rem;color:#f8fafc;font-weight:700;margin-bottom:6px">${currentLang === 'en' ? 'No tokens issued yet for today' : 'آج کے لیے ابھی ٹوکن جاری نہیں کیے گئے'}</div>
+          <div style="font-size:0.95rem">${currentLang === 'en' ? 'Set the total count from the admin panel after issuing paper slips.' : 'ایڈمن پینل سے دستی پرچیاں دینے کے بعد کل تعداد مقرر کریں۔'}</div>
+          ${isAdminUser() ? `<button type="button" class="btn-main" onclick="closeAllTokensModal();$('inputTotalTokens')?.focus();" style="width:auto;margin:16px auto 0;padding:8px 20px">${currentLang === 'en' ? 'Go to Admin Panel' : 'ایڈمن پینل پر جائیں'}</button>` : ''}
+        </div>
+      `;
+      return;
+    }
+
+    const q = (tokenSearchQuery || "").trim().toLowerCase();
+    const canEditTags = isAdminUser();
+
+    let renderedCards = [];
+
+    for(let i = 1; i <= total; i++){
+      const tokenNum = i;
+      const tag = tags[tokenNum] || tags[String(tokenNum)] || "";
+      const statusInfo = getTokenStatusInfo(tokenNum, data);
+
+      // Status filter
+      if(activeTokenFilter === "active_queue"){
+        if(statusInfo.key !== "active" && statusInfo.key !== "queue") continue;
+      } else if(activeTokenFilter === "tagged"){
+        if(!tag) continue;
+      } else if(activeTokenFilter === "outside"){
+        if(statusInfo.key !== "outside") continue;
+      } else if(activeTokenFilter === "done"){
+        if(statusInfo.key !== "done") continue;
+      } else if(activeTokenFilter === "skipped"){
+        if(statusInfo.key !== "skipped") continue;
+      }
+
+      // Search query filter (search by number or tag)
+      if(q){
+        const matchNum = String(tokenNum).includes(q);
+        const matchTag = tag.toLowerCase().includes(q);
+        const matchStatus = statusInfo.label.toLowerCase().includes(q);
+        if(!matchNum && !matchTag && !matchStatus) continue;
+      }
+
+      let cardClass = "token-item-card";
+      if(statusInfo.key === "active") cardClass += " is-active";
+      else if(statusInfo.key === "outside") cardClass += " is-outside";
+      else if(statusInfo.key === "done") cardClass += " is-done";
+      else if(statusInfo.key === "skipped") cardClass += " is-skipped";
+
+      const card = document.createElement("div");
+      card.className = cardClass;
+
+      let tagHtml = "";
+      if(tag){
+        tagHtml = `<div class="token-card-tag-badge" title="${escapeHtml(tag)}">🏷️ <span>${escapeHtml(tag)}</span></div>`;
+      } else {
+        tagHtml = `<div class="token-card-tag-none">${t('noTag')}</div>`;
+      }
+
+      let actionHtml = "";
+      if(canEditTags){
+        const isCurrentRunning = (current === tokenNum);
+        const urgentBtn = (!isCurrentRunning && (statusInfo.key === 'queue' || statusInfo.key === 'outside' || statusInfo.key === 'skipped')) ? `
+          <button type="button" class="btn-card-urgent" onclick="adminCallUrgentTokenFromModal(${tokenNum})">
+            🚨 ${t('btnCardUrgent')}
+          </button>
+        ` : '';
+
+        actionHtml = `
+          <div class="token-card-action-row" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <button type="button" class="btn-tag-edit" onclick="openTokenTagEditor(${tokenNum})">
+              ${tag ? t('btnTagEdit') : t('btnAddTag')}
+            </button>
+            ${urgentBtn}
+          </div>
+        `;
+      }
+
+      card.innerHTML = `
+        <div class="token-card-top-row">
+          <div class="token-card-num-wrap">
+            <span class="token-card-hash">#</span>
+            <span class="token-card-num">${tokenNum}</span>
+          </div>
+          <span class="token-card-status-badge ${statusInfo.badgeClass}">${statusInfo.label}</span>
+        </div>
+        <div class="token-card-tag-section">
+          ${tagHtml}
+        </div>
+        ${actionHtml}
+      `;
+
+      renderedCards.push(card);
+    }
+
+    grid.innerHTML = "";
+    if(renderedCards.length === 0){
+      grid.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted);font-family:var(--font-urdu-body)">
+          <div style="font-size:2rem;margin-bottom:6px">🔍</div>
+          <div style="font-size:1.1rem;color:#cbd5e1">${t('noTokensFound')}</div>
+        </div>
+      `;
+    } else {
+      renderedCards.forEach(c => grid.appendChild(c));
+    }
+  }
+
+  function openTokenTagEditor(tokenNum){
+    if(!isAdminUser()){
+      toast(currentLang === 'en' ? "Only Admin can set tags" : "صرف ایڈمن کو ٹیگ لگانے کی اجازت ہے");
+      return;
+    }
+    editingTokenNum = tokenNum;
+    const modal = $("tokenTagEditModal");
+    const title = $("tagEditorTitle");
+    const input = $("tokenTagCustomInput");
+    const removeBtn = $("btnRemoveTag");
+    if(!modal) return;
+
+    const currentTag = (tokenDataState?.tags && (tokenDataState.tags[tokenNum] || tokenDataState.tags[String(tokenNum)])) || "";
+
+    if(title) title.textContent = currentLang === 'en' ? `🏷️ Tag for Token #${tokenNum}` : `🏷️ ٹوکن #${tokenNum} کے لیے ٹیگ`;
+    if(input) input.value = currentTag;
+
+    // Reset preset chips active state
+    if($("tagPresetsGrid")){
+      $("tagPresetsGrid").querySelectorAll(".tag-preset-chip").forEach(b => {
+        b.classList.toggle("active-preset", b.getAttribute("data-preset") === currentTag);
+      });
+    }
+
+    if(removeBtn){
+      if(currentTag) removeBtn.classList.remove("hidden");
+      else removeBtn.classList.add("hidden");
+    }
+
+    modal.classList.remove("hidden");
+    if(input) setTimeout(() => input.focus(), 100);
+  }
+
+  function closeTokenTagEditor(){
+    const modal = $("tokenTagEditModal");
+    if(modal) modal.classList.add("hidden");
+    editingTokenNum = null;
+    if($("tagPresetsGrid")){
+      $("tagPresetsGrid").querySelectorAll(".tag-preset-chip").forEach(b => b.classList.remove("active-preset"));
+    }
+  }
+
+  async function saveTokenTag(tokenNum, tagVal){
+    if(!isAdminUser()) return;
+    const cleanTag = (tagVal || "").trim();
+    const tokenKey = String(tokenNum);
+
+    if(!tokenDataState) tokenDataState = {};
+    if(!tokenDataState.tags) tokenDataState.tags = {};
+
+    if(cleanTag){
+      tokenDataState.tags[tokenKey] = cleanTag;
+    } else {
+      delete tokenDataState.tags[tokenKey];
+    }
+
+    // 1. Firebase update
+    if(isFirebaseConfigured && db){
+      try{
+        if(cleanTag){
+          await db.ref(`tokens/today/tags/${tokenKey}`).set(cleanTag);
+        } else {
+          await db.ref(`tokens/today/tags/${tokenKey}`).remove();
+        }
+      }catch(err){
+        console.warn("Firebase tag update err:", err);
+      }
+    }
+
+    // 2. Local fallback sync
+    try{
+      await fetch('/api/tokens/today', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cleanTag ? { tags: { [tokenKey]: cleanTag } } : { removeTag: tokenKey })
+      });
+    }catch(e){}
+
+    closeTokenTagEditor();
+    renderAllTokensModalList();
+    updateLiveTokenBadgeUI(tokenDataState);
+    updateAdminTokenPanelUI(tokenDataState);
+    toast(cleanTag ?
+      (currentLang === 'en' ? `Tag saved on Token #${tokenNum}` : `ٹوکن #${tokenNum} پر ٹیگ محفوظ ہو گیا`) :
+      (currentLang === 'en' ? `Tag removed from Token #${tokenNum}` : `ٹوکن #${tokenNum} سے ٹیگ ہٹا دیا گیا`));
+  }
+
+  window.openTokenTagEditor = openTokenTagEditor;
+  window.closeAllTokensModal = closeAllTokensModal;
+  window.adminCallUrgentTokenFromModal = function(num){
+    closeAllTokensModal();
+    adminCallUrgentToken(num);
+  };
+
   /* ---------- Live Token Badge UI Update ---------- */
   function updateLiveTokenBadgeUI(data){
     const badgeEl = $("liveTokenBadge");
@@ -4543,6 +6321,11 @@
     const noSetEl = $("tokenNoSetTxt");
     const activeWrap = $("tokenActiveWrap");
     if(!badgeEl || !currentEl || !nextEl) return;
+
+    const totalDist = (data && data.total) ? data.total : 0;
+    if($("liveDistributedTokensNum")) $("liveDistributedTokensNum").textContent = totalDist;
+    if($("headerTotalTokensBadge")) $("headerTotalTokensBadge").textContent = totalDist;
+    if($("modalDistributedCount")) $("modalDistributedCount").textContent = totalDist;
 
     if(!data || !data.total || data.status === "not_started" || data.status === "ended"){
       if(noSetEl && activeWrap){
@@ -4658,19 +6441,7 @@
 
   if($("liveTokenBadge")){
     $("liveTokenBadge").onclick = () => {
-      if(isAdminUser()){
-        const p = $("adminTokenPanel");
-        if(p) p.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        if(tokenDataState && tokenDataState.total){
-          const doneCount = (tokenDataState.done || []).length;
-          const leftCount = (tokenDataState.queue || []).length;
-          const outCount = (tokenDataState.waitingOutside || []).length;
-          toast(`کل ٹوکن: ${tokenDataState.total} | مکمل: ${doneCount} | باہر انتظار: ${outCount} | باقی: ${leftCount}`);
-        } else {
-          toast("آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے");
-        }
-      }
+      openAllTokensModal();
     };
   }
 
@@ -4703,25 +6474,30 @@
     const outsideCount = $("adminOutsideCount");
 
     const sendOutsideBtn = $("btnSendOutside");
+    const dayDrawer = $("daySettingsDrawer");
+    const isEn = (currentLang === "en");
+    const tokenWord = isEn ? "Token #" : "ٹوکن #";
+
     if(!data || !data.total){
+      if(dayDrawer) dayDrawer.classList.remove("hidden");
       if(sendOutsideBtn) sendOutsideBtn.classList.add("hidden");
       bigNumEl.textContent = "—";
       bigNumEl.classList.add("none");
       if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
-      noticeEl.textContent = "آج کے لیے ابھی ٹوکن مقرر نہیں کیے گئے";
+      noticeEl.textContent = t("tokenNotSetNotice");
       nextEl.textContent = "—";
       totalEl.textContent = "0";
       doneEl.textContent = "0";
       if(outsideEl) outsideEl.textContent = "0";
       skippedEl.textContent = "0";
       pendingEl.textContent = "0";
-      statusTag.textContent = "غیر شروع شدہ";
+      statusTag.textContent = t("statusNotStarted");
       statusTag.style.background = "#475569";
       if(inputTotal && document.activeElement !== inputTotal) inputTotal.value = "";
-      if(skippedChips) skippedChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن چھوڑا نہیں گیا</span>';
+      if(skippedChips) skippedChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">' + t("noSkipped") + '</span>';
       if(skippedCount) skippedCount.textContent = "(0)";
-      if(upcomingChips) upcomingChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">قطار میں کوئی ٹوکن باقی نہیں</span>';
-      if(outsideChips) outsideChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن باہر انتظار میں نہیں</span>';
+      if(upcomingChips) upcomingChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">' + t("noUpcoming") + '</span>';
+      if(outsideChips) outsideChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">' + t("noOutside") + '</span>';
       if(outsideCount) outsideCount.textContent = "(0)";
       return;
     }
@@ -4730,30 +6506,31 @@
       if(sendOutsideBtn) sendOutsideBtn.classList.remove("hidden");
       bigNumEl.textContent = data.current;
       bigNumEl.classList.remove("none");
-      noticeEl.textContent = "";
+      const curTag = (data.tags && (data.tags[data.current] || data.tags[String(data.current)])) ? (data.tags[data.current] || data.tags[String(data.current)]) : "";
+      noticeEl.innerHTML = curTag ? `<span class="token-card-tag-badge" style="font-size:0.95rem;padding:3px 10px;margin-bottom:6px">🏷️ ${escapeHtml(curTag)}</span>` : "";
       if(urgentAdminBadge){
         if(data.isUrgent) urgentAdminBadge.classList.remove("hidden");
         else urgentAdminBadge.classList.add("hidden");
       }
     } else if(Array.isArray(data.queue) && data.queue.length === 0){
       if(sendOutsideBtn) sendOutsideBtn.classList.add("hidden");
-      bigNumEl.textContent = "تمام مکمل";
+      bigNumEl.textContent = t("tokenBigAllDone");
       bigNumEl.classList.add("none");
-      noticeEl.textContent = "تمام ٹوکن مکمل ہو گئے ہیں";
+      noticeEl.textContent = t("tokenAllDoneNotice");
       if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
     } else {
       if(sendOutsideBtn) sendOutsideBtn.classList.add("hidden");
       bigNumEl.textContent = "—";
       bigNumEl.classList.add("none");
-      noticeEl.textContent = "قطار تیار ہے، اگلا بلائیں";
+      noticeEl.textContent = t("tokenReadyNotice");
       if(urgentAdminBadge) urgentAdminBadge.classList.add("hidden");
     }
 
     if(data.status === "ended"){
-      statusTag.textContent = "آج کا دن ختم";
+      statusTag.textContent = t("statusEnded");
       statusTag.style.background = "#7f1d1d";
     } else {
-      statusTag.textContent = "فعال (Active)";
+      statusTag.textContent = t("statusActive");
       statusTag.style.background = "#16a34a";
     }
 
@@ -4764,9 +6541,9 @@
 
     // Next 4 tokens summary in stats bar
     if(q.length > 0){
-      nextEl.textContent = q.slice(0, 4).join("، ");
+      nextEl.textContent = q.slice(0, 4).join(isEn ? ", " : "، ");
     } else {
-      nextEl.textContent = data.current != null ? "کوئی نہیں" : "—";
+      nextEl.textContent = data.current != null ? t("noneWord") : "—";
     }
 
     totalEl.textContent = data.total || 0;
@@ -4783,17 +6560,19 @@
     if(upcomingChips){
       const upcoming4 = q.slice(0, 4);
       if(upcoming4.length === 0){
-        upcomingChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">قطار میں کوئی ٹوکن باقی نہیں</span>';
+        upcomingChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">' + t("noUpcoming") + '</span>';
       } else {
         upcomingChips.innerHTML = "";
         upcoming4.forEach(num => {
           const chip = document.createElement("div");
           chip.className = "upcoming-chip-item";
-          chip.innerHTML = `<span>ٹوکن #<strong>${num}</strong></span>`;
+          const tag = (data.tags && (data.tags[num] || data.tags[String(num)])) ? (data.tags[num] || data.tags[String(num)]) : "";
+          const tagPill = tag ? `<span class="token-card-tag-badge" style="font-size:0.75rem;padding:1px 6px;margin-right:6px">🏷️ ${escapeHtml(tag)}</span>` : "";
+          chip.innerHTML = `<span>${tokenWord}<strong>${num}</strong> ${tagPill}</span>`;
           const urgBtn = document.createElement("button");
           urgBtn.type = "button";
           urgBtn.className = "btn-call-urgent";
-          urgBtn.innerHTML = "🚨 ابھی بلائیں (ارجنٹ)";
+          urgBtn.innerHTML = t("btnCallUrgentNow");
           urgBtn.onclick = () => adminCallUrgentToken(num);
           chip.appendChild(urgBtn);
           upcomingChips.appendChild(chip);
@@ -4805,7 +6584,7 @@
     if(outsideCount) outsideCount.textContent = `(${outside.length})`;
     if(outsideChips){
       if(outside.length === 0){
-        outsideChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن باہر انتظار میں نہیں</span>';
+        outsideChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">' + t("noOutside") + '</span>';
       } else {
         outsideChips.innerHTML = "";
         outside.forEach(item => {
@@ -4813,8 +6592,10 @@
           const startTime = typeof item === 'object' ? item.time : Date.now();
           const chip = document.createElement("div");
           chip.className = "outside-chip-item";
+          const tag = (data.tags && (data.tags[num] || data.tags[String(num)])) ? (data.tags[num] || data.tags[String(num)]) : "";
+          const tagPill = tag ? `<span class="token-card-tag-badge" style="font-size:0.75rem;padding:1px 6px;margin-right:6px">🏷️ ${escapeHtml(tag)}</span>` : "";
           chip.innerHTML = `
-            <span>ٹوکن #<strong>${num}</strong></span>
+            <span>${tokenWord}<strong>${num}</strong> ${tagPill}</span>
             <span class="outside-timer" data-start="${startTime}">00:00</span>
           `;
           const actionsWrap = document.createElement("div");
@@ -4823,13 +6604,13 @@
           const callBtn = document.createElement("button");
           callBtn.type = "button";
           callBtn.className = "btn-outside-callback";
-          callBtn.textContent = "↩️ واپس بلائیں";
+          callBtn.textContent = isEn ? "↩️ Call Back" : "↩️ واپس بلائیں";
           callBtn.onclick = () => adminCallBackOutside(num);
 
           const doneBtn = document.createElement("button");
           doneBtn.type = "button";
           doneBtn.className = "btn-outside-complete";
-          doneBtn.textContent = "✅ مکمل کریں";
+          doneBtn.textContent = isEn ? "✅ Complete" : "✅ مکمل کریں";
           doneBtn.onclick = () => adminCompleteOutside(num);
 
           actionsWrap.append(callBtn, doneBtn);
@@ -4844,17 +6625,17 @@
     if(skippedCount) skippedCount.textContent = `(${skipped.length})`;
     if(skippedChips){
       if(skipped.length === 0){
-        skippedChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">کوئی ٹوکن چھوڑا نہیں گیا</span>';
+        skippedChips.innerHTML = '<span style="color:var(--muted);font-size:.9rem">' + t("noSkipped") + '</span>';
       } else {
         skippedChips.innerHTML = "";
         skipped.forEach(num => {
           const chip = document.createElement("div");
           chip.className = "skipped-chip";
-          chip.innerHTML = `<span>ٹوکن #<strong>${num}</strong></span>`;
+          chip.innerHTML = `<span>${tokenWord}<strong>${num}</strong></span>`;
           const putBtn = document.createElement("button");
           putBtn.type = "button";
           putBtn.className = "btn-put-back";
-          putBtn.textContent = "🔄 دوبارہ قطار میں ڈالیں";
+          putBtn.textContent = isEn ? "🔄 Put Back in Queue" : "🔄 دوبارہ قطار میں ڈالیں";
           putBtn.onclick = () => openPutBackModal(num);
           chip.appendChild(putBtn);
           skippedChips.appendChild(chip);
@@ -4903,11 +6684,12 @@
             queue: q,
             done: [],
             skipped: [],
+            tags: (currentData && currentData.tags) ? currentData.tags : {},
             status: "active",
             startTime: now,
             endTime: null,
             updatedAt: now,
-            updatedBy: currentUser.name || currentUser.id
+            updatedBy: currentUser?.name || currentUser?.id || "admin"
           };
         }
 
@@ -4931,9 +6713,10 @@
         currentData.queue = q;
         currentData.done = done;
         currentData.skipped = skipped;
+        if(!currentData.tags) currentData.tags = {};
         currentData.status = "active";
         currentData.updatedAt = now;
-        currentData.updatedBy = currentUser.name || currentUser.id;
+        currentData.updatedBy = currentUser?.name || currentUser?.id || "admin";
 
         if(currentData.current == null && q.length > 0){
           currentData.current = q.shift();
@@ -4944,6 +6727,20 @@
       });
 
       toast(`کل ٹوکن کی تعداد (${val}) کامیابی سے مقرر ہو گئی`);
+
+      // Local fallback sync
+      try {
+        fetch('/api/tokens/today', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            total: val,
+            date: getTodayDateStr(),
+            status: 'active',
+            queue: Array.from({length: val}, (_, i) => i + 1)
+          })
+        }).catch(()=>{});
+      } catch(e){}
     }catch(err){
       console.error("Set total error:", err);
       toast("خرابی: ٹوکن محفوظ نہ ہو سکے (" + (err.message || err) + ")");
@@ -4994,7 +6791,7 @@
         data.done = done;
         data.isUrgent = false; // Normal call resets urgent badge
         data.updatedAt = now;
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
         nextResultToken = current;
         return data;
       });
@@ -5040,7 +6837,7 @@
         data.queue = q;
         data.isUrgent = true;
         data.updatedAt = now;
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
 
         // Log urgent action
         logs.push({
@@ -5049,7 +6846,7 @@
           token: urgentNum,
           prevToken: current,
           time: now,
-          by: currentUser.name || currentUser.id
+          by: currentUser?.name || currentUser?.id || "admin"
         });
         data.logs = logs;
 
@@ -5103,7 +6900,7 @@
         data.waitingOutside = outside;
         data.isUrgent = false;
         data.updatedAt = now;
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
 
         logs.push({
           type: "send_outside",
@@ -5111,7 +6908,7 @@
           token: current,
           nextStarted: nextToken,
           time: now,
-          by: currentUser.name || currentUser.id
+          by: currentUser?.name || currentUser?.id || "admin"
         });
         data.logs = logs;
 
@@ -5154,7 +6951,7 @@
         data.waitingOutside = outside;
         data.isUrgent = false;
         data.updatedAt = now;
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
 
         logs.push({
           type: "callback_outside",
@@ -5162,7 +6959,7 @@
           token: tokenNum,
           replacedToken: current,
           time: now,
-          by: currentUser.name || currentUser.id
+          by: currentUser?.name || currentUser?.id || "admin"
         });
         data.logs = logs;
 
@@ -5202,14 +6999,14 @@
         data.waitingOutside = outside;
         data.done = done;
         data.updatedAt = now;
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
 
         logs.push({
           type: "complete_outside",
           label: "complete",
           token: tokenNum,
           time: now,
-          by: currentUser.name || currentUser.id
+          by: currentUser?.name || currentUser?.id || "admin"
         });
         data.logs = logs;
 
@@ -5256,7 +7053,7 @@
         data.done = done;
         data.queue = q;
         data.updatedAt = Date.now();
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
         restoredToken = prev;
         return data;
       });
@@ -5301,7 +7098,7 @@
         data.queue = q;
         data.skipped = skipped;
         data.updatedAt = Date.now();
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
         return data;
       });
 
@@ -5369,7 +7166,7 @@
         data.skipped = skipped;
         data.queue = q;
         data.updatedAt = Date.now();
-        data.updatedBy = currentUser.name || currentUser.id;
+        data.updatedBy = currentUser?.name || currentUser?.id || "admin";
         return data;
       });
 
@@ -5417,7 +7214,7 @@
         doneTokens: doneList,
         skippedTokens: skippedList,
         lastToken: tokenDataState.current || null,
-        endedBy: currentUser.name || currentUser.id,
+        endedBy: currentUser?.name || currentUser?.id || "admin",
         savedAt: now
       };
 
@@ -5427,7 +7224,7 @@
         status: "ended",
         endTime: now,
         updatedAt: now,
-        updatedBy: currentUser.name || currentUser.id
+        updatedBy: currentUser?.name || currentUser?.id || "admin"
       });
 
       toast("آج کے ٹوکن کامیابی سے ختم کر کے ہسٹری میں محفوظ کر دیے گئے ہیں");
@@ -5464,7 +7261,7 @@
           doneTokens: doneList,
           skippedTokens: skippedList,
           lastToken: tokenDataState.current || null,
-          endedBy: currentUser.name || currentUser.id,
+          endedBy: currentUser?.name || currentUser?.id || "admin",
           savedAt: now
         };
         await db.ref(`tokens/history/${dateKey}`).set(historyRecord);
@@ -5483,7 +7280,7 @@
         startTime: null,
         endTime: null,
         updatedAt: now,
-        updatedBy: currentUser.name || currentUser.id
+        updatedBy: currentUser?.name || currentUser?.id || "admin"
       };
 
       await db.ref('tokens/today').set(freshDay);
@@ -5559,6 +7356,129 @@
   if($("btnCancelPutBack")) $("btnCancelPutBack").onclick = () => $("putBackModal").classList.add("hidden");
   if($("btnSendOutside")) $("btnSendOutside").onclick = adminSendOutside;
 
+  // All-Tokens Modal & Tagging hooks
+  if($("allTokensTopBtn")) $("allTokensTopBtn").onclick = openAllTokensModal;
+  if($("btnOpenAllTokensFromAdmin")) $("btnOpenAllTokensFromAdmin").onclick = openAllTokensModal;
+  if($("btnCloseAllTokensModal")) $("btnCloseAllTokensModal").onclick = closeAllTokensModal;
+  if($("allTokensModal")) {
+    $("allTokensModal").onclick = (e) => {
+      if(e.target === $("allTokensModal")) closeAllTokensModal();
+    };
+  }
+  if($("tokenSearchInput")){
+    $("tokenSearchInput").oninput = (e) => {
+      tokenSearchQuery = e.target.value;
+      renderAllTokensModalList();
+    };
+  }
+  if($("tokenFilterTabs")){
+    const chips = $("tokenFilterTabs").querySelectorAll(".tokens-filter-chip");
+    chips.forEach(chip => {
+      chip.onclick = () => {
+        chips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        activeTokenFilter = chip.getAttribute("data-filter") || "all";
+        renderAllTokensModalList();
+      };
+    });
+  }
+  if($("btnCloseTagEditor")) $("btnCloseTagEditor").onclick = closeTokenTagEditor;
+  if($("btnCancelTagEdit")) $("btnCancelTagEdit").onclick = closeTokenTagEditor;
+  if($("btnSaveTagEdit")) $("btnSaveTagEdit").onclick = () => {
+    if(editingTokenNum != null){
+      const val = $("tokenTagCustomInput") ? $("tokenTagCustomInput").value : "";
+      saveTokenTag(editingTokenNum, val);
+    }
+  };
+  if($("btnRemoveTag")) $("btnRemoveTag").onclick = () => {
+    if(editingTokenNum != null){
+      saveTokenTag(editingTokenNum, "");
+    }
+  };
+  if($("tagPresetsGrid")){
+    $("tagPresetsGrid").querySelectorAll(".tag-preset-chip").forEach(btn => {
+      btn.onclick = () => {
+        const preset = btn.getAttribute("data-preset");
+        if($("tokenTagCustomInput")) $("tokenTagCustomInput").value = preset;
+        $("tagPresetsGrid").querySelectorAll(".tag-preset-chip").forEach(b => b.classList.remove("active-preset"));
+        btn.classList.add("active-preset");
+      };
+    });
+  }
+
+  // Custom Urgent Call handler
+  function handleCallCustomUrgent(){
+    const input = $("inputCustomUrgentNum");
+    if(!input) return;
+    const val = parseInt(input.value.trim(), 10);
+    if(isNaN(val) || val <= 0){
+      toast(t("invalidTokenNum"));
+      return;
+    }
+    const total = tokenDataState?.total || 0;
+    if(total > 0 && val > total){
+      toast(currentLang === 'en' ? `Token #${val} exceeds today's total (${total})` : `ٹوکن #${val} آج کے کل ٹوکن (${total}) سے بڑا ہے`);
+      return;
+    }
+    if(tokenDataState?.current === val){
+      toast(currentLang === 'en' ? `Token #${val} is already currently serving` : `ٹوکن #${val} پہلے سے چل رہا ہے`);
+      return;
+    }
+    input.value = "";
+    adminCallUrgentToken(val);
+  }
+
+  if($("btnCallCustomUrgent")) $("btnCallCustomUrgent").onclick = handleCallCustomUrgent;
+  if($("inputCustomUrgentNum")){
+    $("inputCustomUrgentNum").addEventListener("keydown", e => {
+      if(e.key === "Enter") handleCallCustomUrgent();
+    });
+  }
+
+  // Theme & Language toggle hooks
+  if($("themeToggleBtn")) $("themeToggleBtn").onclick = toggleTheme;
+  if($("loginThemeToggleBtn")) $("loginThemeToggleBtn").onclick = toggleTheme;
+  if($("langToggleBtn")) $("langToggleBtn").onclick = toggleLanguage;
+  if($("loginLangToggleBtn")) $("loginLangToggleBtn").onclick = toggleLanguage;
+
+  // Settings Dropdown Menu Toggle
+  if($("settingsMenuBtn") && $("settingsDropdown")){
+    $("settingsMenuBtn").onclick = (e) => {
+      e.stopPropagation();
+      $("settingsDropdown").classList.toggle("hidden");
+    };
+    document.addEventListener("click", (e) => {
+      const wrap = $("settingsMenuWrap");
+      const dd = $("settingsDropdown");
+      if(wrap && dd && !wrap.contains(e.target)){
+        dd.classList.add("hidden");
+      }
+    });
+  }
+
+  // Day Settings Collapsible Drawer Toggle
+  if($("btnToggleDaySettings") && $("daySettingsDrawer")){
+    $("btnToggleDaySettings").onclick = () => {
+      $("daySettingsDrawer").classList.toggle("hidden");
+    };
+  }
+
+  // Tabbed Outside / Skipped Queues Switcher
+  if($("tabBtnOutside") && $("tabBtnSkipped")){
+    $("tabBtnOutside").onclick = () => {
+      $("tabBtnOutside").classList.add("active");
+      $("tabBtnSkipped").classList.remove("active");
+      $("adminOutsideBox")?.classList.remove("hidden");
+      $("skippedBox")?.classList.add("hidden");
+    };
+    $("tabBtnSkipped").onclick = () => {
+      $("tabBtnSkipped").classList.add("active");
+      $("tabBtnOutside").classList.remove("active");
+      $("skippedBox")?.classList.remove("hidden");
+      $("adminOutsideBox")?.classList.add("hidden");
+    };
+  }
+
   /* =====================================================
      واٹس ایپ اسٹائل میسنجر (WhatsApp-Style Messenger)
      ===================================================== */
@@ -5597,16 +7517,26 @@
 
   function getWaContactsList(){
     if(!currentUser) return [];
+    const broadcastContact = {
+      id: "broadcast",
+      name: (currentUser.role === "admin" || currentUser.role === "superadmin") ? t("broadcastContactName") : t("broadcastStaffName"),
+      color: "#dc2626",
+      isBroadcast: true
+    };
     if(currentUser.role === "admin" || currentUser.role === "superadmin"){
-      return activePeople.map(p => ({
-        id: p.id,
-        name: p.name,
-        color: p.color || "#1e88e5"
-      }));
+      return [
+        broadcastContact,
+        ...activePeople.map(p => ({
+          id: p.id,
+          name: p.name,
+          color: p.color || "#1e88e5"
+        }))
+      ];
     } else {
-      // Staff member: Admin is top contact, plus fellow staff
+      // Staff member: Broadcast announcement at top, Admin contact, plus fellow staff
       const list = [
-        { id: "admin", name: "ایڈمن", color: "#2563eb" }
+        broadcastContact,
+        { id: "admin", name: currentLang === "en" ? "Admin" : "ایڈمن", color: "#2563eb" }
       ];
       activePeople.filter(p => p.id !== currentUser.id && p.id !== "admin" && p.id !== "superadmin").forEach(p => {
         list.push({
@@ -5648,7 +7578,7 @@
       const avatar = document.createElement("div");
       avatar.className = "wa-contact-avatar";
       avatar.style.background = c.color || "#2563eb";
-      avatar.textContent = c.name ? c.name.charAt(0) : "؟";
+      avatar.textContent = c.isBroadcast ? "📢" : (c.name ? c.name.charAt(0) : "؟");
 
       const body = document.createElement("div");
       body.className = "wa-contact-body";
@@ -5674,7 +7604,7 @@
           prevEl.textContent = lastMsg.text || "—";
         }
       } else {
-        prevEl.textContent = "کوئی پیغام نہیں";
+        prevEl.textContent = c.isBroadcast ? t("noBroadcastMsg") : t("noMsgYet");
       }
 
       row2.appendChild(prevEl);
@@ -5717,6 +7647,7 @@
 
   function isIncomingForMe(m){
     if(!m || !currentUser || m.from === currentUser.id) return false;
+    if(m.isBroadcast || m.to === "all" || m.recipient === "all") return true;
     if(currentUser.role === "user") return m.to === currentUser.id;
     // admin / superadmin: only messages a staff member sent TO the admin
     if(isAdminId(m.from)) return false;
@@ -5726,6 +7657,9 @@
 
   function isIncomingFromContact(m, contactId){
     if(!isIncomingForMe(m)) return false;
+    const isBroad = !!(m.isBroadcast || m.to === "all" || m.recipient === "all");
+    if(contactId === "broadcast") return isBroad;
+    if(isBroad) return false;
     if(currentUser.role === "user"){
       return m.from === contactId || (contactId === "admin" && isAdminId(m.from));
     }
@@ -5742,6 +7676,11 @@
       if(clearTs && mTime <= clearTs){
         return false;
       }
+      const isBroad = !!(m.isBroadcast || m.to === "all" || m.recipient === "all");
+      if(contactId === "broadcast"){
+        return isBroad;
+      }
+      if(isBroad) return false;
       if(currentUser.role === "admin" || currentUser.role === "superadmin"){
         // Admin chat with one staff member: only that person's thread with the admin
         return (m.from === contactId && isIncomingForMe(m)) ||
@@ -5786,10 +7725,36 @@
 
     const nameEl = $("waActiveName");
     const avatarEl = $("waActiveAvatar");
+    const statusEl = $("waActiveStatus");
+    const bToggleBar = $("waBroadcastToggleBar");
+    const bCheckbox = $("waBroadcastCheckbox");
+    const input = $("waTextInput");
+
+    const isBroadcastChannel = (person.id === "broadcast");
+
     if(nameEl) nameEl.textContent = person.name;
     if(avatarEl){
-      avatarEl.textContent = person.name.charAt(0);
+      avatarEl.textContent = isBroadcastChannel ? "📢" : (person.name ? person.name.charAt(0) : "؟");
       avatarEl.style.background = person.color || "#2563eb";
+    }
+    if(statusEl){
+      statusEl.textContent = isBroadcastChannel ? "تمام منزلوں اور عملے پر ترسیل" : "آن لائن";
+    }
+
+    if(bToggleBar){
+      if(isBroadcastChannel){
+        bToggleBar.classList.add("hidden");
+        if(bCheckbox) bCheckbox.checked = true;
+        if(input) input.placeholder = "📢 تمام صارفین کے لیے عام اعلان لکھیں...";
+      } else if(isAdminUser()){
+        bToggleBar.classList.remove("hidden");
+        if(bCheckbox) bCheckbox.checked = false;
+        if(input) input.placeholder = "پیغام لکھیں...";
+      } else {
+        bToggleBar.classList.add("hidden");
+        if(bCheckbox) bCheckbox.checked = false;
+        if(input) input.placeholder = "پیغام لکھیں...";
+      }
     }
 
     // Mark all unread incoming messages from this person as seen
@@ -5811,10 +7776,15 @@
     if(!wrap) return;
     wrap.innerHTML = "";
 
-    const pins = pinnedMessages[person.id] || ["پیناڈول دے دو", "ایک ہفتے کی دوا", "اوپر آ جائیں"];
-    const quickReplies = ["جی، دے دیں", "نہیں، نہ دیں", "ایک منٹ رکیں", "ڈاکٹر سے پوچھیں"];
+    let combined = [];
+    if(person.id === "broadcast"){
+      combined = ["اوپر آ جائیں", "ایک منٹ رکیں", "دوا تیار رکھیں", "سب متوجہ ہوں", "فوری اجلاس", "کام مکمل کر کے اوپر آئیں"];
+    } else {
+      const pins = pinnedMessages[person.id] || ["پیناڈول دے دو", "ایک ہفتے کی دوا", "اوپر آ جائیں"];
+      const quickReplies = ["جی، دے دیں", "نہیں، نہ دیں", "ایک منٹ رکیں", "ڈاکٹر سے پوچھیں"];
+      combined = [...new Set([...pins, ...quickReplies])];
+    }
 
-    const combined = [...new Set([...pins, ...quickReplies])];
     combined.forEach(txt => {
       const chip = document.createElement("button");
       chip.type = "button";
@@ -5878,14 +7848,22 @@
       }
 
       const isMine = (m.from === currentUser.id);
+      const isBroad = !!(m.isBroadcast || m.to === "all" || m.recipient === "all");
       const bubble = document.createElement("div");
       bubble.id = "wa_m_" + (m.key || m.id);
-      bubble.className = "wa-bubble " + (isMine ? "outgoing" : "incoming");
+      bubble.className = "wa-bubble " + (isMine ? "outgoing" : "incoming") + (isBroad ? " broadcast-bubble" : "");
+
+      if(isBroad){
+        const bPill = document.createElement("div");
+        bPill.className = "wa-broadcast-pill";
+        bPill.textContent = "📢 عام اعلان (Announcement)";
+        bubble.appendChild(bPill);
+      }
 
       if(!isMine){
         const sender = document.createElement("div");
         sender.className = "wa-bubble-sender";
-        sender.textContent = m.fromName || (activeChatPerson.name);
+        sender.textContent = m.fromName || (isBroad ? "ایڈمن" : activeChatPerson.name);
         bubble.appendChild(sender);
       }
 
@@ -6101,18 +8079,20 @@
     if(sendBtn) sendBtn.disabled = true;
 
     input.value = "";
+    const isBroadcastMode = (activeChatPerson.id === "broadcast") || (isAdminUser() && $("waBroadcastCheckbox") && $("waBroadcastCheckbox").checked);
     const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
-    const isPeer = (!isToAdmin && currentUser.role === "user");
+    const isPeer = (!isToAdmin && !isBroadcastMode && currentUser.role === "user");
 
     const msgPayload = {
-      to: isToAdmin ? currentUser.id : activeChatPerson.id,
+      to: isBroadcastMode ? "all" : (isToAdmin ? currentUser.id : activeChatPerson.id),
       from: currentUser.id,
       fromName: currentUser.name,
       text: txt,
       audio: "",
       hasAudio: false,
-      kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
-      recipient: isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id)),
+      kind: isBroadcastMode ? "broadcast" : (isToAdmin ? "thread" : (isPeer ? "peer" : "thread")),
+      recipient: isBroadcastMode ? "all" : (isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id))),
+      isBroadcast: !!isBroadcastMode,
       time: Date.now(),
       replyTo: ""
     };
@@ -6120,6 +8100,10 @@
     try {
       const ok = await sendRawMessage(msgPayload);
       if(ok !== false){
+        if(isBroadcastMode && activeChatPerson.id !== "broadcast" && $("waBroadcastCheckbox")){
+          $("waBroadcastCheckbox").checked = false;
+          input.placeholder = "پیغام لکھیں...";
+        }
         renderWaMessages();
         renderWaContacts();
         const area = $("waMessagesArea");
@@ -6181,11 +8165,12 @@
     }
     if(!activeChatPerson) return;
 
+    const isBroadcastMode = (activeChatPerson.id === "broadcast") || (isAdminUser() && $("waBroadcastCheckbox") && $("waBroadcastCheckbox").checked);
     const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
-    const isPeer = (!isToAdmin && currentUser.role === "user");
+    const isPeer = (!isToAdmin && !isBroadcastMode && currentUser.role === "user");
 
     const msgPayload = {
-      to: isToAdmin ? currentUser.id : activeChatPerson.id,
+      to: isBroadcastMode ? "all" : (isToAdmin ? currentUser.id : activeChatPerson.id),
       from: currentUser.id,
       fromName: currentUser.name,
       text: "🎙️ صوتی پیغام (Voice Note)",
@@ -6193,8 +8178,9 @@
       hasAudio: true,
       audioDuration: res.duration || 1,
       audioMime: res.mime || "audio/webm",
-      kind: isToAdmin ? "thread" : (isPeer ? "peer" : "thread"),
-      recipient: isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id)),
+      kind: isBroadcastMode ? "broadcast" : (isToAdmin ? "thread" : (isPeer ? "peer" : "thread")),
+      recipient: isBroadcastMode ? "all" : (isToAdmin ? "admin" : (isPeer ? activeChatPerson.id : (currentUser.role === "user" ? "admin" : activeChatPerson.id))),
+      isBroadcast: !!isBroadcastMode,
       time: Date.now(),
       replyTo: ""
     };
@@ -6202,9 +8188,12 @@
     try{
       await sendRawMessage(msgPayload);
       resetVoiceRecorderUI();
+      if(isBroadcastMode && activeChatPerson.id !== "broadcast" && $("waBroadcastCheckbox")){
+        $("waBroadcastCheckbox").checked = false;
+      }
       renderWaMessages(true);
       renderWaContacts();
-      toast("صوتی پیغام بھیج دیا گیا");
+      toast(isBroadcastMode ? "تمام صارفین کو عام اعلان بھیج دیا گیا" : "صوتی پیغام بھیج دیا گیا");
     }catch(err){
       console.error("Send voice error:", err);
       toast("پیغام بھیجنے میں خرابی ہوئی");
@@ -6222,6 +8211,16 @@
       sendWaTextMessage();
     }
   };
+  if($("waBroadcastCheckbox")){
+    $("waBroadcastCheckbox").onchange = (e) => {
+      const input = $("waTextInput");
+      if(e.target.checked){
+        if(input) input.placeholder = "📢 تمام صارفین کے لیے عام اعلان لکھیں...";
+      } else {
+        if(input) input.placeholder = "پیغام لکھیں...";
+      }
+    };
+  }
   if($("waMicBtn")) $("waMicBtn").onclick = startWaVoiceRecording;
   if($("waCancelRecBtn")) $("waCancelRecBtn").onclick = cancelWaVoiceRecording;
   if($("waSendRecBtn")) $("waSendRecBtn").onclick = stopAndSendWaVoiceRecording;
@@ -7152,7 +9151,7 @@
           message: message || "ابھی فی الحال سائٹ مینٹیننس کی وجہ سے بند ہے، انتظار فرمائیں۔",
           testers: testers,
           updatedAt: Date.now(),
-          updatedBy: currentUser ? (currentUser.name || currentUser.id) : "superadmin"
+          updatedBy: currentUser ? (currentUser?.name || currentUser?.id || "admin") : "superadmin"
         });
         toast(enabled ? "سائٹ مینٹیننس موڈ آن کر دیا گیا ہے" : "سائٹ مینٹیننس موڈ بند کر دیا گیا ہے");
       }catch(err){
@@ -7496,6 +9495,9 @@
       console.warn("Session restore error:", e);
     }
   })();
+
+  applyTheme(currentTheme);
+  applyLanguage(currentLang);
 })();
 </script>
 </body>
