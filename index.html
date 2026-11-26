@@ -701,8 +701,9 @@
   #app{min-height:100dvh;height:100dvh;display:flex;flex-direction:column;padding:10px 16px 68px 16px;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;position:relative}
   
   .top-nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:10px 16px;
-    background:var(--card);border-radius:16px;margin-bottom:12px;max-width:1300px;margin-left:auto;margin-right:auto;width:100%;
+    background:var(--card);border-radius:16px;margin-bottom:12px;max-width:1300px;margin-left:auto;margin-right:auto;width:100%;box-sizing:border-box;
     border:1px solid #334155;gap:10px;flex-shrink:0}
+  .app-footer{margin-top:auto;padding:10px 8px 4px;text-align:center;font-family:var(--font-latin-heading);font-size:.82rem;font-weight:600;color:var(--muted);letter-spacing:.3px;opacity:.85;direction:ltr}
   .user-badge{font-size:1.1rem;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--font-urdu-heading);line-height:var(--lh-urdu-heading)}
   .user-role-tag{font-size:.82rem;padding:3px 10px;border-radius:12px;background:#334155;color:var(--muted);font-family:var(--font-latin-heading);font-weight:600}
   .nav-status-tag{font-size:.82rem;padding:3px 10px;border-radius:10px;background:#065f46;color:#a7f3d0;font-family:var(--font-latin-heading);font-weight:600}
@@ -846,26 +847,27 @@
   #micHint{text-align:center;color:#93c5fd;font-family:var(--font-urdu-body);font-size:1rem;min-height:2em;margin-top:4px;line-height:var(--lh-urdu-body);letter-spacing:0}
 
   /* ---------- Super User / Manager Modal ---------- */
-  #superModal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:16px;z-index:1000}
-  .super-sheet{background:var(--card);border-radius:22px;width:100%;max-width:680px;max-height:88vh;display:flex;flex-direction:column;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
+  #superModal{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:14px;z-index:1000}
+  .super-sheet{background:var(--card);border:1px solid #334155;border-radius:20px;width:100%;max-width:840px;max-height:90vh;display:flex;flex-direction:column;padding:16px 18px;box-shadow:0 24px 64px rgba(0,0,0,.65);overflow:hidden}
   .super-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155;padding-bottom:8px;margin-bottom:10px;flex-shrink:0}
-  .super-header h2{margin:0;font-family:var(--font-urdu-heading);font-size:1.45rem;line-height:var(--lh-urdu-heading);letter-spacing:0}
-  .super-tabs{display:flex;gap:6px;margin-bottom:12px;flex-shrink:0;overflow-x:auto}
-  .super-tab{flex:1;padding:8px 10px;border:0;border-radius:10px;background:#334155;color:var(--text);font-family:var(--font-urdu-body);font-size:1rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0;white-space:nowrap}
-  .super-tab.active{background:#7c3aed;color:#fff}
-  .super-tab.tab-danger.active{background:#dc2626;color:#fff}
-  .super-content{overflow-y:auto;flex:1;padding:0 4px 24px 4px}
+  .super-header h2{margin:0;font-family:var(--font-urdu-heading);font-size:1.38rem;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .super-tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;flex-shrink:0;background:#0f172a;padding:5px;border-radius:12px;border:1px solid #334155}
+  .super-tab{flex:1 1 auto;padding:6px 10px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-family:var(--font-urdu-body);font-size:.9rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0;white-space:nowrap;transition:all .15s ease}
+  .super-tab:hover{color:#fff;background:#1e293b}
+  .super-tab.active{background:#7c3aed;color:#fff;box-shadow:0 2px 8px rgba(124,58,237,.35)}
+  .super-tab.tab-danger.active{background:#dc2626;color:#fff;box-shadow:0 2px 8px rgba(220,38,38,.35)}
+  .super-content{overflow-y:auto;flex:1;padding:0 2px 12px 2px}
   
   /* People manage */
-  .people-table{width:100%;border-collapse:collapse;margin-bottom:14px}
-  .people-table th,.people-table td{padding:8px 10px;text-align:right;border-bottom:1px solid #334155;font-family:var(--font-urdu-body);font-size:1rem;line-height:var(--lh-urdu-body)}
-  .people-table th{color:var(--muted);font-size:.9rem;font-family:var(--font-urdu-body)}
-  .btn-del-person{border:0;background:#dc2626;color:#fff;padding:4px 10px;border-radius:8px;font-family:var(--font-urdu-body);font-size:.85rem;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
+  .people-table{width:100%;border-collapse:collapse;margin-bottom:12px;background:#0f172a;border-radius:12px;overflow:hidden;border:1px solid #334155}
+  .people-table th,.people-table td{padding:7px 10px;text-align:right;border-bottom:1px solid #1e293b;font-family:var(--font-urdu-body);font-size:.94rem;line-height:var(--lh-urdu-body)}
+  .people-table th{color:#93c5fd;font-size:.86rem;font-family:var(--font-urdu-body);background:#1e293b}
+  .btn-del-person{border:0;background:#dc2626;color:#fff;padding:4px 10px;border-radius:8px;font-family:var(--font-urdu-body);font-size:.82rem;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
   
-  .super-form{background:#0f172a;padding:14px;border-radius:14px;border:1px solid #334155;margin-bottom:10px}
-  .super-form h3{margin:0 0 8px;font-family:var(--font-urdu-heading);font-size:1.2rem;color:#93c5fd;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .super-form{background:#0f172a;padding:12px 14px;border-radius:14px;border:1px solid #334155;margin-bottom:8px}
+  .super-form h3{margin:0 0 8px;font-family:var(--font-urdu-heading);font-size:1.12rem;color:#93c5fd;line-height:var(--lh-urdu-heading);letter-spacing:0}
   .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:8px}
-  .super-form input,.super-form select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#fff;font-family:var(--font-urdu-body);font-size:1rem;outline:none;line-height:var(--lh-urdu-body);letter-spacing:0}
+  .super-form input,.super-form select{width:100%;padding:7px 10px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#fff;font-family:var(--font-urdu-body);font-size:.95rem;outline:none;line-height:var(--lh-urdu-body);letter-spacing:0}
   .btn-add-person{width:100%;padding:8px;border:0;border-radius:8px;background:#16a34a;color:#fff;font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;cursor:pointer;line-height:var(--lh-urdu-btn);letter-spacing:0}
 
   /* Pins manage */
@@ -962,10 +964,49 @@
   .btn-pin-change:hover{background:#2563eb;color:#fff;border-color:#3b82f6}
   .btn-pin-change svg{display:inline-block;vertical-align:middle}
 
-  .perms-card{background:#0f172a;border:1px solid #334155;border-radius:16px;padding:16px;margin-bottom:12px}
-  .perms-card h4{margin:0 0 8px;font-family:var(--font-urdu-heading);font-size:1.2rem;color:#93c5fd;line-height:var(--lh-urdu-heading);letter-spacing:0}
-  .perms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
-  .perm-item{display:flex;align-items:center;gap:8px;background:#1e293b;padding:8px 12px;border-radius:10px;font-family:var(--font-urdu-body);font-size:1.05rem;line-height:var(--lh-urdu-body);cursor:pointer;border:1px solid #334155;user-select:none;transition:border-color .2s;letter-spacing:0}
+  /* Usage Report Tab (Super Admin) */
+  .usage-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:12px;background:#0f172a;padding:10px 12px;border-radius:14px;border:1px solid #334155}
+  .usage-filter-group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .usage-kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:14px}
+  .usage-kpi-card{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:10px 12px;text-align:center}
+  .usage-kpi-val{font-size:1.25rem;font-weight:800;color:#60a5fa;font-family:var(--font-urdu-body);direction:rtl;display:block;margin-bottom:2px}
+  .usage-kpi-label{font-size:.86rem;color:var(--muted);font-family:var(--font-urdu-body)}
+  .usage-user-card{background:#0f172a;border:1px solid #334155;border-right:5px solid var(--ucol,#3b82f6);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+  .usage-user-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+  .usage-user-name{font-family:var(--font-urdu-heading);font-size:1.2rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+  .usage-time-total{background:#1e293b;border:1px solid #334155;padding:4px 10px;border-radius:10px;font-size:.92rem;font-weight:700;color:#93c5fd}
+  .usage-mode-row{display:flex;flex-wrap:wrap;gap:8px;font-size:.88rem}
+  .usage-badge-test{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.35);padding:3px 10px;border-radius:999px;font-weight:700}
+  .usage-badge-normal{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.35);padding:3px 10px;border-radius:999px;font-weight:700}
+  .usage-badge-meta{background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:3px 10px;border-radius:999px}
+  .usage-features-wrap{display:flex;flex-wrap:wrap;gap:6px;padding-top:4px;border-top:1px dashed #334155}
+  .usage-feat-pill{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:3px 9px;border-radius:8px;font-size:.84rem;display:inline-flex;align-items:center;gap:5px}
+  .usage-feat-count{background:#2563eb;color:#fff;font-size:.76rem;font-weight:700;padding:1px 6px;border-radius:999px;font-family:var(--font-latin-body);direction:ltr}
+
+  /* Super Admin Toggle Hub (Main Screen) */
+  .super-hub-card{background:var(--card);border:1px solid #334155;border-radius:16px;padding:12px 14px;margin:0 auto 12px auto;max-width:1300px;width:100%;box-sizing:border-box;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+  .super-hub-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #334155}
+  .super-hub-title{font-family:var(--font-urdu-heading);font-size:1.18rem;font-weight:700;color:#c4b5fd;display:flex;align-items:center;gap:8px}
+  .super-hub-sub{font-size:.86rem;color:var(--muted);font-family:var(--font-urdu-body)}
+  .super-hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:8px}
+  .hub-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0f172a;border:1px solid #334155;border-radius:12px;padding:10px 12px;color:#f8fafc;font-family:var(--font-urdu-body);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .15s ease;text-align:right;line-height:1.4}
+  .hub-btn:hover{border-color:#7c3aed;background:#1e293b;transform:translateY(-1px)}
+  .hub-btn.active{border-color:#22c55e;background:rgba(34,197,94,.12);box-shadow:0 0 0 1px rgba(34,197,94,.3)}
+  .hub-btn.danger-btn:hover{border-color:#ef4444;background:rgba(239,68,68,.12)}
+  .hub-state-pill{font-size:.74rem;padding:2px 8px;border-radius:999px;background:#334155;color:#cbd5e1;font-weight:700;flex-shrink:0}
+  .hub-btn.active .hub-state-pill{background:#16a34a;color:#fff}
+  body.theme-light .super-hub-card{background:#ffffff;border-color:#cbd5e1}
+  body.theme-light .super-hub-header{border-bottom-color:#e2e8f0}
+  body.theme-light .super-hub-title{color:#6d28d9}
+  body.theme-light .hub-btn{background:#f8fafc;border-color:#cbd5e1;color:#0f172a}
+  body.theme-light .hub-btn:hover{background:#eff6ff;border-color:#7c3aed}
+  body.theme-light .hub-btn.active{background:#dcfce7;border-color:#16a34a}
+  body.theme-light .hub-state-pill{background:#e2e8f0;color:#334155}
+
+  .perms-card{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px 14px;margin-bottom:10px}
+  .perms-card h4{margin:0 0 6px;font-family:var(--font-urdu-heading);font-size:1.12rem;color:#93c5fd;line-height:var(--lh-urdu-heading);letter-spacing:0}
+  .perms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:6px}
+  .perm-item{display:flex;align-items:center;gap:8px;background:#1e293b;padding:7px 10px;border-radius:10px;font-family:var(--font-urdu-body);font-size:.96rem;line-height:var(--lh-urdu-body);cursor:pointer;border:1px solid #334155;user-select:none;transition:border-color .2s;letter-spacing:0}
   .perm-item:hover{border-color:#3b82f6}
   .perm-item input[type="checkbox"]{width:18px;height:18px;cursor:pointer;accent-color:#2563eb;margin:0}
   .pw-badge{display:inline-block;padding:2px 8px;border-radius:8px;font-family:var(--font-latin-heading);font-size:.85rem;font-weight:700}
@@ -1083,13 +1124,13 @@
     display:flex;
     flex-direction:column;
     background:var(--card);
-    border:2px solid #334155;
-    border-radius:18px;
-    padding:14px 16px;
-    margin:0 auto 14px auto;
+    border:1px solid #334155;
+    border-radius:16px;
+    padding:10px 14px;
+    margin:0 auto 10px auto;
     max-width:1300px;
     width:100%;
-    box-shadow:0 8px 30px rgba(0,0,0,.35);
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
     box-sizing:border-box;
   }
   .token-panel-header{
@@ -1100,25 +1141,25 @@
     flex-wrap:wrap;
     gap:8px;
     border-bottom:1px solid #334155;
-    padding-bottom:10px;
-    margin-bottom:12px;
+    padding-bottom:8px;
+    margin-bottom:10px;
   }
-  .token-panel-title{font-family:var(--font-urdu-body);font-size:1.2rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .token-panel-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .token-panel-title{font-family:var(--font-urdu-body);font-size:1.12rem;font-weight:700;color:#f8fafc;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .token-panel-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
   .token-panel-body{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:14px;
+    gap:10px;
     align-items:start;
   }
   @media(max-width:900px){.token-panel-body{grid-template-columns:1fr}}
   html[dir="ltr"] .token-next-txt{border-right:0;padding-right:0;border-left:1px solid #334155;padding-left:10px}
   .token-panel-col{display:flex;flex-direction:column;gap:8px;min-width:0}
-  .token-big-display{background:#0f172a;border:2px solid #3b82f6;border-radius:16px;padding:10px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}
-  .token-big-label{font-family:var(--font-urdu-body);font-size:1.05rem;font-weight:700;color:#93c5fd;margin-bottom:2px}
-  .token-big-number{font-family:var(--font-latin-heading);font-size:3.2rem;font-weight:900;color:#22c55e;line-height:1;margin:2px 0;text-shadow:0 0 20px rgba(34,197,94,.4)}
-  .token-big-number.none{font-size:1.5rem;color:#64748b;font-family:var(--font-urdu-body);text-shadow:none}
-  .token-stats-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;margin-top:6px;padding-top:6px;border-top:1px dashed #334155;font-size:.88rem;color:#cbd5e1;font-family:var(--font-urdu-body)}
+  .token-big-display{background:#0f172a;border:2px solid #3b82f6;border-radius:14px;padding:8px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.45)}
+  .token-big-label{font-family:var(--font-urdu-body);font-size:.98rem;font-weight:700;color:#93c5fd;margin-bottom:2px}
+  .token-big-number{font-family:var(--font-latin-heading);font-size:2.7rem;font-weight:900;color:#22c55e;line-height:1;margin:2px 0;text-shadow:0 0 18px rgba(34,197,94,.35)}
+  .token-big-number.none{font-size:1.35rem;color:#64748b;font-family:var(--font-urdu-body);text-shadow:none}
+  .token-stats-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 10px;margin-top:6px;padding-top:6px;border-top:1px dashed #334155;font-size:.84rem;color:#cbd5e1;font-family:var(--font-urdu-body)}
   .token-stat-item span{font-weight:700;color:#f8fafc}
   .token-controls-wrap{display:flex;flex-direction:column;gap:8px}
   .token-total-setting-box{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:6px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
@@ -1201,7 +1242,26 @@
       justify-content:center;
       padding:6px 8px;
       box-sizing:border-box;
+      flex-wrap:wrap;
     }
+    .token-active-wrap{
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:4px 10px;
+    }
+    .token-next-txt{
+      border-right:0 !important;
+      border-left:0 !important;
+      padding-right:0 !important;
+      padding-left:0 !important;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .admin-token-panel{padding:10px 10px;border-radius:14px}
+    .token-panel-title{font-size:1.05rem}
+    .token-panel-actions{width:100%;justify-content:space-between}
+    .token-panel-actions > button{flex:1 1 auto;justify-content:center;font-size:.82rem !important;padding:6px 8px !important}
+    .token-total-setting-box{justify-content:center;text-align:center}
     .nav-actions{
       display:flex;
       flex-wrap:wrap;
@@ -1229,7 +1289,7 @@
     .token-day-controls{flex-direction:column}
   }
 
-  @media (max-height: 500px) {
+  @media (max-height: 500px) and (min-width: 601px) {
     /* Short landscape on phones (e.g. 844x390) */
     #app{padding:4px 6px 52px 6px}
     .top-nav{padding:4px 8px;margin-bottom:4px}
@@ -1252,7 +1312,7 @@
     .chat-fab-toggle{padding:6px 12px;gap:6px}
     .tools{max-width:calc(100% - 118px)}
   }
-  @media (max-height: 500px) {
+  @media (max-height: 500px) and (min-width: 601px) {
     /* Phone landscape: one compact header row so token controls get the space */
     .top-nav{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:6px}
     .user-badge{flex-wrap:nowrap;width:auto;gap:6px;white-space:nowrap}
@@ -2347,6 +2407,7 @@
       <span class="quick-title">فوری چناؤ کے بٹن:</span>
       <div class="quick-btns" id="quickUsers"></div>
     </div>
+    <div class="app-footer" style="margin-top:14px;padding-bottom:0">Powered by Sohail Rasheed</div>
   </div>
 </div>
 
@@ -2420,6 +2481,60 @@
           <button class="logout-top" id="logoutTop" data-i18n="logoutBtn">🚪 لاگ آؤٹ</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ============ سپر ایڈمن بٹن ٹوگل ہب (صرف سپر ایڈمن کے لیے) ============ -->
+  <div id="superAdminHub" class="super-hub-card hidden">
+    <div class="super-hub-header">
+      <div class="super-hub-title">🛡️ سپر ایڈمن کوئیک ٹوگلز (Quick Controls)</div>
+      <div class="super-hub-sub">جس سیکشن کو چیک یا کنٹرول کرنا ہو اس کے بٹن پر کلک کریں</div>
+    </div>
+    <div class="super-hub-grid">
+      <button type="button" class="hub-btn" id="hubToggleTokenPanel">
+        <span>🎫 ٹوکن کنٹرول پینل</span>
+        <span class="hub-state-pill" id="hubStateTokenPanel">بند</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubToggleStaffGrid">
+        <span>👥 اسٹاف کارڈز</span>
+        <span class="hub-state-pill" id="hubStateStaffGrid">بند</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubToggleWaChat">
+        <span>💬 پیغامات (چیٹ)</span>
+        <span class="hub-state-pill">کھولیں</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubOpenUsageReport">
+        <span>📊 استعمال کی رپورٹ</span>
+        <span class="hub-state-pill">دیکھیں</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubOpenAdminPerms">
+        <span>🛡️ ایڈمن اسکرین کنٹرول</span>
+        <span class="hub-state-pill">سیٹنگز</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubOpenPeople">
+        <span>👤 افراد کا انتظام</span>
+        <span class="hub-state-pill">فہرست</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubOpenPins">
+        <span>📌 فوری پن پیغامات</span>
+        <span class="hub-state-pill">ترمیم</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubOpenMaint">
+        <span>🚧 سائٹ مینٹیننس</span>
+        <span class="hub-state-pill">موڈ</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubOpenHistory">
+        <span>📜 سابقہ پیغامات</span>
+        <span class="hub-state-pill">ہسٹری</span>
+      </button>
+      <button type="button" class="hub-btn" id="hubOpenAllTokens">
+        <span>🏷️ تمام ٹوکنز لسٹ</span>
+        <span class="hub-state-pill">لسٹ</span>
+      </button>
+      <button type="button" class="hub-btn danger-btn" id="hubOpenDbClean">
+        <span>🧹 ڈیٹا بیس صفائی</span>
+        <span class="hub-state-pill">صفائی</span>
+      </button>
     </div>
   </div>
 
@@ -2561,6 +2676,8 @@
   </div>
 
   <div class="grid hidden" id="grid"></div>
+
+  <div class="app-footer">Powered by Sohail Rasheed</div>
 
   <!-- ============ واٹس ایپ اسٹائل چیٹ بٹن (Chat Toggle Button) ============ -->
   <button type="button" id="chatToggleBtn" class="chat-fab-toggle" title="Messages">
@@ -2758,6 +2875,7 @@
       <button type="button" class="super-tab" id="tabPeopleBtn">افراد کا انتظام</button>
       <button type="button" class="super-tab" id="tabPinsBtn">فوری پن پیغامات</button>
       <button type="button" class="super-tab" id="tabMaintenanceBtn">سائٹ مینٹیننس</button>
+      <button type="button" class="super-tab" id="tabUsageReportBtn">📊 استعمال کی رپورٹ</button>
       <button type="button" class="super-tab tab-danger" id="tabDbCleanBtn">ڈیٹا بیس و چیٹ صفائی</button>
     </div>
 
@@ -2857,19 +2975,21 @@
           </p>
         </div>
 
-        <div class="perms-card">
-          <h4>۱. تمام ایکٹیو کارڈ پیغامات صاف کریں</h4>
-          <p style="margin:0 0 10px;font-size:.9rem;color:var(--muted)">تمام اسکرینوں اور کارڈز پر اس وقت جو بھی پیغامات نظر آ رہے ہیں وہ فوراً صاف ہو جائیں گے:</p>
-          <button type="button" class="btn-main" id="btnPurgeActiveMsgs" style="background:#d97706">تمام ایکٹیو پیغامات صاف کریں</button>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">
+          <div class="perms-card" style="margin-bottom:0">
+            <h4>۱. تمام ایکٹیو کارڈ پیغامات صاف کریں</h4>
+            <p style="margin:0 0 10px;font-size:.88rem;color:var(--muted)">تمام اسکرینوں اور کارڈز پر اس وقت جو بھی پیغامات نظر آ رہے ہیں وہ فوراً صاف ہو جائیں گے:</p>
+            <button type="button" class="btn-main" id="btnPurgeActiveMsgs" style="background:#d97706">تمام ایکٹیو پیغامات صاف کریں</button>
+          </div>
+
+          <div class="perms-card" style="margin-bottom:0">
+            <h4>۲. سابقہ پیغامات کی تمام ہسٹری ڈیلیٹ کریں</h4>
+            <p style="margin:0 0 10px;font-size:.88rem;color:var(--muted)">فائر بیس اور تمام ڈیوائسز سے پچھلے تمام پیغامات کا ریکارڈ (History) مکمل ڈیلیٹ کریں:</p>
+            <button type="button" class="btn-main" id="btnPurgeHistory" style="background:#dc2626">سابقہ ہسٹری مکمل ڈیلیٹ کریں</button>
+          </div>
         </div>
 
-        <div class="perms-card">
-          <h4>۲. سابقہ پیغامات کی تمام ہسٹری ڈیلیٹ کریں</h4>
-          <p style="margin:0 0 10px;font-size:.9rem;color:var(--muted)">فائر بیس اور تمام ڈیوائسز سے پچھلے تمام پیغامات کا ریکارڈ (History) مکمل ڈیلیٹ کریں تاکہ فائر بیس کا وزن کم سے کم ہو:</p>
-          <button type="button" class="btn-main" id="btnPurgeHistory" style="background:#dc2626">سابقہ ہسٹری مکمل ڈیلیٹ کریں</button>
-        </div>
-
-        <div class="perms-card" style="background:#1e1b4b;border-color:#6366f1">
+        <div class="perms-card" style="background:#1e1b4b;border-color:#6366f1;margin-top:10px">
           <h4 style="color:#a5b4fc">۳. مکمل ڈیٹا بیس صفائی (Full Database Purge)</h4>
           <p style="margin:0 0 10px;font-size:.9rem;color:#cbd5e1">ایکٹیو پیغامات اور پچھلی ہسٹری دونوں کو بیک وقت مکمل صاف کر کے فائر بیس کو بالکل ہلکا اور نیا بنا دیں:</p>
           <button type="button" class="btn-main" id="btnPurgeAllDb" style="background:#4338ca">مکمل ڈیٹا بیس صاف کریں (All-in-One)</button>
@@ -2900,6 +3020,48 @@
           </div>
           <button type="button" class="btn-main" id="btnSaveMaintenance" style="background:#dc2626;">مینٹیننس ترتیبات لاگو کریں (Save & Apply)</button>
         </div>
+      </div>
+
+      <!-- Tab 6: صارفین کے استعمال کی رپورٹ (Usage & Activity Report) -->
+      <div id="tabUsageReportSection" class="hidden">
+        <div class="usage-toolbar">
+          <div class="usage-filter-group" id="usageRangeFilters">
+            <button type="button" class="h-filter active" data-range="today">آج</button>
+            <button type="button" class="h-filter" data-range="7d">گزشتہ 7 دن</button>
+            <button type="button" class="h-filter" data-range="30d">گزشتہ 30 دن</button>
+            <button type="button" class="h-filter" data-range="all">مکمل ریکارڈ</button>
+          </div>
+          <div class="usage-filter-group" id="usageModeFilters">
+            <button type="button" class="h-filter active" data-mode="all">تمام (All)</button>
+            <button type="button" class="h-filter" data-mode="test">🧪 صرف ٹیسٹنگ</button>
+            <button type="button" class="h-filter" data-mode="normal">✅ صرف نارمل</button>
+          </div>
+          <div class="usage-filter-group">
+            <button type="button" class="quick-btn" id="btnRefreshUsageReport">🔄 تازہ کریں</button>
+            <button type="button" class="quick-btn" id="btnClearUsageReport" style="background:#991b1b;color:#fff;border-color:#dc2626">🗑️ ریکارڈ صاف کریں</button>
+          </div>
+        </div>
+
+        <div class="usage-kpi-grid" id="usageKpiGrid">
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="usageKpiUsers">0</span>
+            <span class="usage-kpi-label">کل صارفین</span>
+          </div>
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="usageKpiTotalTime">0m</span>
+            <span class="usage-kpi-label">مجموعی وقت</span>
+          </div>
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="usageKpiTestTime" style="color:#fbbf24">0m</span>
+            <span class="usage-kpi-label">ٹیسٹنگ وقت</span>
+          </div>
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="usageKpiNormalTime" style="color:#4ade80">0m</span>
+            <span class="usage-kpi-label">نارمل وقت</span>
+          </div>
+        </div>
+
+        <div id="usageReportList"></div>
       </div>
     </div>
   </div>
@@ -3485,6 +3647,7 @@
   }
 
   function toggleLanguage(){
+    if(typeof trackUserFeature === "function") trackUserFeature("lang_switch");
     applyLanguage(currentLang === "en" ? "ur" : "en");
   }
 
@@ -4404,6 +4567,10 @@
   $("uid").addEventListener("keydown", e => { if(e.key === "Enter") $("pass").focus(); });
   
   async function doLogout(){
+    if(typeof flushUsageTime === "function"){
+      try{ await flushUsageTime(true); }catch(e){}
+    }
+    if(typeof stopUsageTracker === "function") stopUsageTracker();
     detachMessaging();
     if(typeof detachTokenQueue === "function") detachTokenQueue();
     if(currentUser){
@@ -4913,11 +5080,6 @@
     if(sendVoiceBtn) sendVoiceBtn.disabled = true;
 
     try{
-      // If Admin sends a new inquiry to a person, archive older messages on that person card
-      if(msgPayload.kind === "thread" && currentUser && (currentUser.role === "admin" || currentUser.role === "superadmin")){
-        archivePreviousMessagesForPerson(msgPayload.to);
-      }
-
       let savedKey = null;
 
       if(isFirebaseConfigured && db && (!auth || auth.currentUser)){
@@ -4983,6 +5145,12 @@
           if(activeChatPerson) renderWaMessages();
           renderWaContacts();
         }
+      }
+      if(typeof trackUserFeature === "function"){
+        if(msgPayload.isBroadcast) trackUserFeature("broadcast_msg");
+        else if(msgPayload.hasAudio) trackUserFeature("voice_msg");
+        else if(msgPayload.kind === "pin") trackUserFeature("pinned_msg");
+        else trackUserFeature("text_msg");
       }
       return true;
     }catch(err){
@@ -5570,7 +5738,11 @@
         ...histData,
         clearedAt: firebase.database.ServerValue.TIMESTAMP
       }).catch(() => {});
-      db.ref("messages").child(key).remove().catch(() => {});
+      if(currentUser && currentUser.role === "superadmin"){
+        db.ref("messages").child(key).remove().catch(() => {});
+      } else {
+        removeMessageFromCard(key, m.to);
+      }
       // Note: Voice audio in db.ref("voice").child(key) is preserved for Super User playback
       toast("پیغام صاف کر دیا گیا");
     } else {
@@ -6454,7 +6626,11 @@
       panel.classList.add("hidden");
       return;
     }
-    panel.classList.remove("hidden");
+    if(currentUser && currentUser.role === "superadmin" && typeof superToggleState !== "undefined" && !superToggleState.tokenPanel){
+      panel.classList.add("hidden");
+    } else {
+      panel.classList.remove("hidden");
+    }
 
     const bigNumEl = $("tokenBigNum");
     const noticeEl = $("tokenNoticeMsg");
@@ -8289,6 +8465,242 @@
 
   if($("waClearChatBtn")) $("waClearChatBtn").onclick = handleWaClearChat;
 
+  /* ---------- Usage & Activity Tracking Engine ---------- */
+  const USAGE_LOCAL_KEY = "intercom_usage_logs_v1";
+  const FEATURE_LABELS_UR = {
+    login: "🔑 ایپ لاگ ان",
+    text_msg: "💬 ٹیکسٹ پیغام",
+    voice_msg: "🎙️ صوتی پیغام",
+    pinned_msg: "📌 فوری پن پیغام",
+    broadcast_msg: "📢 براڈکاسٹ پیغام",
+    voice_play: "▶️ صوتی پیغام سنا",
+    speech_to_text: "🗣️ مائیک لکھائی (STT)",
+    token_next: "🎫 اگلا ٹوکن",
+    token_prev: "⏮️ پچھلا ٹوکن",
+    token_skip: "⏭️ ٹوکن چھوڑا",
+    token_urgent: "🚨 ارجنٹ ٹوکن کال",
+    token_outside: "🪑 باہر انتظار",
+    token_settings: "⚙️ ٹوکن سیٹنگز",
+    token_tag: "🏷️ ٹوکن ٹیگ",
+    history_view: "📜 ہسٹری دیکھی",
+    sound_test: "🔊 آواز چیک",
+    chat_clear: "🧹 چیٹ صاف کی",
+    pin_change: "🔐 پن تبدیل",
+    lang_switch: "🌐 زبان تبدیل",
+    super_admin_panel: "🛡️ سپر ایڈمن پینل"
+  };
+
+  let usageTimerId = null;
+  let usageLastTickMs = 0;
+  let usagePendingTestSec = 0;
+  let usagePendingNormalSec = 0;
+  let usageSessionLogged = false;
+
+  function getUsageMode(){
+    if(isLocalhost) return "test";
+    if(typeof maintenanceConfig !== "undefined" && maintenanceConfig && maintenanceConfig.enabled) return "test";
+    return "normal";
+  }
+
+  function getLocalUsageLogs(){
+    try{
+      const raw = localStorage.getItem(USAGE_LOCAL_KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+
+  function saveLocalUsageDelta(dateKey, userObj, testSec, normalSec, featureKey, incSession){
+    try{
+      const logs = getLocalUsageLogs();
+      if(!logs[dateKey]) logs[dateKey] = {};
+      if(!logs[dateKey][userObj.id]){
+        logs[dateKey][userObj.id] = {
+          userId: userObj.id,
+          name: userObj.name || userObj.id,
+          role: userObj.role || "user",
+          testSeconds: 0,
+          normalSeconds: 0,
+          totalSeconds: 0,
+          sessionsCount: 0,
+          lastActive: Date.now(),
+          lastMode: getUsageMode(),
+          features: {}
+        };
+      }
+      const entry = logs[dateKey][userObj.id];
+      entry.name = userObj.name || entry.name || userObj.id;
+      entry.role = userObj.role || entry.role || "user";
+      entry.testSeconds = (entry.testSeconds || 0) + (testSec || 0);
+      entry.normalSeconds = (entry.normalSeconds || 0) + (normalSec || 0);
+      entry.totalSeconds = entry.testSeconds + entry.normalSeconds;
+      if(incSession) entry.sessionsCount = (entry.sessionsCount || 0) + 1;
+      entry.lastActive = Date.now();
+      entry.lastMode = getUsageMode();
+      if(featureKey){
+        if(!entry.features) entry.features = {};
+        if(!entry.features[featureKey]) entry.features[featureKey] = { count: 0, lastUsed: Date.now() };
+        entry.features[featureKey].count += 1;
+        entry.features[featureKey].lastUsed = Date.now();
+      }
+      localStorage.setItem(USAGE_LOCAL_KEY, JSON.stringify(logs));
+    }catch(e){}
+  }
+
+  async function writeUsageUpdateToDb(updatesObj){
+    if(!currentUser || !currentUser.id) return;
+    if(!(isFirebaseConfigured && db && (!auth || auth.currentUser))) return;
+    const dateKey = getTodayDateStr();
+    const ref = db.ref(`usageLogs/${dateKey}/${currentUser.id}`);
+    try{
+      await ref.update(updatesObj);
+    }catch(e){
+      // Silently ignore if offline/rules reject
+    }
+  }
+
+  async function flushUsageTime(force = false){
+    if(!currentUser || !currentUser.id) return;
+    if(isUserBlockedByMaintenance(currentUser)) return;
+
+    const now = Date.now();
+    if(usageLastTickMs > 0 && (document.visibilityState === "visible" || force)){
+      const elapsedSec = Math.min(30, Math.max(0, Math.round((now - usageLastTickMs) / 1000)));
+      if(elapsedSec > 0){
+        if(getUsageMode() === "test") usagePendingTestSec += elapsedSec;
+        else usagePendingNormalSec += elapsedSec;
+      }
+    }
+    usageLastTickMs = now;
+
+    const addTest = usagePendingTestSec;
+    const addNormal = usagePendingNormalSec;
+    if(addTest <= 0 && addNormal <= 0 && !force) return;
+
+    usagePendingTestSec = 0;
+    usagePendingNormalSec = 0;
+    const totalAdd = addTest + addNormal;
+    if(totalAdd <= 0) return;
+
+    const dateKey = getTodayDateStr();
+    saveLocalUsageDelta(dateKey, currentUser, addTest, addNormal, null, false);
+
+    if(isFirebaseConfigured && db && (!auth || auth.currentUser) && typeof firebase !== "undefined" && firebase.database && firebase.database.ServerValue){
+      const upd = {
+        userId: currentUser.id,
+        name: currentUser.name || currentUser.id,
+        role: currentUser.role || "user",
+        lastActive: firebase.database.ServerValue.TIMESTAMP,
+        lastMode: getUsageMode(),
+        totalSeconds: firebase.database.ServerValue.increment(totalAdd)
+      };
+      if(addTest > 0) upd.testSeconds = firebase.database.ServerValue.increment(addTest);
+      if(addNormal > 0) upd.normalSeconds = firebase.database.ServerValue.increment(addNormal);
+      await writeUsageUpdateToDb(upd);
+    }
+  }
+
+  function trackUserFeature(featureKey){
+    if(!currentUser || !currentUser.id) return;
+    if(isUserBlockedByMaintenance(currentUser)) return;
+    if(!featureKey) return;
+
+    const dateKey = getTodayDateStr();
+    saveLocalUsageDelta(dateKey, currentUser, 0, 0, featureKey, false);
+
+    if(isFirebaseConfigured && db && (!auth || auth.currentUser) && typeof firebase !== "undefined" && firebase.database && firebase.database.ServerValue){
+      const upd = {
+        userId: currentUser.id,
+        name: currentUser.name || currentUser.id,
+        role: currentUser.role || "user",
+        lastActive: firebase.database.ServerValue.TIMESTAMP,
+        lastMode: getUsageMode()
+      };
+      upd[`features/${featureKey}/count`] = firebase.database.ServerValue.increment(1);
+      upd[`features/${featureKey}/lastUsed`] = firebase.database.ServerValue.TIMESTAMP;
+      writeUsageUpdateToDb(upd);
+    }
+  }
+
+  function initUsageTracker(){
+    if(!currentUser || !currentUser.id) return;
+    if(isUserBlockedByMaintenance(currentUser)) return;
+
+    if(!usageSessionLogged){
+      usageSessionLogged = true;
+      const dateKey = getTodayDateStr();
+      saveLocalUsageDelta(dateKey, currentUser, 0, 0, "login", true);
+      if(isFirebaseConfigured && db && (!auth || auth.currentUser) && typeof firebase !== "undefined" && firebase.database && firebase.database.ServerValue){
+        const upd = {
+          userId: currentUser.id,
+          name: currentUser.name || currentUser.id,
+          role: currentUser.role || "user",
+          lastActive: firebase.database.ServerValue.TIMESTAMP,
+          lastMode: getUsageMode(),
+          sessionsCount: firebase.database.ServerValue.increment(1)
+        };
+        upd["features/login/count"] = firebase.database.ServerValue.increment(1);
+        upd["features/login/lastUsed"] = firebase.database.ServerValue.TIMESTAMP;
+        writeUsageUpdateToDb(upd);
+      }
+    }
+
+    if(!usageTimerId){
+      usageLastTickMs = Date.now();
+      usageTimerId = setInterval(() => {
+        if(document.visibilityState === "visible"){
+          flushUsageTime(false);
+        } else {
+          usageLastTickMs = Date.now();
+        }
+      }, 15000);
+    }
+  }
+
+  function stopUsageTracker(){
+    if(usageTimerId){
+      clearInterval(usageTimerId);
+      usageTimerId = null;
+    }
+    usageLastTickMs = 0;
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if(document.visibilityState === "hidden"){
+      flushUsageTime(true);
+    } else {
+      usageLastTickMs = Date.now();
+    }
+  });
+  window.addEventListener("pagehide", () => { flushUsageTime(true); });
+  window.addEventListener("beforeunload", () => { flushUsageTime(true); });
+
+  const BUTTON_FEATURE_MAP = {
+    histBtn: "history_view",
+    btnCallNextToken: "token_next",
+    btnPrevToken: "token_prev",
+    btnSkipToken: "token_skip",
+    btnCallCustomUrgent: "token_urgent",
+    btnSendOutside: "token_outside",
+    btnSetTotalTokens: "token_settings",
+    btnEndDay: "token_settings",
+    btnNewDay: "token_settings",
+    btnSaveTagEdit: "token_tag",
+    waClearChatBtn: "chat_clear",
+    micBtn: "speech_to_text",
+    testSound: "sound_test",
+    btnSavePin: "pin_change"
+  };
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target && e.target.closest ? e.target.closest("button, .btn-voice-play, .wa-voice-play") : null;
+    if(!btn) return;
+    if(btn.id && BUTTON_FEATURE_MAP[btn.id]){
+      trackUserFeature(BUTTON_FEATURE_MAP[btn.id]);
+    } else if(btn.classList && (btn.classList.contains("btn-voice-play") || btn.classList.contains("wa-voice-play"))){
+      trackUserFeature("voice_play");
+    }
+  });
+
   function showApp(){
     // Dynamic Maintenance Mode Check
     if(currentUser && isUserBlockedByMaintenance(currentUser)){
@@ -8313,6 +8725,8 @@
     applyWake();
     renderWaContacts();
     if(currentUser) registerFcmTokenForUser(currentUser.id);
+    if(typeof initUsageTracker === "function") initUsageTracker();
+    if(typeof syncSuperAdminHub === "function") syncSuperAdminHub();
   }
 
   /* ---------- Send / Reply Modal & Universal Microphone ---------- */
@@ -8755,13 +9169,13 @@
         const timeStr = `${mm}:${ss}`;
         if($("voiceRecTimer")) $("voiceRecTimer").textContent = timeStr;
         if($("waRecordTimer")) $("waRecordTimer").textContent = timeStr;
-        if(voiceSeconds >= 30){
+        if(voiceSeconds >= 300){
           if(activeChatPerson && $("waRecordBanner") && !$("waRecordBanner").classList.contains("hidden")){
             stopAndSendWaVoiceRecording();
           } else {
             stopVoiceRecording();
           }
-          toast("صوتی پیغام کی حد (30 سیکنڈ) مکمل ہو گئی");
+          toast("صوتی پیغام کی حد (5 منٹ) مکمل ہو گئی");
         }
       }, 1000);
 
@@ -9039,8 +9453,80 @@
   if($("btnPurgeAllDb")) $("btnPurgeAllDb").onclick = purgeFullDatabase;
   if($("histPurgeBtn")) $("histPurgeBtn").onclick = purgeAllHistory;
 
+  /* ---------- Super Admin Toggle Hub Logic ---------- */
+  const superToggleState = {
+    tokenPanel: false,
+    staffGrid: false
+  };
+
+  function syncSuperAdminHub(){
+    const hub = $("superAdminHub");
+    const tokenPanel = $("adminTokenPanel");
+    const grid = $("grid");
+    const btnToken = $("hubToggleTokenPanel");
+    const stateToken = $("hubStateTokenPanel");
+    const btnGrid = $("hubToggleStaffGrid");
+    const stateGrid = $("hubStateStaffGrid");
+
+    if(!currentUser || currentUser.role !== "superadmin"){
+      if(hub) hub.classList.add("hidden");
+      return;
+    }
+
+    if(hub) hub.classList.remove("hidden");
+
+    if(tokenPanel) tokenPanel.classList.toggle("hidden", !superToggleState.tokenPanel);
+    if(btnToken) btnToken.classList.toggle("active", superToggleState.tokenPanel);
+    if(stateToken) stateToken.textContent = superToggleState.tokenPanel ? "کھلا" : "بند";
+
+    if(grid) grid.classList.toggle("hidden", !superToggleState.staffGrid);
+    if(btnGrid) btnGrid.classList.toggle("active", superToggleState.staffGrid);
+    if(stateGrid) stateGrid.textContent = superToggleState.staffGrid ? "کھلا" : "بند";
+  }
+
+  if($("hubToggleTokenPanel")){
+    $("hubToggleTokenPanel").onclick = () => {
+      superToggleState.tokenPanel = !superToggleState.tokenPanel;
+      syncSuperAdminHub();
+      if(superToggleState.tokenPanel && typeof updateAdminTokenPanelUI === "function"){
+        updateAdminTokenPanelUI(tokenDataState);
+      }
+    };
+  }
+  if($("hubToggleStaffGrid")){
+    $("hubToggleStaffGrid").onclick = () => {
+      superToggleState.staffGrid = !superToggleState.staffGrid;
+      syncSuperAdminHub();
+      if(superToggleState.staffGrid && typeof buildGrid === "function"){
+        buildGrid();
+      }
+    };
+  }
+  if($("hubToggleWaChat")){
+    $("hubToggleWaChat").onclick = () => {
+      const fab = $("waChatFab");
+      if(fab) fab.click();
+    };
+  }
+  function openSuperAtTab(tabBtnId, tabSectionId, afterFn){
+    openSuperModalWithPerson();
+    const b = $(tabBtnId);
+    const s = $(tabSectionId);
+    if(b && s) switchSuperTab(b, s);
+    if(typeof afterFn === "function") afterFn();
+  }
+  if($("hubOpenUsageReport")) $("hubOpenUsageReport").onclick = () => openSuperAtTab("tabUsageReportBtn", "tabUsageReportSection", fetchUsageReportData);
+  if($("hubOpenAdminPerms")) $("hubOpenAdminPerms").onclick = () => openSuperAtTab("tabAdminPermsBtn", "tabAdminPermsSection", renderAdminPerms);
+  if($("hubOpenPeople")) $("hubOpenPeople").onclick = () => openSuperAtTab("tabPeopleBtn", "tabPeopleSection", renderPeopleTable);
+  if($("hubOpenPins")) $("hubOpenPins").onclick = () => openSuperAtTab("tabPinsBtn", "tabPinsSection", renderPinList);
+  if($("hubOpenMaint")) $("hubOpenMaint").onclick = () => openSuperAtTab("tabMaintenanceBtn", "tabMaintenanceSection", renderMaintenanceAdminControls);
+  if($("hubOpenDbClean")) $("hubOpenDbClean").onclick = () => openSuperAtTab("tabDbCleanBtn", "tabDbCleanSection");
+  if($("hubOpenHistory")) $("hubOpenHistory").onclick = () => { if($("histBtn")) $("histBtn").click(); };
+  if($("hubOpenAllTokens")) $("hubOpenAllTokens").onclick = () => { if($("allTokensTopBtn")) $("allTokensTopBtn").click(); };
+
   /* ---------- Super User / Manager Panel Logic ---------- */
   function openSuperModalWithPerson(personId = null){
+    if(typeof trackUserFeature === "function") trackUserFeature("super_admin_panel");
     renderAdminPerms();
     renderPeopleTable();
     setupPinPersonSelect(personId);
@@ -9051,11 +9537,11 @@
   $("superCloseBtn").onclick = () => $("superModal").classList.add("hidden");
 
   function switchSuperTab(activeTabBtn, activeSection){
-    ["tabAdminPermsBtn", "tabPeopleBtn", "tabPinsBtn", "tabMaintenanceBtn", "tabDbCleanBtn"].forEach(id => {
+    ["tabAdminPermsBtn", "tabPeopleBtn", "tabPinsBtn", "tabMaintenanceBtn", "tabUsageReportBtn", "tabDbCleanBtn"].forEach(id => {
       const b = $(id);
       if(b) b.classList.remove("active");
     });
-    ["tabAdminPermsSection", "tabPeopleSection", "tabPinsSection", "tabMaintenanceSection", "tabDbCleanSection"].forEach(id => {
+    ["tabAdminPermsSection", "tabPeopleSection", "tabPinsSection", "tabMaintenanceSection", "tabUsageReportSection", "tabDbCleanSection"].forEach(id => {
       const s = $(id);
       if(s) s.classList.add("hidden");
     });
@@ -9088,6 +9574,229 @@
   $("tabDbCleanBtn").onclick = () => {
     switchSuperTab($("tabDbCleanBtn"), $("tabDbCleanSection"));
   };
+
+  /* Tab 6: Usage & Activity Report Logic */
+  let usageReportRange = "today";
+  let usageReportMode = "all";
+  let cachedUsageData = null;
+
+  function formatDurationUr(totalSec){
+    const s = Math.max(0, Math.round(totalSec || 0));
+    if(s < 60) return s + " سیکنڈ";
+    const hrs = Math.floor(s / 3600);
+    const mins = Math.floor((s % 3600) / 60);
+    const remSec = s % 60;
+    if(hrs > 0) return hrs + " گھنٹہ " + mins + " منٹ";
+    return mins + " منٹ " + (remSec > 0 ? remSec + " سیکنڈ" : "");
+  }
+
+  function getDateKeysForRange(range){
+    const keys = [];
+    const now = new Date();
+    const days = range === "today" ? 1 : (range === "7d" ? 7 : (range === "30d" ? 30 : 0));
+    if(days === 0) return null; // all
+    for(let i = 0; i < days; i++){
+      const d = new Date(now);
+      d.setDate(now.getDate() - i);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      keys.push(`${y}-${m}-${day}`);
+    }
+    return keys;
+  }
+
+  async function fetchUsageReportData(){
+    // Flush current user's pending seconds first so report is up-to-date
+    if(typeof flushUsageTime === "function"){
+      try{ await flushUsageTime(true); }catch(e){}
+    }
+    let rawLogs = {};
+    if(isFirebaseConfigured && db && (!auth || auth.currentUser)){
+      try{
+        const snap = await db.ref("usageLogs").once("value");
+        rawLogs = snap.val() || {};
+      }catch(e){
+        console.warn("Usage report DB read error:", e);
+        rawLogs = getLocalUsageLogs();
+      }
+    } else {
+      rawLogs = getLocalUsageLogs();
+    }
+    cachedUsageData = rawLogs;
+    renderUsageReport();
+  }
+
+  function renderUsageReport(){
+    const listEl = $("usageReportList");
+    if(!listEl) return;
+
+    const logs = cachedUsageData || {};
+    const allowedDates = getDateKeysForRange(usageReportRange);
+    const userMap = {};
+
+    Object.keys(logs).forEach(dateKey => {
+      if(allowedDates && !allowedDates.includes(dateKey)) return;
+      const dayUsers = logs[dateKey] || {};
+      Object.keys(dayUsers).forEach(uid => {
+        const u = dayUsers[uid];
+        if(!u) return;
+        if(!userMap[uid]){
+          const personObj = activePeople.find(p => p.id === uid);
+          userMap[uid] = {
+            userId: uid,
+            name: u.name || (personObj && personObj.name) || uid,
+            role: u.role || (uid === "superadmin" ? "superadmin" : (uid === "admin" ? "admin" : "user")),
+            color: (personObj && personObj.color) || (uid === "superadmin" ? "#7c3aed" : (uid === "admin" ? "#2563eb" : "#3b82f6")),
+            testSeconds: 0,
+            normalSeconds: 0,
+            totalSeconds: 0,
+            sessionsCount: 0,
+            lastActive: 0,
+            lastMode: u.lastMode || "normal",
+            features: {}
+          };
+        }
+        const agg = userMap[uid];
+        agg.testSeconds += Number(u.testSeconds || 0);
+        agg.normalSeconds += Number(u.normalSeconds || 0);
+        agg.totalSeconds += Number(u.totalSeconds || (Number(u.testSeconds || 0) + Number(u.normalSeconds || 0)));
+        agg.sessionsCount += Number(u.sessionsCount || 0);
+        if(Number(u.lastActive || 0) > agg.lastActive){
+          agg.lastActive = Number(u.lastActive || 0);
+          agg.lastMode = u.lastMode || agg.lastMode;
+        }
+        if(u.features && typeof u.features === "object"){
+          Object.keys(u.features).forEach(fk => {
+            const fObj = u.features[fk];
+            if(!fObj) return;
+            if(!agg.features[fk]) agg.features[fk] = { count: 0, lastUsed: 0 };
+            agg.features[fk].count += Number(fObj.count || 0);
+            if(Number(fObj.lastUsed || 0) > agg.features[fk].lastUsed){
+              agg.features[fk].lastUsed = Number(fObj.lastUsed || 0);
+            }
+          });
+        }
+      });
+    });
+
+    let usersArr = Object.values(userMap);
+    if(usageReportMode === "test"){
+      usersArr = usersArr.filter(u => u.testSeconds > 0 || u.lastMode === "test");
+    } else if(usageReportMode === "normal"){
+      usersArr = usersArr.filter(u => u.normalSeconds > 0 || u.lastMode === "normal");
+    }
+
+    usersArr.sort((a, b) => {
+      const aSec = usageReportMode === "test" ? a.testSeconds : (usageReportMode === "normal" ? a.normalSeconds : a.totalSeconds);
+      const bSec = usageReportMode === "test" ? b.testSeconds : (usageReportMode === "normal" ? b.normalSeconds : b.totalSeconds);
+      return (bSec - aSec) || (b.lastActive - a.lastActive);
+    });
+
+    let sumTest = 0, sumNormal = 0;
+    usersArr.forEach(u => { sumTest += u.testSeconds; sumNormal += u.normalSeconds; });
+    const sumTotal = usageReportMode === "test" ? sumTest : (usageReportMode === "normal" ? sumNormal : (sumTest + sumNormal));
+
+    if($("usageKpiUsers")) $("usageKpiUsers").textContent = String(usersArr.length);
+    if($("usageKpiTotalTime")) $("usageKpiTotalTime").textContent = formatDurationUr(sumTotal);
+    if($("usageKpiTestTime")) $("usageKpiTestTime").textContent = formatDurationUr(sumTest);
+    if($("usageKpiNormalTime")) $("usageKpiNormalTime").textContent = formatDurationUr(sumNormal);
+
+    listEl.innerHTML = "";
+    if(usersArr.length === 0){
+      listEl.innerHTML = '<div style="text-align:center;padding:30px;color:var(--muted);background:#0f172a;border-radius:14px;border:1px solid #334155">اس فلٹر کے لیے ابھی تک کوئی استعمال کا ریکارڈ موجود نہیں ہے۔</div>';
+      return;
+    }
+
+    usersArr.forEach(u => {
+      const card = document.createElement("div");
+      card.className = "usage-user-card";
+      card.style.setProperty("--ucol", u.color);
+
+      const displaySec = usageReportMode === "test" ? u.testSeconds : (usageReportMode === "normal" ? u.normalSeconds : u.totalSeconds);
+      const roleLabel = u.role === "superadmin" ? "سپر ایڈمن" : (u.role === "admin" ? "ایڈمن" : "اسٹاف");
+      const lastActiveStr = u.lastActive ? formatDateTime(u.lastActive) : "نامعلوم";
+
+      const featEntries = Object.entries(u.features || {}).sort((a, b) => (b[1].count || 0) - (a[1].count || 0));
+      let featHtml = "";
+      if(featEntries.length === 0){
+        featHtml = '<span style="font-size:.85rem;color:var(--muted)">کوئی مخصوص فیچر ریکارڈ نہیں ہوا</span>';
+      } else {
+        featHtml = featEntries.map(([fk, fv]) => {
+          const label = FEATURE_LABELS_UR[fk] || fk;
+          return `<span class="usage-feat-pill"><span>${escapeHtml(label)}</span><span class="usage-feat-count">${fv.count || 0}</span></span>`;
+        }).join("");
+      }
+
+      card.innerHTML = `
+        <div class="usage-user-head">
+          <div class="usage-user-name">
+            <span>${escapeHtml(u.name)}</span>
+            <span class="user-role-tag" style="font-size:.78rem">${roleLabel}</span>
+          </div>
+          <div class="usage-time-total">⏱️ ${escapeHtml(formatDurationUr(displaySec))}</div>
+        </div>
+        <div class="usage-mode-row">
+          <span class="usage-badge-test">🧪 ٹیسٹنگ: ${escapeHtml(formatDurationUr(u.testSeconds))}</span>
+          <span class="usage-badge-normal">✅ نارمل: ${escapeHtml(formatDurationUr(u.normalSeconds))}</span>
+          <span class="usage-badge-meta">🔄 سیشنز: ${u.sessionsCount || 0}</span>
+          <span class="usage-badge-meta">🕒 آخری سرگرمی: ${escapeHtml(lastActiveStr)}</span>
+        </div>
+        <div class="usage-features-wrap">${featHtml}</div>
+      `;
+      listEl.appendChild(card);
+    });
+  }
+
+  if($("tabUsageReportBtn")){
+    $("tabUsageReportBtn").onclick = () => {
+      switchSuperTab($("tabUsageReportBtn"), $("tabUsageReportSection"));
+      fetchUsageReportData();
+    };
+  }
+
+  if($("usageRangeFilters")){
+    $("usageRangeFilters").querySelectorAll(".h-filter").forEach(btn => {
+      btn.onclick = () => {
+        $("usageRangeFilters").querySelectorAll(".h-filter").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        usageReportRange = btn.getAttribute("data-range") || "today";
+        renderUsageReport();
+      };
+    });
+  }
+
+  if($("usageModeFilters")){
+    $("usageModeFilters").querySelectorAll(".h-filter").forEach(btn => {
+      btn.onclick = () => {
+        $("usageModeFilters").querySelectorAll(".h-filter").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        usageReportMode = btn.getAttribute("data-mode") || "all";
+        renderUsageReport();
+      };
+    });
+  }
+
+  if($("btnRefreshUsageReport")){
+    $("btnRefreshUsageReport").onclick = () => {
+      toast("رپورٹ تازہ کی جا رہی ہے...");
+      fetchUsageReportData();
+    };
+  }
+
+  if($("btnClearUsageReport")){
+    $("btnClearUsageReport").onclick = async () => {
+      if(!currentUser || currentUser.role !== "superadmin") return;
+      if(!confirm("کیا آپ واقعی تمام صارفین کی استعمال کی رپورٹ (Usage Logs) صاف کرنا چاہتے ہیں؟")) return;
+      try{ localStorage.removeItem(USAGE_LOCAL_KEY); }catch(e){}
+      if(isFirebaseConfigured && db && (!auth || auth.currentUser)){
+        try{ await db.ref("usageLogs").remove(); }catch(e){}
+      }
+      cachedUsageData = {};
+      renderUsageReport();
+      toast("استعمال کی رپورٹ صاف کر دی گئی!");
+    };
+  }
 
   /* Tab 5: Maintenance Admin Controls Logic */
   function renderMaintenanceAdminControls(){

@@ -45,6 +45,15 @@
         ".read": "auth != null && (auth.uid === $uid || auth.token.role === 'admin' || auth.token.role === 'superadmin')",
         ".write": "auth != null && (auth.uid === $uid || auth.token.role === 'superadmin')"
       }
+    },
+    "usageLogs": {
+      ".read": "auth != null",
+      "$dateKey": {
+        "$userId": {
+          ".write": "auth != null"
+        }
+      },
+      ".write": "auth != null && auth.token.role === 'superadmin'"
     }
   }
 }

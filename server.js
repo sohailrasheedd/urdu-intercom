@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const DATA_FILE = path.join(__dirname, 'messages_data.json');
 
 // Test project safety guard & environment setup for Netlify functions
@@ -157,6 +157,79 @@ const server = http.createServer((req, res) => {
     if(fnName === 'send-push'){
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({ success: true, mocked: true, note: "Push notifications mocked in local test mode" }));
+      return;
+    }
+
+    // Local test mode login: allow PIN 1234 for any user
+    if(fnName === 'login'){
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', async () => {
+        try {
+          const parsed = body ? JSON.parse(body) : {};
+          const loginInput = (parsed.loginId || '').trim().toLowerCase();
+          const pinInput = (parsed.pin || '').trim();
+          if(!loginInput || !pinInput){
+            res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ error: 'آئی ڈی اور پن کوڈ دونوں درج کریں' }));
+            return;
+          }
+          if(pinInput !== '1234'){
+            res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ error: 'ٹیسٹنگ موڈ میں تمام صارفین کا پن کوڈ 1234 ہے' }));
+            return;
+          }
+          const fbAdmin = require('firebase-admin');
+          if(!fbAdmin.apps.length){
+            fbAdmin.initializeApp({
+              credential: fbAdmin.credential.cert(testServiceAccount),
+              databaseURL: TEST_DATABASE_URL
+            });
+          }
+          const app = fbAdmin.app();
+          const DEFAULT_PEOPLE = [
+            { id: "sohail", name: "سہیل", color: "#1e88e5", loginId: "sohail" },
+            { id: "abrar", name: "ابرار", color: "#43a047", loginId: "abrar" },
+            { id: "ahmedraza", name: "احمد رضا", color: "#fb8c00", loginId: "ahmedraza" },
+            { id: "bapu", name: "باپو", color: "#e53935", loginId: "bapu" }
+          ];
+          let targetUser = null;
+          if(loginInput === 'superadmin' || loginInput === 'super'){
+            targetUser = { role: 'superadmin', id: 'superadmin', name: 'سپر ایڈمن', color: '#7c3aed' };
+          } else if(loginInput === 'admin'){
+            targetUser = { role: 'admin', id: 'admin', name: 'ایڈمن', color: '#2563eb' };
+          } else {
+            let activePeople = DEFAULT_PEOPLE;
+            try {
+              const snap = await app.database().ref('settings/people').once('value');
+              if(Array.isArray(snap.val()) && snap.val().length > 0) activePeople = snap.val();
+            } catch(e){}
+            const match = activePeople.find(p => {
+              const lid = (p.loginId || p.id || '').toLowerCase();
+              const pid = (p.id || '').toLowerCase();
+              const pName = (p.name || '').toLowerCase();
+              return (loginInput === lid || loginInput === pid || loginInput === pName);
+            }) || DEFAULT_PEOPLE.find(p => p.id === loginInput);
+            if(match){
+              targetUser = { role: 'user', id: match.id, name: match.name, color: match.color || '#1e88e5' };
+            }
+          }
+          if(!targetUser){
+            res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ error: 'آئی ڈی یا نام درست نہیں ہے' }));
+            return;
+          }
+          const customToken = await app.auth().createCustomToken(targetUser.id, {
+            role: targetUser.role,
+            name: targetUser.name
+          });
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ customToken, user: targetUser, mustChangePin: false }));
+        } catch(err) {
+          res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ error: err.message }));
+        }
+      });
       return;
     }
 
