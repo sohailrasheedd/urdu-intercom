@@ -94,11 +94,8 @@ module.exports = async (req, res) => {
       const currentNum = tokenData.current;
       const allTokensSnap = await db.ref('fcmTokens').once('value');
       const allTokensObj = allTokensSnap.val() || {};
-      // CRITICAL MAINTENANCE LOCKDOWN:
-      // Only superadmin may receive notifications. Suppress for ALL staff and normal admin.
       const tokensWithMeta = [];
       Object.keys(allTokensObj).forEach(uid => {
-        if (uid !== 'superadmin') return; // Strict suppression: never notify regular staff/admin
         const userTokens = allTokensObj[uid];
         if (userTokens && typeof userTokens === 'object') {
           Object.keys(userTokens).forEach(sanitizedKey => {
@@ -184,14 +181,6 @@ module.exports = async (req, res) => {
         // User to admin: notify both admin and superadmin
         targetRecipients.push('admin', 'superadmin');
       }
-    }
-
-    // CRITICAL MAINTENANCE LOCKDOWN:
-    // Only superadmin can receive any notification. Never notify regular staff or admin.
-    targetRecipients = targetRecipients.filter(uid => uid === 'superadmin');
-    if (targetRecipients.length === 0) {
-      await db.ref(`messages/${messageId}`).update({ pushed: true });
-      return res.status(200).json({ success: true, pushedTokens: 0, suppressed: 'maintenance_lockdown' });
     }
 
     // Fetch FCM tokens for each target recipient

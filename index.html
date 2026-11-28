@@ -559,6 +559,20 @@
     box-shadow: 0 12px 35px rgba(15,23,42,0.16);
   }
   body.theme-light .settings-divider { background: #e2e8f0; }
+  @media (max-width: 640px) {
+    .settings-dropdown,
+    html[dir="ltr"] .settings-dropdown {
+      position: fixed;
+      top: 64px;
+      left: 12px;
+      right: 12px;
+      width: auto;
+      min-width: 0;
+      max-width: calc(100vw - 24px);
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+  }
 
   /* ---------- Collapsible Day Settings Drawer ---------- */
   .day-settings-drawer {
@@ -2507,6 +2521,10 @@
         <span>📊 استعمال کی رپورٹ</span>
         <span class="hub-state-pill">دیکھیں</span>
       </button>
+      <button type="button" class="hub-btn" id="hubOpenTokenSummary">
+        <span>🎫 ٹوکن سمری رپورٹ</span>
+        <span class="hub-state-pill">خلاصہ</span>
+      </button>
       <button type="button" class="hub-btn" id="hubOpenAdminPerms">
         <span>🛡️ ایڈمن اسکرین کنٹرول</span>
         <span class="hub-state-pill">سیٹنگز</span>
@@ -2732,7 +2750,7 @@
       </div>
 
       <!-- Input Bar -->
-      <div class="wa-input-bar">
+      <div class="wa-input-bar" id="waInputBar">
         <button type="button" id="waMicBtn" class="wa-input-btn wa-mic-btn" title="Voice Note">🎙️</button>
         <div id="waRecordBanner" class="wa-record-banner hidden">
           <span class="wa-record-indicator">🔴</span>
@@ -2742,6 +2760,9 @@
         </div>
         <textarea id="waTextInput" class="wa-text-input" rows="1" placeholder="پیغام لکھیں..." data-i18n-ph="chatPh"></textarea>
         <button type="button" id="waSendBtn" class="wa-input-btn wa-send-btn" title="Send">➤</button>
+      </div>
+      <div id="waBroadcastLockBanner" class="hidden" style="padding:12px 14px;text-align:center;background:#1e293b;color:#f59e0b;font-weight:700;font-size:.92rem;border-top:1px solid #334155">
+        🔒 اس اعلان پر جواب دینے کی اجازت نہیں ہے
       </div>
     </div>
   </div>
@@ -2876,6 +2897,7 @@
       <button type="button" class="super-tab" id="tabPinsBtn">فوری پن پیغامات</button>
       <button type="button" class="super-tab" id="tabMaintenanceBtn">سائٹ مینٹیننس</button>
       <button type="button" class="super-tab" id="tabUsageReportBtn">📊 استعمال کی رپورٹ</button>
+      <button type="button" class="super-tab" id="tabTokenSummaryBtn">🎫 ٹوکن سمری</button>
       <button type="button" class="super-tab tab-danger" id="tabDbCleanBtn">ڈیٹا بیس و چیٹ صفائی</button>
     </div>
 
@@ -3062,6 +3084,35 @@
         </div>
 
         <div id="usageReportList"></div>
+      </div>
+
+      <!-- Tab 7: ٹوکن سمری رپورٹ (صرف سپر ایڈمن کے لیے) -->
+      <div id="tabTokenSummarySection" class="hidden">
+        <div class="usage-toolbar" style="justify-content:space-between;align-items:center">
+          <div style="font-weight:700;font-size:.98rem;color:#38bdf8">🎫 آج کے ٹوکنز کی مکمل سمری رپورٹ (صرف سپر ایڈمن)</div>
+          <button type="button" class="quick-btn" id="btnRefreshTokenSummary">🔄 تازہ کریں</button>
+        </div>
+
+        <div class="usage-kpi-grid" id="tokenSummaryKpiGrid">
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="tsKpiIssued" style="color:#38bdf8">0</span>
+            <span class="usage-kpi-label">آج جاری کردہ ٹوکن</span>
+          </div>
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="tsKpiOutsideCount" style="color:#fbbf24">0</span>
+            <span class="usage-kpi-label">باہر انتظار والے ٹوکن</span>
+          </div>
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="tsKpiOutsideWait" style="color:#f87171">0 سیکنڈ</span>
+            <span class="usage-kpi-label">باہر انتظار کا کل وقت</span>
+          </div>
+          <div class="usage-kpi-card">
+            <span class="usage-kpi-val" id="tsKpiTotalFreeTime" style="color:#4ade80">—</span>
+            <span class="usage-kpi-label">کل ٹوکن فارغ ہونے کا وقت</span>
+          </div>
+        </div>
+
+        <div id="tokenSummaryDetails" style="display:flex;flex-direction:column;gap:12px"></div>
       </div>
     </div>
   </div>
@@ -3754,7 +3805,7 @@
     showHistoryBtn: false,
     showVoiceBtn: true,
     showSoundBtn: true,
-    autoPlayVoice: true
+    autoPlayVoice: false
   };
 
   // Pinned messages per person (Superadmin settings)
@@ -3955,10 +4006,19 @@
   }
 
   async function triggerPushNotification(messageId){
-    // CRITICAL MAINTENANCE LOCKDOWN:
-    // Strictly suppress all notifications during testing and maintenance.
-    // No staff member will receive any push notifications.
-    return;
+    if(!messageId) return;
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      if(auth && auth.currentUser){
+        const idToken = await auth.currentUser.getIdToken().catch(()=>null);
+        if(idToken) headers['Authorization'] = 'Bearer ' + idToken;
+      }
+      fetch('/.netlify/functions/send-push', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ messageId })
+      }).catch(()=>{});
+    }catch(e){}
   }
 
   /* ---------- Local Settings & Sync ---------- */
@@ -4870,6 +4930,7 @@
 
   /* ---------- Archive / Clear previous messages on card ---------- */
   function archivePreviousMessagesForPerson(personId){
+    stopAllVoicePlayback();
     // 1. Clear from DOM card if present
     const card = $("p_" + personId);
     if(card){
@@ -5040,11 +5101,27 @@
   }
 
   async function enqueueAutoPlayVoice(msgKey, msg){
-    if(document.hidden || adminPermissions.autoPlayVoice === false) return;
-    voicePlayQueue.push({ key: msgKey, msg: msg });
-    if(!isVoiceQueueProcessing){
-      processVoicePlayQueue();
+    // Voice messages must never auto-play; user must explicitly click play.
+    return;
+  }
+
+  function stopAllVoicePlayback(){
+    voicePlayQueue.length = 0;
+    isVoiceQueueProcessing = false;
+    isPlayingAllHist = false;
+    if(sharedAudio){
+      try{
+        sharedAudio.pause();
+        sharedAudio.currentTime = 0;
+        sharedAudio.src = "";
+      }catch(e){}
     }
+    if(currentPlayingBtn){
+      currentPlayingBtn.textContent = "▶";
+      currentPlayingBtn.classList.remove("playing");
+      currentPlayingBtn = null;
+    }
+    currentPlayingMsgId = null;
   }
 
   async function processVoicePlayQueue(){
@@ -5086,13 +5163,14 @@
         const newMsgRef = db.ref("messages").push();
         savedKey = newMsgRef.key;
 
-        // Task C: Store audio separately at voice/{msgId} to prevent database bloat
         if(msgPayload.audio){
-          await db.ref("voice").child(savedKey).set(msgPayload.audio);
+          voiceCache[savedKey] = msgPayload.audio;
         }
 
         const nowMs = Date.now();
-        const dbRecord = {
+        const optimisticMsg = {
+          key: savedKey,
+          id: savedKey,
           to: msgPayload.to,
           from: msgPayload.from,
           fromName: msgPayload.fromName,
@@ -5103,35 +5181,80 @@
           kind: msgPayload.kind || "thread",
           recipient: msgPayload.recipient || msgPayload.to,
           isBroadcast: !!msgPayload.isBroadcast,
-          time: firebase.database.ServerValue.TIMESTAMP,
-          sentAt: firebase.database.ServerValue.TIMESTAMP,
+          time: nowMs,
+          sentAt: nowMs,
           deliveredAt: null,
           seenAt: null,
           playedAt: null,
           replyTo: msgPayload.replyTo || ""
         };
+        activeMessagesMap[savedKey] = optimisticMsg;
+        displayMessageOnCard(savedKey, optimisticMsg);
+        if(activeChatPerson) renderWaMessages(true);
+        renderWaContacts();
 
-        await newMsgRef.set(dbRecord);
+        try{
+          // Task C: Store audio separately at voice/{msgId} to prevent database bloat
+          if(msgPayload.audio){
+            await db.ref("voice").child(savedKey).set(msgPayload.audio);
+          }
 
-        // Task B: Trigger background push notification via Netlify Function
-        triggerPushNotification(savedKey);
+          const dbRecord = {
+            to: msgPayload.to,
+            from: msgPayload.from,
+            fromName: msgPayload.fromName,
+            text: msgPayload.text,
+            hasAudio: !!msgPayload.hasAudio,
+            audioDuration: msgPayload.audioDuration || 0,
+            audioMime: msgPayload.audioMime || "",
+            kind: msgPayload.kind || "thread",
+            recipient: msgPayload.recipient || msgPayload.to,
+            isBroadcast: !!msgPayload.isBroadcast,
+            time: firebase.database.ServerValue.TIMESTAMP,
+            sentAt: firebase.database.ServerValue.TIMESTAMP,
+            deliveredAt: null,
+            seenAt: null,
+            playedAt: null,
+            replyTo: msgPayload.replyTo || ""
+          };
+
+          await newMsgRef.set(dbRecord);
+
+          // Task B: Trigger background push notification via Netlify Function
+          triggerPushNotification(savedKey);
+        }catch(uploadErr){
+          delete activeMessagesMap[savedKey];
+          removeMessageFromCard(savedKey, msgPayload.to);
+          if(activeChatPerson) renderWaMessages(true);
+          renderWaContacts();
+          throw uploadErr;
+        }
 
       } else {
         // Local server mode
+        const tempId = msgPayload.id || ('msg_' + Date.now() + '_' + Math.floor(Math.random()*10000));
+        msgPayload.id = tempId;
         if(msgPayload.audio){
-          const tempVoiceId = 'msg_' + Date.now();
-          await fetch('/api/voice', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: tempVoiceId, audio: msgPayload.audio })
-          }).catch(()=>{});
-          msgPayload.id = tempVoiceId;
+          voiceCache[tempId] = msgPayload.audio;
         }
 
         msgPayload.sentAt = Date.now();
         msgPayload.deliveredAt = null;
         msgPayload.seenAt = null;
         msgPayload.playedAt = null;
+
+        activeMessagesMap[tempId] = { ...msgPayload, key: tempId };
+        displayMessageOnCard(tempId, activeMessagesMap[tempId]);
+        if(activeChatPerson) renderWaMessages(true);
+        renderWaContacts();
+
+        if(msgPayload.audio){
+          await fetch('/api/voice', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: tempId, audio: msgPayload.audio })
+          }).catch(()=>{});
+        }
 
         const r = await fetch('/api/messages', {
           method: 'POST',
@@ -5373,8 +5496,8 @@
     tm.textContent = timeStr(m.time);
     el.appendChild(tm);
 
-    // 1-Click Fast Reply Pills
-    if(!isMine){
+    // 1-Click Fast Reply Pills (locked for broadcast announcements)
+    if(!isMine && !isBroadcast){
       const quickRow = document.createElement("div");
       quickRow.className = "quick-reply-row";
       const quickResponses = ["جی، دے دیں", "نہیں، نہ دیں", "ایک منٹ رکیں", "ڈاکٹر سے پوچھیں"];
@@ -5397,13 +5520,21 @@
     actions.className = "msg-actions";
 
     if(!isMine){
-      // INCOMING message: "جوابی پیغام لکھیں" + "کام ہو گیا / صاف کریں"
-      const replyBtn = document.createElement("button");
-      replyBtn.className = "btn-reply";
-      replyBtn.textContent = "جوابی پیغام لکھیں";
-      replyBtn.onclick = () => {
-        openModal(targetPerson, m);
-      };
+      // INCOMING message: "جوابی پیغام لکھیں" (locked on broadcast) + "کام ہو گیا / صاف کریں"
+      if(isBroadcast){
+        const lockSpan = document.createElement("span");
+        lockSpan.style.cssText = "font-size:.82rem;color:#f59e0b;font-weight:700;padding:4px 8px;display:inline-flex;align-items:center";
+        lockSpan.textContent = "🔒 جواب لاک ہے";
+        actions.appendChild(lockSpan);
+      } else {
+        const replyBtn = document.createElement("button");
+        replyBtn.className = "btn-reply";
+        replyBtn.textContent = "جوابی پیغام لکھیں";
+        replyBtn.onclick = () => {
+          openModal(targetPerson, m);
+        };
+        actions.appendChild(replyBtn);
+      }
 
       const clearBtn = document.createElement("button");
       clearBtn.className = "btn-clear";
@@ -5412,7 +5543,7 @@
         handleClearMessage(key, m);
       };
 
-      actions.append(replyBtn, clearBtn);
+      actions.appendChild(clearBtn);
     } else {
       // OUTGOING message: "مزید جواب" + "پیغام واپس لیں"
       const replyBtn = document.createElement("button");
@@ -5443,15 +5574,13 @@
       const isReply = (currentUser.role === "admin" || currentUser.role === "superadmin") && (m.from !== "admin" && m.from !== "superadmin");
       chime(isReply);
       toast("🔔 " + senderName + " کا نیا پیغام آیا ہے!");
-
-      // Auto-play voice note if enabled
-      if(m.hasAudio || m.audio){
-        enqueueAutoPlayVoice(key, m);
-      }
     }
   }
 
   function removeMessageFromCard(key, personId){
+    if(currentPlayingMsgId === key){
+      stopAllVoicePlayback();
+    }
     const el = $("m_" + key);
     if(el){
       el.remove();
@@ -5838,9 +5967,6 @@
           chime(isReply);
           const senderName = m.fromName || (activePeople.find(x => x.id === m.from)?.name || m.from);
           toast("🔔 " + senderName + " کا نیا پیغام آیا ہے!");
-          if(m.hasAudio || m.audio){
-            enqueueAutoPlayVoice(snapKey, m);
-          }
         }
 
         // WhatsApp-style instant chat update: if chat is open with sender/recipient, render immediately and scroll to bottom
@@ -5867,6 +5993,9 @@
       }
 
       function handleRemovedMessage(snapKey, targetId){
+        if(currentPlayingMsgId === snapKey){
+          stopAllVoicePlayback();
+        }
         delete activeMessagesMap[snapKey];
         removeMessageFromCard(snapKey, targetId);
         scheduleWaRender(false);
@@ -5901,7 +6030,11 @@
           handleRemovedMessage(snap.key, "broadcast");
         }, handleQueryError);
 
-        toRef.once("value", () => { ready = true; }, handleQueryError);
+        Promise.all([
+          toRef.once("value"),
+          fromRef.once("value"),
+          broadRef.once("value")
+        ]).then(() => { ready = true; }, handleQueryError);
       } else {
         // Admin / Superadmin query messages directly
         const ref = db.ref("messages");
@@ -6118,9 +6251,27 @@
   }
 
   function triggerTokenPush(currentNum){
-    // CRITICAL MAINTENANCE LOCKDOWN:
-    // Strictly suppress all token queue push notifications to staff during maintenance.
-    return;
+    if(!isFirebaseConfigured || !currentNum) return;
+    if(!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'superadmin')) return;
+    try{
+      const headers = { 'Content-Type': 'application/json' };
+      const sendReq = (hdrs) => {
+        fetch('/.netlify/functions/send-push', {
+          method: 'POST',
+          headers: hdrs,
+          body: JSON.stringify({ type: 'token', tokenNumber: currentNum })
+        }).catch(()=>{});
+      };
+
+      if(auth && auth.currentUser){
+        auth.currentUser.getIdToken().then(idToken => {
+          headers['Authorization'] = 'Bearer ' + idToken;
+          sendReq(headers);
+        }).catch(() => sendReq(headers));
+      } else {
+        sendReq(headers);
+      }
+    }catch(e){}
   }
 
   function handleTokenSnapshot(data){
@@ -6142,6 +6293,10 @@
     updateAdminTokenPanelUI(data);
     if(isAllTokensModalOpen){
       renderAllTokensModalList();
+    }
+    const tsSec = $("tabTokenSummarySection");
+    if(tsSec && !tsSec.classList.contains("hidden") && currentUser && currentUser.role === "superadmin"){
+      renderTokenSummaryReport(false);
     }
   }
 
@@ -7621,7 +7776,16 @@
   if($("settingsMenuBtn") && $("settingsDropdown")){
     $("settingsMenuBtn").onclick = (e) => {
       e.stopPropagation();
-      $("settingsDropdown").classList.toggle("hidden");
+      const dd = $("settingsDropdown");
+      dd.classList.toggle("hidden");
+      if(!dd.classList.contains("hidden")){
+        if(window.innerWidth <= 640){
+          const rect = $("settingsMenuBtn").getBoundingClientRect();
+          dd.style.top = Math.min(rect.bottom + 8, window.innerHeight - 120) + "px";
+        } else {
+          dd.style.top = "";
+        }
+      }
     };
     document.addEventListener("click", (e) => {
       const wrap = $("settingsMenuWrap");
@@ -7709,9 +7873,8 @@
         }))
       ];
     } else {
-      // Staff member: Broadcast announcement at top, Admin contact, plus fellow staff
+      // Staff member: Admin contact plus fellow staff (Broadcast channel is only for Admin/Superadmin)
       const list = [
-        broadcastContact,
         { id: "admin", name: currentLang === "en" ? "Admin" : "ایڈمن", color: "#2563eb" }
       ];
       activePeople.filter(p => p.id !== currentUser.id && p.id !== "admin" && p.id !== "superadmin").forEach(p => {
@@ -7907,6 +8070,13 @@
     const input = $("waTextInput");
 
     const isBroadcastChannel = (person.id === "broadcast");
+    const isBroadcastLocked = isBroadcastChannel && !isAdminUser();
+    const pinnedBar = $("waPinnedBar");
+    const inputBar = $("waInputBar");
+    const lockBanner = $("waBroadcastLockBanner");
+    if(pinnedBar) pinnedBar.classList.toggle("hidden", isBroadcastLocked);
+    if(inputBar) inputBar.classList.toggle("hidden", isBroadcastLocked);
+    if(lockBanner) lockBanner.classList.toggle("hidden", !isBroadcastLocked);
 
     if(nameEl) nameEl.textContent = person.name;
     if(avatarEl){
@@ -8256,6 +8426,12 @@
 
     input.value = "";
     const isBroadcastMode = (activeChatPerson.id === "broadcast") || (isAdminUser() && $("waBroadcastCheckbox") && $("waBroadcastCheckbox").checked);
+    if(isBroadcastMode && !isAdminUser()){
+      toast("🔒 اس اعلان پر جواب دینے کی اجازت نہیں ہے");
+      isSendingWaMessage = false;
+      if(sendBtn) sendBtn.disabled = false;
+      return;
+    }
     const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
     const isPeer = (!isToAdmin && !isBroadcastMode && currentUser.role === "user");
 
@@ -8342,6 +8518,10 @@
     if(!activeChatPerson) return;
 
     const isBroadcastMode = (activeChatPerson.id === "broadcast") || (isAdminUser() && $("waBroadcastCheckbox") && $("waBroadcastCheckbox").checked);
+    if(isBroadcastMode && !isAdminUser()){
+      toast("🔒 اس اعلان پر جواب دینے کی اجازت نہیں ہے");
+      return;
+    }
     const isToAdmin = (activeChatPerson.id === "admin" || activeChatPerson.id === "superadmin");
     const isPeer = (!isToAdmin && !isBroadcastMode && currentUser.role === "user");
 
@@ -8362,14 +8542,14 @@
     };
 
     try{
-      await sendRawMessage(msgPayload);
       resetVoiceRecorderUI();
       if(isBroadcastMode && activeChatPerson.id !== "broadcast" && $("waBroadcastCheckbox")){
         $("waBroadcastCheckbox").checked = false;
       }
-      renderWaMessages(true);
-      renderWaContacts();
-      toast(isBroadcastMode ? "تمام صارفین کو عام اعلان بھیج دیا گیا" : "صوتی پیغام بھیج دیا گیا");
+      const ok = await sendRawMessage(msgPayload);
+      if(ok !== false){
+        toast(isBroadcastMode ? "تمام صارفین کو عام اعلان بھیج دیا گیا" : "صوتی پیغام بھیج دیا گیا");
+      }
     }catch(err){
       console.error("Send voice error:", err);
       toast("پیغام بھیجنے میں خرابی ہوئی");
@@ -8407,6 +8587,7 @@
     if(isSuper){
       const ok = confirm(`کیا آپ واقعی ${activeChatPerson.name} کے ساتھ تمام پیغامات ہسٹری میں محفوظ کر کے صاف کرنا چاہتے ہیں؟`);
       if(!ok) return;
+      stopAllVoicePlayback();
       archivePreviousMessagesForPerson(activeChatPerson.id);
       renderWaMessages();
       renderWaContacts();
@@ -8414,6 +8595,7 @@
     } else {
       const ok = confirm(`کیا آپ واقعی اپنی اسکرین سے یہ تمام پیغامات صاف کرنا چاہتے ہیں؟`);
       if(!ok) return;
+      stopAllVoicePlayback();
 
       const now = Date.now();
       const clearKey = currentUser.id + "_" + activeChatPerson.id;
@@ -9359,6 +9541,7 @@
     if(!confirm("کیا آپ واقعی تمام کارڈز سے تمام ایکٹیو پیغامات صاف کرنا چاہتے ہیں؟ اس سے تمام اسکرینیں خالی ہو جائیں گی۔")){
       return;
     }
+    stopAllVoicePlayback();
     try{
       const headers = { 'Content-Type': 'application/json' };
       if(auth && auth.currentUser){
@@ -9417,6 +9600,7 @@
     if(!confirm("کیا آپ ایکٹیو پیغامات اور تمام ہسٹری دونوں بیک وقت مستقل ڈیلیٹ کرنا چاہتے ہیں؟ فائر بیس مکمل کلین ہو جائے گا۔")){
       return;
     }
+    stopAllVoicePlayback();
     try{
       const headers = { 'Content-Type': 'application/json' };
       if(auth && auth.currentUser){
@@ -9516,6 +9700,7 @@
     if(typeof afterFn === "function") afterFn();
   }
   if($("hubOpenUsageReport")) $("hubOpenUsageReport").onclick = () => openSuperAtTab("tabUsageReportBtn", "tabUsageReportSection", fetchUsageReportData);
+  if($("hubOpenTokenSummary")) $("hubOpenTokenSummary").onclick = () => openSuperAtTab("tabTokenSummaryBtn", "tabTokenSummarySection", () => renderTokenSummaryReport(true));
   if($("hubOpenAdminPerms")) $("hubOpenAdminPerms").onclick = () => openSuperAtTab("tabAdminPermsBtn", "tabAdminPermsSection", renderAdminPerms);
   if($("hubOpenPeople")) $("hubOpenPeople").onclick = () => openSuperAtTab("tabPeopleBtn", "tabPeopleSection", renderPeopleTable);
   if($("hubOpenPins")) $("hubOpenPins").onclick = () => openSuperAtTab("tabPinsBtn", "tabPinsSection", renderPinList);
@@ -9537,11 +9722,11 @@
   $("superCloseBtn").onclick = () => $("superModal").classList.add("hidden");
 
   function switchSuperTab(activeTabBtn, activeSection){
-    ["tabAdminPermsBtn", "tabPeopleBtn", "tabPinsBtn", "tabMaintenanceBtn", "tabUsageReportBtn", "tabDbCleanBtn"].forEach(id => {
+    ["tabAdminPermsBtn", "tabPeopleBtn", "tabPinsBtn", "tabMaintenanceBtn", "tabUsageReportBtn", "tabTokenSummaryBtn", "tabDbCleanBtn"].forEach(id => {
       const b = $(id);
       if(b) b.classList.remove("active");
     });
-    ["tabAdminPermsSection", "tabPeopleSection", "tabPinsSection", "tabMaintenanceSection", "tabUsageReportSection", "tabDbCleanSection"].forEach(id => {
+    ["tabAdminPermsSection", "tabPeopleSection", "tabPinsSection", "tabMaintenanceSection", "tabUsageReportSection", "tabTokenSummarySection", "tabDbCleanSection"].forEach(id => {
       const s = $(id);
       if(s) s.classList.add("hidden");
     });
@@ -9755,6 +9940,193 @@
     };
   }
 
+  function formatUrduDuration(ms){
+    if(!ms || ms < 0) return "0 سیکنڈ";
+    const totalSec = Math.floor(ms / 1000);
+    const hrs = Math.floor(totalSec / 3600);
+    const mins = Math.floor((totalSec % 3600) / 60);
+    const secs = totalSec % 60;
+    const parts = [];
+    if(hrs > 0) parts.push(`${hrs} گھنٹہ`);
+    if(mins > 0) parts.push(`${mins} منٹ`);
+    if(secs > 0 || parts.length === 0) parts.push(`${secs} سیکنڈ`);
+    return parts.join(" ");
+  }
+
+  function computeTokenSummaryStats(data){
+    const d = data || {};
+    const totalIssued = d.total || 0;
+    const done = Array.isArray(d.done) ? d.done : [];
+    const queue = Array.isArray(d.queue) ? d.queue : [];
+    const skipped = Array.isArray(d.skipped) ? d.skipped : [];
+    const waitingOutside = Array.isArray(d.waitingOutside) ? d.waitingOutside : [];
+    const logs = Array.isArray(d.logs) ? [...d.logs].sort((a, b) => (a.time || 0) - (b.time || 0)) : [];
+
+    // Calculate outside wait sessions from logs + active waitingOutside
+    const activeOutside = {};
+    const outsideRecords = [];
+    const now = Date.now();
+
+    logs.forEach(log => {
+      if(!log || log.token == null) return;
+      const tNum = log.token;
+      if(log.type === "send_outside"){
+        activeOutside[tNum] = log.time || now;
+      } else if(log.type === "callback_outside" || log.type === "complete_outside"){
+        const start = activeOutside[tNum];
+        if(start != null){
+          const end = log.time || now;
+          outsideRecords.push({
+            token: tNum,
+            startTime: start,
+            endTime: end,
+            waitMs: Math.max(0, end - start),
+            status: log.type === "complete_outside" ? "مکمل (باہر سے)" : "واپس بلایا گیا"
+          });
+          delete activeOutside[tNum];
+        }
+      }
+    });
+
+    // Any still waiting outside right now
+    waitingOutside.forEach(item => {
+      const tNum = typeof item === "object" ? item.num : item;
+      const start = (typeof item === "object" && item.time) ? item.time : (activeOutside[tNum] || now);
+      if(tNum != null){
+        outsideRecords.push({
+          token: tNum,
+          startTime: start,
+          endTime: null,
+          waitMs: Math.max(0, now - start),
+          status: "ابھی انتظار میں"
+        });
+        delete activeOutside[tNum];
+      }
+    });
+
+    const uniqueOutsideTokens = new Set(outsideRecords.map(r => r.token));
+    const totalOutsideWaitMs = outsideRecords.reduce((sum, r) => sum + r.waitMs, 0);
+    const avgOutsideWaitMs = outsideRecords.length > 0 ? Math.round(totalOutsideWaitMs / outsideRecords.length) : 0;
+
+    // Total time to free all tokens
+    const startTime = d.startTime || null;
+    const isEnded = d.status === "ended";
+    const allFreed = totalIssued > 0 && queue.length === 0 && d.current == null && waitingOutside.length === 0;
+    let totalFreeMs = null;
+    let freeStatusLabel = "—";
+    let endRefTime = null;
+
+    if(startTime){
+      if(isEnded && d.endTime){
+        endRefTime = d.endTime;
+        totalFreeMs = Math.max(0, endRefTime - startTime);
+        freeStatusLabel = formatUrduDuration(totalFreeMs) + " (مکمل)";
+      } else if(allFreed){
+        endRefTime = d.updatedAt || now;
+        totalFreeMs = Math.max(0, endRefTime - startTime);
+        freeStatusLabel = formatUrduDuration(totalFreeMs) + " (سب فارغ)";
+      } else {
+        endRefTime = now;
+        totalFreeMs = Math.max(0, now - startTime);
+        freeStatusLabel = formatUrduDuration(totalFreeMs) + " (جاری)";
+      }
+    }
+
+    return {
+      totalIssued,
+      doneCount: done.length,
+      remainingCount: queue.length + (d.current != null ? 1 : 0),
+      skippedCount: skipped.length,
+      outsideTokenCount: uniqueOutsideTokens.size,
+      outsideSessionCount: outsideRecords.length,
+      totalOutsideWaitMs,
+      avgOutsideWaitMs,
+      outsideRecords,
+      startTime,
+      endRefTime,
+      totalFreeMs,
+      freeStatusLabel,
+      isEnded,
+      allFreed
+    };
+  }
+
+  async function renderTokenSummaryReport(fetchFresh = true){
+    if(!currentUser || currentUser.role !== "superadmin") return;
+    const detailsEl = $("tokenSummaryDetails");
+    if(!detailsEl) return;
+
+    let liveData = tokenDataState;
+    if(fetchFresh){
+      if(isFirebaseConfigured && db){
+        try{
+          const snap = await db.ref("tokens/today").once("value");
+          if(snap.exists()) liveData = snap.val();
+        }catch(e){}
+      } else {
+        try{
+          const r = await fetch("/api/tokens/today");
+          if(r.ok) liveData = await r.json();
+        }catch(e){}
+      }
+    }
+
+    const stats = computeTokenSummaryStats(liveData);
+    if($("tsKpiIssued")) $("tsKpiIssued").textContent = String(stats.totalIssued);
+    if($("tsKpiOutsideCount")) $("tsKpiOutsideCount").textContent = String(stats.outsideTokenCount);
+    if($("tsKpiOutsideWait")) $("tsKpiOutsideWait").textContent = formatUrduDuration(stats.totalOutsideWaitMs);
+    if($("tsKpiTotalFreeTime")) $("tsKpiTotalFreeTime").textContent = stats.freeStatusLabel;
+
+    let html = `
+      <div class="perms-card" style="margin:0">
+        <h4 style="margin:0 0 10px">📋 آج کے ٹوکنز کی تفصیل</h4>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;font-size:.9rem">
+          <div style="background:rgba(15,23,42,.55);padding:8px 12px;border-radius:10px">مکمل / فارغ: <strong style="color:#4ade80">${stats.doneCount}</strong></div>
+          <div style="background:rgba(15,23,42,.55);padding:8px 12px;border-radius:10px">قطار میں باقی: <strong style="color:#38bdf8">${stats.remainingCount}</strong></div>
+          <div style="background:rgba(15,23,42,.55);padding:8px 12px;border-radius:10px">اسکپ شدہ: <strong style="color:#fbbf24">${stats.skippedCount}</strong></div>
+          <div style="background:rgba(15,23,42,.55);padding:8px 12px;border-radius:10px">اوسط باہر انتظار: <strong style="color:#f87171">${formatUrduDuration(stats.avgOutsideWaitMs)}</strong></div>
+          <div style="background:rgba(15,23,42,.55);padding:8px 12px;border-radius:10px">شروع وقت: <strong>${formatTime(stats.startTime)}</strong></div>
+          <div style="background:rgba(15,23,42,.55);padding:8px 12px;border-radius:10px">${stats.isEnded || stats.allFreed ? "اختتام وقت" : "آخری اپڈیٹ"}: <strong>${formatTime(stats.endRefTime)}</strong></div>
+        </div>
+      </div>
+    `;
+
+    html += `<div class="perms-card" style="margin:0"><h4 style="margin:0 0 10px">⏳ باہر انتظار کرنے والے ٹوکنز کی فہرست (${stats.outsideRecords.length})</h4>`;
+    if(stats.outsideRecords.length === 0){
+      html += `<div style="color:var(--muted);font-size:.9rem">آج کوئی ٹوکن باہر انتظار میں نہیں بھیجا گیا۔</div>`;
+    } else {
+      html += `<div style="display:flex;flex-direction:column;gap:6px">`;
+      stats.outsideRecords.forEach(r => {
+        html += `
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;background:rgba(15,23,42,.55);padding:8px 12px;border-radius:10px;border:1px solid rgba(251,191,36,.25)">
+            <div>
+              <strong style="color:#fbbf24">ٹوکن #${r.token}</strong>
+              <span style="font-size:.82rem;color:var(--muted);margin-right:8px">(${formatTime(r.startTime)} → ${r.endTime ? formatTime(r.endTime) : "جاری"})</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:.85rem;color:#f87171;font-weight:700">${formatUrduDuration(r.waitMs)}</span>
+              <span style="font-size:.78rem;padding:2px 8px;border-radius:99px;background:#334155;color:#e2e8f0">${r.status}</span>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    }
+    html += `</div>`;
+
+    detailsEl.innerHTML = html;
+  }
+
+  if($("tabTokenSummaryBtn")){
+    $("tabTokenSummaryBtn").onclick = () => {
+      switchSuperTab($("tabTokenSummaryBtn"), $("tabTokenSummarySection"));
+      renderTokenSummaryReport(true);
+    };
+  }
+  if($("btnRefreshTokenSummary")){
+    $("btnRefreshTokenSummary").onclick = () => renderTokenSummaryReport(true);
+  }
+
   if($("usageRangeFilters")){
     $("usageRangeFilters").querySelectorAll(".h-filter").forEach(btn => {
       btn.onclick = () => {
@@ -9893,7 +10265,7 @@
     if($("permShowHistory")) $("permShowHistory").checked = (adminPermissions.showHistoryBtn !== false);
     if($("permShowVoice")) $("permShowVoice").checked = (adminPermissions.showVoiceBtn !== false);
     if($("permShowSound")) $("permShowSound").checked = (adminPermissions.showSoundBtn !== false);
-    if($("permAutoPlayVoice")) $("permAutoPlayVoice").checked = (adminPermissions.autoPlayVoice !== false);
+    if($("permAutoPlayVoice")) $("permAutoPlayVoice").checked = (adminPermissions.autoPlayVoice === true);
   }
 
   $("btnSelectAllPeople").onclick = () => {
@@ -9914,7 +10286,7 @@
     adminPermissions.showHistoryBtn = $("permShowHistory") ? $("permShowHistory").checked : true;
     adminPermissions.showVoiceBtn = $("permShowVoice") ? $("permShowVoice").checked : true;
     adminPermissions.showSoundBtn = $("permShowSound") ? $("permShowSound").checked : true;
-    adminPermissions.autoPlayVoice = $("permAutoPlayVoice") ? $("permAutoPlayVoice").checked : true;
+    adminPermissions.autoPlayVoice = $("permAutoPlayVoice") ? $("permAutoPlayVoice").checked : false;
 
     saveLocalSettings('adminPermissions');
     buildGrid();

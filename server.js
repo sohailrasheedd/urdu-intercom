@@ -153,13 +153,6 @@ const server = http.createServer((req, res) => {
   }
 
   if(fnName){
-    // send-push: user requirement: "send-push par asli push mat bhejo, sirf mock jawab do."
-    if(fnName === 'send-push'){
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ success: true, mocked: true, note: "Push notifications mocked in local test mode" }));
-      return;
-    }
-
     // Local test mode login: allow PIN 1234 for any user
     if(fnName === 'login'){
       let body = '';
